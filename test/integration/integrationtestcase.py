@@ -40,7 +40,7 @@ class IntegrationTestCase(SeecrTestCase):
     }
 
     def setUp(self):
-        CQ2TestCase.setUp(self)
+        SeecrTestCase.setUp(self)
         global state
         self.state = state
         self.sessionId = None
@@ -168,7 +168,8 @@ class OasIntegrationState(IntegrationState):
 
     def __init__(self, stateName, fastMode):
         IntegrationState.__init__(self, stateName, fastMode)
-        self.port = PortNumberGenerator.next()
+        self.portNumber = PortNumberGenerator.next()
+        self.hostName = 'localhost'
         
         self.config = config = readConfig(join(documentationDir, 'examples', 'oas.config'))
         self.configFile = join(self.integrationTempdir, 'oas.config')
@@ -179,8 +180,8 @@ class OasIntegrationState(IntegrationState):
             print "config[%s] = %s" % (repr(parameter), repr(value))
             config[parameter] = value
 
-        setConfig(config, 'hostName', 'localhost')
-        setConfig(config, 'portNumber', self.port)
+        setConfig(config, 'hostName', self.hostName)
+        setConfig(config, 'portNumber', self.portNumber)
         setConfig(config, 'databasePath', join(self.integrationTempdir, 'database'))
 
         with open(self.configFile, 'w') as f:
@@ -195,7 +196,7 @@ class OasIntegrationState(IntegrationState):
         IntegrationState.tearDown(self)
 
     def _startOasServer(self):
-        self._startServer('oas', join(binDir, 'oas-server'), 'http://localhost:%s/info/version' % self.port, configFile=self.configFile)
+        self._startServer('oas', join(binDir, 'oas-server'), 'http://localhost:%s/info/version' % self.portNumber, configFile=self.configFile)
 
     def _createDatabase(self):
         if fastMode:
@@ -205,7 +206,7 @@ class OasIntegrationState(IntegrationState):
         start = time()
         print "Creating database in", self.integrationTempdir
         try:
-            self._uploadUpdateRequests(self.testdataDir, '/update', [self.port]) 
+            self._uploadUpdateRequests(self.testdataDir, '/update', [self.portNumber]) 
             print "Finished creating database in %s seconds" % (time() - start)
         except Exception, e:
             print 'Error received while creating database for', self.stateName
