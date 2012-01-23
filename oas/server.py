@@ -1,4 +1,4 @@
-from os.path import join, basename
+from os.path import join, basename, dirname
 from sys import stdout
 
 from meresco.core import Observable, be
@@ -12,7 +12,7 @@ from dynamichtml import DynamicHtml
 
 from oas import VERSION_STRING
 
-dynamicHtmlFilePath = join(basename(__file__), "dynamic")
+dynamicHtmlFilePath = join(dirname(__file__), "dynamic")
 
 def dna(reactor, observableHttpServer, config):
    return \

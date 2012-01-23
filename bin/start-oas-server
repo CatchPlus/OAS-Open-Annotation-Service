@@ -1,0 +1,33 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from os.path import abspath, dirname,basename               #DO_NOT_DISTRIBUTE
+from os import system, getcwd                               #DO_NOT_DISTRIBUTE
+from glob import glob                                       #DO_NOT_DISTRIBUTE
+from sys import path as systemPath, exit                    #DO_NOT_DISTRIBUTE
+parentdir = dirname(dirname(__file__))                      #DO_NOT_DISTRIBUTE
+system('find '+parentdir+' -name "*.pyc" | xargs rm -f')    #DO_NOT_DISTRIBUTE
+for path in glob(parentdir+'/deps.d/*'):                    #DO_NOT_DISTRIBUTE
+    systemPath.insert(0, path)                              #DO_NOT_DISTRIBUTE
+systemPath.insert(0, parentdir)                             #DO_NOT_DISTRIBUTE
+
+from sys import argv, exit
+from optparse import OptionParser
+
+from cq2utils import isRootUser
+
+if __name__ == '__main__':
+    if isRootUser():
+        print "Do not run as root user!"
+        exit(2)
+    optionParser = OptionParser()
+    optionParser.add_option('-c', '--configFile', help="Config file.", dest="configFile")
+    try:
+        options, arguments = optionParser.parse_args()
+    except ValueError:
+        optionParser.print_help()
+        exit(1)
+
+    from oas.server import startServer
+    startServer(options.configFile)
+
