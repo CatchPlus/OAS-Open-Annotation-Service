@@ -205,7 +205,7 @@ class OasIntegrationState(IntegrationState):
         start = time()
         print "Creating database in", self.integrationTempdir
         try:
-            self._uploadUpdateRequests(self.testdataDir, '/update', [self.natagSruUpdatePort]) 
+            self._uploadUpdateRequests(self.testdataDir, '/update', [self.port]) 
             print "Finished creating database in %s seconds" % (time() - start)
         except Exception, e:
             print 'Error received while creating database for', self.stateName
