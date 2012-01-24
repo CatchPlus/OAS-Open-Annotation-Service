@@ -11,6 +11,6 @@ class OasTest(IntegrationTestCase):
         self.assertTrue(body.startswith("Open Annotation Service, version: "), body)
 
     def testSru(self):
-        headers, body = getRequest(self.portNumber, "/sru", arguments=dict(version="1.1", operation="searchRetrieve", query='RDF.Description exact "ex:Anno"'), parse='lxml')
-        self.assertEquals(["0"], xpath(body, '/srw:searchRetrieveResponse/srw:numberOfRecords/text()'))
+        headers, body = getRequest(self.portNumber, "/sru", arguments=dict(version="1.1", operation="searchRetrieve", query='RDF.Description.name = "J. Bloggs"'), parse='lxml')
+        self.assertEquals(["1"], xpath(body, '/srw:searchRetrieveResponse/srw:numberOfRecords/text()'))
 

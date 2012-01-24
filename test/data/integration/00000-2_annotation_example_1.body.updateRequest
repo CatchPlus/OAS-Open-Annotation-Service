@@ -1,0 +1,17 @@
+<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">
+    <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>
+    <ucp:action>info:srw/action/1/replace</ucp:action>
+    <ucp:recordIdentifier>ex:HDFI-1</ucp:recordIdentifier>
+    <srw:record xmlns:srw="http://www.loc.gov/zing/srw/">
+        <srw:recordPacking>xml</srw:recordPacking>
+        <srw:recordSchema>rdf</srw:recordSchema>
+        <srw:recordData><rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    <rdf:Description rdf:about="ex:HDFI-1">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Body"/>
+    </rdf:Description>
+</rdf:RDF></srw:recordData>
+    </srw:record>
+</ucp:updateRequest>

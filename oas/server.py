@@ -3,18 +3,20 @@ from sys import stdout
 
 from meresco.core import Observable, be, TransactionScope
 
-from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml
+from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi
 from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter
 from meresco.components.http.utils import ContentTypePlainText
 from meresco.components.sru import SruParser, SruHandler, SRURecordUpdate
 
 from meresco.solr.solrinterface import SolrInterface
 from meresco.solr.cql2solrlucenequery import CQL2SolrLuceneQuery
+from meresco.solr.fields2solrdoc import Fields2SolrDoc
 
 from weightless.io import Reactor
 from dynamichtml import DynamicHtml
 
 from oas import VERSION_STRING
+from namespaces import namespaces
 
 ALL_FIELD = '__all__'
 unqualifiedTermFields = [(ALL_FIELD, 1.0)]
@@ -28,24 +30,38 @@ def dna(reactor, observableHttpServer, config):
     solrPortNumber = int(config['solrPortNumber'])
     storageComponent = StorageComponent(join(databasePath, 'storage'))
 
+    solrInterface = SolrInterface(host="localhost", port=solrPortNumber, core="oas")
+
     return \
         (Observable(),
             (observableHttpServer,
                 (BasicHttpHandler(),
-                    (PathFilter("/sru-update"),
+                    (PathFilter("/update"),
                         (SRURecordUpdate(),
                             (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
                                 (TransactionScope('batch'),
                                     (TransactionScope('record'),    
-                                        (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
-                                            (storageComponent,)
-                                        ),  
+                                        (Venturi(
+                                            should=[
+                                                ('rdf', '/rdf:RDF'),
+                                            ],
+                                            namespaceMap=namespaces),
+
+                                            (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
+                                                (storageComponent,)
+                                            ),  
+                                            (Xml2Fields(),
+                                                (Fields2SolrDoc(transactionName="record", partname="solr"),
+                                                    (solrInterface,)
+                                                )   
+                                            )
+                                        )
                                     )
                                 )
                             )   
                         )   
                     ),
-                    (PathFilter("/", excluding=["/info", "/sru", "/sru-update"]),
+                    (PathFilter("/", excluding=["/info", "/sru", "/update"]),
                         (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, indexPage='/index'),
                         )
                     ),
@@ -53,7 +69,7 @@ def dna(reactor, observableHttpServer, config):
                         (SruParser(host=hostName, port=portNumber, defaultRecordSchema='rdf', defaultRecordPacking='xml'),
                             (SruHandler(drilldownSortedByTermCount=True),
                                 (CQL2SolrLuceneQuery(unqualifiedTermFields),
-                                    (SolrInterface(host="localhost", port=solrPortNumber, core="oas"),)
+                                    (solrInterface,)
                                 ),
                                 (storageComponent,),
                             )
