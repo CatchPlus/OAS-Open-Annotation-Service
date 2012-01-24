@@ -196,7 +196,7 @@ class OasIntegrationState(IntegrationState):
         IntegrationState.tearDown(self)
 
     def _startOasServer(self):
-        self._startServer('oas', join(binDir, 'oas-server'), 'http://localhost:%s/info/version' % self.portNumber, configFile=self.configFile)
+        self._startServer('oas', join(binDir, 'start-oas-server'), 'http://localhost:%s/info/version' % self.portNumber, configFile=self.configFile)
 
     def _createDatabase(self):
         if fastMode:

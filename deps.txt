@@ -1,0 +1,5 @@
+python-lxml
+python-meresco-solr
+python-meresco-components
+
+

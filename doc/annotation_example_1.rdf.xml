@@ -1,0 +1,25 @@
+<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <rdf:Description about="ex:Anno">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <oac:hasBody rdf:resource="ex:HDFI-1"/>
+        <oac:hasTarget rdf:resource="ex:HDFV"/>
+        <dc:title>Annotation of the Hubble Deep Field Image</dc:title>
+        <dcterms:creator rdf:resource="ex:User"/>
+        <dcterms:created>2010-02-01 12:34:56</dcterms:created>
+    </rdf:Description>
+    <rdf:Description about="ex:HDFI-1">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Body"/>
+    </rdf:Description>
+    <rdf:Description about="ex:HDFV">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Target"/>
+    </rdf:Description>
+    <rdf:Description about="ex:User">
+        <rdf:type rdf:resource="http://purl.org/dc/terms/Agent"/>
+        <foaf:name>J. Bloggs</foaf:name>
+        <foaf:mbox>jbloggs@example.org</foaf:mbox>
+    </rdf:Description>
+</rdf:RDF>

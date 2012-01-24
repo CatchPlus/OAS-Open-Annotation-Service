@@ -12,22 +12,33 @@ for path in glob(parentdir+'/deps.d/*'):                    #DO_NOT_DISTRIBUTE
 systemPath.insert(0, parentdir)                             #DO_NOT_DISTRIBUTE
 
 from sys import argv, exit
-from optparse import OptionParser
-
 from cq2utils import isRootUser
+from os import execvp, system
+from os.path import join
 
 if __name__ == '__main__':
+    args = argv[1:]
     if isRootUser():
-        print "Do not run as root user!"
-        exit(2)
-    optionParser = OptionParser()
-    optionParser.add_option('-c', '--configFile', help="Config file.", dest="configFile")
-    try:
-        options, arguments = optionParser.parse_args()
-    except ValueError:
-        optionParser.print_help()
+        print 'Do not run as root.'
         exit(1)
+    from openindex.utils import ParseArguments
+    options, arguments = ParseArguments.parseForSolr()
 
-    from oas.server import startServer
-    startServer(options.configFile)
+    system("""sed 's,<SystemProperty name="jetty.port"[^/]*/>,<SystemProperty name="jetty.port" default="%s"/>,' -i %s""" % (
+            options.port,
+            join(options.solrDataDir, 'jetty.xml')
+        ))
+    system("""sed 's,^jetty\.home=.*$,jetty.home=%s,' -i %s""" % (
+            options.solrDataDir,
+            join(options.solrDataDir, 'start.config')
+        ))
+
+    execvp('java', [
+        'java',
+        '-Djetty.port=%s' % options.port,
+        '-DSTART=%s/start.config' % options.solrDataDir,
+        '-Dsolr.solr.home=%s' % options.solrDataDir, 
+        '-jar', '/usr/share/java/solr/start.jar',
+        ])
+        
 
