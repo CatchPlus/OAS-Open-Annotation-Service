@@ -23,9 +23,9 @@ dynamicHtmlFilePath = join(dirname(__file__), "dynamic")
 
 def dna(reactor, observableHttpServer, config):
     hostName = config['hostName']
-    portNumber = config['portNumber']
+    portNumber = int(config['portNumber'])
     databasePath = config['databasePath']
-    solrPortNumber = config['solrPortNumber']
+    solrPortNumber = int(config['solrPortNumber'])
     storageComponent = StorageComponent(join(databasePath, 'storage'))
 
     return \
@@ -53,7 +53,7 @@ def dna(reactor, observableHttpServer, config):
                         (SruParser(host=hostName, port=portNumber, defaultRecordSchema='rdf', defaultRecordPacking='xml'),
                             (SruHandler(drilldownSortedByTermCount=True),
                                 (CQL2SolrLuceneQuery(unqualifiedTermFields),
-                                    (SolrInterface(host="localhost", port=solrPortNumber),)
+                                    (SolrInterface(host="localhost", port=solrPortNumber, core="oas"),)
                                 ),
                                 (storageComponent,),
                             )

@@ -27,6 +27,7 @@ binDir = join(projectDir, 'bin')
 if not isdir(binDir):
     binDir = '/usr/bin'
 documentationDir = join(projectDir, 'doc')
+defaultSolrDataDir = join(projectDir, 'solr-data')
 
 class IntegrationTestCase(SeecrTestCase):
     _scriptTagRegex = compile("<script[\s>].*?</script>", DOTALL)
@@ -139,7 +140,6 @@ class IntegrationState(object):
                     del self.pids[serviceName]
                     exit('Service "%s" died, check "%s"' % (serviceName, stdoutfile))
         self._stdoutWrite('oom!\n')
-        print serviceReadyResponse
 
     def _stopServer(self, serviceName):
         kill(self.pids[serviceName], SIGTERM)
@@ -168,6 +168,15 @@ class OasIntegrationState(IntegrationState):
 
     def __init__(self, stateName, fastMode):
         IntegrationState.__init__(self, stateName, fastMode)
+
+        self.solrDataDir = join(self.integrationTempdir, "solr")
+        system('mkdir --parents ' + self.solrDataDir)
+
+        if not fastMode:
+            system('cp -r %s/* %s' % (defaultSolrDataDir, self.solrDataDir))
+
+        system("sed 's,^jetty\.home=.*$,jetty.home=%s,' -i %s" % (self.solrDataDir, join(self.solrDataDir, 'start.config')))
+        self.solrPortNumber = PortNumberGenerator.next()
         self.portNumber = PortNumberGenerator.next()
         self.hostName = 'localhost'
         
@@ -177,11 +186,11 @@ class OasIntegrationState(IntegrationState):
         # test example config has necessary parameters
         def setConfig(config, parameter, value):
             assert config.get(parameter)
-            print "config[%s] = %s" % (repr(parameter), repr(value))
             config[parameter] = value
 
         setConfig(config, 'hostName', self.hostName)
         setConfig(config, 'portNumber', self.portNumber)
+        setConfig(config, 'solrPortNumber', self.solrPortNumber)
         setConfig(config, 'databasePath', join(self.integrationTempdir, 'database'))
 
         with open(self.configFile, 'w') as f:
@@ -189,6 +198,7 @@ class OasIntegrationState(IntegrationState):
                 f.write('%s = %s\n' % item)
 
     def initialize(self):
+        self._startSolrServer()
         self._startOasServer()
         self._createDatabase()
    
@@ -197,6 +207,9 @@ class OasIntegrationState(IntegrationState):
 
     def _startOasServer(self):
         self._startServer('oas', join(binDir, 'start-oas-server'), 'http://localhost:%s/info/version' % self.portNumber, configFile=self.configFile)
+
+    def _startSolrServer(self):
+        self._startServer('solr', join(binDir, 'start-oas-solr-server'), 'http://localhost:%s/solr/oas/admin/registry.jsp' % self.solrPortNumber, port=self.solrPortNumber, solrDataDir=self.solrDataDir, configFile=self.configFile, name="solr")
 
     def _createDatabase(self):
         if fastMode:

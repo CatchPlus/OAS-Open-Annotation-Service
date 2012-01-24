@@ -1,7 +1,8 @@
 from integrationtestcase import IntegrationTestCase
 from utils import getRequest
-from socket import socket
 from lxml.etree import tostring
+
+from oas.namespaces import xpath
 
 class OasTest(IntegrationTestCase):
 
@@ -11,4 +12,5 @@ class OasTest(IntegrationTestCase):
 
     def testSru(self):
         headers, body = getRequest(self.portNumber, "/sru", arguments=dict(version="1.1", operation="searchRetrieve", query='RDF.Description exact "ex:Anno"'), parse='lxml')
-        print tostring(body, pretty_print=True)
+        self.assertEquals(["0"], xpath(body, '/srw:searchRetrieveResponse/srw:numberOfRecords/text()'))
+
