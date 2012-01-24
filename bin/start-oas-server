@@ -19,14 +19,9 @@ from cq2utils import isRootUser
 if __name__ == '__main__':
     if isRootUser():
         print "Do not run as root user!"
-        exit(2)
-    optionParser = OptionParser()
-    optionParser.add_option('-c', '--configFile', help="Config file.", dest="configFile")
-    try:
-        options, arguments = optionParser.parse_args()
-    except ValueError:
-        optionParser.print_help()
         exit(1)
+    from oas.utils import ParseArguments
+    options, arguments = ParseArguments.parseForSearch()
 
     from oas.server import startServer
     startServer(options.configFile)

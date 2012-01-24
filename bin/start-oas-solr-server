@@ -21,7 +21,7 @@ if __name__ == '__main__':
     if isRootUser():
         print 'Do not run as root.'
         exit(1)
-    from openindex.utils import ParseArguments
+    from oas.utils import ParseArguments
     options, arguments = ParseArguments.parseForSolr()
 
     system("""sed 's,<SystemProperty name="jetty.port"[^/]*/>,<SystemProperty name="jetty.port" default="%s"/>,' -i %s""" % (
