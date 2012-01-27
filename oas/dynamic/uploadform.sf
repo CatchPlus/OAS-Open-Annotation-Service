@@ -1,0 +1,41 @@
+import page
+
+def main(Body, **kwargs):
+    params = parse_qs(Body)
+
+    annotation = ''
+    if 'annotation' in params and params['annotation'][0].strip() != '':
+        annotation = params['annotation'][0].strip()
+
+    if annotation:
+        lxmlNode = parse(StringIO(annotation))
+        identifier = xpath(lxmlNode, '/rdf:RDF/rdf:Description/@about')[0]
+        yield asyncdo.add(identifier=identifier, partname="rdf", lxmlNode=lxmlNode)
+
+
+    yield page.header()
+    yield page.caption("SRU Upload form")
+    yield '<form method="POST" action="/uploadform">'
+    yield '<textarea name="annotation" cols="80" rows="24">'
+    yield annotation if annotation else ''
+    yield '</textarea>'
+    yield '<input type="submit" value="Upload"/>'
+    yield '</form>'
+
+    yield '<pre>%s</pre>' % escapeHtml("""<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <rdf:Description about="urn:uuid:%s">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <oac:hasBody rdf:resource="urn:uuid:%s"/>
+        <oac:hasTarget rdf:resource="urn:uuid:%s"/>
+        <dc:title>.......</dc:title>
+        <dcterms:creator rdf:resource="urn:uuid:%s"/>
+        <dcterms:created>2010-02-01 12:34:56</dcterms:created>
+    </rdf:Description>
+</rdf:RDF>""" % (uuid(), uuid(), uuid(), uuid()))
+    yield page.footer()

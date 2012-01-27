@@ -1,2 +1,10 @@
+import page
+
 def main(**kwargs):
-    yield "<html><body><h1>Open Annotation Service</h1></body></html>"
+    yield page.header()
+    yield page.caption("Open Annotation Service")
+    yield '<form method="GET" action="/query">'
+    yield '<input type="text" name="q"/>'
+    yield '<input type="submit" value="Search"/>'
+    yield '</form>'
+    yield page.footer()

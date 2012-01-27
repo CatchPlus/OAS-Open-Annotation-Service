@@ -1,0 +1,15 @@
+def header():
+    yield """<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
+        <title>Open Annotation Service</title>
+    </head>
+    <body>
+    """
+
+def footer():
+    yield """</body>
+    </html>"""
+
+def caption(text):
+    yield """<div class="title">%s</div>""" % text

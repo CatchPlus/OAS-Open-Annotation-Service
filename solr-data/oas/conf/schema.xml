@@ -19,7 +19,7 @@
 <schema name="OpenAnnotationService" version="1.0">
 
   <types>
-    <fieldType name="string" class="solr.StrField" sortMissingLast="true" omitNorms="true"/>
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" omitNorms="true" multiValued="false"/>
     <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100" multiValued="true">
       <analyzer>
         <tokenizer class="solr.StandardTokenizerFactory"/>
