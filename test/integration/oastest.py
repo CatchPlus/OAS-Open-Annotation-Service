@@ -18,8 +18,9 @@ class OasTest(IntegrationTestCase):
         self.assertTrue(body.startswith("Open Annotation Service, version: "), body)
 
     def testSru(self):
-        self.assertQuery('RDF.Description.name = "J. Bloggs"', 1)
-        self.assertQuery('Bloggs', 1)
+        self.assertQuery('RDF.Description.title = "Annotation of the Hubble Deep Field Image"', 1)
+        self.assertQuery('RDF.Description.title = hubble', 1)
+        self.assertQuery('Hubble', 1)
 
     def testOaiIdentify(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')
@@ -27,7 +28,7 @@ class OasTest(IntegrationTestCase):
 
     def testOaiListRecords(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf"), parse='lxml')
-        self.assertEquals(4, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+        self.assertEquals(1, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
 
 
     def testPostAnnotation(self):

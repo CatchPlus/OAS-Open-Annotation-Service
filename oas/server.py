@@ -20,6 +20,7 @@ from weightless.io import Reactor
 from dynamichtml import DynamicHtml
 
 from oas import VERSION_STRING
+from oas import AnnotationFilter
 from namespaces import namespaces, xpath
 
 ALL_FIELD = '__all__'
@@ -53,17 +54,19 @@ def dna(reactor, observableHttpServer, config):
                         ('rdf', '/rdf:RDF'),
                     ],
                     namespaceMap=namespaces),
-                    (OaiAddRecord(),
-                        (oaiJazz, )
-                    ),
-                    (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
-                        (storageComponent,)
-                    ),  
-                    (Xml2Fields(),
-                        (RenameField(lambda name: "__all__"),
-                            indexHelix
+                    (AnnotationFilter(),
+                        (OaiAddRecord(),
+                            (oaiJazz, )
                         ),
-                        indexHelix
+                        (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
+                            (storageComponent,)
+                        ),  
+                        (Xml2Fields(),
+                            (RenameField(lambda name: "__all__"),
+                                indexHelix
+                            ),
+                            indexHelix
+                        )
                     )
                 )
             )
