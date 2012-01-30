@@ -4,7 +4,7 @@ from StringIO import StringIO
 
 from meresco.core import Observable, be, TransactionScope
 
-from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi
+from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField
 from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer
 from meresco.components.http.utils import ContentTypePlainText
 from meresco.components.sru import SruParser, SruHandler, SRURecordUpdate
@@ -35,6 +35,12 @@ def dna(reactor, observableHttpServer, config):
 
     solrInterface = SolrInterface(host="localhost", port=solrPortNumber, core="oas")
 
+    indexHelix = \
+        (Fields2SolrDoc(transactionName="record", partname="solr"),
+            (solrInterface,)
+        )   
+
+
     uploadHelix =  \
         (TransactionScope('batch'),
             (TransactionScope('record'),    
@@ -48,9 +54,10 @@ def dna(reactor, observableHttpServer, config):
                         (storageComponent,)
                     ),  
                     (Xml2Fields(),
-                        (Fields2SolrDoc(transactionName="record", partname="solr"),
-                            (solrInterface,)
-                        )   
+                        (RenameField(lambda name: "__all__"),
+                            indexHelix
+                        ),
+                        indexHelix
                     )
                 )
             )
