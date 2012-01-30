@@ -4,7 +4,7 @@ from StringIO import StringIO
 
 from meresco.core import Observable, be, TransactionScope
 
-from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField
+from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field
 from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer
 from meresco.components.http.utils import ContentTypePlainText
 from meresco.components.sru import SruParser, SruHandler, SRURecordUpdate
@@ -61,6 +61,15 @@ def dna(reactor, observableHttpServer, config):
                         (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
                             (storageComponent,)
                         ),  
+                        (XPath2Field([
+                            ("/rdf:RDF/rdf:Description/dc:title/text()", 'dc:title'),
+                            ("/rdf:RDF/rdf:Description/dcterms:created/text()", 'dcterms:created'),
+                            ("/rdf:RDF/oas:Annotation/dc:title/text()", 'dc:title'),
+                            ("/rdf:RDF/oas:Annotation/dcterms:created/text()", 'dcterms:created'),
+
+                            ], namespaceMap=namespaces),
+                            indexHelix
+                        ),
                         (Xml2Fields(),
                             (RenameField(lambda name: "__all__"),
                                 indexHelix

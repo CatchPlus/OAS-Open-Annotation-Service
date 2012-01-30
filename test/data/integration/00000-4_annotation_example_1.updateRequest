@@ -16,7 +16,7 @@
         <oac:hasTarget rdf:resource="ex:HDFV"/>
         <dc:title>Annotation of the Hubble Deep Field Image</dc:title>
         <dcterms:creator rdf:resource="ex:User"/>
-        <dcterms:created>2010-02-01 12:34:56</dcterms:created>
+        <dcterms:created>2010-02-02 12:34:56</dcterms:created>
     </rdf:Description>
 </rdf:RDF></srw:recordData>
     </srw:record>
