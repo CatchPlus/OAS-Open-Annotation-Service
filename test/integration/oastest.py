@@ -21,6 +21,15 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('RDF.Description.name = "J. Bloggs"', 1)
         self.assertQuery('Bloggs', 1)
 
+    def testOaiIdentify(self):
+        headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')
+        self.assertEquals("CatchPlus OpenAnnotation", xpath(body, "/oai:OAI-PMH/oai:Identify/oai:repositoryName/text()")[0])
+
+    def testOaiListRecords(self):
+        headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf"), parse='lxml')
+        self.assertEquals(4, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+
+
     def testPostAnnotation(self):
         identifier = "urn:uuid:%s" % uuid4()
         annotationBody = """<rdf:RDF 

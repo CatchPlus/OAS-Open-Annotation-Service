@@ -13,6 +13,8 @@ from meresco.solr.solrinterface import SolrInterface
 from meresco.solr.cql2solrlucenequery import CQL2SolrLuceneQuery
 from meresco.solr.fields2solrdoc import Fields2SolrDoc
 
+from meresco.oai import OaiPmh, OaiJazz, OaiAddRecord
+
 from uuid import uuid4
 from weightless.io import Reactor
 from dynamichtml import DynamicHtml
@@ -35,6 +37,8 @@ def dna(reactor, observableHttpServer, config):
 
     solrInterface = SolrInterface(host="localhost", port=solrPortNumber, core="oas")
 
+    oaiJazz = OaiJazz(join(databasePath, 'oai'))
+
     indexHelix = \
         (Fields2SolrDoc(transactionName="record", partname="solr"),
             (solrInterface,)
@@ -49,7 +53,9 @@ def dna(reactor, observableHttpServer, config):
                         ('rdf', '/rdf:RDF'),
                     ],
                     namespaceMap=namespaces),
-
+                    (OaiAddRecord(),
+                        (oaiJazz, )
+                    ),
                     (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
                         (storageComponent,)
                     ),  
@@ -74,7 +80,7 @@ def dna(reactor, observableHttpServer, config):
                             )   
                         )   
                     ),
-                    (PathFilter("/", excluding=["/info", "/sru", "/update", "/static"]),
+                    (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai"]),
                         (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                             indexPage='/index', 
                             additionalGlobals={
@@ -101,6 +107,15 @@ def dna(reactor, observableHttpServer, config):
                             )
                         )
 
+                    ),
+                    (PathFilter('/oai'),
+                        (OaiPmh(
+                            repositoryName=config['oai.repository.name'],
+                            adminEmail=config['oai.admin.email'],
+                            repositoryIdentifier=config['oai.repository.identifier']),
+                            (storageComponent,),
+                            (oaiJazz,),
+                        )
                     ),
                     (PathFilter('/info/version'),
                         (StringServer(VERSION_STRING, ContentTypePlainText),)
