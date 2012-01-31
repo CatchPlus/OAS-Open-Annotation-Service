@@ -27,6 +27,17 @@ a:hover, a:active, a:focus {
     text-decoration: none;
 }
 
+button {
+    float: right;
+}
+
+.remarks {
+    padding: 10px;
+    display: none;
+    border: 1px dotted #f9a01b;
+    clear: both;
+}
+
 .title {
     padding-top: 1em;
     text-align: center;
@@ -79,4 +90,8 @@ a:hover, a:active, a:focus {
     background-repeat: no-repeat;
     background-position:center; 
     height: 20px;
+}
+
+#content {
+    margin-bottom: 20px;
 }

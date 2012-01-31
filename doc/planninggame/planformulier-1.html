@@ -1,8 +1,14 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="/planninggame/planninggame.css"/>
-        <title>Open Annotation Service</title>
         <link rel="shortcut icon" href="http://seecr.nl/favicon.ico" />
+        <script language="javascript" type="text/javascript">
+function toggle(elementId) {
+    var ele = document.getElementById(elementId);
+    ele.style.display = ele.style.display == "block" ? "none" : "block";
+} 
+        </script>
+        <title>Open Annotation Service</title>
     </head>
     <body>
         <div id="blocknote">
@@ -27,11 +33,27 @@
                 <div class="story">
                     <h2>3. SRU interface</h2>
                     <p>Voor het zoeken zal een SRU interface op de server worden aangesloten. De RDF zal worden platgeslagen waarbij de Body en Target URI's geindexeerd worden zodat annotations voor specifieke targets direct gequeried kunnen worden. Bodies zijn in eerste instantie URI's.</p><p>De content van de Body zal dus opgehaald moeten worden, dit zal op een later tijdstip gaan gebeuren.</p>
+                    <button onClick="javascript:toggle('story_3');">Meer</button>
+                    <div class="remarks" id="story_3">
+                        <p>De SRU interface is te vinden op <a target="_blank" href="http://oas.dev.seecr.nl:8000/sru">http://oas.dev.seecr.nl:8000/sru</a>.</p>
+                    </div>
                 </div>
                 
                 <div class="story">
                     <h2>4. OAI interface</h2>
                     <p>Er zal een simpele OAI interface worden aangesloten op de server. Het metadata prefix voor OpenAnnotation zal oac zijn. Er zal (nog) geen oai_dc ondersteund worden evenals dat er geen support zal zijn voor sets.</p>
+                    <button onClick="javascript:toggle('story_4');">Meer</button>
+                    <div class="remarks" id="story_4">
+                        <p>De base-url voor de OAI interface is http://oas.dev.seecr.nl:8000/oai</p>
+                        <p>
+                            <dl>
+                                <dt>Identify</dt>
+                                <dd><a target="_blank" href="http://oas.dev.seecr.nl:8000/oai?verb=Identify">http://oas.dev.seecr.nl:8000/oai?verb=Identify</a></dd>
+                                <dt>ListRecords</dt>
+                                <dd><a target="_blank" href="http://oas.dev.seecr.nl:8000/oai?verb=ListRecords&metadataPrefix=rdf">http://oas.dev.seecr.nl:8000/oai?verb=ListRecords&metadataPrefix=rdf</a></dd>
+                            </dl>
+                        </p>
+                    </div>
                 </div>
                 
                 <div class="story">
@@ -42,11 +64,19 @@
                 <div class="story">
                     <h2>6. Webform</h2>
                     <p>Invoeren van een open annotation m.b.v. een simpel formulier</p>
+                    <button onClick="javascript:toggle('story_6');">Meer</button>
+                    <div class="remarks" id="story_6">
+                        <p>Het invoerformulier is te vinden op <a target="_blank" href="http://oas.dev.seecr.nl:8000/uploadform">http://oas.dev.seecr.nl:8000/uploadform</a>.
+                    </div>
                 </div>
                 
                 <div class="story">
                     <h2>7. Webform zoeken</h2>
                     <p>Simpele zoekbox met knop waarmee door de annotations kan worden gezocht.</p>
+                    <button onClick="javascript:toggle('story_7');">Meer</button>
+                    <div class="remarks" id="story_7">
+                        <p>Het zoekformulier is te vinden op <a target="_blank" href="http://oas.dev.seecr.nl:8000/index">http://oas.dev.seecr.nl:8000/index</a>.
+                    </div>
                 </div>
 
             </div>
