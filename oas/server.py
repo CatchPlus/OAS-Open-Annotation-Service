@@ -5,7 +5,7 @@ from StringIO import StringIO
 from meresco.core import Observable, be, TransactionScope
 
 from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field
-from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer
+from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer, ApacheLogger
 from meresco.components.http.utils import ContentTypePlainText
 from meresco.components.sru import SruParser, SruHandler, SRURecordUpdate
 
@@ -29,6 +29,7 @@ unqualifiedTermFields = [(ALL_FIELD, 1.0)]
 
 dynamicHtmlFilePath = join(dirname(__file__), "dynamic")
 staticHtmlFilePath = join(dirname(__file__), "static")
+planninggameFilePath = join(dirname(dirname(__file__)), "doc", "planninggame")
 
 def dna(reactor, observableHttpServer, config):
     hostName = config['hostName']
@@ -86,54 +87,62 @@ def dna(reactor, observableHttpServer, config):
         (Observable(),
             (observableHttpServer,
                 (BasicHttpHandler(),
-                    (PathFilter("/update"),
-                        (SRURecordUpdate(),
-                            (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
-                                uploadHelix,
+                    (ApacheLogger(stdout),
+
+                        (PathFilter("/update"),
+                            (SRURecordUpdate(),
+                                (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
+                                    uploadHelix,
+                                )   
                             )   
-                        )   
-                    ),
-                    (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai"]),
-                        (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
-                            indexPage='/index', 
-                            additionalGlobals={
-                                'StringIO': StringIO, 
-                                'xpath': xpath,
-                                'uuid': uuid4,
-                                }),
-                            uploadHelix
-                        )
-                    ),
-                    (PathFilter('/static'),
-                        (PathRename(lambda path: path[len('/static'):]),
-                            (FileServer(staticHtmlFilePath),)
-                        )
-                    ),
-                    (PathFilter("/sru"),
-                        (SruParser(host=hostName, port=portNumber, 
-                            defaultRecordSchema='rdf', defaultRecordPacking='xml'),
-                            (SruHandler(drilldownSortedByTermCount=True),
-                                (CQL2SolrLuceneQuery(unqualifiedTermFields),
-                                    (solrInterface,)
-                                ),
+                        ),
+                        (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame"]),
+                            (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
+                                indexPage='/index', 
+                                additionalGlobals={
+                                    'StringIO': StringIO, 
+                                    'xpath': xpath,
+                                    'uuid': uuid4,
+                                    }),
+                                uploadHelix
+                            )
+                        ),
+                        (PathFilter('/static'),
+                            (PathRename(lambda path: path[len('/static'):]),
+                                (FileServer(staticHtmlFilePath),)
+                            )
+                        ),
+                        (PathFilter("/sru"),
+                            (SruParser(host=hostName, port=portNumber, 
+                                defaultRecordSchema='rdf', defaultRecordPacking='xml'),
+                                (SruHandler(drilldownSortedByTermCount=True),
+                                    (CQL2SolrLuceneQuery(unqualifiedTermFields),
+                                        (solrInterface,)
+                                    ),
+                                    (storageComponent,),
+                                )
+                            )
+
+                        ),
+                        (PathFilter('/oai'),
+                            (OaiPmh(
+                                repositoryName=config['oai.repository.name'],
+                                adminEmail=config['oai.admin.email'],
+                                repositoryIdentifier=config['oai.repository.identifier']),
                                 (storageComponent,),
+                                (oaiJazz,),
+                                (SeecrOaiWatermark(),),
+                            )
+                        ),
+                        (PathFilter('/info/version'),
+                            (StringServer(VERSION_STRING, ContentTypePlainText),)
+                        ),  
+                        (PathFilter('/planninggame'),
+                            (PathRename(lambda path: path[len('/planninggame'):]),
+                                (FileServer(planninggameFilePath),)
                             )
                         )
-
-                    ),
-                    (PathFilter('/oai'),
-                        (OaiPmh(
-                            repositoryName=config['oai.repository.name'],
-                            adminEmail=config['oai.admin.email'],
-                            repositoryIdentifier=config['oai.repository.identifier']),
-                            (storageComponent,),
-                            (oaiJazz,),
-                            (SeecrOaiWatermark(),),
-                        )
-                    ),
-                    (PathFilter('/info/version'),
-                        (StringServer(VERSION_STRING, ContentTypePlainText),)
-                    ),  
+                    )
                 )
             )
         )

@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/planninggame/planninggame.css"/>
+        <title>Open Annotation Service</title>
+        <link rel="shortcut icon" href="http://seecr.nl/favicon.ico" />
+    </head>
+    <body>
+        <div id="blocknote">
+            <div id="logo"></div>
+            <div id="content">
+                <h1 class="title">Planformulier 1 - Open Annotation Service</h1>
+                <div class="story">
+                    <h2>0. Server inrichten</h2>
+                    <p>Het opzetten van een server ten behoeve van software ontwikkeling en het tussentijds testen van de ontwikkelde software.</p>
+                </div>
+                
+                <div class="story">
+                    <h2>1. SRU update interface</h2>
+                    <p>Simpele SRU update interface waarmee een standaard annotatie mee in het systeem kan worden ingevoerd. Enige check is of het een daadwerkelijke annotatie is. Update en delete is op hele annotatie.</p>
+                </div>
+
+                <div class="story">
+                    <h2>2. Voorbeeld</h2>
+                    <p>Ten behoeve van testen en acceptatie is het handig om goede voorbeelden te hebben. Deze gaan we verzamelen. Voorbeelden voor het opbouwen van het systeem maar ook voorbeelden die voldoen aan de verwachting. Deze kunnen dan gebruikt worden ter acceptatie. Hennie zal hierna zoeken binnen de Catch+ context. De gevonden/gemaakte voorbeelden zullen worden gebruikt voor geautomatiseerde regressie testen.</p>
+                </div>
+                
+                <div class="story">
+                    <h2>3. SRU interface</h2>
+                    <p>Voor het zoeken zal een SRU interface op de server worden aangesloten. De RDF zal worden platgeslagen waarbij de Body en Target URI's geindexeerd worden zodat annotations voor specifieke targets direct gequeried kunnen worden. Bodies zijn in eerste instantie URI's.</p><p>De content van de Body zal dus opgehaald moeten worden, dit zal op een later tijdstip gaan gebeuren.</p>
+                </div>
+                
+                <div class="story">
+                    <h2>4. OAI interface</h2>
+                    <p>Er zal een simpele OAI interface worden aangesloten op de server. Het metadata prefix voor OpenAnnotation zal oac zijn. Er zal (nog) geen oai_dc ondersteund worden evenals dat er geen support zal zijn voor sets.</p>
+                </div>
+                
+                <div class="story">
+                    <h2>5. Known item search</h2>
+                    <p>dc:title, dc:created en dcterms:creator in aparte indexes zodat kan worden gezocht op title, creator en created.</p>
+                </div>
+                
+                <div class="story">
+                    <h2>6. Webform</h2>
+                    <p>Invoeren van een open annotation m.b.v. een simpel formulier</p>
+                </div>
+                
+                <div class="story">
+                    <h2>7. Webform zoeken</h2>
+                    <p>Simpele zoekbox met knop waarmee door de annotations kan worden gezocht.</p>
+                </div>
+
+            </div>
+            <div id="stamp"></div>
+            <div id="address"></div>
+        </div>
+    </body>
+</html>
