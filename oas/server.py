@@ -21,6 +21,7 @@ from dynamichtml import DynamicHtml
 
 from oas import VERSION_STRING
 from oas import AnnotationFilter
+from oas.seecroaiwatermark import SeecrOaiWatermark
 from namespaces import namespaces, xpath
 
 ALL_FIELD = '__all__'
@@ -127,6 +128,7 @@ def dna(reactor, observableHttpServer, config):
                             repositoryIdentifier=config['oai.repository.identifier']),
                             (storageComponent,),
                             (oaiJazz,),
+                            (SeecrOaiWatermark(),),
                         )
                     ),
                     (PathFilter('/info/version'),
