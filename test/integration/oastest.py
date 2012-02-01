@@ -24,6 +24,7 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('dc:title = hubble', 1)
         self.assertQuery('dcterms:created = "2010-02-02"', 1)
         self.assertQuery('dcterms:created = 2010', 1)
+        self.assertQuery('dcterms:creator = "ex:User"', 1)
 
 
 
@@ -49,7 +50,7 @@ class OasTest(IntegrationTestCase):
         <oac:hasBody rdf:resource="ex:HDFI-1"/>
         <oac:hasTarget rdf:resource="ex:HDFV"/>
         <dc:title>An Annotions submitted through a form</dc:title>
-        <dcterms:creator rdf:resource="ex:User"/>
+        <dcterms:creator rdf:resource="ex:AnotherUser"/>
         <dcterms:created>2000-02-01 12:34:56</dcterms:created>
     </rdf:Description>
 </rdf:RDF>""" % locals()

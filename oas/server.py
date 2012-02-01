@@ -66,8 +66,10 @@ def dna(reactor, observableHttpServer, config):
                         (XPath2Field([
                             ("/rdf:RDF/rdf:Description/dc:title/text()", 'dc:title'),
                             ("/rdf:RDF/rdf:Description/dcterms:created/text()", 'dcterms:created'),
+                            ("/rdf:RDF/rdf:Description/dcterms:creator/@rdf:resource", 'dcterms:creator'),
                             ("/rdf:RDF/oas:Annotation/dc:title/text()", 'dc:title'),
                             ("/rdf:RDF/oas:Annotation/dcterms:created/text()", 'dcterms:created'),
+                            ("/rdf:RDF/oas:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
 
                             ], namespaceMap=namespaces),
                             indexHelix
