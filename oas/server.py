@@ -1,8 +1,12 @@
 from os.path import join, basename, dirname
 from sys import stdout
 from StringIO import StringIO
+from uuid import uuid4
 
-from meresco.core import Observable, be, TransactionScope
+from weightless.core import compose, be
+from weightless.io import Reactor
+
+from meresco.core import Observable, TransactionScope
 
 from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field
 from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer, ApacheLogger
@@ -15,8 +19,6 @@ from meresco.solr.fields2solrdoc import Fields2SolrDoc
 
 from meresco.oai import OaiPmh, OaiJazz, OaiAddRecord
 
-from uuid import uuid4
-from weightless.io import Reactor
 from dynamichtml import DynamicHtml
 
 from oas import VERSION_STRING
@@ -53,7 +55,7 @@ def dna(reactor, observableHttpServer, config):
             (TransactionScope('record'),    
                 (Venturi(
                     should=[
-                        ('rdf', '/rdf:RDF'),
+                        dict(partname='rdf', xpath='/rdf:RDF'),
                     ],
                     namespaceMap=namespaces),
                     (AnnotationFilter(),
@@ -163,7 +165,7 @@ def startServer(configFile):
     observableHttpServer = ObservableHttpServer(reactor, portNumber)
 
     server = be(dna(reactor, observableHttpServer, config))
-    server.once.observer_init()
+    list(compose(server.once.observer_init()))
 
     print "Server listening on", hostName, "at port", portNumber
     print "   - database:", databasePath, "\n"
