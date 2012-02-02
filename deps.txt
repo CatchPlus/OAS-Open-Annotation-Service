@@ -1,5 +1,10 @@
-python-lxml
-python-meresco-solr
-python-meresco-components
-
-
+python-lxml (>= 2.2.8)
+python-lxml (<< 3.0)
+python-meresco-solr (>= 4.0)
+python-meresco-solr (<< 4.1)
+python-meresco-components (>= 4.0)
+python-meresco-components (<< 4.1)
+python-meresco-core (>= 4.0)
+python-meresco-core (<< 4.1)
+python-weightless-core (>= 0.7)
+python-weightless-core (<< 0.8)
