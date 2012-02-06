@@ -59,4 +59,12 @@ class OasTest(IntegrationTestCase):
         postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)))
         self.assertQuery('RDF.Description.title = "An Annotions submitted through a form"', 1)
 
+        
+    def testReindex(self):
+        header, body = getRequest(self.portNumber, '/reindex', {'session': 'newReindex'}, parse=False)
+        self.assertEquals("#\n=batches: 1", body)
+        header, body = getRequest(self.portNumber, '/reindex', {'session': 'newReindex'}, parse=False)
+        lines = body.split('\n')
+        self.assertEquals('=batches left: 0', lines[-1])
+        self.assertTrue('+ex:Anno' in lines, lines)
 

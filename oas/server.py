@@ -8,7 +8,7 @@ from weightless.io import Reactor
 
 from meresco.core import Observable, TransactionScope
 
-from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field
+from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field, Reindex, FilterMessages
 from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer, ApacheLogger
 from meresco.components.http.utils import ContentTypePlainText
 from meresco.components.sru import SruParser, SruHandler, SRURecordUpdate
@@ -40,6 +40,8 @@ def dna(reactor, observableHttpServer, config):
     solrPortNumber = int(config['solrPortNumber'])
     storageComponent = StorageComponent(join(databasePath, 'storage'))
 
+    reindexPath = join(databasePath, 'reindex')
+
     solrInterface = SolrInterface(host="localhost", port=solrPortNumber, core="oas")
 
     oaiJazz = OaiJazz(join(databasePath, 'oai'))
@@ -61,6 +63,9 @@ def dna(reactor, observableHttpServer, config):
                         dict(partname='rdf', xpath='/rdf:RDF'),
                     ],
                     namespaceMap=namespaces),
+                    (FilterMessages(allowed=['getStream', 'isAvailable']),
+                        (storageComponent,),
+                    ),
                     (AnnotationFilter(),
                         (OaiAddRecord(),
                             (oaiJazz, )
@@ -109,7 +114,15 @@ def dna(reactor, observableHttpServer, config):
                                 )   
                             )   
                         ),
-                        (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame"]),
+                        (PathFilter("/reindex"),
+                            (Reindex(partName="rdf", filelistPath=reindexPath),
+                                (FilterMessages(allowed=["listIdentifiers"]),
+                                    (storageComponent,),
+                                ),
+                                uploadHelix
+                            )
+                        ),
+                        (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex"]),
                             (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                                 indexPage='/index', 
                                 additionalGlobals={
