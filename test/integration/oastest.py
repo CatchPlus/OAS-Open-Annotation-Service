@@ -68,3 +68,6 @@ class OasTest(IntegrationTestCase):
         self.assertEquals('=batches left: 0', lines[-1])
         self.assertTrue('+ex:Anno' in lines, lines)
 
+    def testMultipleAnnotationsInOneUpdate(self):
+        self.assertQuery('dc:title="Multiple Annotations In One Update"', 3)
+

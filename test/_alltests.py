@@ -11,6 +11,7 @@ from unittest import main
 
 from annotationfiltertest import AnnotationFilterTest
 from utilstest import UtilsTest
+from multipleannotationsplittest import MultipleAnnotationSplitTest
 
 if __name__ == '__main__':
     main()
