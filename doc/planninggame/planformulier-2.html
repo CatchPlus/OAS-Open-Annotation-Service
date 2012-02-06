@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="http://cdn.seecr.nl/css/planninggame.css"/>
+        <link rel="shortcut icon" href="http://seecr.nl/favicon.ico" />
+        <script language="javascript" type="text/javascript">
+function toggle(elementId) {
+    var ele = document.getElementById(elementId);
+    ele.style.display = ele.style.display == "block" ? "none" : "block";
+} 
+        </script>
+        <title>OpenAnnotation Service</title>
+   </head>
+    <body>
+        <div id="blocknote">
+            <div id="logo"></div>
+            <div id="content">
+                <h1 class="title">Planformulier 2 - OpenAnnotation Service</h1>                
+                <div class="story">
+                    <h2>0. TODO</h2>
+                    <p>Overgebleven van het vorige planformulier:<br/>- URI's voor Target en Body ook indexeren</p>
+                    <button onClick="javascript:toggle('story_0');">Meer</button>
+                    <div class="remarks" id="story_0">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>1. SRU Update voorbeeld script</h2>
+                    <p>Voorbeeld script dat input leest en een update request maakt en upload.</p>
+                    <button onClick="javascript:toggle('story_1');">Meer</button>
+                    <div class="remarks" id="story_1">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>2. Ondersteuning meerdere Annotaties</h2>
+                    <p>Momenteel wordt alleen 1 annotatie per update ondesteund, dit moet worden aangepast zodat meerdere annotaties per update toegestaan zijn. De foutafhandeling zodanig worden aangepast dat de batch stopt bij een foute annotatie. De reeds verwerkte annotaties zijn dan wel goed verwerkt.</p>
+                    <button onClick="javascript:toggle('story_2');">Meer</button>
+                    <div class="remarks" id="story_2">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>3. URN's resolvebaar maken</h2>
+                    <p>URN's moeten resolvebaar worden gemaakt. De URN wordt dan een URI die leidt naar een pagina op de server. bijvoorbeeld: &quot;http://oas.dev.seecr.nl/resolve/.....&quot;. Op de pagina wordt de inhoud van de annotatie getoond in RDF+XML.</p>
+                    <button onClick="javascript:toggle('story_3');">Meer</button>
+                    <div class="remarks" id="story_3">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>4. Bestaande referenties opzoeken</h2>
+                    <p>Als URN's al eens eerder zijn gegeven deze hergebruiken. Er mag dan geen inhoud bij zitten anders volgt er een foutmelding. Als de URN gevonden is wordt de gerelateerd informatie hergebruikt.</p>
+                    <button onClick="javascript:toggle('story_4');">Meer</button>
+                    <div class="remarks" id="story_4">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>5. foaf:mbox als identifier voor creator</h2>
+                    <p>Als de dcterms:creator geen URL heeft maar wel een URN dan foaf:mbox gebruiken als identifier. Hiermee wordt een wildgroei aan dcterms:creator's voorkomen.</p>
+                    <button onClick="javascript:toggle('story_5');">Meer</button>
+                    <div class="remarks" id="story_5">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>6. dcterms:creator URI's resolven</h2>
+                    <p>Als er (externe) URI's staan voor creator dan wordt deze geresolved. Als dit geldige RDF oplevert dan kan dat worden geindexeerd op bijv. skos:prefLabel of dc:title.</p>
+                    <button onClick="javascript:toggle('story_6');">Meer</button>
+                    <div class="remarks" id="story_6">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>7. Fragment weghalen</h2>
+                    <p>Fragmenten wegstrippen zodat bij het zoeken de records met een fragment kunnen worden gevonden op basis van de base-url.</p>
+                    <button onClick="javascript:toggle('story_7');">Meer</button>
+                    <div class="remarks" id="story_7">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>
+            </div>
+            <div id="stamp"></div>
+            <div id="address" onClick="javascript:window.open('http://seecr.nl'); return false;"></div>
+        </div>
+    </body>
+</html>
