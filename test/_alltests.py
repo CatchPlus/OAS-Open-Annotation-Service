@@ -10,6 +10,7 @@ systemPath.insert(0, '..')                          #DO_NOT_DISTRIBUTE
 from unittest import main
 
 from annotationfiltertest import AnnotationFilterTest
+from utilstest import UtilsTest
 
 if __name__ == '__main__':
     main()

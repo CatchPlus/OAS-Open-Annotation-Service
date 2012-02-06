@@ -5,7 +5,8 @@ from StringIO import StringIO
 
 from weightless.core import compose
 
-from meresco.core import be, Observable
+from meresco.core import Observable
+from weightless.core import be
 from oas import AnnotationFilter
 
 def addMock(identifier, partname, lxmlNode):

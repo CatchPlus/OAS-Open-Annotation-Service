@@ -9,8 +9,9 @@ def main(Body, **kwargs):
 
     if annotation:
         lxmlNode = parse(StringIO(annotation))
-        identifier = xpath(lxmlNode, '/rdf:RDF/rdf:Description/@about')[0]
-        yield all.add(identifier=identifier, partname="rdf", lxmlNode=lxmlNode)
+        if validAnnotation(lxmlNode):
+            identifier = xpath(lxmlNode, '/rdf:RDF/rdf:Description/@about')[0]
+            yield all.add(identifier=identifier, partname="rdf", lxmlNode=lxmlNode)
 
 
     yield page.header()

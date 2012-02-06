@@ -23,6 +23,7 @@ from dynamichtml import DynamicHtml
 
 from oas import VERSION_STRING
 from oas import AnnotationFilter
+from oas.annotationfilter import validAnnotation
 from oas.seecroaiwatermark import SeecrOaiWatermark
 from namespaces import namespaces, xpath
 
@@ -129,6 +130,7 @@ def dna(reactor, observableHttpServer, config):
                                     'StringIO': StringIO, 
                                     'xpath': xpath,
                                     'uuid': uuid4,
+                                    'validAnnotation': validAnnotation,
                                     }),
                                 uploadHelix
                             )

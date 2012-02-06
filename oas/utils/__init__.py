@@ -1,1 +1,2 @@
 from parsearguments import ParseArguments
+from annotation import identifierFromXml
