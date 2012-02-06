@@ -25,8 +25,8 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('dcterms:created = "2010-02-02"', 1)
         self.assertQuery('dcterms:created = 2010', 1)
         self.assertQuery('dcterms:creator = "ex:User"', 1)
-
-
+        self.assertQuery('ex:HDFV', 1)
+        self.assertQuery('ex:HDFI-1', 1)
 
     def testOaiIdentify(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')
@@ -47,8 +47,8 @@ class OasTest(IntegrationTestCase):
 
     <rdf:Description about="%(identifier)s">
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody rdf:resource="ex:HDFI-1"/>
-        <oac:hasTarget rdf:resource="ex:HDFV"/>
+        <oac:hasBody rdf:resource="ex:HDFI-2"/>
+        <oac:hasTarget rdf:resource="ex:HDFV2"/>
         <dc:title>An Annotions submitted through a form</dc:title>
         <dcterms:creator rdf:resource="ex:AnotherUser"/>
         <dcterms:created>2000-02-01 12:34:56</dcterms:created>

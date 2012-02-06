@@ -48,7 +48,10 @@ def dna(reactor, observableHttpServer, config):
         (Fields2SolrDoc(transactionName="record", partname="solr"),
             (solrInterface,)
         )   
-
+    allFieldIndexHelix = \
+        (RenameField(lambda name: "__all__"),
+            indexHelix
+        )
 
     uploadHelix =  \
         (TransactionScope('batch'),
@@ -68,18 +71,24 @@ def dna(reactor, observableHttpServer, config):
                         (XPath2Field([
                             ("/rdf:RDF/rdf:Description/dc:title/text()", 'dc:title'),
                             ("/rdf:RDF/rdf:Description/dcterms:created/text()", 'dcterms:created'),
-                            ("/rdf:RDF/rdf:Description/dcterms:creator/@rdf:resource", 'dcterms:creator'),
                             ("/rdf:RDF/oas:Annotation/dc:title/text()", 'dc:title'),
                             ("/rdf:RDF/oas:Annotation/dcterms:created/text()", 'dcterms:created'),
-                            ("/rdf:RDF/oas:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
-
                             ], namespaceMap=namespaces),
                             indexHelix
                         ),
+                        (XPath2Field([
+                            ("/rdf:RDF/rdf:Description/dcterms:creator/@rdf:resource", 'dcterms:creator'),
+                            ("/rdf:RDF/rdf:Description/oas:hasBody/@rdf:resource", 'oas:hasBody'),
+                            ("/rdf:RDF/rdf:Description/oas:hasTarget/@rdf:resource", 'oas:hasTarget'),
+                            ("/rdf:RDF/oas:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
+                            ("/rdf:RDF/oas:Annotation/oas:hasBody/@rdf:resource", 'oas:hasBody'),
+                            ("/rdf:RDF/oas:Annotation/oas:hasTarget/@rdf:resource", 'oas:hasTarget'),
+                            ], namespaceMap=namespaces),
+                            allFieldIndexHelix,
+                            indexHelix
+                        ),
                         (Xml2Fields(),
-                            (RenameField(lambda name: "__all__"),
-                                indexHelix
-                            ),
+                            allFieldIndexHelix,
                             indexHelix
                         )
                     )
