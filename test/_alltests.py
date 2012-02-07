@@ -9,7 +9,6 @@ systemPath.insert(0, '..')                          #DO_NOT_DISTRIBUTE
 
 from unittest import main
 
-from annotationfiltertest import AnnotationFilterTest
 from utilstest import UtilsTest
 from multipleannotationsplittest import MultipleAnnotationSplitTest
 

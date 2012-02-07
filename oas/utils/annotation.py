@@ -11,3 +11,5 @@ def identifierFromXml(lxmlNode):
             identifier = identifierFromAnnotation[0]
     return identifier
 
+def validAnnotation(lxmlNode):
+    return not identifierFromXml(lxmlNode) is None

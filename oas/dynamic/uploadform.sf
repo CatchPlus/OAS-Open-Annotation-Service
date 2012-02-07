@@ -10,7 +10,7 @@ def main(Body, **kwargs):
     if annotation:
         lxmlNode = parse(StringIO(annotation))
         if validAnnotation(lxmlNode):
-            identifier = xpath(lxmlNode, '/rdf:RDF/rdf:Description/@about')[0]
+            identifier = xpath(lxmlNode, '/rdf:RDF/rdf:Description/@rdf:about')[0]
             yield all.add(identifier=identifier, partname="rdf", lxmlNode=lxmlNode)
 
 
@@ -30,7 +30,7 @@ def main(Body, **kwargs):
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
-    <rdf:Description about="urn:uuid:%s">
+    <rdf:Description rdf:about="urn:uuid:%s">
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
         <oac:hasBody rdf:resource="urn:uuid:%s"/>
         <oac:hasTarget rdf:resource="urn:uuid:%s"/>

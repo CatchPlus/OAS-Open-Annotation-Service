@@ -22,10 +22,10 @@ from meresco.oai import OaiPmh, OaiJazz, OaiAddRecord
 from dynamichtml import DynamicHtml
 
 from oas import VERSION_STRING
-from oas import AnnotationFilter
-from oas.annotationfilter import validAnnotation
 from oas.seecroaiwatermark import SeecrOaiWatermark
+from oas import MultipleAnnotationSplit
 from namespaces import namespaces, xpath
+from oas.utils import validAnnotation
 
 ALL_FIELD = '__all__'
 unqualifiedTermFields = [(ALL_FIELD, 1.0)]
@@ -57,47 +57,42 @@ def dna(reactor, observableHttpServer, config):
         )
 
     uploadHelix =  \
-        (TransactionScope('batch'),
-            (TransactionScope('record'),    
-                (Venturi(
-                    should=[
-                        dict(partname='rdf', xpath='/rdf:RDF'),
-                    ],
-                    namespaceMap=namespaces),
-                    (FilterMessages(allowed=['getStream', 'isAvailable']),
-                        (storageComponent,),
-                    ),
-                    (AnnotationFilter(),
-                        (OaiAddRecord(),
-                            (oaiJazz, )
-                        ),
-                        (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
-                            (storageComponent,)
-                        ),  
-                        (XPath2Field([
-                            ("/rdf:RDF/rdf:Description/dc:title/text()", 'dc:title'),
-                            ("/rdf:RDF/rdf:Description/dcterms:created/text()", 'dcterms:created'),
-                            ("/rdf:RDF/oas:Annotation/dc:title/text()", 'dc:title'),
-                            ("/rdf:RDF/oas:Annotation/dcterms:created/text()", 'dcterms:created'),
-                            ], namespaceMap=namespaces),
-                            indexHelix
-                        ),
-                        (XPath2Field([
-                            ("/rdf:RDF/rdf:Description/dcterms:creator/@rdf:resource", 'dcterms:creator'),
-                            ("/rdf:RDF/rdf:Description/oas:hasBody/@rdf:resource", 'oas:hasBody'),
-                            ("/rdf:RDF/rdf:Description/oas:hasTarget/@rdf:resource", 'oas:hasTarget'),
-                            ("/rdf:RDF/oas:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
-                            ("/rdf:RDF/oas:Annotation/oas:hasBody/@rdf:resource", 'oas:hasBody'),
-                            ("/rdf:RDF/oas:Annotation/oas:hasTarget/@rdf:resource", 'oas:hasTarget'),
-                            ], namespaceMap=namespaces),
-                            allFieldIndexHelix,
-                            indexHelix
-                        ),
-                        (Xml2Fields(),
-                            allFieldIndexHelix,
-                            indexHelix
-                        )
-                    )
+        (TransactionScope('record'),    
+            (Venturi(
+                    should=[dict(partname='rdf', xpath='/rdf:RDF'),],
+                    namespaceMap=namespaces
+                ),
+                (FilterMessages(allowed=['getStream', 'isAvailable']),
+                    (storageComponent,),
+                ),
+                (OaiAddRecord(),
+                    (oaiJazz, )
+                ),
+                (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
+                    (storageComponent,)
+                ),  
+                (XPath2Field([
+                    ("/rdf:RDF/rdf:Description/dc:title/text()", 'dc:title'),
+                    ("/rdf:RDF/rdf:Description/dcterms:created/text()", 'dcterms:created'),
+                    ("/rdf:RDF/oas:Annotation/dc:title/text()", 'dc:title'),
+                    ("/rdf:RDF/oas:Annotation/dcterms:created/text()", 'dcterms:created'),
+                    ], namespaceMap=namespaces),
+                    indexHelix
+                ),
+                (XPath2Field([
+                    ("/rdf:RDF/rdf:Description/dcterms:creator/@rdf:resource", 'dcterms:creator'),
+                    ("/rdf:RDF/rdf:Description/oas:hasBody/@rdf:resource", 'oas:hasBody'),
+                    ("/rdf:RDF/rdf:Description/oas:hasTarget/@rdf:resource", 'oas:hasTarget'),
+                    ("/rdf:RDF/oas:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
+                    ("/rdf:RDF/oas:Annotation/oas:hasBody/@rdf:resource", 'oas:hasBody'),
+                    ("/rdf:RDF/oas:Annotation/oas:hasTarget/@rdf:resource", 'oas:hasTarget'),
+                    ], namespaceMap=namespaces),
+                    allFieldIndexHelix,
+                    indexHelix
+                ),
+                (Xml2Fields(),
+                    allFieldIndexHelix,
+                    indexHelix
                 )
             )
         )
@@ -111,7 +106,9 @@ def dna(reactor, observableHttpServer, config):
                         (PathFilter("/update"),
                             (SRURecordUpdate(),
                                 (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
-                                    uploadHelix,
+                                    (MultipleAnnotationSplit(),
+                                        uploadHelix,
+                                    )
                                 )   
                             )   
                         ),
@@ -132,7 +129,9 @@ def dna(reactor, observableHttpServer, config):
                                     'uuid': uuid4,
                                     'validAnnotation': validAnnotation,
                                     }),
-                                uploadHelix
+                                (MultipleAnnotationSplit(),
+                                    uploadHelix,
+                                )
                             )
                         ),
                         (PathFilter('/static'),

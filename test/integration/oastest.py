@@ -34,7 +34,7 @@ class OasTest(IntegrationTestCase):
 
     def testOaiListRecords(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf"), parse='lxml')
-        self.assertEquals(1, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+        self.assertEquals(4, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
 
     def testPostAnnotation(self):
         identifier = "urn:uuid:%s" % uuid4()
@@ -45,7 +45,7 @@ class OasTest(IntegrationTestCase):
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
-    <rdf:Description about="%(identifier)s">
+    <rdf:Description rdf:about="%(identifier)s">
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
         <oac:hasBody rdf:resource="ex:HDFI-2"/>
         <oac:hasTarget rdf:resource="ex:HDFV2"/>
@@ -58,6 +58,46 @@ class OasTest(IntegrationTestCase):
 
         postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)))
         self.assertQuery('RDF.Description.title = "An Annotions submitted through a form"', 1)
+
+    def testErrorWhenNotAnnotation(self):
+        identifier = "urn:uuid:%s" % uuid4()
+        annotationBody = """<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <rdf:Description rdf:about="%(identifier)s">
+        <dc:title>This is a wannabe annotation</dc:title>
+    </rdf:Description>
+</rdf:RDF>""" % locals()
+
+        postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)))
+
+    def testErrorWhenNotAnnotationSruUpdate(self):
+        identifier = "urn:uuid:%s" % uuid4()
+        sruUpdateBody = """<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">
+    <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>
+    <ucp:action>info:srw/action/1/replace</ucp:action>
+    <ucp:recordIdentifier>ex:Anno</ucp:recordIdentifier>
+    <srw:record xmlns:srw="http://www.loc.gov/zing/srw/">
+        <srw:recordPacking>xml</srw:recordPacking>
+        <srw:recordSchema>rdf</srw:recordSchema>
+        <srw:recordData><rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <rdf:Description rdf:about="%(identifier)s">
+        <dc:title>This is a wannabe annotation</dc:title>
+    </rdf:Description>
+</rdf:RDF></srw:recordData></srw:record>
+</ucp:updateRequest>""" % locals()
+
+        postRequest(self.portNumber, '/update', sruUpdateBody)
 
         
     def testReindex(self):
