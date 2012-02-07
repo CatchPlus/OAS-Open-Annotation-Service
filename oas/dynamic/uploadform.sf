@@ -8,10 +8,11 @@ def main(Body, **kwargs):
         annotation = params['annotation'][0].strip()
 
     if annotation:
-        lxmlNode = parse(StringIO(annotation))
-        if validAnnotation(lxmlNode):
-            identifier = xpath(lxmlNode, '/rdf:RDF/rdf:Description/@rdf:about')[0]
-            yield all.add(identifier=identifier, partname="rdf", lxmlNode=lxmlNode)
+        try:
+            lxmlNode = parse(StringIO(annotation))
+            yield all.add(identifier='ignored', partname="rdf", lxmlNode=lxmlNode)
+        except Exception, e:
+            yield "<p class='error'>%s</p>" % str(e)
 
 
     yield page.header()

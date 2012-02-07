@@ -97,8 +97,8 @@ class OasTest(IntegrationTestCase):
 </rdf:RDF></srw:recordData></srw:record>
 </ucp:updateRequest>""" % locals()
 
-        postRequest(self.portNumber, '/update', sruUpdateBody)
-
+        header, body = postRequest(self.portNumber, '/update', sruUpdateBody, parse='lxml')
+        self.assertEquals(['info:srw/diagnostic/12/12'], xpath(body, '/srw:updateResponse/srw:diagnostics/diag:diagnostic/diag:uri/text()'))
         
     def testReindex(self):
         header, body = getRequest(self.portNumber, '/reindex', {'session': 'newReindex'}, parse=False)
