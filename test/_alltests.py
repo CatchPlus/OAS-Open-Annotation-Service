@@ -11,6 +11,7 @@ from unittest import main
 
 from utilstest import UtilsTest
 from multipleannotationsplittest import MultipleAnnotationSplitTest
+from abouturirewritetest import AboutUriRewriteTest
 
 if __name__ == '__main__':
     main()

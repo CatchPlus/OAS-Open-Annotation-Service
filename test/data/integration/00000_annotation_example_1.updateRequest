@@ -1,7 +1,7 @@
 <ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">
     <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>
     <ucp:action>info:srw/action/1/replace</ucp:action>
-    <ucp:recordIdentifier>ex:Anno</ucp:recordIdentifier>
+    <ucp:recordIdentifier>urn:ex:Anno</ucp:recordIdentifier>
     <srw:record xmlns:srw="http://www.loc.gov/zing/srw/">
         <srw:recordPacking>xml</srw:recordPacking>
         <srw:recordSchema>rdf</srw:recordSchema>
@@ -10,7 +10,7 @@
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:oac="http://www.openannotation.org/ns/">
-    <rdf:Description rdf:about="ex:Anno">
+    <rdf:Description rdf:about="urn:ex:Anno">
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
         <oac:hasBody rdf:resource="ex:HDFI-1"/>
         <oac:hasTarget rdf:resource="ex:HDFV"/>

@@ -1,0 +1,4 @@
+def main(path, **kwargs):
+    identifier = path[len('/resolve/'):]
+    yield okXml
+    yield call.getStream(identifier, 'rdf').read()

@@ -192,6 +192,7 @@ class OasIntegrationState(IntegrationState):
         setConfig(config, 'portNumber', self.portNumber)
         setConfig(config, 'solrPortNumber', self.solrPortNumber)
         setConfig(config, 'databasePath', join(self.integrationTempdir, 'database'))
+        setConfig(config, 'resolveBaseUrl', 'http://localhost:%s/resolve/' % self.portNumber)
 
         with open(self.configFile, 'w') as f:
             for item in config.items():

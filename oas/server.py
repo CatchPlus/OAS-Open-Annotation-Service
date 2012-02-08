@@ -10,7 +10,7 @@ from meresco.core import Observable, TransactionScope
 
 from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field, Reindex, FilterMessages
 from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer, ApacheLogger
-from meresco.components.http.utils import ContentTypePlainText
+from meresco.components.http.utils import ContentTypePlainText, okXml
 from meresco.components.sru import SruParser, SruHandler, SRURecordUpdate
 
 from meresco.solr.solrinterface import SolrInterface
@@ -23,7 +23,7 @@ from dynamichtml import DynamicHtml
 
 from oas import VERSION_STRING
 from oas.seecroaiwatermark import SeecrOaiWatermark
-from oas import MultipleAnnotationSplit
+from oas import MultipleAnnotationSplit, AboutUriRewrite
 from namespaces import namespaces, xpath
 
 ALL_FIELD = '__all__'
@@ -106,7 +106,9 @@ def dna(reactor, observableHttpServer, config):
                             (SRURecordUpdate(),
                                 (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
                                     (MultipleAnnotationSplit(),
-                                        uploadHelix,
+                                        (AboutUriRewrite(baseUrl=config['resolveBaseUrl']),
+                                            uploadHelix,
+                                        )
                                     )
                                 )   
                             )   
@@ -126,9 +128,15 @@ def dna(reactor, observableHttpServer, config):
                                     'StringIO': StringIO, 
                                     'xpath': xpath,
                                     'uuid': uuid4,
+                                    'okXml': okXml,
                                     }),
+                                (FilterMessages(allowed=['getStream']),
+                                    (storageComponent,),
+                                ),
                                 (MultipleAnnotationSplit(),
-                                    uploadHelix,
+                                    (AboutUriRewrite(baseUrl=config['resolveBaseUrl']),
+                                        uploadHelix,
+                                    )
                                 )
                             )
                         ),

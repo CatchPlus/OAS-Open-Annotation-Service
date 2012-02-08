@@ -1,16 +1,16 @@
-from oas.namespaces import xpath
+from oas.namespaces import xpath, namespaces
 from Ft.Xml.Lib import Uri
 
+def aboutNode(lxmlNode):
+    for path in ['/rdf:RDF/rdf:Description[rdf:type/@rdf:resource="http://www.openannotation.org/ns/Annotation"]', '/rdf:RDF/oas:Annotation']:
+        xpathResult = xpath(lxmlNode, path)
+        if xpathResult:
+            return xpathResult[0]
+
 def identifierFromXml(lxmlNode):
-    identifier = None
-    identifierFromRdf = xpath(lxmlNode, '/rdf:RDF/rdf:Description[rdf:type/@rdf:resource="http://www.openannotation.org/ns/Annotation"]/@rdf:about')
-    if identifierFromRdf != []:
-        identifier = identifierFromRdf[0]
-    else:
-        identifierFromAnnotation = xpath(lxmlNode, '/rdf:RDF/oas:Annotation/@rdf:about')
-        if identifierFromAnnotation != []:
-            identifier = identifierFromAnnotation[0]
-    return identifier
+    nodeWithAbout = aboutNode(lxmlNode)
+    if nodeWithAbout is not None:
+        return nodeWithAbout.attrib['{%(rdf)s}about' % namespaces]
 
 def validIdentifier(identifier):
     return Uri.MatchesUriSyntax(identifier) if identifier else False
