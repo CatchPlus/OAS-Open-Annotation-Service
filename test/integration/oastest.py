@@ -120,7 +120,10 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('dc:title="Multiple Annotations In One Update"', 3)
 
     def testUrnResolvable(self):
-        header, body = getRequest(self.portNumber, '/resolve/urn:ex:Anno', {}, parse='lxml')
-        self.assertEquals(["http://localhost:%s/resolve/urn:ex:Anno" % self.portNumber], xpath(body, '/rdf:RDF/rdf:Description/@rdf:about'))
+        header, body = getRequest(self.portNumber, '/resolve/urn%3Aex%3AAnno', {}, parse='lxml')
+        self.assertEquals(["http://localhost:%s/resolve/urn%%3Aex%%3AAnno" % self.portNumber], xpath(body, '/rdf:RDF/rdf:Description/@rdf:about'))
+
+        header, body = getRequest(self.portNumber, '/resolve/urn%3Anr%3A0%3Fb', {}, parse='lxml')
+        self.assertEquals(["http://localhost:%s/resolve/urn%%3Anr%%3A0%%3Fb" % self.portNumber], xpath(body, '/rdf:RDF/rdf:Description/@rdf:about'))
         
 

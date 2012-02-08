@@ -2,6 +2,7 @@ from os.path import join, basename, dirname
 from sys import stdout
 from StringIO import StringIO
 from uuid import uuid4
+from urllib import unquote_plus
 
 from weightless.core import compose, be
 from weightless.io import Reactor
@@ -22,8 +23,8 @@ from meresco.oai import OaiPmh, OaiJazz, OaiAddRecord
 from dynamichtml import DynamicHtml
 
 from oas import VERSION_STRING
-from oas.seecroaiwatermark import SeecrOaiWatermark
 from oas import MultipleAnnotationSplit, AboutUriRewrite
+from oas.seecroaiwatermark import SeecrOaiWatermark
 from namespaces import namespaces, xpath
 
 ALL_FIELD = '__all__'
@@ -129,6 +130,7 @@ def dna(reactor, observableHttpServer, config):
                                     'xpath': xpath,
                                     'uuid': uuid4,
                                     'okXml': okXml,
+                                    'unquote_plus': unquote_plus,
                                     }),
                                 (FilterMessages(allowed=['getStream']),
                                     (storageComponent,),

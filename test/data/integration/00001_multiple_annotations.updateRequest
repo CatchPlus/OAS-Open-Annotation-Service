@@ -22,7 +22,7 @@
         <oac:hasTarget rdf:resource="urn:nr:2a"/>
         <dc:title>Multiple Annotations In One Update</dc:title>
     </rdf:Description>
-    <rdf:Description rdf:about="urn:nr:0b">
+    <rdf:Description rdf:about="urn:nr:0?b">
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
         <oac:hasBody rdf:resource="urn:nr:1b"/>
         <oac:hasTarget rdf:resource="urn:nr:2b"/>

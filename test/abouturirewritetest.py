@@ -30,16 +30,16 @@ class AboutUriRewriteTest(SeecrTestCase):
         <rdf:RDF 
             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
             xmlns:oac="http://www.openannotation.org/ns/">
-            <rdf:Description rdf:about="urn:identifier:1">
+            <rdf:Description rdf:about="urn:identifier&amp;1">
                 <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
             </rdf:Description>
         </rdf:RDF>
         """
 
-        list(compose(self.dna.all.add(identifier="urn:identifier:1", partname="rdf", lxmlNode=parse(StringIO(XML)))))
+        list(compose(self.dna.all.add(identifier="urn:identifier&1", partname="rdf", lxmlNode=parse(StringIO(XML)))))
         self.assertEquals(1, len(self.observer.calledMethods))
-        self.assertEquals('urn:identifier:1', self.observer.calledMethods[0].kwargs['identifier'])
-        self.assertEquals('http://oas.dev.seecr.nl:8000/resolve/urn:identifier:1', identifierFromXml(self.observer.calledMethods[0].kwargs['lxmlNode']))
+        self.assertEquals('urn:identifier&1', self.observer.calledMethods[0].kwargs['identifier'])
+        self.assertEquals('http://oas.dev.seecr.nl:8000/resolve/urn%3Aidentifier%261', identifierFromXml(self.observer.calledMethods[0].kwargs['lxmlNode']))
 
     def testResolveURNsOnly(self):
         XML = """
