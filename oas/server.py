@@ -65,34 +65,36 @@ def dna(reactor, observableHttpServer, config):
                 (FilterMessages(allowed=['getStream', 'isAvailable']),
                     (storageComponent,),
                 ),
-                (OaiAddRecord(),
-                    (oaiJazz, )
-                ),
-                (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
-                    (storageComponent,)
-                ),  
-                (XPath2Field([
-                    ("/rdf:RDF/rdf:Description/dc:title/text()", 'dc:title'),
-                    ("/rdf:RDF/rdf:Description/dcterms:created/text()", 'dcterms:created'),
-                    ("/rdf:RDF/oas:Annotation/dc:title/text()", 'dc:title'),
-                    ("/rdf:RDF/oas:Annotation/dcterms:created/text()", 'dcterms:created'),
-                    ], namespaceMap=namespaces),
-                    indexHelix
-                ),
-                (XPath2Field([
-                    ("/rdf:RDF/rdf:Description/dcterms:creator/@rdf:resource", 'dcterms:creator'),
-                    ("/rdf:RDF/rdf:Description/oas:hasBody/@rdf:resource", 'oas:hasBody'),
-                    ("/rdf:RDF/rdf:Description/oas:hasTarget/@rdf:resource", 'oas:hasTarget'),
-                    ("/rdf:RDF/oas:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
-                    ("/rdf:RDF/oas:Annotation/oas:hasBody/@rdf:resource", 'oas:hasBody'),
-                    ("/rdf:RDF/oas:Annotation/oas:hasTarget/@rdf:resource", 'oas:hasTarget'),
-                    ], namespaceMap=namespaces),
-                    allFieldIndexHelix,
-                    indexHelix
-                ),
-                (Xml2Fields(),
-                    allFieldIndexHelix,
-                    indexHelix
+                (AboutUriRewrite(baseUrl=config['resolveBaseUrl']),
+                    (OaiAddRecord(),
+                        (oaiJazz, )
+                    ),
+                    (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
+                        (storageComponent,)
+                    ),  
+                    (XPath2Field([
+                        ("/rdf:RDF/rdf:Description/dc:title/text()", 'dc:title'),
+                        ("/rdf:RDF/rdf:Description/dcterms:created/text()", 'dcterms:created'),
+                        ("/rdf:RDF/oas:Annotation/dc:title/text()", 'dc:title'),
+                        ("/rdf:RDF/oas:Annotation/dcterms:created/text()", 'dcterms:created'),
+                        ], namespaceMap=namespaces),
+                        indexHelix
+                    ),
+                    (XPath2Field([
+                        ("/rdf:RDF/rdf:Description/dcterms:creator/@rdf:resource", 'dcterms:creator'),
+                        ("/rdf:RDF/rdf:Description/oas:hasBody/@rdf:resource", 'oas:hasBody'),
+                        ("/rdf:RDF/rdf:Description/oas:hasTarget/@rdf:resource", 'oas:hasTarget'),
+                        ("/rdf:RDF/oas:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
+                        ("/rdf:RDF/oas:Annotation/oas:hasBody/@rdf:resource", 'oas:hasBody'),
+                        ("/rdf:RDF/oas:Annotation/oas:hasTarget/@rdf:resource", 'oas:hasTarget'),
+                        ], namespaceMap=namespaces),
+                        allFieldIndexHelix,
+                        indexHelix
+                    ),
+                    (Xml2Fields(),
+                        allFieldIndexHelix,
+                        indexHelix
+                    )
                 )
             )
         )
@@ -102,14 +104,11 @@ def dna(reactor, observableHttpServer, config):
             (observableHttpServer,
                 (BasicHttpHandler(),
                     (ApacheLogger(stdout),
-
                         (PathFilter("/update"),
                             (SRURecordUpdate(),
                                 (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
                                     (MultipleAnnotationSplit(),
-                                        (AboutUriRewrite(baseUrl=config['resolveBaseUrl']),
-                                            uploadHelix,
-                                        )
+                                        uploadHelix,
                                     )
                                 )   
                             )   
@@ -136,9 +135,7 @@ def dna(reactor, observableHttpServer, config):
                                     (storageComponent,),
                                 ),
                                 (MultipleAnnotationSplit(),
-                                    (AboutUriRewrite(baseUrl=config['resolveBaseUrl']),
-                                        uploadHelix,
-                                    )
+                                    uploadHelix,
                                 )
                             )
                         ),

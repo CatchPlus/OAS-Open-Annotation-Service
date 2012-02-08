@@ -9,6 +9,8 @@ class AboutUriRewrite(Observable):
     def __init__(self, baseUrl):
         Observable.__init__(self)
         self._baseUrl = baseUrl
+        if not self._baseUrl.endswith('/'):
+            self._baseUrl += '/'
 
     def add(self, identifier, partname, lxmlNode):
         if identifier.startswith('urn:'):
