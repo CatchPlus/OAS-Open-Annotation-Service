@@ -18,6 +18,8 @@ from meresco.solr.solrinterface import SolrInterface
 from meresco.solr.cql2solrlucenequery import CQL2SolrLuceneQuery
 from meresco.solr.fields2solrdoc import Fields2SolrDoc
 
+from meresco.owlim import HttpClient
+
 from meresco.oai import OaiPmh, OaiJazz, OaiAddRecord
 
 from dynamichtml import DynamicHtml
@@ -45,6 +47,8 @@ def dna(reactor, observableHttpServer, config):
 
     solrInterface = SolrInterface(host="localhost", port=solrPortNumber, core="oas")
 
+    tripleStore = HttpClient(host="localhost", port=int(config['owlimPortNumber']))
+
     oaiJazz = OaiJazz(join(databasePath, 'oai'))
 
     indexHelix = \
@@ -70,7 +74,8 @@ def dna(reactor, observableHttpServer, config):
                         (oaiJazz, )
                     ),
                     (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
-                        (storageComponent,)
+                        (storageComponent,),
+                        (tripleStore,),
                     ),  
                     (XPath2Field([
                         ("/rdf:RDF/rdf:Description/dc:title/text()", 'dc:title'),

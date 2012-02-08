@@ -21,11 +21,11 @@ applicationProfiles = {
         options=['configFile'],
         mandatoryKeys=['configFile']),
     'solr': dict(
-        options=['name', 'port', 'solrDataDir', 'configFile'],
-        mandatoryKeys=['name', 'port', 'configFile', 'solrDataDir']),
+        options=['port', 'solrDataDir', 'configFile'],
+        mandatoryKeys=['port', 'configFile', 'solrDataDir']),
     'owlim': dict(
-        options=['name', 'port', 'storeLocation'],
-        mandatoryKeys = ['name', 'port', 'storeLocation']),
+        options=['port', 'storeLocation'],
+        mandatoryKeys = ['port', 'storeLocation']),
 }
 
 class ParseArguments(object):

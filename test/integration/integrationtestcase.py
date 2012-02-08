@@ -170,6 +170,7 @@ class OasIntegrationState(IntegrationState):
         IntegrationState.__init__(self, stateName, fastMode)
 
         self.solrDataDir = join(self.integrationTempdir, "solr")
+        self.owlimDataDir = join(self.integrationTempdir, "owlim")
         system('mkdir --parents ' + self.solrDataDir)
 
         if not fastMode:
@@ -177,6 +178,7 @@ class OasIntegrationState(IntegrationState):
 
         system("sed 's,^jetty\.home=.*$,jetty.home=%s,' -i %s" % (self.solrDataDir, join(self.solrDataDir, 'start.config')))
         self.solrPortNumber = PortNumberGenerator.next()
+        self.owlimPortNumber = PortNumberGenerator.next()
         self.portNumber = PortNumberGenerator.next()
         self.hostName = 'localhost'
         
@@ -191,6 +193,7 @@ class OasIntegrationState(IntegrationState):
         setConfig(config, 'hostName', self.hostName)
         setConfig(config, 'portNumber', self.portNumber)
         setConfig(config, 'solrPortNumber', self.solrPortNumber)
+        setConfig(config, 'owlimPortNumber', self.owlimPortNumber)
         setConfig(config, 'databasePath', join(self.integrationTempdir, 'database'))
         setConfig(config, 'resolveBaseUrl', 'http://localhost:%s/resolve/' % self.portNumber)
 
@@ -201,6 +204,7 @@ class OasIntegrationState(IntegrationState):
     def initialize(self):
         self._startSolrServer()
         self._startOasServer()
+        self._startOwlimServer()
         self._createDatabase()
    
     def tearDown(self):
@@ -210,7 +214,10 @@ class OasIntegrationState(IntegrationState):
         self._startServer('oas', join(binDir, 'start-oas-server'), 'http://localhost:%s/info/version' % self.portNumber, configFile=self.configFile)
 
     def _startSolrServer(self):
-        self._startServer('solr', join(binDir, 'start-oas-solr-server'), 'http://localhost:%s/solr/oas/admin/registry.jsp' % self.solrPortNumber, port=self.solrPortNumber, solrDataDir=self.solrDataDir, configFile=self.configFile, name="solr")
+        self._startServer('solr', join(binDir, 'start-oas-solr-server'), 'http://localhost:%s/solr/oas/admin/registry.jsp' % self.solrPortNumber, port=self.solrPortNumber, solrDataDir=self.solrDataDir, configFile=self.configFile)
+
+    def _startOwlimServer(self):
+        self._startServer('owlim', join(binDir, 'start-oas-owlim-server'), 'http://localhost:%s/sparql' % self.owlimPortNumber, port=self.owlimPortNumber, storeLocation=self.owlimDataDir)
 
     def _createDatabase(self):
         if fastMode:
