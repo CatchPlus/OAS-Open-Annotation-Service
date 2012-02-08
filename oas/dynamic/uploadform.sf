@@ -3,6 +3,9 @@ import page
 def main(Body, **kwargs):
     params = parse_qs(Body)
 
+    yield page.header()
+    yield page.caption("SRU Upload form")
+
     annotation = ''
     if 'annotation' in params and params['annotation'][0].strip() != '':
         annotation = params['annotation'][0].strip()
@@ -15,8 +18,6 @@ def main(Body, **kwargs):
             yield "<p class='error'>%s</p>" % str(e)
 
 
-    yield page.header()
-    yield page.caption("SRU Upload form")
     yield '<form method="POST" action="/uploadform">'
     yield '<textarea name="annotation" cols="80" rows="24">'
     yield annotation if annotation else ''
