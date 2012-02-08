@@ -55,7 +55,7 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
             list(compose(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(inputText)))))
             self.fail()
         except ValidateException, e:
-            self.assertEquals('Child node 0 has no identifier.', str(e))
+            self.assertEquals('Child node 0 has no or invalid identifier', str(e))
 
     def testNoRdf(self):
         inputText = """<oai_dc:dc xmlns:oai_dc="http://example.org"/>"""

@@ -59,21 +59,29 @@ class OasTest(IntegrationTestCase):
         postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)))
         self.assertQuery('RDF.Description.title = "An Annotions submitted through a form"', 1)
 
-    def testErrorWhenNotAnnotation(self):
-        identifier = "urn:uuid:%s" % uuid4()
+    def assertNotAValidAnnotiation(self, annotationBody):
         annotationBody = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oac="http://www.openannotation.org/ns/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    %s
+</rdf:RDF>""" % annotationBody
 
-    <rdf:Description rdf:about="%(identifier)s">
+        header,body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)), parse='lxml')
+        self.assertEquals(['Child node 0 has no or invalid identifier'], xpath(body, '//p[@class="error"]/text()'))
+
+
+    def testErrorWhenNotAnnotation(self):
+        self.assertNotAValidAnnotiation("""<rdf:Description rdf:about="urn:uuid:%s">
         <dc:title>This is a wannabe annotation</dc:title>
-    </rdf:Description>
-</rdf:RDF>""" % locals()
+    </rdf:Description>""" % uuid4())
+        self.assertNotAValidAnnotiation("""<rdf:Description rdf:about=" ">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <dc:title>This is a wrongfully identified annotation</dc:title>
+    </rdf:Description>""")
 
-        postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)))
 
     def testErrorWhenNotAnnotationSruUpdate(self):
         identifier = "urn:uuid:%s" % uuid4()

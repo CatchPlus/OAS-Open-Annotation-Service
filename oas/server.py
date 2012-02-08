@@ -25,7 +25,6 @@ from oas import VERSION_STRING
 from oas.seecroaiwatermark import SeecrOaiWatermark
 from oas import MultipleAnnotationSplit
 from namespaces import namespaces, xpath
-from oas.utils import validAnnotation
 
 ALL_FIELD = '__all__'
 unqualifiedTermFields = [(ALL_FIELD, 1.0)]
@@ -127,7 +126,6 @@ def dna(reactor, observableHttpServer, config):
                                     'StringIO': StringIO, 
                                     'xpath': xpath,
                                     'uuid': uuid4,
-                                    'validAnnotation': validAnnotation,
                                     }),
                                 (MultipleAnnotationSplit(),
                                     uploadHelix,

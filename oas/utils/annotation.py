@@ -1,4 +1,5 @@
 from oas.namespaces import xpath
+from Ft.Xml.Lib import Uri
 
 def identifierFromXml(lxmlNode):
     identifier = None
@@ -11,5 +12,5 @@ def identifierFromXml(lxmlNode):
             identifier = identifierFromAnnotation[0]
     return identifier
 
-def validAnnotation(lxmlNode):
-    return not identifierFromXml(lxmlNode) is None
+def validIdentifier(identifier):
+    return Uri.MatchesUriSyntax(identifier) if identifier else False
