@@ -25,33 +25,17 @@ except Exception, e:
     print "Error parsing input:", str(e)
     exit(1)
 
-# Figure out the identifier, it can either be an RDF/Description of the 
-# Annotation type or an Annotation
-identifier = None
-identifierFromRdf = xpath(lxmlNode, '/rdf:RDF/rdf:Description[rdf:type/@rdf:resource="http://www.openannotation.org/ns/Annotation"]/@about')
-if identifierFromRdf != []:
-    identifier = identifierFromRdf[0]
-else:
-    identifierFromAnnotation = xpath(lxmlNode, '/rdf:RDF/oas:Annotation/@about')
-    if identifierFromAnnotation != []:
-        identifier = identifierFromAnnotation[0]
-
-# if no identifier was found exit the script.
-if not identifier:
-    print "Identifier not found."
-    exit(1)
-i
 # construct the body, insert the identifier and supplied XML.
 body = """<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">
     <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>
     <ucp:action>info:srw/action/1/replace</ucp:action>
-    <ucp:recordIdentifier>%(identifier)s</ucp:recordIdentifier>
+    <ucp:recordIdentifier>IGNORED</ucp:recordIdentifier>
     <srw:record xmlns:srw="http://www.loc.gov/zing/srw/">
         <srw:recordPacking>xml</srw:recordPacking>
         <srw:recordSchema>rdf</srw:recordSchema>
-        <srw:recordData>%(rdf)s</srw:recordData>
+        <srw:recordData>%s</srw:recordData>
     </srw:record>
-</ucp:updateRequest>""" % {'identifier': identifier, 'rdf': tostring(lxmlNode)}
+</ucp:updateRequest>""" % tostring(lxmlNode)
 
  # Connect to the server and send the update request.
 s = socket()

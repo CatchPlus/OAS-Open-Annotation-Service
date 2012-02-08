@@ -28,15 +28,15 @@ function toggle(elementId) {
                     <p>Voorbeeld script dat input leest en een update request maakt en upload.</p>
                     <button onClick="javascript:toggle('story_1');">Meer</button>
                     <div class="remarks" id="story_1">
-                        <p>Explaining text, comments and remarks</p>
+                        <p>Bij de documentatie is een simpel voorbeeld script toegevoegd. Dit script leest van stdin en verpakt de gelezen input in een SRU Update request. Vervolgens wordt dit request naar de server gestuurd en wordt het SRW Response getoond.</p>
                     </div>
                 </div>                
                 <div class="story">
                     <h2>2. Ondersteuning meerdere Annotaties</h2>
-                    <p>Momenteel wordt alleen 1 annotatie per update ondesteund, dit moet worden aangepast zodat meerdere annotaties per update toegestaan zijn. De foutafhandeling zodanig worden aangepast dat de batch stopt bij een foute annotatie. De reeds verwerkte annotaties zijn dan wel goed verwerkt.</p>
+                    <p>Momenteel wordt alleen 1 annotatie per update ondesteund, dit moet worden aangepast zodat meerdere annotaties per update toegestaan zijn. De foutafhandeling zal zodanig worden aangepast dat de batch stopt bij een foute annotatie. De reeds verwerkte annotaties zijn dan wel goed verwerkt.</p>
                     <button onClick="javascript:toggle('story_2');">Meer</button>
                     <div class="remarks" id="story_2">
-                        <p>Explaining text, comments and remarks</p>
+                        <p>De server neemt de child-elementen van de binnenkomende rdf:RDF tag en verpakt deze als losse rdf:RDF elementen. Deze worden vervolgens door de server verwerkt in serie. De identifier wordt uit de rdf:Description of oas:Annotation tag gehaald, waardoor de identifier in het SRU Update request vervalt.</p>
                     </div>
                 </div>                
                 <div class="story">
