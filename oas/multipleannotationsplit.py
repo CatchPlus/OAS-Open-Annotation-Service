@@ -11,7 +11,7 @@ class MultipleAnnotationSplit(Observable):
         children = xpath(lxmlNode, '/rdf:RDF/child::*')
         if len(children) == 0:
             raise ValidateException('Expected child Annotations.')
-        for nr, child in enumerate(xpath(lxmlNode, '/rdf:RDF/child::*')):
+        for nr, child in enumerate(children):
             newRoot = Element("{%(rdf)s}RDF" % namespaces)
             newRoot.append(child)
             identifier=identifierFromXml(newRoot)
