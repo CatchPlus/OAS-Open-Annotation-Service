@@ -1,4 +1,5 @@
 from __version__ import VERSION, VERSION_STRING
 
-from multipleannotationsplit import MultipleAnnotationSplit
 from abouturirewrite import AboutUriRewrite
+from mboxasidentifier import MboxAsIdentifier
+from multipleannotationsplit import MultipleAnnotationSplit

@@ -10,14 +10,10 @@ from weightless.core import be
 from oas import MultipleAnnotationSplit
 from meresco.components.xml_generic.validate import ValidateException
 
-def addMock(identifier, partname, lxmlNode):
-    return
-    yield
-
 class MultipleAnnotationSplitTest(SeecrTestCase):
     def setUp(self):
         SeecrTestCase.setUp(self)
-        self.observer = CallTrace('Observer', methods={'add': addMock})
+        self.observer = CallTrace('Observer', emptyGeneratorMethods=['add'])
         self.dna = be(
             (Observable(),
                 (MultipleAnnotationSplit(),

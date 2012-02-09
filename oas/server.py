@@ -80,18 +80,18 @@ def dna(reactor, observableHttpServer, config):
                     (XPath2Field([
                         ("/rdf:RDF/rdf:Description/dc:title/text()", 'dc:title'),
                         ("/rdf:RDF/rdf:Description/dcterms:created/text()", 'dcterms:created'),
-                        ("/rdf:RDF/oas:Annotation/dc:title/text()", 'dc:title'),
-                        ("/rdf:RDF/oas:Annotation/dcterms:created/text()", 'dcterms:created'),
+                        ("/rdf:RDF/oac:Annotation/dc:title/text()", 'dc:title'),
+                        ("/rdf:RDF/oac:Annotation/dcterms:created/text()", 'dcterms:created'),
                         ], namespaceMap=namespaces),
                         indexHelix
                     ),
                     (XPath2Field([
                         ("/rdf:RDF/rdf:Description/dcterms:creator/@rdf:resource", 'dcterms:creator'),
-                        ("/rdf:RDF/rdf:Description/oas:hasBody/@rdf:resource", 'oas:hasBody'),
-                        ("/rdf:RDF/rdf:Description/oas:hasTarget/@rdf:resource", 'oas:hasTarget'),
-                        ("/rdf:RDF/oas:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
-                        ("/rdf:RDF/oas:Annotation/oas:hasBody/@rdf:resource", 'oas:hasBody'),
-                        ("/rdf:RDF/oas:Annotation/oas:hasTarget/@rdf:resource", 'oas:hasTarget'),
+                        ("/rdf:RDF/rdf:Description/oac:hasBody/@rdf:resource", 'oac:hasBody'),
+                        ("/rdf:RDF/rdf:Description/oac:hasTarget/@rdf:resource", 'oac:hasTarget'),
+                        ("/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
+                        ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", 'oac:hasBody'),
+                        ("/rdf:RDF/oac:Annotation/oac:hasTarget/@rdf:resource", 'oac:hasTarget'),
                         ], namespaceMap=namespaces),
                         allFieldIndexHelix,
                         indexHelix

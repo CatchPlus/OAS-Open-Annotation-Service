@@ -2,7 +2,7 @@ from oas.namespaces import xpath, namespaces
 from Ft.Xml.Lib import Uri
 
 def aboutNode(lxmlNode):
-    for path in ['/rdf:RDF/rdf:Description[rdf:type/@rdf:resource="http://www.openannotation.org/ns/Annotation"]', '/rdf:RDF/oas:Annotation']:
+    for path in ['/rdf:RDF/rdf:Description[rdf:type/@rdf:resource="http://www.openannotation.org/ns/Annotation"]', '/rdf:RDF/oac:Annotation']:
         xpathResult = xpath(lxmlNode, path)
         if xpathResult:
             return xpathResult[0]

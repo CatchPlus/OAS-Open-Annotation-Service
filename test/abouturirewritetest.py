@@ -10,14 +10,10 @@ from weightless.core import be
 from oas import AboutUriRewrite
 from oas.utils import identifierFromXml
 
-def addMock(identifier, partname, lxmlNode):
-    return
-    yield
-
 class AboutUriRewriteTest(SeecrTestCase):
     def setUp(self):
         SeecrTestCase.setUp(self)
-        self.observer = CallTrace('Observer', methods={'add': addMock})
+        self.observer = CallTrace('Observer', emptyGeneratorMethods=['add'])
         self.dna = be(
             (Observable(),
                 (AboutUriRewrite(baseUrl="http://oas.dev.seecr.nl:8000/resolve/"),

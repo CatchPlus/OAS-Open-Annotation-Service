@@ -12,6 +12,7 @@ from unittest import main
 from utilstest import UtilsTest
 from multipleannotationsplittest import MultipleAnnotationSplitTest
 from abouturirewritetest import AboutUriRewriteTest
+from mboxasidentifiertest import MboxAsIdentifierTest
 
 if __name__ == '__main__':
     main()
