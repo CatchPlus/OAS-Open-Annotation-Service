@@ -16,7 +16,13 @@ class _namespaces(dict):
     def xpath(self, node, path):
         return node.xpath(path, namespaces=self)
 
-def attrib(name):
+def getAttrib(node, name):
+    return node.attrib[expandNs(name)]
+
+def setAttrib(node, name, value):
+    node.attrib[expandNs(name)] = value
+
+def expandNs(name):
     ns,value = name.split(':', 1)
     return '{%s}%s' % (namespaces[ns], value)
 

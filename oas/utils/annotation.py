@@ -1,4 +1,4 @@
-from oas.namespaces import xpath, namespaces
+from oas.namespaces import xpath, namespaces, getAttrib
 from Ft.Xml.Lib import Uri
 
 def aboutNode(lxmlNode):
@@ -10,7 +10,7 @@ def aboutNode(lxmlNode):
 def identifierFromXml(lxmlNode):
     nodeWithAbout = aboutNode(lxmlNode)
     if nodeWithAbout is not None:
-        return nodeWithAbout.attrib['{%(rdf)s}about' % namespaces]
+        return getAttrib(nodeWithAbout, 'rdf:about')
 
 def validIdentifier(identifier):
     return Uri.MatchesUriSyntax(identifier) if identifier else False
