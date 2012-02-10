@@ -1,6 +1,6 @@
 from seecr.test import SeecrTestCase, CallTrace
 
-from lxml.etree import parse
+from lxml.etree import parse, tostring
 from StringIO import StringIO
 
 from weightless.core import compose
@@ -40,7 +40,7 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
 
     def testNoIdentifier(self):
         inputText = """
-        <rdf:RDF 
+        <rdf:RDF
             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
             xmlns:some="http://www.example.org/ns/">
             <rdf:Description rdf:about="identifier:1">
@@ -51,7 +51,7 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
             list(compose(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(inputText)))))
             self.fail()
         except ValidateException, e:
-            self.assertEquals('Child node 0 has no or invalid identifier', str(e))
+            self.assertEquals('No annotations found.', str(e))
 
     def testNoRdf(self):
         inputText = """<oai_dc:dc xmlns:oai_dc="http://example.org"/>"""
@@ -59,4 +59,31 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
             list(compose(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(inputText)))))
             self.fail()
         except ValidateException, e:
-            self.assertEquals('Expected child Annotations.', str(e))
+            self.assertEquals('No annotations found.', str(e))
+
+    def testInlineURNs(self):
+        xml = """<rdf:RDF
+            xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+            xmlns:foaf="http://xmlns.com/foaf/0.1/"
+            xmlns:oac="http://www.openannotation.org/ns/"
+            xmlns:dcterms="http://purl.org/dc/terms/">
+            <oac:Annotation rdf:about="identifier:1">
+                <dcterms:creator rdf:resource="urn:creator"/>
+            </oac:Annotation>
+            <rdf:Description rdf:about="urn:creator">
+               <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+               <foaf:mbox>info@example.org</foaf:mbox>
+            </rdf:Description>
+        </rdf:RDF>"""
+        list(compose(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(xml)))))
+        resultNode = self.observer.calledMethods[0].kwargs['lxmlNode']
+        self.assertEqualsWS("""<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" xmlns:dcterms="http://purl.org/dc/terms/" rdf:about="identifier:1">
+        <dcterms:creator>
+            <rdf:Description xmlns:foaf="http://xmlns.com/foaf/0.1/" rdf:about="mailto:info@example.org">
+                <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+                <foaf:mbox>info@example.org</foaf:mbox>
+            </rdf:Description>
+        </dcterms:creator>
+    </oac:Annotation>
+</rdf:RDF>""", tostring(resultNode))

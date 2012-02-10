@@ -13,6 +13,7 @@ from utilstest import UtilsTest
 from multipleannotationsplittest import MultipleAnnotationSplitTest
 from abouturirewritetest import AboutUriRewriteTest
 from mboxasidentifiertest import MboxAsIdentifierTest
+from rdfcontainertest import RdfContainerTest
 
 if __name__ == '__main__':
     main()

@@ -3,3 +3,4 @@ from __version__ import VERSION, VERSION_STRING
 from abouturirewrite import AboutUriRewrite
 from mboxasidentifier import MboxAsIdentifier
 from multipleannotationsplit import MultipleAnnotationSplit
+from rdfcontainer import RdfContainer

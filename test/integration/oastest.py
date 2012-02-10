@@ -23,10 +23,11 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('Hubble', 1)
         self.assertQuery('dc:title = hubble', 1)
         self.assertQuery('dcterms:created = "2010-02-02"', 1)
-        self.assertQuery('dcterms:created = 2010', 1)
+        self.assertQuery('dcterms:created = 2010', 3)
         self.assertQuery('dcterms:creator = "ex:User"', 1)
         self.assertQuery('ex:HDFV', 1)
         self.assertQuery('ex:HDFI-1', 1)
+        self.assertQuery('unique@info.org', 1)
 
     def testOaiIdentify(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')
@@ -34,7 +35,7 @@ class OasTest(IntegrationTestCase):
 
     def testOaiListRecords(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf"), parse='lxml')
-        self.assertEquals(4, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+        self.assertEquals(9, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
 
     def testPostAnnotation(self):
         identifier = "urn:uuid:%s" % uuid4()
@@ -70,7 +71,7 @@ class OasTest(IntegrationTestCase):
 </rdf:RDF>""" % annotationBody
 
         header,body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)), parse='lxml')
-        self.assertEquals(['Child node 0 has no or invalid identifier'], xpath(body, '//p[@class="error"]/text()'))
+        self.assertEquals(['No annotations found.'], xpath(body, '//p[@class="error"]/text()'))
 
 
     def testErrorWhenNotAnnotation(self):
@@ -127,3 +128,7 @@ class OasTest(IntegrationTestCase):
         self.assertEquals(["http://localhost:%s/resolve/urn%%3Anr%%3A0%%3Fb" % self.portNumber], xpath(body, '/rdf:RDF/rdf:Description/@rdf:about'))
         
 
+    def testMboxAsResource(self):
+        header, body = getRequest(self.portNumber, '/resolve/urn%3Atext%3Adctermscreator', {}, parse='lxml')
+        self.assertEquals(["mailto:example@info.org"], xpath(body, '/rdf:RDF/rdf:Description/dcterms:creator/@rdf:resource'))
+        

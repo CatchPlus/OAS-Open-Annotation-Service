@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+
+import sparqlresult
+
+def main(arguments={}, *args, **kwargs):
+	queryArgument = arguments.get("query", [''])[0]
+	"""
+	limit = 0
+	offset = 0
+	try:
+		limit =	int(arguments.get("limit", [''])[0])
+	except:
+		limit = 25
+		
+	try:
+		offset = int(arguments.get("offset", [''])[0])
+	except:
+		print "Wrong offset set"
+	"""
+	yield """<form action='?limit=0&offset=0' method='get'>
+	<textarea name='query' cols='100' rows='10'>"""
+	yield queryArgument
+	yield """</textarea>
+	<br />
+	<input type='submit' value='Query'>
+</form>"""
+	
+	if queryArgument != "":
+		yield sparqlresult.showResults(queryArgument)

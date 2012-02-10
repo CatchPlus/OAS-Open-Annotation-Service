@@ -141,6 +141,9 @@ def dna(reactor, observableHttpServer, config):
                                 ),
                                 (MultipleAnnotationSplit(),
                                     uploadHelix,
+                                ),
+                                (FilterMessages(disallowed=['add', 'delete']),
+                                    (tripleStore,),
                                 )
                             )
                         ),

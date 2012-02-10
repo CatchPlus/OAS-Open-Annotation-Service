@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">
+    <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>
+    <ucp:action>info:srw/action/1/replace</ucp:action>
+    <ucp:recordIdentifier>urn:something</ucp:recordIdentifier>
+    <srw:record xmlns:srw="http://www.loc.gov/zing/srw/">
+        <srw:recordPacking>xml</srw:recordPacking>
+        <srw:recordSchema>rdf</srw:recordSchema>
+        <srw:recordData><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:cnt="http://www.w3.org/2008/content#">
+    <oac:Annotation rdf:about="http://www.example.org/annotation/1/">
+        <oac:hasBody rdf:resource="http://www.youtube.com/watch?v=fgg2tpUVbXQ"/>
+        <oac:hasTarget rdf:resource="http://ramman.grainger.uiuc.edu:8080/fedora/objects/bamboo:K064572.000.morphadorned/methods/bamboo-sDef:book-transcript/getPageByFacs?facsId=14#xpointer(start-point(K064572_000-024360)::end-point(K064572_000-024390)"/>
+        <dcterms:creator>
+            <foaf:Agent rdf:about="http://www.example.org/user/jbloggs">
+                <foaf:name>J. Bloggs</foaf:name>
+                <foaf:mbox rdf:resource='mailto:jbloggs@example.org'/>
+            </foaf:Agent>
+        </dcterms:creator>
+        <dcterms:created>2010-02-01 12:34:56</dcterms:created>
+    </oac:Annotation>
+</rdf:RDF></srw:recordData>
+    </srw:record>
+</ucp:updateRequest>

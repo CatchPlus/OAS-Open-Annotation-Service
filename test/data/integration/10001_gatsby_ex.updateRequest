@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">
+    <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>
+    <ucp:action>info:srw/action/1/replace</ucp:action>
+    <ucp:recordIdentifier>urn:something</ucp:recordIdentifier>
+    <srw:record xmlns:srw="http://www.loc.gov/zing/srw/">
+        <srw:recordPacking>xml</srw:recordPacking>
+        <srw:recordSchema>rdf</srw:recordSchema>
+        <srw:recordData><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:cnt="http://www.w3.org/2008/content#">
+    <oac:Annotation rdf:about="http://www.openannotation.org/spec/alpha3/examples/gatsby/GatsbyExample2.5.rdf">
+        <oac:hasBody rdf:resource="URN:uuid:751183c0-d182-11df-bd3b-0800200c9a66"/>
+        <oac:hasTarget>
+            <rdf:Description
+                rdf:about="http://ebooks.adelaide.edu.au/f/fitzgerald/f_scott/gatsby/chapter4.html#xpointer(string-range(/html/body%5B1%5D/div%5B2%5D/p%5B145%5D,%22%22,1,78))">
+                <dcterms:isPartOf
+                    rdf:resource="http://ebooks.adelaide.edu.au/f/fitzgerald/f_scott/gatsby/chapter4.html"
+                />
+            </rdf:Description>
+        </oac:hasTarget>
+        <oac:hasTarget>
+            <rdf:Description
+                rdf:about="http://ebooks.adelaide.edu.au/f/fitzgerald/f_scott/gatsby/chapter4.html#xpointer(string-range(/html/body%5B1%5D/div%5B2%5D/p%5B3%5D,%22%22,1,224))">
+                <dcterms:isPartOf
+                    rdf:resource="http://ebooks.adelaide.edu.au/f/fitzgerald/f_scott/gatsby/chapter4.html"
+                />
+            </rdf:Description>
+        </oac:hasTarget>
+        <oac:hasTarget>
+            <rdf:Description
+                rdf:about="http://ebooks.adelaide.edu.au/f/fitzgerald/f_scott/gatsby/chapter1.html#xpointer(string-range(/html/body%5B1]/div%5B2%5D/p%5B38%5D,%22%22,1))">
+                <dcterms:isPartOf
+                    rdf:resource="http://ebooks.adelaide.edu.au/f/fitzgerald/f_scott/gatsby/chapter1.html"
+                />
+            </rdf:Description>
+        </oac:hasTarget>
+        <dc:title xml:lang='en'>Great Gatsby Example</dc:title>
+        <dcterms:creator>
+            <foaf:Agent rdf:about="http://www.english.example.edu/people/facpages.asp?person_id=74">
+                <foaf:name>Richard D. Smith</foaf:name>
+                <foaf:mbox rdf:resource='mailto:rsmith@example.edu'/>
+            </foaf:Agent>
+        </dcterms:creator>
+        <dcterms:created>2010-01-27</dcterms:created>
+    </oac:Annotation>
+    <oac:Body rdf:about="URN:uuid:751183c0-d182-11df-bd3b-0800200c9a66">
+        <rdf:type rdf:resource="cnt:ContentAsXML"/>
+        <cnt:dtDecl rdf:resource="#dtd0"/>
+        <cnt:rest rdf:parseType="Literal">
+            <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+                <head><title>Daisy from the Gatsby</title></head>
+                <body><p><b>Daisy</b> is kept so vague and impalpable that Fitzgerald makes key
+                        mistakes in accounting for her chronology:</p>
+                    <ul><li>We are told in Chapter 4, for example, that Daisy gives birth to her
+                            child in <i>April 1920</i>.</li>
+                        <li>We also know from Chapter 4 that the novel takes place in the <i>summer
+                                of 1922</i>.</li>
+                        <li>And we are told in Chapter 1 that at the time the novel takes place the
+                            child is three years old.</li></ul>
+                    <p>But if the child was born in <i>April 1920</i>, it would be only two years
+                        and two months old at the time the novel takes place, an error of fact that
+                        calls attention to itself in a novel so otherwise intricately
+                    weaved.</p></body></html>
+        </cnt:rest>
+        <cnt:characterEncoding>utf-8</cnt:characterEncoding>
+    </oac:Body>
+    <cnt:DoctypeDecl rdf:ID="dtd0">
+        <cnt:doctypeName>html</cnt:doctypeName>
+        <cnt:publicId>-//W3C//DTD XHTML 1.1//EN</cnt:publicId>
+        <cnt:systemId>http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd</cnt:systemId>
+    </cnt:DoctypeDecl>
+</rdf:RDF></srw:recordData>
+    </srw:record>
+</ucp:updateRequest>

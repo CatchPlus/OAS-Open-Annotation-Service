@@ -1,0 +1,28 @@
+<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">
+    <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>
+    <ucp:action>info:srw/action/1/replace</ucp:action>
+    <ucp:recordIdentifier>urn:something</ucp:recordIdentifier>
+    <srw:record xmlns:srw="http://www.loc.gov/zing/srw/">
+        <srw:recordPacking>xml</srw:recordPacking>
+        <srw:recordSchema>rdf</srw:recordSchema>
+        <srw:recordData><rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:oac="http://www.openannotation.org/ns/">
+    <rdf:Description rdf:about="urn:text:dctermscreator:2">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <oac:hasBody rdf:resource="urn:nr:1"/>
+        <oac:hasTarget rdf:resource="urn:nr:2"/>
+        <dc:title>test for dcterms:creator</dc:title>
+        <dcterms:creator>
+            <foaf:Agent>
+                <foaf:name>Mrs. Smith</foaf:name>
+                <foaf:mbox>example@info.org</foaf:mbox>
+            </foaf:Agent>
+        </dcterms:creator>
+    </rdf:Description>
+</rdf:RDF></srw:recordData>
+    </srw:record>
+</ucp:updateRequest>
