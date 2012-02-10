@@ -80,7 +80,7 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
         self.assertEqualsWS("""<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" xmlns:dcterms="http://purl.org/dc/terms/" rdf:about="identifier:1">
         <dcterms:creator>
-            <rdf:Description xmlns:foaf="http://xmlns.com/foaf/0.1/" rdf:about="mailto:info@example.org">
+            <rdf:Description xmlns:foaf="http://xmlns.com/foaf/0.1/" rdf:about="urn:creator">
                 <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
                 <foaf:mbox>info@example.org</foaf:mbox>
             </rdf:Description>

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 def showResults(query):
-    queryResult = any.executeQuery(query)
+    queryResult = yield any.executeQuery(query)
+    queryResult = list(queryResult)
     if len(queryResult) == 0:
         yield "No results"
         return
@@ -18,7 +19,7 @@ def showResults(query):
         yield "<tr>"
         for key in keyOrder:
             value = item[key]
-            yield "<td>%s</td>" % value
+            yield "<td>%s</td>" % value.value
         yield "</tr>"
     yield "</table>"
 

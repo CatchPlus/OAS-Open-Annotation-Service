@@ -1,16 +1,13 @@
 #!/usr/bin/env python
-from os.path import abspath, dirname                #DO_NOT_DISTRIBUTE
-from os import system, getcwd                       #DO_NOT_DISTRIBUTE
-from glob import glob                               #DO_NOT_DISTRIBUTE
-from sys import path as systemPath, exit            #DO_NOT_DISTRIBUTE
-if getcwd() != dirname(abspath(__file__)):          #DO_NOT_DISTRIBUTE
-    print 'Run from directory:',                    #DO_NOT_DISTRIBUTE
-    print dirname(abspath(__file__))                #DO_NOT_DISTRIBUTE
-    exit(1)                                         #DO_NOT_DISTRIBUTE
-system('find .. -name "*.pyc" | xargs rm -f')       #DO_NOT_DISTRIBUTE
-for path in glob('../deps.d/*'):                    #DO_NOT_DISTRIBUTE
-    systemPath.insert(0, path)                      #DO_NOT_DISTRIBUTE
-systemPath.insert(0, '..')                          #DO_NOT_DISTRIBUTE
+from os.path import abspath, dirname                        #DO_NOT_DISTRIBUTE
+from os import system, getcwd                               #DO_NOT_DISTRIBUTE
+from glob import glob                                       #DO_NOT_DISTRIBUTE
+from sys import path as systemPath, exit                    #DO_NOT_DISTRIBUTE
+parentdir = dirname(dirname(abspath(__file__)))             #DO_NOT_DISTRIBUTE
+system('find '+parentdir+' -name "*.pyc" | xargs rm -f')    #DO_NOT_DISTRIBUTE
+for path in glob(parentdir+'/deps.d/*'):                    #DO_NOT_DISTRIBUTE
+    systemPath.insert(0, path)                              #DO_NOT_DISTRIBUTE
+systemPath.insert(0, parentdir)                             #DO_NOT_DISTRIBUTE
 
 from sys import argv, exit
 from cq2utils import isRootUser

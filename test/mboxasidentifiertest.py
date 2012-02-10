@@ -27,7 +27,7 @@ class MboxAsIdentifierTest(SeecrTestCase):
             lxmlNode=parse(StringIO(XML % {'urn': 'urn:this:should:be:gone'})))))
         self.assertEquals(1, len(self.observer.calledMethods))
         lxmlNode = self.observer.calledMethods[0].kwargs['lxmlNode']
-        self.assertEquals(["mailto:joe@example.org"], xpath(lxmlNode, "/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource"))
+        self.assertEquals(["mailto:joe@example.org"], xpath(lxmlNode, "/rdf:RDF/oac:Annotation/dcterms:creator/foaf:Agent/@rdf:about"))
 
     def testReplaceUrnIfMboxAvail(self):
         list(compose(self.dna.all.add(
@@ -45,7 +45,7 @@ class MboxAsIdentifierTest(SeecrTestCase):
             lxmlNode=parse(StringIO(XML % {'urn': 'mailto:info@example.org'})))))
         self.assertEquals(1, len(self.observer.calledMethods))
         lxmlNode = self.observer.calledMethods[0].kwargs['lxmlNode']
-        self.assertEquals(["mailto:info@example.org"], xpath(lxmlNode, "/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource"))
+        self.assertEquals(["mailto:info@example.org"], xpath(lxmlNode, "/rdf:RDF/oac:Annotation/dcterms:creator/foaf:Agent/@rdf:about"))
 
     def testDontReplaceIfUrl(self):
         list(compose(self.dna.all.add(
@@ -54,7 +54,7 @@ class MboxAsIdentifierTest(SeecrTestCase):
             lxmlNode=parse(StringIO(XML % {'urn': 'http://dai.org/dai/123456X7'})))))
         self.assertEquals(1, len(self.observer.calledMethods))
         lxmlNode = self.observer.calledMethods[0].kwargs['lxmlNode']
-        self.assertEquals(["http://dai.org/dai/123456X7"], xpath(lxmlNode, "/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource"))
+        self.assertEquals(["http://dai.org/dai/123456X7"], xpath(lxmlNode, "/rdf:RDF/oac:Annotation/dcterms:creator/foaf:Agent/@rdf:about"))
 
     def testDeletePassesThrough(self):
         list(compose(self.dna.all.delete(identifier="identifier", partname="rdf")))
@@ -68,8 +68,10 @@ XML = """<rdf:RDF
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <oac:Annotation rdf:about="urn:identifier">
-        <dcterms:creator rdf:resource="%(urn)s">
-            <foaf:mbox>joe@example.org</foaf:mbox>
+        <dcterms:creator>
+            <foaf:Agent rdf:about="%(urn)s">
+                <foaf:mbox>joe@example.org</foaf:mbox>
+            </foaf:Agent>
         </dcterms:creator>
     </oac:Annotation>
 </rdf:RDF>"""
@@ -85,15 +87,3 @@ XML_NO_MBOX = """<rdf:RDF
     </oac:Annotation>
 </rdf:RDF>"""
 
-XML_NO_RESOURCE = """<rdf:RDF 
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
-    xmlns:foaf="http://xmlns.com/foaf/0.1/">
-
-    <oac:Annotation rdf:about="urn:identifier">
-        <dcterms:creator>
-            <foaf:mbox>joe@example.org</foaf:mbox>
-        </dcterms:creator>
-    </oac:Annotation>
-</rdf:RDF>"""

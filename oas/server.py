@@ -144,7 +144,7 @@ def dna(reactor, observableHttpServer, config):
                                 ),
                                 (FilterMessages(disallowed=['add', 'delete']),
                                     (tripleStore,),
-                                )
+                                ),
                             )
                         ),
                         (PathFilter('/static'),

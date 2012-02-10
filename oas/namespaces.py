@@ -16,8 +16,8 @@ class _namespaces(dict):
     def xpath(self, node, path):
         return node.xpath(path, namespaces=self)
 
-def getAttrib(node, name):
-    return node.attrib[expandNs(name)]
+def getAttrib(node, name, default=None):
+    return node.attrib.get(expandNs(name), default)
 
 def setAttrib(node, name, value):
     node.attrib[expandNs(name)] = value
