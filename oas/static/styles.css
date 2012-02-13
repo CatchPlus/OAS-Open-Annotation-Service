@@ -1,5 +1,10 @@
+* {
+    font-family: Arial;
+
+}
+
 .title {
-    background-image: url(/static/logo.gif);
+    background-image: url(/static/catch_plus_logo.png);
     background-repeat: no-repeat;
     height: 115px;
     padding-left: 300px;
