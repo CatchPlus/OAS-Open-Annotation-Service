@@ -28,6 +28,7 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('ex:HDFV', 1)
         self.assertQuery('ex:HDFI-1', 1)
         self.assertQuery('unique@info.org', 1)
+        self.assertQuery('oac:hasTarget = "http://example.org/target/for/test"', 1)
 
     def testOaiIdentify(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')

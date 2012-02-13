@@ -4,3 +4,4 @@ from abouturirewrite import AboutUriRewrite
 from mboxasidentifier import MboxAsIdentifier
 from multipleannotationsplit import MultipleAnnotationSplit
 from rdfcontainer import RdfContainer
+from filterfieldvalue import FilterFieldValue

@@ -14,7 +14,7 @@
     <rdf:Description rdf:about="urn:text:dctermscreator:2">
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
         <oac:hasBody rdf:resource="urn:nr:1"/>
-        <oac:hasTarget rdf:resource="urn:nr:2"/>
+        <oac:hasTarget rdf:resource="http://example.org/target/for/test#1"/>
         <dc:title>test for dcterms:creator</dc:title>
         <dcterms:creator>
             <foaf:Agent>

@@ -9,7 +9,7 @@ from weightless.io import Reactor
 
 from meresco.core import Observable, TransactionScope
 
-from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field, Reindex, FilterMessages
+from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field, Reindex, FilterMessages, TransformFieldValue, CQLConversion, RenameCqlIndex, FilterField
 from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer, ApacheLogger
 from meresco.components.http.utils import ContentTypePlainText, okXml
 from meresco.components.sru import SruParser, SruHandler, SRURecordUpdate
@@ -25,7 +25,7 @@ from meresco.oai import OaiPmh, OaiJazz, OaiAddRecord
 from dynamichtml import DynamicHtml
 
 from oas import VERSION_STRING
-from oas import MultipleAnnotationSplit, AboutUriRewrite
+from oas import MultipleAnnotationSplit, AboutUriRewrite, FilterFieldValue
 from oas.seecroaiwatermark import SeecrOaiWatermark
 from namespaces import namespaces, xpath
 
@@ -35,6 +35,20 @@ unqualifiedTermFields = [(ALL_FIELD, 1.0)]
 dynamicHtmlFilePath = join(dirname(__file__), "dynamic")
 staticHtmlFilePath = join(dirname(__file__), "static")
 planninggameFilePath = join(dirname(dirname(__file__)), "doc", "planninggame")
+
+untokenized = [
+    "dcterms:creator",
+    "oac:hasBody",
+    "oac:hasTarget"
+]
+
+def fieldnameLookup(name):
+    return 'untokenized.'+name if name in untokenized else name
+
+class PrintFieldlet(Observable):
+    def addField(self, name, value):
+        print "--->", name, value
+        self.do.addField(name, value)
 
 def dna(reactor, observableHttpServer, config):
     hostName = config['hostName']
@@ -58,6 +72,14 @@ def dna(reactor, observableHttpServer, config):
     allFieldIndexHelix = \
         (RenameField(lambda name: "__all__"),
             indexHelix
+        )
+
+    indexWithoutFragment = \
+        (FilterFieldValue(lambda value: value.startswith('http') and '#' in value),
+            (TransformFieldValue(lambda value: value.split('#', 1)[0]),
+                indexHelix,
+                allFieldIndexHelix,
+            )
         )
 
     uploadHelix =  \
@@ -93,11 +115,19 @@ def dna(reactor, observableHttpServer, config):
                         ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", 'oac:hasBody'),
                         ("/rdf:RDF/oac:Annotation/oac:hasTarget/@rdf:resource", 'oac:hasTarget'),
                         ], namespaceMap=namespaces),
+                        
+                        (FilterField(lambda name: name in untokenized), 
+                            (RenameField(lambda name: 'untokenized.'+name),
+                                indexWithoutFragment,
+                                indexHelix
+                            )
+                        ),
                         allFieldIndexHelix,
                         indexHelix
                     ),
                     (Xml2Fields(),
                         allFieldIndexHelix,
+                        indexWithoutFragment,
                         indexHelix
                     )
                 )
@@ -156,8 +186,10 @@ def dna(reactor, observableHttpServer, config):
                             (SruParser(host=hostName, port=portNumber, 
                                 defaultRecordSchema='rdf', defaultRecordPacking='xml'),
                                 (SruHandler(drilldownSortedByTermCount=True),
-                                    (CQL2SolrLuceneQuery(unqualifiedTermFields),
-                                        (solrInterface,)
+                                    (CQLConversion(RenameCqlIndex(fieldnameLookup), fromKwarg='cqlAbstractSyntaxTree'),
+                                        (CQL2SolrLuceneQuery(unqualifiedTermFields),
+                                            (solrInterface,)
+                                        ),
                                     ),
                                     (storageComponent,),
                                 )
