@@ -1,7 +1,9 @@
 from __version__ import VERSION, VERSION_STRING
 
 from abouturirewrite import AboutUriRewrite
+from filterfieldvalue import FilterFieldValue
 from mboxasidentifier import MboxAsIdentifier
 from multipleannotationsplit import MultipleAnnotationSplit
+from normalizerecord import NormalizeRecord
 from rdfcontainer import RdfContainer
-from filterfieldvalue import FilterFieldValue
+from identifierfromxpath import IdentifierFromXPath

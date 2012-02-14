@@ -9,7 +9,7 @@ from weightless.io import Reactor
 
 from meresco.core import Observable, TransactionScope
 
-from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field, Reindex, FilterMessages, TransformFieldValue, CQLConversion, RenameCqlIndex, FilterField
+from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field, Reindex, FilterMessages, TransformFieldValue, CQLConversion, RenameCqlIndex, FilterField, XmlXPath
 from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer, ApacheLogger
 from meresco.components.http.utils import ContentTypePlainText, okXml
 from meresco.components.sru import SruParser, SruHandler, SRURecordUpdate
@@ -25,8 +25,9 @@ from meresco.oai import OaiPmh, OaiJazz, OaiAddRecord
 from dynamichtml import DynamicHtml
 
 from oas import VERSION_STRING
-from oas import MultipleAnnotationSplit, AboutUriRewrite, FilterFieldValue
+from oas import MultipleAnnotationSplit, AboutUriRewrite, FilterFieldValue, NormalizeRecord
 from oas.seecroaiwatermark import SeecrOaiWatermark
+from oas.identifierfromxpath import IdentifierFromXPath
 from namespaces import namespaces, xpath
 
 ALL_FIELD = '__all__'
@@ -56,6 +57,8 @@ def dna(reactor, observableHttpServer, config):
     databasePath = config['databasePath']
     solrPortNumber = int(config['solrPortNumber'])
     storageComponent = StorageComponent(join(databasePath, 'storage'))
+    foafAgentStorage = StorageComponent(join(databasePath, 'foafAgent'))
+
 
     reindexPath = join(databasePath, 'reindex')
 
@@ -91,44 +94,58 @@ def dna(reactor, observableHttpServer, config):
                 (FilterMessages(allowed=['getStream', 'isAvailable']),
                     (storageComponent,),
                 ),
-                (AboutUriRewrite(baseUrl=config['resolveBaseUrl']),
-                    (OaiAddRecord(),
-                        (oaiJazz, )
-                    ),
-                    (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
-                        (storageComponent,),
-                        (tripleStore,),
-                    ),  
-                    (XPath2Field([
-                        ("/rdf:RDF/rdf:Description/dc:title/text()", 'dc:title'),
-                        ("/rdf:RDF/rdf:Description/dcterms:created/text()", 'dcterms:created'),
-                        ("/rdf:RDF/oac:Annotation/dc:title/text()", 'dc:title'),
-                        ("/rdf:RDF/oac:Annotation/dcterms:created/text()", 'dcterms:created'),
-                        ], namespaceMap=namespaces),
-                        indexHelix
-                    ),
-                    (XPath2Field([
-                        ("/rdf:RDF/rdf:Description/dcterms:creator/@rdf:resource", 'dcterms:creator'),
-                        ("/rdf:RDF/rdf:Description/oac:hasBody/@rdf:resource", 'oac:hasBody'),
-                        ("/rdf:RDF/rdf:Description/oac:hasTarget/@rdf:resource", 'oac:hasTarget'),
-                        ("/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
-                        ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", 'oac:hasBody'),
-                        ("/rdf:RDF/oac:Annotation/oac:hasTarget/@rdf:resource", 'oac:hasTarget'),
-                        ], namespaceMap=namespaces),
-                        
-                        (FilterField(lambda name: name in untokenized), 
-                            (RenameField(lambda name: 'untokenized.'+name),
-                                indexWithoutFragment,
-                                indexHelix
+                (NormalizeRecord(),
+                    (AboutUriRewrite(baseUrl=config['resolveBaseUrl']),
+                        (OaiAddRecord(),
+                            (oaiJazz, )
+                        ),
+                        (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
+                            (storageComponent,),
+                            (tripleStore,),
+                        ),  
+                        (XmlXPath(["/rdf:RDF/oac:Annotation/dcterms:creator/foaf:Agent[@rdf:about]"], fromKwarg="lxmlNode", namespaceMap=namespaces),
+                            (IdentifierFromXPath('@rdf:about'),
+                                (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
+                                    (foafAgentStorage,),
+                                )
                             )
                         ),
-                        allFieldIndexHelix,
-                        indexHelix
-                    ),
-                    (Xml2Fields(),
-                        allFieldIndexHelix,
-                        indexWithoutFragment,
-                        indexHelix
+                        (XPath2Field([
+                            ("/rdf:RDF/oac:Annotation/dc:title/text()", 'dc:title'),
+                            ("/rdf:RDF/oac:Annotation/dcterms:created/text()", 'dcterms:created'),
+                            ], namespaceMap=namespaces),
+                            indexHelix
+                        ),
+                        (XPath2Field([
+                            ("/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
+                            ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", 'oac:hasBody'),
+                            ("/rdf:RDF/oac:Annotation/oac:hasTarget/@rdf:resource", 'oac:hasTarget'),
+                            ("//foaf:mbox/@rdf:resource", '__all__'),
+
+                            ], namespaceMap=namespaces),
+                            
+                            (FilterField(lambda name: name in untokenized), 
+                                (RenameField(lambda name: 'untokenized.'+name),
+                                    indexWithoutFragment,
+                                    indexHelix
+                                )
+                            ),
+                            (FilterField(lambda name: name == 'dcterms:creator'),
+                                (FilterFieldValue(lambda value: value.startswith('http://')),
+                                    (RenameField(lambda name: '__resolved__'),
+                                        (TransformFieldValue(lambda value: 'no'),
+                                            indexHelix
+                                        )
+                                    )
+                                )
+                            ),
+                            allFieldIndexHelix,
+                            indexHelix
+                        ),
+                        (Xml2Fields(),
+                            allFieldIndexHelix,
+                            indexHelix
+                        )
                     )
                 )
             )
@@ -143,6 +160,9 @@ def dna(reactor, observableHttpServer, config):
                             (SRURecordUpdate(),
                                 (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
                                     (MultipleAnnotationSplit(),
+                                        (FilterMessages(allowed=['isAvailable', 'getStream']),
+                                            (foafAgentStorage,),
+                                        ),
                                         uploadHelix,
                                     )
                                 )   
@@ -170,6 +190,9 @@ def dna(reactor, observableHttpServer, config):
                                     (storageComponent,),
                                 ),
                                 (MultipleAnnotationSplit(),
+                                    (FilterMessages(allowed=['isAvailable', 'getStream']),
+                                        (foafAgentStorage,),
+                                    ),
                                     uploadHelix,
                                 ),
                                 (FilterMessages(disallowed=['add', 'delete']),

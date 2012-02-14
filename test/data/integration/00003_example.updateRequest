@@ -21,7 +21,7 @@
     <rdf:Description rdf:about="urn:agent:1">
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
         <foaf:name>Mr. Smith</foaf:name>
-        <foaf:mbox>unique@info.org</foaf:mbox>
+        <foaf:mbox rdf:resource="mailto:unique@info.org"/>
     </rdf:Description>
 </rdf:RDF></srw:recordData>
     </srw:record>

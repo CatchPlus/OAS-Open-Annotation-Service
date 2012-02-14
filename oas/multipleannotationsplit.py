@@ -1,5 +1,6 @@
 from meresco.core import Observable
-from lxml.etree import tostring, Element
+from lxml.etree import tostring, Element, parse
+from StringIO import StringIO
 
 from rdfcontainer import RdfContainer
 from oas.utils.annotation import filterAnnotations, validIdentifier
@@ -37,5 +38,8 @@ class MultipleAnnotationSplit(Observable):
                     if not resolvedNode is None:
                         node.append(resolvedNode)
                         del node.attrib[expandNs('rdf:resource')]
-
+                    elif self.call.isAvailable(identifier=urn, partname="rdf") == (True, True):
+                        data = self.call.getStream(identifier=urn, partname="rdf")
+                        node.append(parse(StringIO(data.read())).getroot())
+                        del node.attrib[expandNs('rdf:resource')]
 

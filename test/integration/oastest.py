@@ -18,8 +18,8 @@ class OasTest(IntegrationTestCase):
         self.assertTrue(body.startswith("Open Annotation Service, version: "), body)
 
     def testSru(self):
-        self.assertQuery('RDF.Description.title = "Annotation of the Hubble Deep Field Image"', 1)
-        self.assertQuery('RDF.Description.title = hubble', 1)
+        self.assertQuery('RDF.Annotation.title = "Annotation of the Hubble Deep Field Image"', 1)
+        self.assertQuery('RDF.Annotation.title = hubble', 1)
         self.assertQuery('Hubble', 1)
         self.assertQuery('dc:title = hubble', 1)
         self.assertQuery('dcterms:created = "2010-02-02"', 1)
@@ -27,8 +27,9 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('dcterms:creator = "ex:User"', 1)
         self.assertQuery('ex:HDFV', 1)
         self.assertQuery('ex:HDFI-1', 1)
-        self.assertQuery('unique@info.org', 1)
+        self.assertQuery('mailto:unique@info.org', 1)
         self.assertQuery('oac:hasTarget = "http://example.org/target/for/test"', 1)
+        self.assertQuery('RDF.Annotation.creator.Agent.name = "billy butcher"', 2)
 
     def testOaiIdentify(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')
@@ -36,7 +37,7 @@ class OasTest(IntegrationTestCase):
 
     def testOaiListRecords(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf"), parse='lxml')
-        self.assertEquals(9, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+        self.assertEquals(11, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
 
     def testPostAnnotation(self):
         identifier = "urn:uuid:%s" % uuid4()
@@ -56,10 +57,10 @@ class OasTest(IntegrationTestCase):
         <dcterms:created>2000-02-01 12:34:56</dcterms:created>
     </rdf:Description>
 </rdf:RDF>""" % locals()
-        self.assertQuery('RDF.Description.title = "An Annotions submitted through a form"', 0)
+        self.assertQuery('RDF.Annotation.title = "An Annotions submitted through a form"', 0)
 
         postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)))
-        self.assertQuery('RDF.Description.title = "An Annotions submitted through a form"', 1)
+        self.assertQuery('RDF.Annotation.title = "An Annotions submitted through a form"', 1)
 
     def assertNotAValidAnnotiation(self, annotationBody):
         annotationBody = """<rdf:RDF 
@@ -74,7 +75,6 @@ class OasTest(IntegrationTestCase):
         header,body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)), parse='lxml')
         self.assertEquals(['No annotations found.'], xpath(body, '//p[@class="error"]/text()'))
 
-
     def testErrorWhenNotAnnotation(self):
         self.assertNotAValidAnnotiation("""<rdf:Description rdf:about="urn:uuid:%s">
         <dc:title>This is a wannabe annotation</dc:title>
@@ -83,7 +83,6 @@ class OasTest(IntegrationTestCase):
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
         <dc:title>This is a wrongfully identified annotation</dc:title>
     </rdf:Description>""")
-
 
     def testErrorWhenNotAnnotationSruUpdate(self):
         identifier = "urn:uuid:%s" % uuid4()
@@ -123,13 +122,10 @@ class OasTest(IntegrationTestCase):
 
     def testUrnResolvable(self):
         header, body = getRequest(self.portNumber, '/resolve/urn%3Aex%3AAnno', {}, parse='lxml')
-        self.assertEquals(["http://localhost:%s/resolve/urn%%3Aex%%3AAnno" % self.portNumber], xpath(body, '/rdf:RDF/rdf:Description/@rdf:about'))
+        self.assertEquals(["http://localhost:%s/resolve/urn%%3Aex%%3AAnno" % self.portNumber], xpath(body, '/rdf:RDF/oac:Annotation/@rdf:about'))
 
         header, body = getRequest(self.portNumber, '/resolve/urn%3Anr%3A0%3Fb', {}, parse='lxml')
-        self.assertEquals(["http://localhost:%s/resolve/urn%%3Anr%%3A0%%3Fb" % self.portNumber], xpath(body, '/rdf:RDF/rdf:Description/@rdf:about'))
-        
+        self.assertEquals(["http://localhost:%s/resolve/urn%%3Anr%%3A0%%3Fb" % self.portNumber], xpath(body, '/rdf:RDF/oac:Annotation/@rdf:about'))
 
-    def testMboxAsResource(self):
-        header, body = getRequest(self.portNumber, '/resolve/urn%3Atext%3Adctermscreator', {}, parse='lxml')
-        self.assertEquals(["mailto:example@info.org"], xpath(body, '/rdf:RDF/rdf:Description/dcterms:creator/@rdf:resource'))
-        
+       
+

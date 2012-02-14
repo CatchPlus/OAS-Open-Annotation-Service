@@ -19,7 +19,7 @@ def showResults(query):
         yield "<tr>"
         for key in keyOrder:
             value = item[key]
-            yield "<td>%s</td>" % value.value
+            yield "<td>%s</td>" %value 
         yield "</tr>"
     yield "</table>"
 

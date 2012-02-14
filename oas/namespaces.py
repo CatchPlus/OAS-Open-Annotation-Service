@@ -60,6 +60,7 @@ namespaces = _namespaces(
     xsl='http://www.w3.org/1999/XSL/Transform',
 )
 
+prefixes = dict((item, key) for key, item in namespaces.items())
 xpath = namespaces.xpath
 rdfAbout = '{%(rdf)s}about' % namespaces
 rdfResource = '{%(rdf)s}resource' % namespaces

@@ -14,6 +14,8 @@ from multipleannotationsplittest import MultipleAnnotationSplitTest
 from abouturirewritetest import AboutUriRewriteTest
 from mboxasidentifiertest import MboxAsIdentifierTest
 from rdfcontainertest import RdfContainerTest
+from normalizerecordtest import NormalizeRecordTest
+from identifierfromxpathtest import IdentifierFromXPathTest
 
 if __name__ == '__main__':
     main()

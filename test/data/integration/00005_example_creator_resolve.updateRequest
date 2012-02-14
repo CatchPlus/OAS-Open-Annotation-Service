@@ -11,17 +11,12 @@
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/"
     xmlns:oac="http://www.openannotation.org/ns/">
-    <rdf:Description rdf:about="urn:text:dctermscreator:2">
+    <rdf:Description rdf:about="urn:text:dctermscreator:resolve:1">
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody rdf:resource="urn:nr:1"/>
-        <oac:hasTarget rdf:resource="http://example.org/target/for/test#1"/>
+        <oac:hasBody rdf:resource="urn:body:nr:1"/>
+        <oac:hasTarget rdf:resource="urn:target:nr:1"/>
         <dc:title>test for dcterms:creator</dc:title>
-        <dcterms:creator>
-            <foaf:Agent>
-                <foaf:name>Mrs. Smith</foaf:name>
-                <foaf:mbox rdf:resource="mailto:example@info.org"/>
-            </foaf:Agent>
-        </dcterms:creator>
+        <dcterms:creator rdf:resource="urn:name:billy:butcher"/>
     </rdf:Description>
 </rdf:RDF></srw:recordData>
     </srw:record>

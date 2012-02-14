@@ -11,14 +11,15 @@
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/"
     xmlns:oac="http://www.openannotation.org/ns/">
-    <rdf:Description rdf:about="urn:text:dctermscreator">
+    <rdf:Description rdf:about="urn:text:billy:butcher">
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
         <oac:hasBody rdf:resource="urn:nr:1"/>
         <oac:hasTarget rdf:resource="urn:nr:2"/>
-        <dc:title>test for dcterms:creator</dc:title>
+        <dc:title>Billy Butcher test</dc:title>
         <dcterms:creator>
-            <foaf:Agent rdf:about="urn:an:agent">
-                <foaf:mbox>example@info.org</foaf:mbox>
+            <foaf:Agent rdf:about="urn:name:billy:butcher">
+                <foaf:name>Billy Butcher</foaf:name>
+                <foaf:mbox rdf:resource="mailto:example@info.org"/>
             </foaf:Agent>
         </dcterms:creator>
     </rdf:Description>
