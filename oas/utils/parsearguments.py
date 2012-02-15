@@ -20,6 +20,9 @@ applicationProfiles = {
     'search': dict(
         options=['configFile'],
         mandatoryKeys=['configFile']),
+    'resolve': dict(
+        options=['configFile'],
+        mandatoryKeys=['configFile']),
     'solr': dict(
         options=['port', 'solrDataDir', 'configFile'],
         mandatoryKeys=['port', 'configFile', 'solrDataDir']),
@@ -52,6 +55,10 @@ class ParseArguments(object):
     @classmethod
     def parseForOwlim(cls, args=None):
         return cls._parseFor('owlim', args)
+
+    @classmethod
+    def parseForResolve(cls, args=None):
+        return cls._parseFor('resolve', args)
 
     @classmethod
     def _parseFor(cls, application, args):

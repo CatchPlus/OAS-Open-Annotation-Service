@@ -64,7 +64,7 @@ def dna(reactor, observableHttpServer, config):
 
     solrInterface = SolrInterface(host="localhost", port=solrPortNumber, core="oas")
 
-    tripleStore = HttpClient(host="localhost", port=int(config['owlimPortNumber']))
+    #tripleStore = HttpClient(host="localhost", port=int(config['owlimPortNumber']))
 
     oaiJazz = OaiJazz(join(databasePath, 'oai'))
 
@@ -95,13 +95,13 @@ def dna(reactor, observableHttpServer, config):
                     (storageComponent,),
                 ),
                 (NormalizeRecord(),
-                    (AboutUriRewrite(baseUrl=config['resolveBaseUrl']),
+                    #(AboutUriRewrite(baseUrl=config['resolveBaseUrl']),
                         (OaiAddRecord(),
                             (oaiJazz, )
                         ),
                         (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
                             (storageComponent,),
-                            (tripleStore,),
+                            #(tripleStore,),
                         ),  
                         (XmlXPath(["/rdf:RDF/oac:Annotation/dcterms:creator/foaf:Agent[@rdf:about]"], fromKwarg="lxmlNode", namespaceMap=namespaces),
                             (IdentifierFromXPath('@rdf:about'),
@@ -146,7 +146,7 @@ def dna(reactor, observableHttpServer, config):
                             allFieldIndexHelix,
                             indexHelix
                         )
-                    )
+                    #)
                 )
             )
         )
@@ -195,9 +195,9 @@ def dna(reactor, observableHttpServer, config):
                                     ),
                                     uploadHelix,
                                 ),
-                                (FilterMessages(disallowed=['add', 'delete']),
-                                    (tripleStore,),
-                                ),
+                                #(FilterMessages(disallowed=['add', 'delete']),
+                                #    (tripleStore,),
+                                #),
                             )
                         ),
                         (PathFilter('/static'),

@@ -129,5 +129,30 @@ class OasTest(IntegrationTestCase):
         header, body = getRequest(self.portNumber, '/resolve/urn%3Anr%3A0%3Fb', {}, parse='lxml')
         self.assertEquals(["http://localhost:%s/resolve/urn%%3Anr%%3A0%%3Fb" % self.portNumber], xpath(body, '/rdf:RDF/oac:Annotation/@rdf:about'))
 
-       
+    def testResolve(self):
+        sruUpdateBody = """<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">
+    <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>
+    <ucp:action>info:srw/action/1/replace</ucp:action>
+    <ucp:recordIdentifier>ex:Anno</ucp:recordIdentifier>
+    <srw:record xmlns:srw="http://www.loc.gov/zing/srw/">
+        <srw:recordPacking>xml</srw:recordPacking>
+        <srw:recordSchema>rdf</srw:recordSchema>
+        <srw:recordData><rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <oac:Annotation rdf:about="urn:uuid:%s">
+        <dc:title>This is an annotation</dc:title>
+        <dcterms:creator rdf:resource="http://localhost:%s/rdf/testResolve"/>
+    </oac:Annotation>
+
+</rdf:RDF></srw:recordData></srw:record>
+</ucp:updateRequest>""" % (uuid4(), self.httpPortNumber)
+        header, body = postRequest(self.portNumber, '/update', sruUpdateBody, parse='lxml')
+        self.assertEquals("success", xpath(body, "/srw:updateResponse/ucp:operationStatus/text()")[0])
+
+        self.fail("eerst ander servertje")
 

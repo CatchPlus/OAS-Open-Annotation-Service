@@ -30,6 +30,13 @@ if __name__ == '__main__':
         groupSetUp = lambda: globalSetUp(fastMode, 'default'),
         groupTearDown = lambda: globalTearDown()
     )
+    runner.addGroup(
+        'resolve', [
+            'integration.resolvetest.ResolveTest',
+        ],
+        groupSetUp = lambda: globalSetUp(fastMode, 'resolve'),
+        groupTearDown = lambda: globalTearDown()
+    )
 
     testnames = argv[1:]
     runner.run(testnames)

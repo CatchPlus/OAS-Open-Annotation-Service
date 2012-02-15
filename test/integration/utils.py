@@ -1,34 +1,3 @@
-## begin license ##
-# 
-# "Nationale Aggregator" (also known as 'http://digitalecollectie.nl') is a service that gathers
-# all Dutch heritage metadata in one place, primarily for ingestion into Europeana.
-# Other services can be added in time."Nationale Aggregator" is developed for the
-# Netherlands Institute for Sound and Vision (http://instituut.beeldengeluid.nl/) by Seecr (http://seecr.nl).
-# The project is based on the open source project Meresco (http://meresco.org). 
-# 
-# Copyright (C) 2010-2011 Seek You Too (CQ2) http://www.cq2.nl
-# Copyright (C) 2010-2011 Stichting Kennisnet http://www.kennisnet.nl
-# Copyright (C) 2011 Netherlands Institute for Sound and Vision http://instituut.beeldengeluid.nl/
-# Copyright (C) 2011 Seecr (Seek You Too B.V.) http://seecr.nl
-# 
-# This file is part of "Nationale Aggregator"
-# 
-# "Nationale Aggregator" is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-# 
-# "Nationale Aggregator" is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with "Nationale Aggregator"; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-# 
-## end license ##
-
 from amara.binderytools import bind_string
 from lxml.etree import parse as parse_lxml
 from StringIO import StringIO

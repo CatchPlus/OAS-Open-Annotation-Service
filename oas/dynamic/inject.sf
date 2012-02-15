@@ -1,0 +1,7 @@
+def main(Body, **kwargs):
+    try:
+        lxmlNode = parse(StringIO(Body.strip()))
+        yield all.add(identifier='ignored', partname="rdf", lxmlNode=lxmlNode)
+    except Exception, e:
+        yield str(e)
+
