@@ -4,4 +4,5 @@ def main(Body, **kwargs):
         yield all.add(identifier='ignored', partname="rdf", lxmlNode=lxmlNode)
     except Exception, e:
         yield str(e)
+    yield "HTTP/1.0 200 OK\r\n\r\n"
 

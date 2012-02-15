@@ -37,8 +37,8 @@ def main(Body, **kwargs):
         <oac:hasBody rdf:resource="urn:uuid:%s"/>
         <oac:hasTarget rdf:resource="urn:uuid:%s"/>
         <dc:title>.......</dc:title>
-        <dcterms:creator rdf:resource="urn:uuid:%s"/>
+        <dcterms:creator rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_foaf_agent"/>
         <dcterms:created>2010-02-01 12:34:56</dcterms:created>
     </rdf:Description>
-</rdf:RDF>""" % (uuid(), uuid(), uuid(), uuid()))
+</rdf:RDF>""" % (uuid(), uuid(), uuid()))
     yield page.footer()

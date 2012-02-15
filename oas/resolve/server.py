@@ -42,7 +42,11 @@ class ResolveServer(Observable):
         for resolvable in self.listResolvables():
             urls = resolvable['creator_urls']
             for url in urls:
-                lxmlNode = parse(urlopen(url))
+                try:
+                    lxmlNode = parse(urlopen(url))
+                except:
+                    print "Error retrieving", url
+                    continue
                 for agent in filterFoafAgents([lxmlNode]):
                     identifier = getAttrib(agent, "rdf:about")
                     yield self.all.add(identifier=identifier, partname="rdf", lxmlNode=lxmlNode)
@@ -53,7 +57,6 @@ class RecordInject(object):
         self._injectUrl = injectUrl
 
     def inject(self, xml):
-        #print "---", xml
         print urlopen(self._injectUrl, xml).read()
 
 def dna(config):
