@@ -154,7 +154,6 @@ class IntegrationState(object):
         stdout.write(aString)
         stdout.flush()
 
-
 class PortNumberGenerator(object):
     startNumber = randint(50000, 60000)
 
@@ -171,6 +170,7 @@ class OasIntegrationState(IntegrationState):
 
         self.solrDataDir = join(self.integrationTempdir, "solr")
         self.owlimDataDir = join(self.integrationTempdir, "owlim")
+        self.httpDataDir = join(mydir, "httpdata")
         system('mkdir --parents ' + self.solrDataDir)
 
         if not fastMode:
@@ -180,6 +180,7 @@ class OasIntegrationState(IntegrationState):
         self.solrPortNumber = PortNumberGenerator.next()
         self.owlimPortNumber = PortNumberGenerator.next()
         self.portNumber = PortNumberGenerator.next()
+        self.httpPortNumber = PortNumberGenerator.next()
         self.hostName = 'localhost'
         
         self.config = config = readConfig(join(documentationDir, 'examples', 'oas.config'))
@@ -205,6 +206,7 @@ class OasIntegrationState(IntegrationState):
         self._startSolrServer()
         self._startOasServer()
         self._startOwlimServer()
+        self._startHttpServer()
         self._createDatabase()
    
     def tearDown(self):
@@ -218,6 +220,9 @@ class OasIntegrationState(IntegrationState):
 
     def _startOwlimServer(self):
         self._startServer('owlim', join(binDir, 'start-oas-owlim-server'), 'http://localhost:%s/sparql' % self.owlimPortNumber, port=self.owlimPortNumber, storeLocation=self.owlimDataDir)
+
+    def _startHttpServer(self):
+        self._startServer("http", join(mydir, "bin", "httpfileserver.py"), 'http://localhost:%s/server_ready' % self.httpPortNumber, port=self.httpPortNumber, filepath=self.httpDataDir)
 
     def _createDatabase(self):
         if fastMode:

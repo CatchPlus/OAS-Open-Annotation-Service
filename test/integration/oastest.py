@@ -13,6 +13,19 @@ class OasTest(IntegrationTestCase):
             version="1.1", operation="searchRetrieve", query=query), parse='lxml')
         self.assertEquals([str(count)], xpath(body, '/srw:searchRetrieveResponse/srw:numberOfRecords/text()'))
 
+    def assertNotAValidAnnotiation(self, annotationBody):
+        annotationBody = """<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    %s
+</rdf:RDF>""" % annotationBody
+
+        header,body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)), parse='lxml')
+        self.assertEquals(['No annotations found.'], xpath(body, '//p[@class="error"]/text()'))
+    
     def testGetInfo(self):
         headers, body = getRequest(self.portNumber, "/info/version", parse=False)
         self.assertTrue(body.startswith("Open Annotation Service, version: "), body)
@@ -30,6 +43,7 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('mailto:unique@info.org', 1)
         self.assertQuery('oac:hasTarget = "http://example.org/target/for/test"', 1)
         self.assertQuery('RDF.Annotation.creator.Agent.name = "billy butcher"', 2)
+        self.assertQuery('__resolved__ = no', 1)
 
     def testOaiIdentify(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')
@@ -37,7 +51,7 @@ class OasTest(IntegrationTestCase):
 
     def testOaiListRecords(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf"), parse='lxml')
-        self.assertEquals(11, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+        self.assertEquals(12, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
 
     def testPostAnnotation(self):
         identifier = "urn:uuid:%s" % uuid4()
@@ -62,18 +76,6 @@ class OasTest(IntegrationTestCase):
         postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)))
         self.assertQuery('RDF.Annotation.title = "An Annotions submitted through a form"', 1)
 
-    def assertNotAValidAnnotiation(self, annotationBody):
-        annotationBody = """<rdf:RDF 
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
-    xmlns:foaf="http://xmlns.com/foaf/0.1/">
-    %s
-</rdf:RDF>""" % annotationBody
-
-        header,body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)), parse='lxml')
-        self.assertEquals(['No annotations found.'], xpath(body, '//p[@class="error"]/text()'))
 
     def testErrorWhenNotAnnotation(self):
         self.assertNotAValidAnnotiation("""<rdf:Description rdf:about="urn:uuid:%s">
