@@ -1,4 +1,4 @@
-from lxml.etree import parse, tostring
+from lxml.etree import parse, tostring, Element
 from StringIO import StringIO
 from urllib2 import urlopen
 from urllib import urlencode, unquote
@@ -8,7 +8,8 @@ from weightless.core import be, compose
 from meresco.core import Observable
 from meresco.components import readConfig, StorageComponent, XmlPrintLxml
 
-from oas.namespaces import xpath, getAttrib
+from oas.namespaces import xpath, getAttrib, namespaces
+
 from oas.utils.annotation import filterAnnotations, filterFoafAgents
 
 class SruClient(object):
@@ -37,19 +38,22 @@ class ResolveServer(Observable):
                 'record': tostring(node),
                 'creator_urls': xpath(node, "oac:Annotation/dcterms:creator/@rdf:resource")
             }
-
+    def _urlopen(self, url):
+        return urlopen(url)
+    
     def process(self):
         for resolvable in self.listResolvables():
             urls = resolvable['creator_urls']
             for url in urls:
                 try:
-                    lxmlNode = parse(urlopen(url))
+                    lxmlNode = parse(self._urlopen(url))
                 except:
                     print "Error retrieving", url
                     continue
                 for agent in filterFoafAgents([lxmlNode]):
                     identifier = getAttrib(agent, "rdf:about")
-                    yield self.all.add(identifier=identifier, partname="rdf", lxmlNode=lxmlNode)
+                    newNode = parse(StringIO(tostring(agent)))
+                    yield self.all.add(identifier=identifier, partname="rdf", lxmlNode=newNode)
             self.call.inject(resolvable['record'])
              
 class RecordInject(object):

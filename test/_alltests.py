@@ -16,6 +16,7 @@ from mboxasidentifiertest import MboxAsIdentifierTest
 from rdfcontainertest import RdfContainerTest
 from normalizerecordtest import NormalizeRecordTest
 from identifierfromxpathtest import IdentifierFromXPathTest
+from resolveservertest import ResolveServerTest
 
 if __name__ == '__main__':
     main()
