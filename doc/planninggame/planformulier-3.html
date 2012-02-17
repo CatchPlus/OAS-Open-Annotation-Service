@@ -1,0 +1,84 @@
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="http://cdn.seecr.nl/css/planninggame.css"/>
+        <link rel="shortcut icon" href="http://seecr.nl/favicon.ico" />
+        <script language="javascript" type="text/javascript">
+function toggle(elementId) {
+    var ele = document.getElementById(elementId);
+    ele.style.display = ele.style.display == "block" ? "none" : "block";
+} 
+        </script>
+        <title>OpenAnnotation Service</title>
+   </head>
+    <body>
+        <div id="blocknote">
+            <div id="logo"></div>
+            <div id="content">
+                <h1 class="title">Planformulier 3 - OpenAnnotation Service</h1>                
+                <div class="story">
+                    <h2>0. TODO</h2>
+                    <p>- rdf:RDF tag uit inline foaf:Agent
+<br/>- Engelstalig
+<br/>- orginele URN as dc:identifier meeindexeren</p>
+                    <button onClick="javascript:toggle('story_0');">Meer</button>
+                    <div class="remarks" id="story_0">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>1. Documentatie</h2>
+                    <p>Simpele documentatie waarin beschreven wordt hoe de OpenAnnotation Service werkt, inclusief voorbeelden. Ook het upload example script behoort tot de documentatie.</p>
+                    <button onClick="javascript:toggle('story_1');">Meer</button>
+                    <div class="remarks" id="story_1">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>2. Body's indexeren volgens schema</h2>
+                    <p>Anonieme bodies worden voorzien van een 'urn:uuid:....'. Bodies met een URN worden geresolved in: 1. de RDF zelf, 2. lokaal. Als de body lokaal gevonden wordt dan is deze dus al een keer eerder geweest en al voorzien van een URL. Voor de bodies worden de URN's omgezet naar een URL, waarop ze ook te resolven zijn. Als de body een URL bevat als rdf:resource, dan wordt deze gedownload en geindexeerd.
+<br/>- De URL wordt de identifier van de body, de orginele URN wordt als dc:identifier toegevoegd aan de oac:Body.
+<br/>- De oac:Body's komen in een eigen storage t.b.v. publicatie </p>
+                    <button onClick="javascript:toggle('story_2');">Meer</button>
+                    <div class="remarks" id="story_2">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>3. Annotatie indexeren volgens schema</h2>
+                    <p>Er zijn 3 mogelijkheden bij Annotaties: URN, URL of anoniem. Bij anoniem wordt er een URN in de vorm van &quot;urn:uuid:.....&quot; gegenereerd. Bij een URN wordt vervolgens een URL gegenereerd. Op de locatie van deze URL kan de Annotatie teruggevonden worden. Als de Annotatie een rdf:about heeft met een URL dan wordt deze URL gebruikt als identifier bij indexeren en opslaan; maar er zal geen publiseer-url aangemaakt worden (is namelijk al een URL).</p>
+                    <button onClick="javascript:toggle('story_3');">Meer</button>
+                    <div class="remarks" id="story_3">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>4. ConstrainedTargets</h2>
+                    <p>Hennie gaat voorbeelden aanleveren. Zelf gaan we proberen geldige voorbeelden te maken op basis van de specificaties.</p>
+                    <button onClick="javascript:toggle('story_4');">Meer</button>
+                    <div class="remarks" id="story_4">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>5. Annotaties bij Targets</h2>
+                    <p>Zoeken op alle annotaties die horen bij een constrained target.</p>
+                    <button onClick="javascript:toggle('story_5');">Meer</button>
+                    <div class="remarks" id="story_5">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>6. Menubalk en documentatie</h2>
+                    <p>De webinterface wordt voorzien van een menu. Dit menu zal worden gebruikt voor links naar documentatie, voorbeelden e.d. Bij deze story is ook meegenomen dat de infrastructuur zo wordt aangepast dat de documentie beschikbaar is via het internet.</p>
+                    <button onClick="javascript:toggle('story_6');">Meer</button>
+                    <div class="remarks" id="story_6">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>
+            </div>
+            <div id="stamp"></div>
+            <div id="address" onClick="javascript:window.open('http://seecr.nl'); return false;"></div>
+        </div>
+    </body>
+</html>
