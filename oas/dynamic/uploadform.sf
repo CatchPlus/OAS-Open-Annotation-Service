@@ -4,7 +4,8 @@ def main(Body, **kwargs):
     params = parse_qs(Body)
 
     yield page.header()
-    yield page.caption("SRU Upload form")
+    yield page.caption("Open Annotation Service")
+    yield page.menu(selected="Upload")
 
     annotation = ''
     if 'annotation' in params and params['annotation'][0].strip() != '':

@@ -3,6 +3,7 @@ import page
 def main(**kwargs):
     yield page.header()
     yield page.caption("Open Annotation Service")
+    yield page.menu(selected="Search")
     yield '<form method="GET" action="/query">'
     yield '<input type="text" name="q"/>'
     yield '<input type="submit" value="Search"/>'

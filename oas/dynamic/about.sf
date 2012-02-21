@@ -1,0 +1,16 @@
+import page
+
+def main(**kwargs):
+    yield page.header()
+    yield page.caption("Open Annotation Service")
+    yield page.menu(selected="About")
+    yield """<p>In many of the projects of CATCH and CATCHPlus annotations play a role. These annotations are either manually or automatically created and annotate resources of different media types, or parts of those (text segments, image regions, time intervals in case of movies and audio recordings).<p><p>The CATCHPlus annotation repository enables exchange, storage and search of heterogeneous annotations using a uniform format (Open Annotation format) and a uniform web service interface.</p><p>The annotation repository:</p>
+    <ul>
+        <li>enables step by step enrichment of collections of resources</li>
+        <li>constitutes a searchable index referring to resources in different collections on the web</li>
+        <li>allows linking of resources or resource segment across the web</li>
+    </ul>
+
+    <p>The repository will be available as open source software and as easily installable package.</p>"""
+    yield page.craftedBySeecr()
+    yield page.footer()

@@ -5,10 +5,36 @@ def header():
         <title>Open Annotation Service</title>
     </head>
     <body>
+        <div id="content">
     """
 
+def menu(selected=None):
+    items = [
+        ('Search', "/index"),
+        ('Upload', "/uploadform"),
+        ('Examples', "/examples"),
+        ('Documentation', "/documentation"),
+        ('About', "/about"),
+    ]
+    yield """<div id="menu">
+    <ul>"""
+
+    for caption, url in items:
+        if caption == selected:
+            yield '<li class="selected">%s</li>' % caption
+        else:
+            yield """<li><a href="%s">%s</a></li>""" % (url, caption)
+    yield """        </ul>
+    </div>"""
+
+def craftedBySeecr():
+    yield '<div id="craftedBySeecr"/>'
+
 def footer():
-    yield """</body>
+
+    yield """
+            </div>
+        </body>
     </html>"""
 
 def caption(text):

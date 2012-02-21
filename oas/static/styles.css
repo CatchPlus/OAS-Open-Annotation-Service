@@ -2,11 +2,62 @@
     font-family: Arial;
 
 }
+#content {
+    width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#menu ul li {
+    display: inline;
+}
+
+#menu li {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-right: 10px;
+}
+
+#menu li:hover {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+#menu li.selected {
+    font-style: italic;
+}
+
+#menu ul {
+    padding: 0px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#menu a, #menu a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+#craftedBySeecr {
+    background-image: url(http://cdn.seecr.nl/images/crafted_by_seecr-233x30.png);
+    background-repeat: no-repeat;
+    width: 233px;
+    height: 30px;
+    margin-top: 50px;
+    float: right;
+}
+
 
 .title {
     background-image: url(/static/catch_plus_logo.png);
     background-repeat: no-repeat;
-    height: 115px;
-    padding-left: 300px;
-
+    height: 50px;
+    padding-left: 250px;
+    padding-top: 20px;
+    font-size: 22pt;
+    font-style: italic;
 }
+
+

@@ -3,7 +3,8 @@ from utils import getRequest, postRequest
 from lxml.etree import tostring
 from uuid import uuid4
 from urllib import urlencode
-from os.path import join
+from os.path import join, isdir
+from os import makedirs
 
 from oas.namespaces import xpath
 from oas.resolve.server import startServer
@@ -32,7 +33,7 @@ class ResolveTest(IntegrationTestCase):
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
-    <oac:Annotation rdf:about="%s">
+    <oac:Annotation rdf:about="http://oas.dev.seecr.nl/resolve/%s">
         <dc:title>This is an annotation</dc:title>
         <dcterms:creator rdf:resource="%s"/>
     </oac:Annotation>
@@ -44,7 +45,10 @@ class ResolveTest(IntegrationTestCase):
 
         self.assertQuery("__resolved__ = no", 1)
 
-        open(join(self.httpDataDir, "rdf", "testResolve"), "w").write("""<rdf:RDF 
+        destDir = join(self.httpDataDir, "rdf")
+        if not isdir(destDir):
+            makedirs(destDir)
+        open(join(destDir, "testResolve"), "w").write("""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:foaf="http://xmlns.com/foaf/0.1/"
     xmlns:dc="http://purl.org/dc/elements/1.1/">

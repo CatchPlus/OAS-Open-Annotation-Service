@@ -1,0 +1,7 @@
+import page
+
+def main(**kwargs):
+    yield page.header()
+    yield page.caption("Open Annotation Service")
+    yield page.menu(selected="Documentation")
+    yield page.footer()
