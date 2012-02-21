@@ -16,14 +16,16 @@ def menu(selected=None):
         ('Documentation', "/documentation"),
         ('About', "/about"),
     ]
-    yield """<div id="menu">
-    <ul>"""
+    yield """
+    <div id="menu">
+        <ul>\n"""
 
     for caption, url in items:
+        yield 3*'    '
         if caption == selected:
-            yield '<li class="selected">%s</li>' % caption
+            yield '<li class="selected">%s</li>\n' % caption
         else:
-            yield """<li><a href="%s">%s</a></li>""" % (url, caption)
+            yield """<li><a href="%s">%s</a></li>\n""" % (url, caption)
     yield """        </ul>
     </div>"""
 

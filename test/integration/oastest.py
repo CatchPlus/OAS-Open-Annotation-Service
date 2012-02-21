@@ -43,7 +43,6 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('mailto:unique@info.org', 1)
         self.assertQuery('oac:hasTarget = "http://example.org/target/for/test"', 1)
         self.assertQuery('RDF.Annotation.creator.Agent.name = "billy butcher"', 2)
-        self.assertQuery('__resolved__ = no', 1)
 
     def testOaiIdentify(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')
