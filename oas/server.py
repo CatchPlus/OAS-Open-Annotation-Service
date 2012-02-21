@@ -1,4 +1,5 @@
 from os.path import join, basename, dirname
+from os import listdir
 from sys import stdout
 from StringIO import StringIO
 from uuid import uuid4
@@ -58,6 +59,7 @@ def dna(reactor, observableHttpServer, config):
     solrPortNumber = int(config['solrPortNumber'])
     storageComponent = StorageComponent(join(databasePath, 'storage'))
     foafAgentStorage = StorageComponent(join(databasePath, 'foafAgent'))
+    publicDocumentationPath = config['publicDocumentationPath']
 
 
     reindexPath = join(databasePath, 'reindex')
@@ -180,11 +182,12 @@ def dna(reactor, observableHttpServer, config):
                             (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                                 indexPage='/index', 
                                 additionalGlobals={
-                                    'StringIO': StringIO, 
-                                    'xpath': xpath,
-                                    'uuid': uuid4,
+                                    'listDocs': lambda: listdir(publicDocumentationPath),
                                     'okXml': okXml,
+                                    'StringIO': StringIO, 
                                     'unquote_plus': unquote_plus,
+                                    'uuid': uuid4,
+                                    'xpath': xpath,
                                     }),
                                 (FilterMessages(allowed=['getStream']),
                                     (storageComponent,),

@@ -1,4 +1,5 @@
 from integrationtestcase import IntegrationTestCase
+from os import listdir
 from utils import getRequest, postRequest
 from lxml.etree import tostring
 from uuid import uuid4
@@ -128,4 +129,12 @@ class OasTest(IntegrationTestCase):
         header, body = getRequest(self.portNumber, '/resolve/urn%3Anr%3A0%3Fb', {}, parse='lxml')
         self.assertEquals(["http://localhost:%s/resolve/urn%%3Anr%%3A0%%3Fb" % self.portNumber], xpath(body, '/rdf:RDF/oac:Annotation/@rdf:about'))
 
+    def testDocumentationPage(self):
+        header, body = getRequest(self.portNumber, '/documentation', {}, parse='lxml')
+        nodes = xpath(body, '/html/body/div/div[@id="filelist"]/ul/li/a')
+        expected = listdir(self.publicDocumentationPath)
+        self.assertTrue(len(expected) > 1)
+        self.assertEquals(expected, [node.text for node in nodes])
+        self.assertTrue(all(['target' in node.attrib for node in nodes]))
+        self.assertEquals(['/public/%s' % f for f in expected], [node.attrib['href'] for node in nodes])
 

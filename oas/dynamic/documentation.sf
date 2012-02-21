@@ -4,4 +4,11 @@ def main(**kwargs):
     yield page.header()
     yield page.caption("Open Annotation Service")
     yield page.menu(selected="Documentation")
+    yield '''<div id="filelist">
+    <ul>
+    '''
+    for filename in listDocs():
+        yield '<li><a href="/public/%s" target="_blank">%s</a></li>\n' % (escapeHtml(filename), escapeHtml(filename))
+    yield '''</ul>
+</div>\n'''
     yield page.footer()

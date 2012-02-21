@@ -197,6 +197,8 @@ class OasIntegrationState(IntegrationState):
         setConfig(config, 'owlimPortNumber', self.owlimPortNumber)
         setConfig(config, 'databasePath', join(self.integrationTempdir, 'database'))
         setConfig(config, 'resolveBaseUrl', 'http://localhost:%s/resolve/' % self.portNumber)
+        self.publicDocumentationPath = join(documentationDir, 'public')
+        setConfig(config, 'publicDocumentationPath', self.publicDocumentationPath)
 
         with open(self.configFile, 'w') as f:
             for item in config.items():
