@@ -60,4 +60,34 @@
     font-style: italic;
 }
 
+#filelist ul {
+    list-style: none;
+}
+
+#filelist li {
+    padding-bottom: 20px;
+    height: 32px;
+}
+
+#filelist a {
+    text-decoration: none;
+    color: black;
+}
+
+#filelist a:hover {
+    border-bottom: 1px solid black;
+}
+
+#filelist li {
+    background-repeat: no-repeat;
+    padding-left: 32px;
+    background-image: url(/static/unknown.png);
+}
+
+#filelist .pdf {
+    background-image: url(/static/pdf.png);
+}
+#filelist .py {
+    background-image: url(/static/source_py.png);
+}
 

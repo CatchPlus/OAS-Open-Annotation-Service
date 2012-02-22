@@ -1,5 +1,10 @@
 import page
 
+mapping = {
+    '.py': 'py',
+    '.pdf': 'pdf'
+}
+
 def main(**kwargs):
     yield page.header()
     yield page.caption("Open Annotation Service")
@@ -8,7 +13,9 @@ def main(**kwargs):
     <ul>
     '''
     for filename in listDocs():
-        yield '<li><a href="/public/%s" target="_blank">%s</a></li>\n' % (escapeHtml(filename), escapeHtml(filename))
+        ignored, ext = splitext(filename)
+        htmlClass = mapping.get(ext, 'unknown')
+        yield '<li class="%s"><a href="/public/%s" target="_blank">%s</a></li>\n' % (htmlClass, escapeHtml(filename), escapeHtml(filename))
     yield '''</ul>
 </div>\n'''
     yield page.footer()

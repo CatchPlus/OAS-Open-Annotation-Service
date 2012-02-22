@@ -138,3 +138,9 @@ class OasTest(IntegrationTestCase):
         self.assertTrue(all(['target' in node.attrib for node in nodes]))
         self.assertEquals(['/public/%s' % f for f in expected], [node.attrib['href'] for node in nodes])
 
+    def testDocumentationLink(self):
+        filename = listdir(self.publicDocumentationPath)[0]
+        header, body = getRequest(self.portNumber, '/public/%s' % filename, {}, parse=False)
+        self.assertTrue(header.startswith('HTTP/1.0 200 OK'), header)
+
+

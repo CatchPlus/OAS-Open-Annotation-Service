@@ -1,4 +1,4 @@
-from os.path import join, basename, dirname
+from os.path import join, basename, dirname, splitext
 from os import listdir
 from sys import stdout
 from StringIO import StringIO
@@ -178,12 +178,13 @@ def dna(reactor, observableHttpServer, config):
                                 uploadHelix
                             )
                         ),
-                        (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex"]),
+                        (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public']),
                             (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                                 indexPage='/index', 
                                 additionalGlobals={
                                     'listDocs': lambda: listdir(publicDocumentationPath),
                                     'okXml': okXml,
+                                    'splitext': splitext,
                                     'StringIO': StringIO, 
                                     'unquote_plus': unquote_plus,
                                     'uuid': uuid4,
@@ -209,8 +210,8 @@ def dna(reactor, observableHttpServer, config):
                             )
                         ),
                         (PathFilter('/public'),
-                            (PathRename(lambda path: path[len('/static'):]),
-                                (FileServer(staticHtmlFilePath),)
+                            (PathRename(lambda path: path[len('/public'):]),
+                                (FileServer(publicDocumentationPath),)
                             )
                         ),
                         (PathFilter("/sru"),
