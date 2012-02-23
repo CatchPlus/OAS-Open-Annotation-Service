@@ -6,6 +6,7 @@ from sys import stdout
 from hashlib import md5
 from random import randint, choice
 from time import sleep, time 
+from shutil import copy as filecopy
 from StringIO import StringIO
 from subprocess import Popen
 from signal import SIGTERM
@@ -28,6 +29,10 @@ if not isdir(binDir):
     binDir = '/usr/bin'
 documentationDir = join(projectDir, 'doc')
 defaultSolrDataDir = join(projectDir, 'solr-data')
+docExampleScriptPath = join(documentationDir, 'public', 'example_client.py')
+myExampleScriptPath = join(mydir, 'example_client.py')
+filecopy(docExampleScriptPath, myExampleScriptPath)
+from example_client import upload
 
 class IntegrationTestCase(SeecrTestCase):
     _scriptTagRegex = compile("<script[\s>].*?</script>", DOTALL)
@@ -251,12 +256,12 @@ class OasIntegrationState(IntegrationState):
         print 'http://localhost:%s%s' % (aPort, uploadPath), '<-', basename(filename)[:-len('.updateRequest')]
         updateRequest = open(filename).read()
         lxml = parse(StringIO(updateRequest))
-        header, body = postRequest(aPort, uploadPath, updateRequest)
+        header, body = upload(hostname='localhost', portnumber=aPort, path=uploadPath, stream=open(filename)).split('\r\n\r\n', 1)
         if '200 Ok' not in header:
             print 'No 200 Ok response, but:\n', header
             exit(123)
-        if "srw:diagnostics" in body.xml():
-            print body.xml()
+        if "srw:diagnostics" in body:
+            print body
             exit(1234)
 
 def globalSetUp(fast, stateName):

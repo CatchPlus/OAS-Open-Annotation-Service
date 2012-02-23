@@ -1,11 +1,4 @@
-<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">
-    <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>
-    <ucp:action>info:srw/action/1/replace</ucp:action>
-    <ucp:recordIdentifier>urn:something</ucp:recordIdentifier>
-    <srw:record xmlns:srw="http://www.loc.gov/zing/srw/">
-        <srw:recordPacking>xml</srw:recordPacking>
-        <srw:recordSchema>rdf</srw:recordSchema>
-        <srw:recordData><rdf:RDF 
+<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -18,6 +11,4 @@
         <dc:title>test for dcterms:creator</dc:title>
         <dcterms:creator rdf:resource="urn:name:billy:butcher"/>
     </rdf:Description>
-</rdf:RDF></srw:recordData>
-    </srw:record>
-</ucp:updateRequest>
+</rdf:RDF>
