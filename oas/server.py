@@ -182,7 +182,7 @@ def dna(reactor, observableHttpServer, config):
                             (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                                 indexPage='/index', 
                                 additionalGlobals={
-                                    'listDocs': lambda: listdir(publicDocumentationPath),
+                                    'listDocs': lambda: sorted([name for name in listdir(publicDocumentationPath) if not name.startswith('.')]),
                                     'okXml': okXml,
                                     'splitext': splitext,
                                     'StringIO': StringIO, 
