@@ -15,7 +15,7 @@ from meresco.components.xml_generic.validate import ValidateException
 class MultipleAnnotationSplitTest(SeecrTestCase):
     def setUp(self):
         SeecrTestCase.setUp(self)
-        self.observer = CallTrace('Observer', emptyGeneratorMethods=['add'])
+        self.observer = CallTrace('Observer', emptyGeneratorMethods=['process'])
         self.storageObserver = CallTrace("storage")
         self.storageObserver.returnValues['isAvailable'] = (True, True)
         self.storageObserver.returnValues['getStream'] = StringIO("""<foaf:Agent rdf:about="urn:creator" xmlns:foaf="%(foaf)s" xmlns:rdf="%(rdf)s">

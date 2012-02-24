@@ -12,14 +12,11 @@ class MultipleAnnotationSplit(Observable):
         rdfContainer = RdfContainer(lxmlNode)
         annotationFound = False
         for annotation in filterAnnotations(lxmlNode):
-            identifier = getAttrib(annotation, 'rdf:about')
-            if not validIdentifier(identifier):
-                continue
             annotationFound = True
             newRoot = Element("{%(rdf)s}RDF" % namespaces)
             newRoot.append(annotation)
             self._inlineURNs(newRoot, rdfContainer)
-            yield self.all.add(identifier=identifier, partname=partname, lxmlNode=newRoot)
+            yield self.all.process(lxmlNode=newRoot)
         if not annotationFound:
             raise ValidateException("No annotations found.")
         

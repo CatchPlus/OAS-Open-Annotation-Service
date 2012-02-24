@@ -14,7 +14,7 @@ class OasTest(IntegrationTestCase):
             version="1.1", operation="searchRetrieve", query=query), parse='lxml')
         self.assertEquals([str(count)], xpath(body, '/srw:searchRetrieveResponse/srw:numberOfRecords/text()'))
 
-    def assertNotAValidAnnotiation(self, annotationBody):
+    def assertNotAValidAnnotiation(self, errorText, annotationBody):
         annotationBody = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oac="http://www.openannotation.org/ns/"
@@ -25,7 +25,7 @@ class OasTest(IntegrationTestCase):
 </rdf:RDF>""" % annotationBody
 
         header,body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)), parse='lxml')
-        self.assertEquals(['No annotations found.'], xpath(body, '//p[@class="error"]/text()'))
+        self.assertEquals([errorText], xpath(body, '//p[@class="error"]/text()'))
     
     def testGetInfo(self):
         headers, body = getRequest(self.portNumber, "/info/version", parse=False)
@@ -51,7 +51,7 @@ class OasTest(IntegrationTestCase):
 
     def testOaiListRecords(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf"), parse='lxml')
-        self.assertEquals(11, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+        self.assertEquals(12, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
 
     def testPostAnnotation(self):
         identifier = "urn:uuid:%s" % uuid4()
@@ -78,10 +78,10 @@ class OasTest(IntegrationTestCase):
 
 
     def testErrorWhenNotAnnotation(self):
-        self.assertNotAValidAnnotiation("""<rdf:Description rdf:about="urn:uuid:%s">
+        self.assertNotAValidAnnotiation('No annotations found.', """<rdf:Description rdf:about="urn:uuid:%s">
         <dc:title>This is a wannabe annotation</dc:title>
     </rdf:Description>""" % uuid4())
-        self.assertNotAValidAnnotiation("""<rdf:Description rdf:about=" ">
+        self.assertNotAValidAnnotiation('Invalid identifier', """<rdf:Description rdf:about=" ">
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
         <dc:title>This is a wrongfully identified annotation</dc:title>
     </rdf:Description>""")
@@ -124,6 +124,7 @@ class OasTest(IntegrationTestCase):
 
     def testUrnResolvable(self):
         header, body = getRequest(self.portNumber, '/resolve/urn%3Aex%3AAnno', {}, parse='lxml')
+        print tostring(body)
         self.assertEquals(["http://localhost:%s/resolve/urn%%3Aex%%3AAnno" % self.portNumber], xpath(body, '/rdf:RDF/oac:Annotation/@rdf:about'))
 
         header, body = getRequest(self.portNumber, '/resolve/urn%3Anr%3A0%3Fb', {}, parse='lxml')
@@ -132,7 +133,7 @@ class OasTest(IntegrationTestCase):
     def testDocumentationPage(self):
         header, body = getRequest(self.portNumber, '/documentation', {}, parse='lxml')
         nodes = xpath(body, '/html/body/div/div[@id="filelist"]/ul/li/a')
-        expected = listdir(self.publicDocumentationPath)
+        expected = sorted(listdir(self.publicDocumentationPath))
         self.assertTrue(len(expected) > 1)
         self.assertEquals(expected, [node.text for node in nodes])
         self.assertTrue(all(['target' in node.attrib for node in nodes]))

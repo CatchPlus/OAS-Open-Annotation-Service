@@ -11,9 +11,9 @@ def splitType(typeString):
 
     return splitOn("#" if "#" in typeString else "/")
 
-class NormalizeRecord(Transparent):
+class Normalize(Transparent):
   
-    def add(self, identifier, partname, lxmlNode):
+    def process(self, lxmlNode):
         descriptions = xpath(lxmlNode, "//rdf:Description[rdf:type]")
         for description in descriptions:
             rdfType = xpath(description, "rdf:type/@rdf:resource")[0]
@@ -31,4 +31,4 @@ class NormalizeRecord(Transparent):
                 newNode.append(child)
             parent.remove(description)
 
-        yield self.all.add(identifier=identifier, partname=partname, lxmlNode=lxmlNode)
+        yield self.all.process(lxmlNode=lxmlNode)

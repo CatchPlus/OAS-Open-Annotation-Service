@@ -11,12 +11,13 @@ from unittest import main
 
 from utilstest import UtilsTest
 from multipleannotationsplittest import MultipleAnnotationSplitTest
-from abouturirewritetest import AboutUriRewriteTest
-from mboxasidentifiertest import MboxAsIdentifierTest
 from rdfcontainertest import RdfContainerTest
-from normalizerecordtest import NormalizeRecordTest
+from normalizetest import NormalizeTest
 from identifierfromxpathtest import IdentifierFromXPathTest
 from resolveservertest import ResolveServerTest
+from deanonymizetest import DeanonymizeTest
+from publishtest import PublishTest
+from sanitizetest import SanitizeTest
 
 if __name__ == '__main__':
     main()

@@ -1,4 +1,4 @@
 def main(path, **kwargs):
-    identifier = unquote_plus(path[len('/resolve/'):])
+    identifier = config['resolveBaseUrl'] + unquote_plus(path)
     yield okXml
     yield call.getStream(identifier, 'rdf').read()

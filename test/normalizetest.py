@@ -6,27 +6,24 @@ from meresco.core import Observable
 from lxml.etree import parse, tostring
 from StringIO import StringIO
 
-from oas import NormalizeRecord
-from oas.normalizerecord import splitType
+from oas import Normalize
+from oas.normalize import splitType
 
-class NormalizeRecordTest(SeecrTestCase):
+class NormalizeTest(SeecrTestCase):
 
     def setUp(self):
         SeecrTestCase.setUp(self)
-        self.observer = CallTrace(emptyGeneratorMethods=['add', "delete"])
+        self.observer = CallTrace(emptyGeneratorMethods=['process', "delete"])
         self.dna = be(
             (Observable(),
-                (NormalizeRecord(),
+                (Normalize(),
                     (self.observer,)
                 )
             )
         )
    
     def assertConvert(self, expected, source):
-        list(compose(self.dna.all.add(
-            identifier='identifier', 
-            partname='rdf', 
-            lxmlNode=parse(StringIO(source)))))
+        list(compose(self.dna.all.process(lxmlNode=parse(StringIO(source)))))
 
         resultNode = self.observer.calledMethods[0].kwargs['lxmlNode']
         self.assertEqualsWS(

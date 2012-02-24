@@ -30,7 +30,7 @@ def menu(selected=None):
     </div>"""
 
 def craftedBySeecr():
-    yield '<div id="craftedBySeecr"/>'
+    yield '<div id="craftedBySeecr" onClick="javascript:window.open(\'http://seecr.nl\'); return false;"/>'
 
 def footer():
 

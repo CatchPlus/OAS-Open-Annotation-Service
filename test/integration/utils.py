@@ -21,7 +21,12 @@ def createReturnValue(header, body, parse):
             print 'parsing failed for:' + str(body)
             raise
     elif parse == 'lxml':
-        body = parse_lxml(StringIO(body))
+        try:
+            body = parse_lxml(StringIO(body))
+        except:
+            print 'parsing failed for:', body
+            raise
+
     return header, body
 
 
