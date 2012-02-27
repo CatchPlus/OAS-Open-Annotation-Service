@@ -117,14 +117,13 @@ class OasTest(IntegrationTestCase):
         header, body = getRequest(self.portNumber, '/reindex', {'session': 'newReindex'}, parse=False)
         lines = body.split('\n')
         self.assertEquals('=batches left: 0', lines[-1])
-        self.assertTrue('+urn:ex:Anno' in lines, lines)
+        self.assertTrue('+http:%2F%2Flocalhost:'+str(self.portNumber)+'%2Fresolve%2Furn%253Aex%253AAnno' in lines, lines)
 
     def testMultipleAnnotationsInOneUpdate(self):
         self.assertQuery('dc:title="Multiple Annotations In One Update"', 3)
 
     def testUrnResolvable(self):
         header, body = getRequest(self.portNumber, '/resolve/urn%3Aex%3AAnno', {}, parse='lxml')
-        print tostring(body)
         self.assertEquals(["http://localhost:%s/resolve/urn%%3Aex%%3AAnno" % self.portNumber], xpath(body, '/rdf:RDF/oac:Annotation/@rdf:about'))
 
         header, body = getRequest(self.portNumber, '/resolve/urn%3Anr%3A0%3Fb', {}, parse='lxml')
