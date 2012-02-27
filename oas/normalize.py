@@ -25,8 +25,10 @@ class Normalize(Transparent):
                 "{%(ns)s}%(tag)s" % {'ns': namespace, 'tag': name}, 
                 attrib=description.attrib,
                 nsmap={prefixes[namespace]: namespace})
+            firstChildDeleted = False
             for child in description.getchildren():
-                if child.tag == "{%(rdf)s}type" % namespaces:
+                if child.tag == "{%(rdf)s}type" % namespaces and not firstChildDeleted:
+                    firstChildDeleted = True
                     continue
                 newNode.append(child)
             parent.remove(description)

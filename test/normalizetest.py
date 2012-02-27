@@ -86,6 +86,23 @@ class NormalizeTest(SeecrTestCase):
 </rdf:RDF>"""
         self.assertConvert(EXPECTED_XML, XML)
     
+    def testMultipleRdfTypes(self):
+        XML = """<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:dcterms="http://purl.org/dc/terms/">
+    <rdf:Description rdf:about="urn:identifier">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.example.org/lit-annotation-ns#ExplanatoryNote"/>
+    </rdf:Description>
+</rdf:RDF>"""
+        EXPECTED_XML = """<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:dcterms="http://purl.org/dc/terms/">
+    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="urn:identifier">
+        <rdf:type rdf:resource="http://www.example.org/lit-annotation-ns#ExplanatoryNote"/>
+    </oac:Annotation>
+</rdf:RDF>"""
+        self.assertConvert(EXPECTED_XML, XML)
     def testLeaveDescriptionsWithoutTypeAlone(self):
         XML = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
