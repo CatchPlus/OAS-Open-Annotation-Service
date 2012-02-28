@@ -10,7 +10,7 @@ from meresco.components import readConfig, StorageComponent, XmlPrintLxml
 
 from oas.namespaces import xpath, getAttrib, namespaces
 
-from oas.utils.annotation import filterAnnotations, filterFoafAgents
+from oas.utils.annotation import filterAnnotations, filterFoafAgents, filterOacBodies
 
 class SruClient(object):
     def __init__(self, baseurl):
@@ -34,27 +34,33 @@ class ResolveServer(Observable):
         response = self.call.searchRetrieve(self._query)
         nodes = xpath(response, "/srw:searchRetrieveResponse/srw:records/srw:record/srw:recordData/rdf:RDF")
         for node in nodes:
+            items = []
             yield {
                 'record': tostring(node),
-                'creator_urls': xpath(node, "oac:Annotation/dcterms:creator/@rdf:resource")
+                'items': [
+                    {'filter': filterFoafAgents, 'partname': 'foafAgent', 'urls': xpath(node, "oac:Annotation/dcterms:creator/@rdf:resource")},
+                    {'filter': filterOacBodies, 'partname': 'oacBody', 'urls': xpath(node, "oac:Annotation/oac:hasBody/@rdf:resource")},
+                ]
             }
+
     def _urlopen(self, url):
         return urlopen(url)
     
     def process(self):
         for resolvable in self.listResolvables():
-            urls = resolvable['creator_urls']
-            for url in urls:
-                try:
-                    lxmlNode = parse(self._urlopen(url))
-                except:
-                    print "Error retrieving", url
-                    continue
-                for agent in filterFoafAgents(lxmlNode):
-                    identifier = getAttrib(agent, "rdf:about")
-                    newNode = parse(StringIO(tostring(agent)))
-                    yield self.all.add(identifier=identifier, partname="rdf", lxmlNode=newNode)
-            self.call.inject(resolvable['record'])
+            items = resolvable['items']
+            for item in items:
+                for url in item['urls']:
+                    try:
+                        lxmlNode = parse(self._urlopen(url))
+                    except:
+                        print "Error retrieving", url
+                        continue
+                    for node in item['filter'](lxmlNode):
+                        identifier = getAttrib(node, "rdf:about")
+                        newNode = parse(StringIO(tostring(node)))
+                        yield self.all.add(identifier=identifier, partname=item['partname'], lxmlNode=newNode)
+                self.call.inject(resolvable['record'])
              
 class RecordInject(object):
     def __init__(self, injectUrl):
@@ -67,14 +73,14 @@ def dna(config):
     baseurl = "http://%(hostName)s:%(portNumber)s/sru" % config
     injectUrl = "http://%(hostName)s:%(portNumber)s/inject" % config
     databasePath = config['databasePath']
-    foafAgentStorage = StorageComponent(join(databasePath, 'foafAgent'))
+    storage = StorageComponent(join(databasePath, 'storage'))
 
     return \
         (Observable(),
             (ResolveServer(),
                 (SruClient(baseurl=baseurl),),
                 (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
-                    (foafAgentStorage,),
+                    (storage,),
                 ),
                 (RecordInject(injectUrl),),
             )
