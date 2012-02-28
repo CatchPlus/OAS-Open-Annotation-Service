@@ -12,7 +12,10 @@ class OasTest(IntegrationTestCase):
     def assertQuery(self, query, count):
         headers, body = getRequest(self.portNumber, "/sru", arguments=dict(
             version="1.1", operation="searchRetrieve", query=query), parse='lxml')
-        self.assertEquals([str(count)], xpath(body, '/srw:searchRetrieveResponse/srw:numberOfRecords/text()'))
+        recordCount = int(xpath(body, '/srw:searchRetrieveResponse/srw:numberOfRecords/text()')[0])
+        if recordCount != count:
+            print tostring(body)
+        self.assertEquals(count, recordCount)
 
     def assertNotAValidAnnotiation(self, errorText, annotationBody):
         annotationBody = """<rdf:RDF 

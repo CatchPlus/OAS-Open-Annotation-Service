@@ -5,7 +5,7 @@ from StringIO import StringIO
 
 from weightless.core import compose
 
-from meresco.core import Observable
+from meresco.core import Observable, Transparent
 from meresco.components import FilterMessages
 from weightless.core import be
 from oas import MultipleAnnotationSplit
@@ -25,7 +25,7 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
             (Observable(),
                 (MultipleAnnotationSplit(),
                     (FilterMessages(allowed=['getStream', 'isAvailable']),
-                        (self.storageObserver,),
+                            (self.storageObserver,),
                     ),
                     (self.observer,)
                 )
@@ -76,13 +76,19 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
             xmlns:foaf="http://xmlns.com/foaf/0.1/"
             xmlns:oac="http://www.openannotation.org/ns/"
+            xmlns:dc="http://purl.org/dc/elements/1.1/"
             xmlns:dcterms="http://purl.org/dc/terms/">
             <oac:Annotation rdf:about="identifier:1">
                 <dcterms:creator rdf:resource="urn:creator"/>
+                <oac:hasBody rdf:resource="urn:body"/>
             </oac:Annotation>
             <rdf:Description rdf:about="urn:creator">
                <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
                <foaf:mbox>info@otherexample.org</foaf:mbox>
+            </rdf:Description>
+            <rdf:Description rdf:about="urn:body">
+               <rdf:type rdf:resource="http://www.openannotation.org/ns/Body"/>
+               <dc:title>This is the body</dc:title>
             </rdf:Description>
         </rdf:RDF>"""
         list(compose(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(xml)))))
@@ -95,6 +101,12 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
                 <foaf:mbox>info@otherexample.org</foaf:mbox>
             </rdf:Description>
         </dcterms:creator>
+        <oac:hasBody>
+            <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:about="urn:body">
+                <rdf:type rdf:resource="http://www.openannotation.org/ns/Body"/>
+                <dc:title>This is the body</dc:title>
+            </rdf:Description>
+        </oac:hasBody>
     </oac:Annotation>
 </rdf:RDF>""", tostring(resultNode))
 

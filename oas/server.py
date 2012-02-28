@@ -8,9 +8,9 @@ from urllib import unquote_plus
 from weightless.core import compose, be
 from weightless.io import Reactor
 
-from meresco.core import Observable, TransactionScope
+from meresco.core import Observable, TransactionScope, Transparent
 
-from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field, Reindex, FilterMessages, TransformFieldValue, CQLConversion, RenameCqlIndex, FilterField, XmlXPath
+from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field, Reindex, FilterMessages, TransformFieldValue, CQLConversion, RenameCqlIndex, FilterField, XmlXPath, RewritePartname
 from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer, ApacheLogger
 from meresco.components.http.utils import ContentTypePlainText, okXml
 from meresco.components.sru import SruParser, SruHandler, SRURecordUpdate
@@ -59,7 +59,6 @@ def dna(reactor, observableHttpServer, config):
     databasePath = config['databasePath']
     solrPortNumber = int(config['solrPortNumber'])
     storageComponent = StorageComponent(join(databasePath, 'storage'))
-    foafAgentStorage = StorageComponent(join(databasePath, 'foafAgent'))
     publicDocumentationPath = config['publicDocumentationPath']
 
 
@@ -106,8 +105,10 @@ def dna(reactor, observableHttpServer, config):
                 ),  
                 (XmlXPath(["/rdf:RDF/oac:Annotation/dcterms:creator/foaf:Agent[@rdf:about]"], fromKwarg="lxmlNode", namespaceMap=namespaces),
                     (IdentifierFromXPath('@rdf:about'),
-                        (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
-                            (foafAgentStorage,),
+                        (RewritePartname('foafAgent'),
+                            (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
+                                (storageComponent, )
+                            )
                         )
                     )
                 ),
@@ -131,7 +132,9 @@ def dna(reactor, observableHttpServer, config):
                             indexHelix
                         )
                     ),
-                    (FilterField(lambda name: name == 'dcterms:creator'),
+                    # oac:hasBody, dcterms:creators that have an url need to be resolved. 
+                    # This is done Offline, therefore we mark the record.
+                    (FilterField(lambda name: name in ['dcterms:creator', 'oac:hasBody']),
                         (FilterFieldValue(lambda value: value.startswith('http://')),
                             (RenameField(lambda name: '__resolved__'),
                                 (TransformFieldValue(lambda value: 'no'),
@@ -153,7 +156,7 @@ def dna(reactor, observableHttpServer, config):
     sanitizeAndUploadHelix = \
         (Sanitize(resolveBaseUrl=config['resolveBaseUrl']),
             (FilterMessages(allowed=['isAvailable', 'getStream']),
-                (foafAgentStorage,),
+                (storageComponent,)
             ),
             uploadHelix,
         )
@@ -176,6 +179,7 @@ def dna(reactor, observableHttpServer, config):
                                     (storageComponent,),
                                 ),
                                 uploadHelix
+                                #sanitizeAndUploadHelix
                             )
                         ),
                         (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public']),

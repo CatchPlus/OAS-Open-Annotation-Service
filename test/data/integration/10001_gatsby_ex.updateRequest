@@ -39,7 +39,7 @@
     </oac:Annotation>
     <oac:Body rdf:about="URN:uuid:751183c0-d182-11df-bd3b-0800200c9a66">
         <rdf:type rdf:resource="cnt:ContentAsXML"/>
-        <cnt:dtDecl rdf:resource="#dtd0"/>
+        <cnt:dtDecl rdf:resource="urn:#dtd0"/>
         <cnt:rest rdf:parseType="Literal">
             <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
                 <head><title>Daisy from the Gatsby</title></head>

@@ -50,7 +50,7 @@ class ResolveServer(Observable):
                 except:
                     print "Error retrieving", url
                     continue
-                for agent in filterFoafAgents([lxmlNode]):
+                for agent in filterFoafAgents(lxmlNode):
                     identifier = getAttrib(agent, "rdf:about")
                     newNode = parse(StringIO(tostring(agent)))
                     yield self.all.add(identifier=identifier, partname="rdf", lxmlNode=newNode)

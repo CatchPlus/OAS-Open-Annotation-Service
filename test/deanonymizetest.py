@@ -57,3 +57,21 @@ class DeanonymizeTest(SeecrTestCase):
         self.assertEquals(1, len(self.observer.calledMethods))
         self.assertEqualsWS(xml % ' rdf:about="%s"' % newIdentifier, tostring(self.observer.calledMethods[0].kwargs['lxmlNode']))
 
+    def testAddUrnToOacBody(self):
+        xml = """<rdf:RDF 
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:oac="http://www.openannotation.org/ns/"> 
+    <oac:Annotation rdf:about="urn:annotation:identifier">
+        <oac:hasBody>
+            <oac:Body%s/>
+        </oac:hasBody>
+    </oac:Annotation>
+</rdf:RDF>"""
+
+        newIdentifier = 'urn:some:form:of:identifier'
+        self.deanonymize._urnGen = lambda: newIdentifier
+        list(compose(self.dna.all.process(lxmlNode=parse(StringIO(xml % "")))))
+        self.assertEquals(1, len(self.observer.calledMethods))
+        self.assertEqualsWS(xml % ' rdf:about="%s"' % newIdentifier, tostring(self.observer.calledMethods[0].kwargs['lxmlNode']))
+
+

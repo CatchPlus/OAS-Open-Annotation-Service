@@ -18,16 +18,18 @@ class MultipleAnnotationSplit(Observable):
             self._inlineURNs(newRoot, rdfContainer)
             yield self.all.process(lxmlNode=newRoot)
         if not annotationFound:
+
+            print "%%%%%%%%%%%%%%%%%%%%%%%%", tostring(lxmlNode)
+            from sys import stdout
+            stdout.flush()
             raise ValidateException("No annotations found.")
-        
 
     def delete(self, idenfifier):
         return self.all.delete(identifier)
 
-
     def _inlineURNs(self, root, rdfContainer):
-        for relation in ['dcterms:creator']:
-            nodes = xpath(root, '//%s[@rdf:resource]' % relation)
+        for relation in [{'tag': 'dcterms:creator', 'partname': 'foafAgent'}, {'tag': 'oac:hasBody', 'partname': 'oacBody'}]:
+            nodes = xpath(root, '//%s[@rdf:resource]' % relation['tag'])
             for node in nodes:
                 urn = getAttrib(node, 'rdf:resource')
                 if urn:
@@ -35,8 +37,8 @@ class MultipleAnnotationSplit(Observable):
                     if not resolvedNode is None:
                         node.append(resolvedNode)
                         del node.attrib[expandNs('rdf:resource')]
-                    elif self.call.isAvailable(identifier=urn, partname="rdf") == (True, True):
-                        data = self.call.getStream(identifier=urn, partname="rdf")
+                    elif self.call.isAvailable(identifier=urn, partname=relation['partname']) == (True, True):
+                        data = self.call.getStream(identifier=urn, partname=relation['partname'])
                         node.append(parse(StringIO(data.read())).getroot())
                         del node.attrib[expandNs('rdf:resource')]
 
