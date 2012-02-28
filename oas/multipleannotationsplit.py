@@ -18,10 +18,6 @@ class MultipleAnnotationSplit(Observable):
             self._inlineURNs(newRoot, rdfContainer)
             yield self.all.process(lxmlNode=newRoot)
         if not annotationFound:
-
-            print "%%%%%%%%%%%%%%%%%%%%%%%%", tostring(lxmlNode)
-            from sys import stdout
-            stdout.flush()
             raise ValidateException("No annotations found.")
 
     def delete(self, idenfifier):

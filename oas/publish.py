@@ -34,5 +34,4 @@ class Publish(Observable):
                 bodyIdentifier = getAttrib(body, 'rdf:about')
                 if bodyIdentifier.startswith('urn:'):
                     self.urnToUrl(body, bodyIdentifier)
-        print identifier == 'urn:agent:1'
         yield self.all.add(identifier=identifier, partname="rdf", lxmlNode=lxmlNode)
