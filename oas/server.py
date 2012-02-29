@@ -29,7 +29,7 @@ from oas import VERSION_STRING
 from oas import FilterFieldValue
 from oas.seecroaiwatermark import SeecrOaiWatermark
 from oas.identifierfromxpath import IdentifierFromXPath
-from oas import Sanitize
+from oas import MultipleAnnotationSplit, Normalize, Deanonymize, Publish
 from namespaces import namespaces, xpath
 
 ALL_FIELD = '__all__'
@@ -154,11 +154,24 @@ def dna(reactor, observableHttpServer, config):
         )
 
     sanitizeAndUploadHelix = \
-        (Sanitize(resolveBaseUrl=config['resolveBaseUrl']),
+        (MultipleAnnotationSplit(),
             (FilterMessages(allowed=['isAvailable', 'getStream']),
                 (storageComponent,)
             ),
-            uploadHelix,
+            (Normalize(),
+                (Deanonymize(),
+                    (Publish(baseUrl=config['resolveBaseUrl']),
+                        (Transparent(name="index"),
+                            uploadHelix
+                        ),
+                        (Transparent(name="store"),
+                            (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
+                                (storageComponent, ),
+                            )
+                        )
+                    )
+                )
+            )
         )
 
     return \
@@ -179,7 +192,6 @@ def dna(reactor, observableHttpServer, config):
                                     (storageComponent,),
                                 ),
                                 uploadHelix
-                                #sanitizeAndUploadHelix
                             )
                         ),
                         (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public']),
@@ -192,10 +204,11 @@ def dna(reactor, observableHttpServer, config):
                                     'StringIO': StringIO, 
                                     'unquote_plus': unquote_plus,
                                     'uuid': uuid4,
+                                    'join': join,
                                     'xpath': xpath,
                                     'config': config,
                                     }),
-                                (FilterMessages(allowed=['getStream']),
+                                (FilterMessages(allowed=['isAvailable', 'getStream']),
                                     (storageComponent,),
                                 ),
                                 sanitizeAndUploadHelix,

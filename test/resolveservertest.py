@@ -4,6 +4,7 @@ from lxml.etree import tostring
 from meresco.core import Observable
 from weightless.core import be, compose
 from oas.resolve.server import ResolveServer
+from oas.utils import filterFoafAgents
 
 class ResolveServerTest(SeecrTestCase):
     def testOne(self):
@@ -16,7 +17,7 @@ class ResolveServerTest(SeecrTestCase):
                 )
             )
         )
-        server.listResolvables = lambda: [{'creator_urls': ['some:url'], 'record': '<xml/>'}]
+        server.listResolvables = lambda: [{'items': [{'filter': filterFoafAgents, 'partname': 'foafAgent', 'urls': ['some:url']}], 'record': '<xml/>'}]
         server._urlopen = lambda url: StringIO("""<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <rdf:Description rdf:about="http://oas.dev.seecr.nl:8000/static/dummy_foaf_agent">
 <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>

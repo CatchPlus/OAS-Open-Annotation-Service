@@ -4,8 +4,9 @@ from utils import getRequest, postRequest
 from lxml.etree import tostring
 from uuid import uuid4
 from urllib import urlencode
+from urlparse import urlsplit
 
-from oas.namespaces import xpath
+from oas.namespaces import xpath, getAttrib
 
 class OasTest(IntegrationTestCase):
 
@@ -54,7 +55,7 @@ class OasTest(IntegrationTestCase):
 
     def testOaiListRecords(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf"), parse='lxml')
-        self.assertEquals(12, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+        self.assertEquals(13, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
 
     def testPostAnnotation(self):
         identifier = "urn:uuid:%s" % uuid4()
@@ -146,4 +147,17 @@ class OasTest(IntegrationTestCase):
         header, body = getRequest(self.portNumber, '/public/%s' % filename, {}, parse=False)
         self.assertTrue(header.startswith('HTTP/1.0 200 OK'), header)
 
+    def testOacBodiesStored(self):
+        headers, body = getRequest(self.portNumber, "/sru", arguments=dict(
+            version="1.1", operation="searchRetrieve", query="IamUnique42"), parse='lxml')
 
+        oacBody = xpath(body, "/srw:searchRetrieveResponse/srw:records/srw:record/srw:recordData/rdf:RDF/oac:Annotation/oac:hasBody/oac:Body")[0]
+
+        about = getAttrib(oacBody, "rdf:about")
+        _,_,path,_,_ = urlsplit(about)
+        headers, body = getRequest(self.portNumber, path, parse=False)
+        self.assertTrue('200' in headers, headers)
+        lines = body.split('\n')
+        self.assertEquals('<?xml version="1.0" encoding="utf-8"?>', lines[0])
+        self.assertEquals('<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">', lines[1])
+        self.assertEquals('</rdf:RDF>', lines[-1])

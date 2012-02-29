@@ -1,7 +1,12 @@
 * {
     font-family: Arial;
-
 }
+
+pre {
+    font-family: monospace;
+    padding: 10px;
+}
+
 #content {
     width: 750px;
     margin-left: auto;
@@ -50,7 +55,6 @@
     cursor: pointer;
 }
 
-
 .title {
     background-image: url(/static/catch_plus_logo.png);
     background-repeat: no-repeat;
@@ -92,3 +96,14 @@
     background-image: url(/static/source_py.png);
 }
 
+.code {
+    border: 1px dotted gray;
+    font-size: 8pt;
+    margin-bottom: 15px;
+}
+
+.code h3 {
+    text-align: center;
+    text-decoration: underline;
+    padding: 0px;
+}

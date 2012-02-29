@@ -33,7 +33,6 @@ def craftedBySeecr():
     yield '<div id="craftedBySeecr" onClick="javascript:window.open(\'http://seecr.nl\'); return false;"/>'
 
 def footer():
-
     yield """
             </div>
         </body>
@@ -41,3 +40,9 @@ def footer():
 
 def caption(text):
     yield """<div class="title">%s</div>""" % text
+
+def codeBlock(caption, code):
+    yield """<div class="code">
+        <h3>%s</h3>
+        <pre>%s</pre>
+    </div>""" % (escapeHtml(caption), escapeHtml(code))

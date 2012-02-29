@@ -4,4 +4,91 @@ def main(**kwargs):
     yield page.header()
     yield page.caption("Open Annotation Service")
     yield page.menu(selected="Examples")
+    yield page.codeBlock(caption="External references", code="""<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <rdf:Description rdf:about="urn:uuid:%s">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <oac:hasBody rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_oac_body"/>
+        <oac:hasTarget rdf:resource="urn:uuid:%s"/>
+        <dc:title>Example with both creator and body as external entities.</dc:title>
+        <dcterms:creator rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_foaf_agent"/>
+        <dcterms:created>2010-02-01 12:34:56</dcterms:created>
+    </rdf:Description>
+</rdf:RDF>""" % (uuid(), uuid()))
+
+    yield page.codeBlock(caption="In document oac:Body and foaf:Agent", code="""<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <rdf:Description rdf:about="urn:uuid:%s">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <oac:hasBody rdf:resource="urn:number:1"/>
+        <oac:hasTarget rdf:resource="http://example.org/target/1"/>
+        <dc:title>Example with creator and body in the same rdf</dc:title>
+        <dcterms:creator rdf:resource="urn:number:2"/>
+        <dcterms:created>2010-02-01 12:34:56</dcterms:created>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:number:1">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Body"/>
+        <dc:description>This is the body of an annotation</dc:description>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:number:2">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+        <foaf:mbox>info@example.org</foaf:mbox>
+    </rdf:Description>
+</rdf:RDF>""" % uuid())
+
+    yield page.codeBlock(caption="oac:Body refering to a previously used one", code="""<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <rdf:Description rdf:about="urn:uuid:%s">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <oac:hasBody rdf:resource="urn:number:1"/>
+        <oac:hasTarget rdf:resource="urn:number:2"/>
+        <dc:title>Example with creator and body in the same rdf</dc:title>
+        <dcterms:creator>
+            <foaf:Agent>
+                <foaf:mbox>info@example.org</foaf:mbox>
+            </foaf:Agent>
+        </dcterms:creator>
+        <dcterms:created>2010-02-01 12:34:56</dcterms:created>
+    </rdf:Description>
+</rdf:RDF>""" % uuid())
+
+    yield page.codeBlock(caption="Inline anonymous oac:Body and foaf:Agent", code="""<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <rdf:Description rdf:about="urn:uuid:%s">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <oac:hasBody>
+            <oac:Body>
+                <dc:description>Inline anonymous</dc:description>
+            </oac:Body>
+        </oac:hasBody>
+        <oac:hasTarget rdf:resource="urn:number:2"/>
+        <dc:title>Example with creator and body in the same rdf</dc:title>
+        <dcterms:creator>
+            <foaf:Agent>
+                <foaf:mbox>info@example.org</foaf:mbox>
+            </foaf:Agent>
+        </dcterms:creator>
+        <dcterms:created>2010-02-01 12:34:56</dcterms:created>
+    </rdf:Description>
+</rdf:RDF>""" % uuid())
     yield page.footer()

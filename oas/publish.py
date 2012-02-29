@@ -16,13 +16,18 @@ class Publish(Observable):
         if not self._baseUrl[-1] == '/':
             self._baseUrl += '/'
 
+    def urlFor(self, identifier):
+        return self._baseUrl + quote_plus(identifier)
+    
     def urnToUrl(self, lxmlNode, identifier):
-        newIdentifier = self._baseUrl + quote_plus(identifier)
+        newIdentifier = self.urlFor(identifier)
         setAttrib(lxmlNode, 'rdf:about', newIdentifier)
         SubElement(lxmlNode, '{%(dc)s}identifier' % namespaces).text = identifier
         return newIdentifier
 
     def process(self, lxmlNode):
+
+
         for annotation in filterAnnotations(lxmlNode):
             identifier = getAttrib(annotation, 'rdf:about')
             if identifier.lower().startswith('urn:'):
@@ -30,8 +35,18 @@ class Publish(Observable):
             if not validIdentifier(identifier):
                 raise ValidateException("Invalid identifier")
 
+            for hasBody in xpath(annotation, '//oac:hasBody'):
+                bodyResource = getAttrib(hasBody, 'rdf:resource')
+                if bodyResource:
+                    bodyResourceIdentifier = self.urlFor(bodyResource)
+                    if self.call['store'].isAvailable(bodyResourceIdentifier, "oacBody") == (True, True):
+                        self.call['store'].getStream(bodyResourceIdentifier, 'oacBody')
+
+
             for body in xpath(annotation, '//oac:Body'):
                 bodyIdentifier = getAttrib(body, 'rdf:about')
                 if bodyIdentifier.startswith('urn:'):
-                    self.urnToUrl(body, bodyIdentifier)
-        yield self.all.add(identifier=identifier, partname="rdf", lxmlNode=lxmlNode)
+                    publishIdentifier = self.urnToUrl(body, bodyIdentifier)
+                    yield self.all['store'].add(identifier=publishIdentifier, partname="oacBody", lxmlNode=body)
+
+        yield self.all['index'].add(identifier=identifier, partname="rdf", lxmlNode=lxmlNode)

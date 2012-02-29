@@ -2,6 +2,16 @@ def main(path, **kwargs):
     identifier = path
     if path.startswith('/resolve/'):
         identifier = path[len('/resolve/'):]
-    identifier = config['resolveBaseUrl'] + identifier
-    yield okXml
-    yield call.getStream(identifier, 'rdf').read()
+    identifier = join(config['resolveBaseUrl'], identifier)
+    if call.isAvailable(identifier, 'rdf') == (True, True):
+        yield okXml
+        yield call.getStream(identifier, 'rdf').read()
+    elif call.isAvailable(identifier, 'oacBody') == (True, True):
+        yield okXml
+        yield '<?xml version="1.0" encoding="utf-8"?>\n'
+        yield '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">\n'
+        yield call.getStream(identifier, 'oacBody').read()
+        yield '</rdf:RDF>'
+    else:
+        yield "HTTP/1.0 404 Not Found\r\n\r\n"
+        yield "NOT FOUND"
