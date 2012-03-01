@@ -25,21 +25,4 @@ def main(Body, **kwargs):
     yield '</textarea>'
     yield '<input type="submit" value="Upload"/>'
     yield '</form>'
-
-    yield '<pre>%s</pre>' % escapeHtml("""<rdf:RDF 
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
-    xmlns:foaf="http://xmlns.com/foaf/0.1/">
-
-    <rdf:Description rdf:about="urn:uuid:%s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_oac_body"/>
-        <oac:hasTarget rdf:resource="urn:uuid:%s"/>
-        <dc:title>.......</dc:title>
-        <dcterms:creator rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_foaf_agent"/>
-        <dcterms:created>2010-02-01 12:34:56</dcterms:created>
-    </rdf:Description>
-</rdf:RDF>""" % (uuid(), uuid()))
     yield page.footer()
