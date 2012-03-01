@@ -86,6 +86,16 @@ class PublishTest(SeecrTestCase):
         <oac:hasBody rdf:resource="urn:id:2"/>
     </oac:Annotation>
 </rdf:RDF>"""
+        expectedXml="""<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:oac="http://www.openannotation.org/ns/">
+    <oac:Annotation rdf:about="http://some.where/here/urn%3Aid%3A1">
+        <oac:hasBody>
+            <xml/> 
+        </oac:hasBody>
+        <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">urn:id:1</dc:identifier>
+    </oac:Annotation>
+</rdf:RDF>"""
         self.store.returnValues['isAvailable'] = (False, False)
 
         list(compose(self.dna.all.process(parse(StringIO(xml)))))
@@ -101,5 +111,7 @@ class PublishTest(SeecrTestCase):
 
         self.assertEquals('getStream', self.store.calledMethods[2].name)
         self.assertEquals(('http://some.where/here/urn%3Aid%3A2', 'oacBody'), self.store.calledMethods[2].args)
-
+    
+        self.assertEquals('add', self.observer.calledMethods[1].name)
+        self.assertEqualsWS(expectedXml, tostring(self.observer.calledMethods[1].kwargs['lxmlNode']))
 

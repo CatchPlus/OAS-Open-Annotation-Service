@@ -1,10 +1,10 @@
 from meresco.core import Observable
 
 from oas.utils import identifierFromXml, filterAnnotations, validIdentifier
-from oas.namespaces import setAttrib, getAttrib, namespaces, xpath
+from oas.namespaces import setAttrib, getAttrib, namespaces, xpath, expandNs
 
 from urllib import quote_plus
-from lxml.etree import SubElement
+from lxml.etree import SubElement, parse
 
 from meresco.components.xml_generic.validate import ValidateException
 
@@ -40,8 +40,9 @@ class Publish(Observable):
                 if bodyResource:
                     bodyResourceIdentifier = self.urlFor(bodyResource)
                     if self.call['store'].isAvailable(bodyResourceIdentifier, "oacBody") == (True, True):
-                        self.call['store'].getStream(bodyResourceIdentifier, 'oacBody')
-
+                        body = parse(self.call['store'].getStream(bodyResourceIdentifier, 'oacBody'))
+                        hasBody.append(body.getroot())
+                        del hasBody.attrib[expandNs('rdf:resource')]
 
             for body in xpath(annotation, '//oac:Body'):
                 bodyIdentifier = getAttrib(body, 'rdf:about')
