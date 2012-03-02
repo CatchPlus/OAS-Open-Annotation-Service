@@ -4,6 +4,7 @@ from sys import stdout
 from StringIO import StringIO
 from uuid import uuid4
 from urllib import unquote_plus
+from time import strftime, localtime
 
 from weightless.core import compose, be
 from weightless.io import Reactor
@@ -207,6 +208,7 @@ def dna(reactor, observableHttpServer, config):
                                     'join': join,
                                     'xpath': xpath,
                                     'config': config,
+                                    'formatTimestamp': lambda format: strftime(format, localtime())
                                     }),
                                 (FilterMessages(allowed=['isAvailable', 'getStream']),
                                     (storageComponent,),
