@@ -56,6 +56,12 @@ class PasswordFile(object):
             raise ValueError('Username and password do not match, password NOT changed.')
         self._setUser(username=username, password=newPassword)
 
+    def listUsernames(self):
+        return self._users.keys()
+
+    def hasUser(self, username):
+        return username in self._users
+
     def _makePersistent(self):
         tmpFilename = self._filename + ".tmp"
         jsonWrite(self._users, open(tmpFilename, 'w'))

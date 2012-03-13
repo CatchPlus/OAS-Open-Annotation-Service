@@ -101,6 +101,14 @@ class PasswordFileTest(SeecrTestCase):
         self.pwd.removeUser(username='John')
         self.assertFalse(self.pwd.validPassword('John', 'password'))
 
+    def testListUsernames(self):
+        self.pwd.addUser(username='john', password='password')
+        self.pwd.addUser(username='graham', password='password2')
+        self.pwd.addUser(username='hank', password='password3')
+        self.assertEquals(set(['hank', 'graham', 'john']), set(self.pwd.listUsernames()))
 
-
+    def testHasUser(self):
+        self.pwd.addUser(username='john', password='password')
+        self.assertTrue(self.pwd.hasUser(username='john'))
+        self.assertFalse(self.pwd.hasUser(username='johnny'))
 
