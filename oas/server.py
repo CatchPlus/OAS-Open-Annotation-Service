@@ -12,7 +12,7 @@ from weightless.io import Reactor
 from meresco.core import Observable, TransactionScope, Transparent
 
 from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field, Reindex, FilterMessages, TransformFieldValue, CQLConversion, RenameCqlIndex, FilterField, XmlXPath, RewritePartname
-from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer, ApacheLogger
+from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer, ApacheLogger, SessionHandler
 from meresco.components.http.utils import ContentTypePlainText, okXml
 from meresco.components.sru import SruParser, SruHandler, SRURecordUpdate
 
@@ -196,27 +196,29 @@ def dna(reactor, observableHttpServer, config):
                             )
                         ),
                         (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public']),
-                            (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
-                                indexPage='/index', 
-                                additionalGlobals={
-                                    'listDocs': lambda: sorted([name for name in listdir(publicDocumentationPath) if not name.startswith('.')]),
-                                    'okXml': okXml,
-                                    'splitext': splitext,
-                                    'StringIO': StringIO, 
-                                    'unquote_plus': unquote_plus,
-                                    'uuid': uuid4,
-                                    'join': join,
-                                    'xpath': xpath,
-                                    'config': config,
-                                    'formatTimestamp': lambda format: strftime(format, localtime())
-                                    }),
-                                (FilterMessages(allowed=['isAvailable', 'getStream']),
-                                    (storageComponent,),
-                                ),
-                                sanitizeAndUploadHelix,
-                                (FilterMessages(disallowed=['add', 'delete']),
-                                    (tripleStore,),
-                                ),
+                            (SessionHandler(secretSeed='secret :-)'),
+                                (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
+                                    indexPage='/index', 
+                                    additionalGlobals={
+                                        'listDocs': lambda: sorted([name for name in listdir(publicDocumentationPath) if not name.startswith('.')]),
+                                        'okXml': okXml,
+                                        'splitext': splitext,
+                                        'StringIO': StringIO, 
+                                        'unquote_plus': unquote_plus,
+                                        'uuid': uuid4,
+                                        'join': join,
+                                        'xpath': xpath,
+                                        'config': config,
+                                        'formatTimestamp': lambda format: strftime(format, localtime())
+                                        }),
+                                    (FilterMessages(allowed=['isAvailable', 'getStream']),
+                                        (storageComponent,),
+                                    ),
+                                    sanitizeAndUploadHelix,
+                                    (FilterMessages(disallowed=['add', 'delete']),
+                                        (tripleStore,),
+                                    ),
+                                )
                             )
                         ),
                         (PathFilter('/static'),

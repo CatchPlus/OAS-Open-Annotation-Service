@@ -7,3 +7,4 @@ from multipleannotationsplit import MultipleAnnotationSplit
 from normalize import Normalize
 from publish import Publish
 from rdfcontainer import RdfContainer
+from passwordfile import PasswordFile

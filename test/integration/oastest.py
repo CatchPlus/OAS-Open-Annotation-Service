@@ -161,3 +161,17 @@ class OasTest(IntegrationTestCase):
         self.assertEquals('<?xml version="1.0" encoding="utf-8"?>', lines[0])
         self.assertEquals('<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">', lines[1])
         self.assertEquals('</rdf:RDF>', lines[-1])
+
+    def testLoginPage(self):
+        headers, body = getRequest(self.portNumber, "/login", parse='lxml')
+        self.assertTrue('200' in headers, headers)
+        self.assertEquals(1, len(xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/dl/dd/input[@name="username"]')))
+        self.assertEquals(1, len(xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/dl/dd/input[@type="password" and @name="password"]')))
+        self.assertEquals(1, len(xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/dl/dd/input[@type="submit"]')))
+
+        header, body = postRequest(self.portNumber, '/login', urlencode(dict(username="", password="")), parse='lxml')
+        self.assertTrue('200' in headers, headers)
+        self.assertEquals("Invalid username/password", xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/p[@class="error"]/text()')[0])
+
+        header, body = postRequest(self.portNumber, '/login', urlencode(dict(username="user1", password="password1")), parse='lxml')
+        self.assertTrue('302' in headers, headers)

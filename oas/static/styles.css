@@ -107,3 +107,20 @@ pre {
     text-decoration: underline;
     padding: 0px;
 }
+
+#login {
+    background-image: url(/static/dialog-password.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 100px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+#login dl {
+    width: 50%;
+}
+
+#login .submit {
+    text-align: right;
+}
