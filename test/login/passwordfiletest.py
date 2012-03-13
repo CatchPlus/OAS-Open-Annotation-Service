@@ -19,35 +19,35 @@ class PasswordFileTest(SeecrTestCase):
         userlist = {'John':passwdHash}
         jsonSave(userlist, open(self.filename, 'w'))
         pf = PasswordFile(filename=self.filename, hashPassword=poorHash)
-        self.assertTrue(pf.validPassword('John', 'password'))
+        self.assertTrue(pf.validateUser('John', 'password'))
 
     def testAddUser(self):
         self.pwd.addUser(username='John', password='password')
         # reopen file.
         pf = PasswordFile(filename=self.filename, hashPassword=poorHash)
-        self.assertTrue(pf.validPassword('John', 'password'))
+        self.assertTrue(pf.validateUser('John', 'password'))
 
     def testValidPassword(self):
         self.pwd.addUser(username='John', password='password')
-        self.assertFalse(self.pwd.validPassword(username='John', password=''))
-        self.assertFalse(self.pwd.validPassword(username='John', password=' '))
-        self.assertFalse(self.pwd.validPassword(username='John', password='abc'))
-        self.assertTrue(self.pwd.validPassword(username='John', password='password'))
-        self.assertFalse(self.pwd.validPassword(username='John', password='password '))
+        self.assertFalse(self.pwd.validateUser(username='John', password=''))
+        self.assertFalse(self.pwd.validateUser(username='John', password=' '))
+        self.assertFalse(self.pwd.validateUser(username='John', password='abc'))
+        self.assertTrue(self.pwd.validateUser(username='John', password='password'))
+        self.assertFalse(self.pwd.validateUser(username='John', password='password '))
 
-        self.assertFalse(self.pwd.validPassword(username='', password=''))
-        self.assertFalse(self.pwd.validPassword(username='Piet', password=''))
+        self.assertFalse(self.pwd.validateUser(username='', password=''))
+        self.assertFalse(self.pwd.validateUser(username='Piet', password=''))
 
     def testChangePassword(self):
         self.pwd.addUser(username='John', password='password')
         self.pwd.changePassword(username='John', oldPassword='password', newPassword='newpasswd')
-        self.assertTrue(self.pwd.validPassword(username='John', password='newpasswd'))
+        self.assertTrue(self.pwd.validateUser(username='John', password='newpasswd'))
 
     def testChangePasswordWithBadOldpassword(self):
         self.pwd.addUser(username='John', password='password')
         self.assertRaises(ValueError, self.pwd.changePassword, username='John', oldPassword='wrong', newPassword='newpasswd')
-        self.assertTrue(self.pwd.validPassword(username='John', password='password'))
-        self.assertFalse(self.pwd.validPassword(username='John', password='newpasswd'))
+        self.assertTrue(self.pwd.validateUser(username='John', password='password'))
+        self.assertFalse(self.pwd.validateUser(username='John', password='newpasswd'))
 
     def testChangePasswordWithBadUsername(self):
         self.pwd.addUser(username='John', password='password')
@@ -91,15 +91,15 @@ class PasswordFileTest(SeecrTestCase):
         self.pwd.addUser(username='John', password='password')
         self.pwd.addUser(username='Johnny', password='password2')
         self.pwd.addUser(username='Johann', password='password3')
-        self.assertTrue(self.pwd.validPassword('John', 'password'))
-        self.assertTrue(self.pwd.validPassword('Johnny', 'password2'))
-        self.assertTrue(self.pwd.validPassword('Johann', 'password3'))
+        self.assertTrue(self.pwd.validateUser('John', 'password'))
+        self.assertTrue(self.pwd.validateUser('Johnny', 'password2'))
+        self.assertTrue(self.pwd.validateUser('Johann', 'password3'))
 
     def testRemoveUser(self):
         self.pwd.addUser(username='John', password='password')
-        self.assertTrue(self.pwd.validPassword('John', 'password'))
+        self.assertTrue(self.pwd.validateUser('John', 'password'))
         self.pwd.removeUser(username='John')
-        self.assertFalse(self.pwd.validPassword('John', 'password'))
+        self.assertFalse(self.pwd.validateUser('John', 'password'))
 
     def testListUsernames(self):
         self.pwd.addUser(username='john', password='password')

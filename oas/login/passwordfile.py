@@ -43,7 +43,7 @@ class PasswordFile(object):
         del self._users[username]
         self._makePersistent()
 
-    def validPassword(self, username, password):
+    def validateUser(self, username, password):
         valid = False
         try:
             valid = self._users[username] == self._hashPassword(password)
@@ -52,7 +52,7 @@ class PasswordFile(object):
         return valid
 
     def changePassword(self, username, oldPassword, newPassword):
-        if not self.validPassword(username=username, password=oldPassword):
+        if not self.validateUser(username=username, password=oldPassword):
             raise ValueError('Username and password do not match, password NOT changed.')
         self._setUser(username=username, password=newPassword)
 
