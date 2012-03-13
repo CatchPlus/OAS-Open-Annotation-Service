@@ -6,8 +6,11 @@ from stat import S_IRUSR, S_IWUSR
 from re import compile as reCompile
 USER_RW = S_IRUSR | S_IWUSR
 
-def md5Hash(data, salt='salt'):
+def md5Hash(data):
     return md5(data+salt).hexdigest()
+
+def saltedPasswordHasher(salt):
+    return lambda data: md5Hash(data + salt)
 
 def simplePasswordTest(passwd):
     return bool(passwd.strip())
@@ -20,7 +23,7 @@ class PasswordFile(object):
 
     def __init__(self,
             filename,
-            hashPassword=md5Hash,
+            hashPassword,
             passwordTest=simplePasswordTest,
             usernameTest=usernameTest):
         self._filename = filename
