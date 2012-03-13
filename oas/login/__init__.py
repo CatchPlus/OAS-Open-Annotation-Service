@@ -1,2 +1,3 @@
 from passwordfile import PasswordFile
+from basichtmlloginform import BasicHtmlLoginForm
 

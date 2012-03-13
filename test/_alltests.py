@@ -19,6 +19,7 @@ from deanonymizetest import DeanonymizeTest
 from publishtest import PublishTest
 
 from login.passwordfiletest import PasswordFileTest
+from login.basichtmlloginformtest import BasicHtmlLoginFormTest
 
 if __name__ == '__main__':
     main()
