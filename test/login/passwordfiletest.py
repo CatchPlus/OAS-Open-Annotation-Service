@@ -4,7 +4,7 @@ from simplejson import dump as jsonSave
 from os.path import join
 from hashlib import md5
 from uuid import uuid4
-from oas import PasswordFile
+from oas.login import PasswordFile
 
 poorHash = lambda pwd: ''.join(reversed(pwd))
 

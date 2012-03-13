@@ -17,7 +17,8 @@ from identifierfromxpathtest import IdentifierFromXPathTest
 from resolveservertest import ResolveServerTest
 from deanonymizetest import DeanonymizeTest
 from publishtest import PublishTest
-from passwordfiletest import PasswordFileTest
+
+from login.passwordfiletest import PasswordFileTest
 
 if __name__ == '__main__':
     main()
