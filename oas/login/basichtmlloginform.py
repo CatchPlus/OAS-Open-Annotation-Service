@@ -1,6 +1,7 @@
 
 from meresco.core import Observable
 from meresco.components.http.utils import CRLF
+from cgi import parse_qs
 
 class BasicHtmlLoginForm(Observable):
     def __init__(self, action, page, name=None):
@@ -8,7 +9,14 @@ class BasicHtmlLoginForm(Observable):
         self._action = action
         self._page = page
 
-    def handleRequest(self, method=None, **kwargs):
+    def handleRequest(self, method=None, session=None, Body=None, **kwargs):
+        if method == 'POST':
+            bodyArgs = parse_qs(Body, keep_blank_values=True)
+            username = bodyArgs.get('username', [None])[0]
+            password = bodyArgs.get('password', [None])[0]
+            if self.call.validateUser(username=username, password=password):
+                session['user'] = User(username)
+
         yield "HTTP/1.0 302 Found"+CRLF+"Location: %s" % self._page
         yield 2*CRLF
 
@@ -24,3 +32,7 @@ class BasicHtmlLoginForm(Observable):
         </dl>
     </form>
 </div>""" % self._action
+
+class User(object):
+    def __init__(self, name):
+        self.name = name

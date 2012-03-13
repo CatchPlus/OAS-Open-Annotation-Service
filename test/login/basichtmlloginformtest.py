@@ -1,6 +1,7 @@
 
-from seecr.test import SeecrTestCase
+from seecr.test import SeecrTestCase, CallTrace
 from meresco.components.http.utils import CRLF
+from urllib import urlencode
 
 from oas.login import BasicHtmlLoginForm
 
@@ -30,3 +31,38 @@ class BasicHtmlLoginFormTest(SeecrTestCase):
         self.assertTrue('302' in header)
         self.assertTrue('Location: /home' in header)
 
+    def testLoginWithPOSTsucceeds(self):
+        form = BasicHtmlLoginForm(action='/login', page='/home')
+        observer = CallTrace()
+        form.addObserver(observer)
+        observer.returnValues['validateUser'] = True
+        Body = urlencode(dict(username='user', password='secret'))
+        session = {}
+
+        result = ''.join(form.handleRequest(path='/login', Client=('127.0.0.1', 3451), method='POST', Body=Body, session=session))
+
+        self.assertEquals('user', session['user'].name)
+        header, body = result.split(CRLF*2)
+        self.assertTrue('302' in header)
+        self.assertTrue('Location: /home' in header)
+
+        self.assertEquals(['validateUser'], [m.name for m in observer.calledMethods])
+        self.assertEquals({'username': 'user', 'password':'secret'}, observer.calledMethods[0].kwargs)
+
+    def testLoginWithPOSTfails(self):
+        form = BasicHtmlLoginForm(action='/login', page='/home')
+        observer = CallTrace()
+        form.addObserver(observer)
+        observer.returnValues['validateUser'] = False
+        Body = urlencode(dict(username='user', password='wrong'))
+        session = {}
+
+        result = ''.join(form.handleRequest(path='/login', Client=('127.0.0.1', 3451), method='POST', Body=Body, session=session))
+
+        self.assertFalse('user' in session)
+        header, body = result.split(CRLF*2)
+        self.assertTrue('302' in header)
+        self.assertTrue('Location: /home' in header)
+
+        self.assertEquals(['validateUser'], [m.name for m in observer.calledMethods])
+        self.assertEquals({'username': 'user', 'password':'wrong'}, observer.calledMethods[0].kwargs)
