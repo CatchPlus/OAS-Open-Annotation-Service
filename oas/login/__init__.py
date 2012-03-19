@@ -1,3 +1,3 @@
-from passwordfile import PasswordFile
+from passwordfile import PasswordFile, createPasswordFile
 from basichtmlloginform import BasicHtmlLoginForm
 

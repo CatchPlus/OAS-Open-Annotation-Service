@@ -7,7 +7,7 @@ from re import compile as reCompile
 USER_RW = S_IRUSR | S_IWUSR
 
 def md5Hash(data):
-    return md5(data+salt).hexdigest()
+    return md5(data).hexdigest()
 
 def saltedPasswordHasher(salt):
     return lambda data: md5Hash(data + salt)
@@ -26,11 +26,16 @@ class PasswordFile(object):
             hashPassword,
             passwordTest=simplePasswordTest,
             usernameTest=usernameTest):
-        self._filename = filename
-        self._users = jsonRead(open(filename)) if isfile(filename) else {}
         self._hashPassword = hashPassword
         self._passwordTest = passwordTest
         self._usernameTest = usernameTest
+        self._filename = filename
+        self._users = {}
+        if not isfile(filename):
+            self._users['admin'] = self._hashPassword('admin')
+            self._makePersistent()
+        else:
+            self._users = jsonRead(open(filename))
 
     def addUser(self, username, password):
         if not self._usernameTest(username):
@@ -74,3 +79,5 @@ class PasswordFile(object):
         self._users[username] = self._hashPassword(password)
         self._makePersistent()
 
+def createPasswordFile(filename, salt):
+    return PasswordFile(filename, hashPassword=saltedPasswordHasher(salt))

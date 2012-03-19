@@ -32,6 +32,7 @@ from oas.seecroaiwatermark import SeecrOaiWatermark
 from oas.identifierfromxpath import IdentifierFromXPath
 from oas import MultipleAnnotationSplit, Normalize, Deanonymize, Publish
 from namespaces import namespaces, xpath
+from oas.login import BasicHtmlLoginForm, createPasswordFile
 
 ALL_FIELD = '__all__'
 unqualifiedTermFields = [(ALL_FIELD, 1.0)]
@@ -61,6 +62,7 @@ def dna(reactor, observableHttpServer, config):
     solrPortNumber = int(config['solrPortNumber'])
     storageComponent = StorageComponent(join(databasePath, 'storage'))
     publicDocumentationPath = config['publicDocumentationPath']
+    passwordFile = createPasswordFile(filename=join(databasePath, 'passwd'), salt='jasdf89pya')
 
 
     reindexPath = join(databasePath, 'reindex')
@@ -175,6 +177,10 @@ def dna(reactor, observableHttpServer, config):
             )
         )
 
+    basicHtmlLoginHelix = (BasicHtmlLoginForm(page='/admin'),
+        (passwordFile,),
+    )
+
     return \
         (Observable(),
             (observableHttpServer,
@@ -195,8 +201,11 @@ def dna(reactor, observableHttpServer, config):
                                 uploadHelix
                             )
                         ),
-                        (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public']),
-                            (SessionHandler(secretSeed='secret :-)'),
+                        (SessionHandler(secretSeed='secret :-)'),
+                            (PathFilter("/login"),
+                                basicHtmlLoginHelix,
+                            ),
+                            (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login"]),
                                 (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                                     indexPage='/index', 
                                     additionalGlobals={
@@ -211,6 +220,7 @@ def dna(reactor, observableHttpServer, config):
                                         'config': config,
                                         'formatTimestamp': lambda format: strftime(format, localtime())
                                         }),
+                                    (passwordFile,),
                                     (FilterMessages(allowed=['isAvailable', 'getStream']),
                                         (storageComponent,),
                                     ),
@@ -218,8 +228,8 @@ def dna(reactor, observableHttpServer, config):
                                     (FilterMessages(disallowed=['add', 'delete']),
                                         (tripleStore,),
                                     ),
-                                )
-                            )
+                                ),
+                            ),
                         ),
                         (PathFilter('/static'),
                             (PathRename(lambda path: path[len('/static'):]),

@@ -105,10 +105,13 @@ class PasswordFileTest(SeecrTestCase):
         self.pwd.addUser(username='john', password='password')
         self.pwd.addUser(username='graham', password='password2')
         self.pwd.addUser(username='hank', password='password3')
-        self.assertEquals(set(['hank', 'graham', 'john']), set(self.pwd.listUsernames()))
+        self.assertEquals(set(['admin', 'hank', 'graham', 'john']), set(self.pwd.listUsernames()))
 
     def testHasUser(self):
         self.pwd.addUser(username='john', password='password')
         self.assertTrue(self.pwd.hasUser(username='john'))
         self.assertFalse(self.pwd.hasUser(username='johnny'))
+
+    def testCreateFileIfMissingWithDefaultAdmin(self):
+        self.assertTrue(self.pwd.validateUser(username='admin', password='admin'))
 

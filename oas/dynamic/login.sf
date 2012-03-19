@@ -1,20 +1,14 @@
 import page
 
-def main(Body, **kwargs):
+def main(Method, **kwargs):
     yield page.header()
     yield page.caption("Open Annotation Service")
     yield page.menu()
-    yield '<div id="login">'
-    yield '<p class="error">Invalid username/password</p>'
-    yield '<form>'
-    yield "<dl>"
-    yield "<dt>Username</dt>"
-    yield '<dd><input type="text" name="username"/></dd>'
-    yield "<dt>Password</dt>"
-    yield '<dd><input type="password" name="password"/></dd>'
-    yield '<dd class="submit"><input type="submit" value="login"/></dd>'
-    yield "</dl>"
-    yield '</form>'
-    yield '</div>'
+
+    if not call.hasUser('admin'):
+        call.addUser(username='admin', password='admin')
+        yield any.changePasswordForm(username='admin', oldPassword='admin')
+    else:
+        yield any.loginForm(**kwargs)
     yield page.footer()
 

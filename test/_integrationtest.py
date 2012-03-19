@@ -31,6 +31,13 @@ if __name__ == '__main__':
         groupTearDown = lambda: globalTearDown()
     )
     runner.addGroup(
+        'initial', [
+            'integration.initialtest.InitialTest',
+        ],
+        groupSetUp = lambda: globalSetUp(fastMode, 'initial'),
+        groupTearDown = lambda: globalTearDown()
+    )
+    runner.addGroup(
         'resolve', [
             'integration.resolvetest.ResolveTest',
         ],

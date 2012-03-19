@@ -239,7 +239,10 @@ class OasIntegrationState(IntegrationState):
         start = time()
         print "Creating database in", self.integrationTempdir
         try:
-            self._uploadUpdateRequests(self.testdataDir, '/update', [self.portNumber]) 
+            if self.stateName in ['default']:
+                self._uploadUpdateRequests(self.testdataDir, '/update', [self.portNumber]) 
+            elif self.stateName == 'initial':
+                pass
             print "Finished creating database in %s seconds" % (time() - start)
         except Exception, e:
             print 'Error received while creating database for', self.stateName
