@@ -30,19 +30,21 @@ class BasicHtmlLoginForm(Observable):
             yield redirectHttp % self._home
         else:
             session['BasicHtmlLoginForm.formValues'] = {'username': username, 'errorMessage': 'Invalid username or password'}
-            yield redirectHttp % self.loginPath
+            yield redirectHttp % self._loginPath
 
-    def loginForm(self, session=None, **kwargs):
+    def loginForm(self, session, path, **kwargs):
         formValues = session.get('BasicHtmlLoginForm.formValues', {}) if session else {}
         yield """<div id="login">\n"""
         if 'errorMessage' in formValues:
             yield '    <p class="error">%s</p>\n' % xmlEscape(formValues['errorMessage'])
-        usernameValue = '' if 'username' not in formValues else " value=%s" % quoteattr(formValues['username'])
-        path = self._action
-        yield """    <form method="POST" action="%(path)s">
+        username = quoteattr(formValues.get('username', ''))
+        action = quoteattr(self._action)
+        formUrl = quoteattr(path)
+        yield """    <form method="POST" action=%(action)s>
+        <input type="hidden" name="formUrl" value=%(formUrl)s/>
         <dl>
             <dt>Username</dt>
-            <dd><input type="text" name="username"%(usernameValue)s/></dd>
+            <dd><input type="text" name="username" value=%(username)s/></dd>
             <dt>Password</dt>
             <dd><input type="password" name="password"/></dd>
             <dd class="submit"><input type="submit" value="login"/></dd>
@@ -71,9 +73,12 @@ class BasicHtmlLoginForm(Observable):
         
         yield redirectHttp % targetUrl
 
-    def changePasswordForm(self, username, session, path, **kwargs):
+    def changePasswordForm(self, session, path, **kwargs):
         formValues = session.get('BasicHtmlLoginForm.formValues', {}) if session else {}
         yield """<div id="login">\n"""
+        if not 'user' in session:
+            yield '<p class="error">Please login to change password.</p>\n</div>'
+            return
         if 'errorMessage' in formValues:
             yield '    <p class="error">%s</p>\n' % xmlEscape(formValues['errorMessage'])
         yield """<form method="POST" action=%s>
@@ -89,7 +94,7 @@ class BasicHtmlLoginForm(Observable):
             <dd class="submit"><input type="submit" value="change"/></dd>
         </dl>
     </form>
-</div>""" % (quoteattr(path), quoteattr(path), quoteattr(username))
+</div>""" % (quoteattr(join(self._action, 'changepassword')), quoteattr(path), quoteattr(session['user'].name))
 
 class User(object):
     def __init__(self, name):
