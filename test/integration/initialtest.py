@@ -1,28 +1,41 @@
 
 from integrationtestcase import IntegrationTestCase
-from utils import getRequest, postRequest
+from utils import getRequest, postRequest, parseHeaders
 from urllib import urlencode
 
 from lxml.etree import tostring
+from oas.namespaces import xpath
 
 class InitialTest(IntegrationTestCase):
-    def testNoAdmin(self):
+    def testAdmin(self):
         headers, body = getRequest(self.portNumber, "/login", parse='lxml')
-        parsedHeaders = dict([l.split(':',1) for l in headers.split('\r\n') if ':' in l])
-        cookie = parsedHeaders['Set-Cookie'].strip()
-        print cookie
+        cookie = parseHeaders(headers)['Set-Cookie']
 
-        self.assertEquals(1, len(body.xpath("/html/body/div/div[@id='login']/form/input[@name='username' and @value='admin']")))
-        self.assertEquals(1, len(body.xpath("/html/body/div/div[@id='login']/form/dl/dd/input[@name='oldPassword']")))
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin", formUrl='/login')), parse='lxml', additionalHeaders={'Cookie': cookie})
+        self.assertTrue('302' in headers, headers)
+        self.assertEquals('/', parseHeaders(headers)['Location'])
+        
+        headers, body = getRequest(self.portNumber, "/index", parse='lxml', additionalHeaders={'Cookie': cookie})
+        self.assertEquals(['Logged in as: admin'], xpath(body, '//div[@id="loginbar"]/p/text()'))
 
-        postBody = urlencode(dict(username='admin', newPassword="password", retypedPassword="password"))
+        headers, body = getRequest(self.portNumber, "/changepassword", parse='lxml', additionalHeaders={'Cookie': cookie})
+        self.assertEquals(['admin'], xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/input[@type="hidden" and @name="username"]/@value'), tostring(body))
+        self.assertEquals(['oldPassword', 'newPassword', 'retypedPassword'], xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/dl/dd/input[@type="password"]/@name'), tostring(body))
+        self.assertEquals(['/login.action/changepassword'], xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/@action'))
 
-        headers, body = postRequest(self.portNumber, "/login/changepassword", postBody, additionalHeaders={'Cookie': cookie}, parse='lxml')
-        print 50*"="
-        print headers
-        print 50*"="
+        headers, body = postRequest(self.portNumber, '/login.action/changepassword', urlencode(dict(username="admin", oldPassword="admin", newPassword="password", retypedPassword="password", formUrl="/changepassword")), parse='lxml', additionalHeaders={'Cookie': cookie})
+        self.assertTrue('302' in headers, headers)
+        self.assertEquals('/', parseHeaders(headers)['Location'])
 
+        # Test new password
+        headers, body = getRequest(self.portNumber, "/login", parse='lxml')
+        newcookie = parseHeaders(headers)['Set-Cookie']
 
-        headers, body = postRequest(self.portNumber, '/login', urlencode(dict(username="admin", password="password")), additionalHeaders={'Cookie': cookie}, parse='lxml')
-        print headers, body
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin", formUrl='/login')), parse='lxml', additionalHeaders={'Cookie': newcookie})
+        self.assertTrue('302' in headers, headers)
+        self.assertEquals('/login', parseHeaders(headers)['Location'])
+
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="password", formUrl='/login')), parse='lxml', additionalHeaders={'Cookie': newcookie})
+        self.assertTrue('302' in headers, headers)
+        self.assertEquals('/', parseHeaders(headers)['Location'])
 
