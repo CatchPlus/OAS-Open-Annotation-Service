@@ -26,6 +26,7 @@ if __name__ == '__main__':
     runner.addGroup(
         'default', [
             'integration.oastest.OasTest',
+            'integration.usertest.UserTest',
         ],
         groupSetUp = lambda: globalSetUp(fastMode, 'default'),
         groupTearDown = lambda: globalTearDown()
