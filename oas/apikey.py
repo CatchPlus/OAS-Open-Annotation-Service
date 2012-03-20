@@ -16,16 +16,29 @@ class ApiKey(Observable):
         if not isfile(self._filename):
             self._makePersistent()
         else:
-            self._apikey2user = jsonRead(open(self._filename))
+            self._apikeys = jsonRead(open(self._filename))
 
-    def handleRequest(self, session, Body, **kwargs):
+    def handleRequest(self, path, Method, **kwargs):
+        if Method == 'POST' and path.endswith('/create'):
+            yield self.handleCreate(**kwargs)
+            return
+        yield redirectHttp % '/'
+
+    def handleCreate(self, session, Body, **kwargs):
         bodyArgs = parse_qs(Body, keep_blank_values=True)
         username = bodyArgs['username'][0]
         formUrl = bodyArgs['formUrl'][0]
-        self.call.addUser(username=username, password=self.generateKey(8))
-        newApikey = self.generateKey(16)
-        self._apikeys[newApikey] = {'username': username}
-        self._makePersistent()
+        session['ApiKey.formValues'] = {}
+        try:
+            if not 'user' in session or session['user'].name != 'admin':
+                raise ValueError('No admin privileges.')
+            self.call.addUser(username=username, password=self.generateKey(8))
+        except ValueError, e:
+            session['ApiKey.formValues']['errorMessage'] = str(e)
+        else:
+            newApikey = self.generateKey(16)
+            self._apikeys[newApikey] = {'username': username}
+            self._makePersistent()
 
         yield redirectHttp % formUrl
 

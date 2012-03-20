@@ -24,14 +24,33 @@ class UserTest(IntegrationTestCase):
         self.assertEquals(['doesnotexist'], xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/dl/dd/input[@name="username"]/@value'))
         self.assertEquals(['Invalid username or password'], xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/p[@class="error"]/text()'))
 
-        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="user1", password="password1")), parse='lxml', additionalHeaders={'Cookie': cookie})
-        self.assertTrue('302' in headers, headers)
-        self.assertEquals('/', parseHeaders(headers)['Location'], headers)
-
     def testChangePasswordFormNotAllowed(self):
         headers, body = getRequest(self.portNumber, "/changepassword", parse='lxml')
         self.assertTrue('302' in headers, headers)
         self.assertEquals('/', parseHeaders(headers)['Location'], headers)
 
+    def testApiKeyAddition(self):
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")), parse='lxml')
+        cookie = parseHeaders(headers)['Set-Cookie']
 
+        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+        self.assertEquals(['/apikey.action/create'], xpath(body, '//form/@action'))
+        self.assertEquals(['/admin'], xpath(body, '//form/input[@type="hidden" and @name="formUrl"]/@value'))
 
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='newuser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        self.assertTrue('302' in headers, headers)
+        self.assertEquals('/admin', parseHeaders(headers)['Location'], headers)
+
+        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+
+    def testAddSameUserTwice(self):
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")), parse='lxml')
+        cookie = parseHeaders(headers)['Set-Cookie']
+
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='newuser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        self.assertTrue('302' in headers, headers)
+        self.assertEquals('/admin', parseHeaders(headers)['Location'], headers)
+        
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='newuser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        self.assertTrue('302' in headers, headers)
+        self.assertEquals('/admin', parseHeaders(headers)['Location'], headers)

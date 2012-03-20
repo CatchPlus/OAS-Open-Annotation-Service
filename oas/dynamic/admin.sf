@@ -10,10 +10,14 @@ def main(session, **kwargs):
     yield '<div id="apikeys">\n'
     yield '<table>\n'
     yield '<tr><th>Username</th><th>Api key</th></tr>\n'
-    for username, apikey in []:
+    for username, apikey in sorted(call.listUsernameAndApiKeys()):
         yield '<tr><td>%s</td><td>%s</td></tr>\n' % (escapeHtml(username), escapeHtml(apikey))
     yield '</table>\n'
+    formValues = session.get('ApiKey.formValues', {})
+    if 'errorMessage' in formValues:
+        yield '<p class="error">%s</p>' % escapeHtml(formValues['errorMessage'])
     yield '''<form method="POST" action="/apikey.action/create">
+    <input type="hidden" name="formUrl" value="/admin"/>
     <dl>
         <dt>New username</dt>
         <dd><input type="text" name="username" value=""/></dd>

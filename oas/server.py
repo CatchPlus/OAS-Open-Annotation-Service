@@ -33,7 +33,7 @@ from oas.identifierfromxpath import IdentifierFromXPath
 from oas import MultipleAnnotationSplit, Normalize, Deanonymize, Publish
 from namespaces import namespaces, xpath
 from oas.login import BasicHtmlLoginForm, createPasswordFile
-from oas.utils import generateApiKey
+from oas.apikey import ApiKey
 
 ALL_FIELD = '__all__'
 unqualifiedTermFields = [(ALL_FIELD, 1.0)]
@@ -64,6 +64,7 @@ def dna(reactor, observableHttpServer, config):
     storageComponent = StorageComponent(join(databasePath, 'storage'))
     publicDocumentationPath = config['publicDocumentationPath']
     passwordFile = createPasswordFile(filename=join(databasePath, 'passwd'), salt='jasdf89pya')
+    apiKey = ApiKey(join(databasePath, 'apikeys'))
 
 
     reindexPath = join(databasePath, 'reindex')
@@ -181,6 +182,9 @@ def dna(reactor, observableHttpServer, config):
     basicHtmlLoginHelix = (BasicHtmlLoginForm(action="/login.action", loginPath="/login"),
         (passwordFile,),
     )
+    apiKeyHelix = (apiKey,
+        (passwordFile,),
+    )
 
     return \
         (Observable(),
@@ -206,7 +210,10 @@ def dna(reactor, observableHttpServer, config):
                             (PathFilter("/login.action"),
                                 basicHtmlLoginHelix,
                             ),
-                            (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action"]),
+                            (PathFilter("/apikey.action"),
+                                apiKeyHelix,
+                            ),
+                            (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action", '/apikey.action']),
                                 (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                                     indexPage='/index', 
                                     additionalGlobals={
@@ -222,6 +229,7 @@ def dna(reactor, observableHttpServer, config):
                                         'formatTimestamp': lambda format: strftime(format, localtime()),
                                         }),
                                     basicHtmlLoginHelix,
+                                    apiKeyHelix,
                                     (FilterMessages(allowed=['isAvailable', 'getStream']),
                                         (storageComponent,),
                                     ),
