@@ -1,6 +1,7 @@
 
 from integrationtestcase import IntegrationTestCase
-from utils import getRequest, postRequest, parseHeaders
+from utils import getRequest, postRequest
+from oas.utils import parseHeaders
 from urllib import urlencode
 
 from lxml.etree import tostring

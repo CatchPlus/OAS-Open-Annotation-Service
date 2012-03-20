@@ -1,9 +1,8 @@
-from oas.utils import identifierFromXml, generateApiKey
+from oas.utils import identifierFromXml
 
 from seecr.test import SeecrTestCase
 from lxml.etree import parse
 from StringIO import StringIO
-from re import compile as reCompile
 
 class UtilsTest(SeecrTestCase):
     def testIdentifierFromLxmlNode(self):
@@ -19,14 +18,6 @@ class UtilsTest(SeecrTestCase):
             xmlns:oas="http://www.openannotation.org/ns/">
             <oas:Annotation rdf:about="ex:Anno"/>
         </rdf:RDF>"""))))
-
-    def testGenerateApiKey(self):
-        keyRe = reCompile(r'^[a-zA-Z0-9]{16}$')
-        for i in xrange(100):
-            aKey = generateApiKey()
-            self.assertEquals(16, len(aKey))
-            self.assertTrue(keyRe.match(aKey))
-
 
 
 

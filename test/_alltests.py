@@ -17,6 +17,7 @@ from identifierfromxpathtest import IdentifierFromXPathTest
 from resolveservertest import ResolveServerTest
 from deanonymizetest import DeanonymizeTest
 from publishtest import PublishTest
+from apikeytest import ApiKeyTest
 
 from login.passwordfiletest import PasswordFileTest
 from login.basichtmlloginformtest import BasicHtmlLoginFormTest

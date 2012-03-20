@@ -219,7 +219,7 @@ def dna(reactor, observableHttpServer, config):
                                         'join': join,
                                         'xpath': xpath,
                                         'config': config,
-                                        'formatTimestamp': lambda format: strftime(format, localtime())
+                                        'formatTimestamp': lambda format: strftime(format, localtime()),
                                         }),
                                     basicHtmlLoginHelix,
                                     (FilterMessages(allowed=['isAvailable', 'getStream']),

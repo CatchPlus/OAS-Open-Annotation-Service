@@ -30,13 +30,6 @@ def createReturnValue(header, body, parse):
 
     return header, body
 
-def parseHeaders(headers):
-    return dict((k, v.strip()) 
-        for k,v in (l.split(':',1) 
-            for l in headers.split('\r\n') 
-                if ':' in l))
-
-
 def postRequest(port, path, data, contentType='text/xml; charset="utf-8"', parse=True, timeOutInSeconds=None, additionalHeaders=None):
     additionalHeaders = additionalHeaders or {}
     sok = _socket(port, timeOutInSeconds)

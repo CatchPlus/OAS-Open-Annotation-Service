@@ -6,7 +6,10 @@ def header(session, **kwargs):
     </head>
     <body>"""
     if 'user' in session:
-        yield '<div id="loginbar"><p>Logged in as: %s</p></div>' % session['user'].name
+        yield '<div id="loginbar"><p>Logged in as: %s | <a href="/changepassword">Change password</a> | <a href="/logout">Logout</a>' % session['user'].name
+        if 'admin' == session['user'].name:
+            yield ' | <a href="/admin">OAS Admin</a>'
+        yield '</p></div>' 
     yield """
         <div id="content">
     """

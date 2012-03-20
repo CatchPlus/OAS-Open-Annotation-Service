@@ -1,0 +1,24 @@
+import page
+
+def main(session, **kwargs):
+    if not 'user' in session or session['user'].name != 'admin':
+        yield http.redirect('/')
+        return
+    yield page.header(session=session, **kwargs)
+    yield page.caption("Open Annotation Service")
+    yield page.menu()
+    yield '<div id="apikeys">\n'
+    yield '<table>\n'
+    yield '<tr><th>Username</th><th>Api key</th></tr>\n'
+    for username, apikey in []:
+        yield '<tr><td>%s</td><td>%s</td></tr>\n' % (escapeHtml(username), escapeHtml(apikey))
+    yield '</table>\n'
+    yield '''<form method="POST" action="/apikey.action/create">
+    <dl>
+        <dt>New username</dt>
+        <dd><input type="text" name="username" value=""/></dd>
+        <dd class="submit"><input type="submit" value="login"/></dd>
+    </dl>
+</form>\n'''
+    yield '</div>\n'
+    yield page.footer()
