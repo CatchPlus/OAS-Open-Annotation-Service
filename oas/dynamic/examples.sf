@@ -3,7 +3,7 @@ import page
 def main(**kwargs):
     timestamp = formatTimestamp("%Y-%m-%d %H:%M:%S")
 
-    yield page.header()
+    yield page.header(**kwargs)
     yield page.caption("Open Annotation Service")
     yield page.menu(selected="Examples")
     yield page.codeBlock(caption="External references", code="""<rdf:RDF 

@@ -124,3 +124,7 @@ pre {
 #login .submit {
     text-align: right;
 }
+
+#loginbar {
+    background: gray;
+}

@@ -1,14 +1,9 @@
 import page
 
 def main(Method, **kwargs):
-    yield page.header()
+    yield page.header(**kwargs)
     yield page.caption("Open Annotation Service")
     yield page.menu()
-
-    if not call.hasUser('admin'):
-        call.addUser(username='admin', password='admin')
-        yield any.changePasswordForm(username='admin', oldPassword='admin')
-    else:
-        yield any.loginForm(**kwargs)
+    yield any.loginForm(**kwargs)
     yield page.footer()
 

@@ -165,13 +165,13 @@ class OasTest(IntegrationTestCase):
     def testLoginPage(self):
         headers, body = getRequest(self.portNumber, "/login", parse='lxml')
         self.assertTrue('200' in headers, headers)
-        self.assertEquals(1, len(xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/dl/dd/input[@name="username"]')))
-        self.assertEquals(1, len(xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/dl/dd/input[@type="password" and @name="password"]')))
-        self.assertEquals(1, len(xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/dl/dd/input[@type="submit"]')))
+        self.assertEquals(1, len(xpath(body, '/div[@id="login"]/form/dl/dd/input[@name="username"]')))
+        self.assertEquals(1, len(xpath(body, '/div[@id="login"]/form/dl/dd/input[@type="password" and @name="password"]')))
+        self.assertEquals(1, len(xpath(body, '/div[@id="login"]/form/dl/dd/input[@type="submit"]')))
 
-        header, body = postRequest(self.portNumber, '/login', urlencode(dict(username="", password="")), parse='lxml')
-        self.assertTrue('200' in headers, headers)
-        self.assertEquals("Invalid username/password", xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/p[@class="error"]/text()')[0])
+        headers, body = postRequest(self.portNumber, '/login', urlencode(dict(username="", password="")), parse='lxml')
+        self.assertTrue('302' in headers, headers)
+        self.assertTrue('Location: /login' in headers, headers)
 
         header, body = postRequest(self.portNumber, '/login', urlencode(dict(username="user1", password="password1")), parse='lxml')
         self.assertTrue('302' in headers, headers)

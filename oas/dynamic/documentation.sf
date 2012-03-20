@@ -6,7 +6,7 @@ mapping = {
 }
 
 def main(**kwargs):
-    yield page.header()
+    yield page.header(**kwargs)
     yield page.caption("Open Annotation Service")
     yield page.menu(selected="Documentation")
     yield '<p>This page gives access to documentation files about the Open Annotation Service.</p>'

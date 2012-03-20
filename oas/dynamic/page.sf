@@ -1,10 +1,13 @@
-def header():
+def header(session, **kwargs):
     yield """<html>
     <head>
         <link rel="stylesheet" type="text/css" href="/static/styles.css"/>
         <title>Open Annotation Service</title>
     </head>
-    <body>
+    <body>"""
+    if 'user' in session:
+        yield '<div id="loginbar"><p>Logged in as: %s</p></div>' % session['user'].name
+    yield """
         <div id="content">
     """
 

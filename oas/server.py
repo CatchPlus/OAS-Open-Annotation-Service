@@ -177,7 +177,7 @@ def dna(reactor, observableHttpServer, config):
             )
         )
 
-    basicHtmlLoginHelix = (BasicHtmlLoginForm(page='/admin'),
+    basicHtmlLoginHelix = (BasicHtmlLoginForm(action="/login.action", loginPath="/login"),
         (passwordFile,),
     )
 
@@ -202,10 +202,10 @@ def dna(reactor, observableHttpServer, config):
                             )
                         ),
                         (SessionHandler(secretSeed='secret :-)'),
-                            (PathFilter("/login"),
+                            (PathFilter("/login.action"),
                                 basicHtmlLoginHelix,
                             ),
-                            (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login"]),
+                            (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action"]),
                                 (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                                     indexPage='/index', 
                                     additionalGlobals={
@@ -220,7 +220,7 @@ def dna(reactor, observableHttpServer, config):
                                         'config': config,
                                         'formatTimestamp': lambda format: strftime(format, localtime())
                                         }),
-                                    (passwordFile,),
+                                    basicHtmlLoginHelix,
                                     (FilterMessages(allowed=['isAvailable', 'getStream']),
                                         (storageComponent,),
                                     ),
