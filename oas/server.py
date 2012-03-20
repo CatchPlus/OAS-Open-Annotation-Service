@@ -33,6 +33,7 @@ from oas.identifierfromxpath import IdentifierFromXPath
 from oas import MultipleAnnotationSplit, Normalize, Deanonymize, Publish
 from namespaces import namespaces, xpath
 from oas.login import BasicHtmlLoginForm, createPasswordFile
+from oas.utils import generateApiKey
 
 ALL_FIELD = '__all__'
 unqualifiedTermFields = [(ALL_FIELD, 1.0)]
