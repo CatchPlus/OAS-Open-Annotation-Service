@@ -1,0 +1,4 @@
+def main(session, **kwargs):
+    if 'user' in session:
+        del session['user']
+    yield http.redirect('/')

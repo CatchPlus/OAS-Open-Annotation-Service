@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="http://cdn.seecr.nl/css/planninggame.css"/>
+        <link rel="shortcut icon" href="http://seecr.nl/favicon.ico" />
+        <script language="javascript" type="text/javascript">
+function toggle(elementId) {
+    var ele = document.getElementById(elementId);
+    ele.style.display = ele.style.display == "block" ? "none" : "block";
+} 
+        </script>
+        <title>OpenAnnotation Service</title>
+   </head>
+    <body>
+        <div id="blocknote">
+            <div id="logo"></div>
+            <div id="content">
+                <h1 class="title">Planformulier 4 - OpenAnnotation Service</h1>                
+                <div class="story">
+                    <h2>1. Beheerder login</h2>
+                    <p>Er komt een login faciliteit voor een beheerder. De gebruikersnaam staat vast, namelijk 'admin'. Het password is bij default leeg. Dit zal bij de eerste poging om in te loggen leiden tot een scherm waarin het password gezet kan worden.</p>
+                </div>                
+                <div class="story">
+                    <h2>2. API Key beheren</h2>
+                    <p>De admin gebruiker heeft de mogelijkheid om een API key te maken. Aan deze API key wordt een username toegekend. Usernames zijn niet meer aan te passen zodra ze aangemaakt zijn. Tevens kan er een aantekening gemaakt worden voor wie de key is. We gaan kijken of er een best-practice manier is waarmee API keys gemaakt worden. Mocht er niks zijn dan vallen we terug op een UUID.</p>
+                </div>                
+                <div class="story">
+                    <h2>3. API Key gebruiken</h2>
+                    <p>Zowel het upload formulier in de portal als ook de SRU update moeten een API key aanleveren bij het plaatsen van records. De aangeleverde API key wordt door het systeem vergeleken met de uitgegeven keys. Als de aangeleverde key inderdaad gevonden wordt dan zal het record worden geaccepteerd. Voor queries hoeft geen key gebruikt te worden.</p>
+                </div>                
+                <div class="story">
+                    <h2>4. Meeindexeren bij upload</h2>
+                    <p>De username behorende bij de API key waaronder een record wordt toegevoegd wordt mee geindexeerd. Hierdoor kan er op een username gezocht worden wat hierdoor alle records oplevert die voor de desbetreffende username ingeschoten zijn. Dit is nodig om de admin user de mogelijkheid te geven alle records behorende bij een username te verwijderen.</p>
+                </div>                
+                <div class="story">
+                    <h2>5. API Key verwijderen</h2>
+                    <p>Door een API key te verwijderen worden ook alle records die met behulp van de API key zijn ingeschoten verwijderd uit het systeem. Om dit te laten functioneren is story '4. Meeindexeren bij upload' nodig</p>
+                </div>
+            </div>
+            <div id="stamp"></div>
+            <div id="address" onClick="javascript:window.open('http://seecr.nl'); return false;"></div>
+        </div>
+    </body>
+</html>
