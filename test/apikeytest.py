@@ -20,7 +20,7 @@ class ApiKeyTest(SeecrTestCase):
         session = {
             'user': User('admin'),
         }
-        Body = urlencode(dict(username='user', formUrl='/apikeyform'))
+        Body = urlencode(dict(username='user', description="A User", formUrl='/apikeyform'))
         self.assertEquals(['admin'], pwd.listUsernames())
 
         result = ''.join(compose(a.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
@@ -30,10 +30,11 @@ class ApiKeyTest(SeecrTestCase):
         self.assertEquals('/apikeyform', parseHeaders(headers)['Location'])
         self.assertEquals(['admin', 'user'], sorted(pwd.listUsernames()))
 
-        aList = list(a.listUsernameAndApiKeys())
+        aList = a.listApiKeysAndData()
         self.assertEquals(1, len(aList))
-        self.assertEquals('user', aList[0][0])
-        self.assertTrue(16, len(aList[0][1]))
+        apikey, userdata = aList[0]
+        self.assertEquals('user', userdata['username'])
+        self.assertTrue(16, len(apikey))
 
         result = ''.join(compose(a.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
         headers, body = result.split(CRLF*2)
@@ -44,7 +45,7 @@ class ApiKeyTest(SeecrTestCase):
         self.assertEquals({'errorMessage': 'User already exists.'}, session['ApiKey.formValues'])
 
         b = ApiKey(databaseFile=join(self.tempdir, 'db'))
-        self.assertEquals(aList, list(b.listUsernameAndApiKeys()))
+        self.assertEquals(aList, list(b.listApiKeysAndData()))
 
     def testWithoutAdminUserLoggedIn(self):
         a = ApiKey(databaseFile=join(self.tempdir, 'db'))
@@ -60,5 +61,5 @@ class ApiKeyTest(SeecrTestCase):
 
         self.assertTrue(' 302 ' in headers, headers)
         self.assertEquals('/apikeyform', parseHeaders(headers)['Location'])
-        self.assertEquals([], list(a.listUsernameAndApiKeys()))
+        self.assertEquals([], list(a.listApiKeysAndData()))
         self.assertEquals({'errorMessage': 'No admin privileges.'}, session['ApiKey.formValues'])

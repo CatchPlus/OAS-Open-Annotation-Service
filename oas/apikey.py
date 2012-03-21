@@ -42,9 +42,8 @@ class ApiKey(Observable):
 
         yield redirectHttp % formUrl
 
-    def listUsernameAndApiKeys(self):
-        for apikey, data in self._apikeys.items():
-            yield data['username'], apikey
+    def listApiKeysAndData(self):
+        return self._apikeys.items()
 
     def _makePersistent(self):
         tmpFilename = self._filename + ".tmp"

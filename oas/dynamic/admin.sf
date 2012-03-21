@@ -10,8 +10,8 @@ def main(session, **kwargs):
     yield '<div id="apikeys">\n'
     yield '<table>\n'
     yield '<tr><th>Username</th><th>Api key</th></tr>\n'
-    for username, apikey in sorted(call.listUsernameAndApiKeys()):
-        yield '<tr><td>%s</td><td class="apikey">%s</td></tr>\n' % (escapeHtml(username), escapeHtml(apikey))
+    for apikey, data in sorted(call.listApiKeysAndData()):
+        yield '<tr><td>%s</td><td class="apikey">%s</td></tr>\n' % (escapeHtml(data['username']), escapeHtml(apikey))
     yield '</table>\n'
     formValues = session.get('ApiKey.formValues', {})
     if 'errorMessage' in formValues:
