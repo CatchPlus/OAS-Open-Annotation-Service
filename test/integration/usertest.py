@@ -34,14 +34,25 @@ class UserTest(IntegrationTestCase):
         cookie = parseHeaders(headers)['Set-Cookie']
 
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
-        self.assertEquals(['/apikey.action/create'], xpath(body, '//form/@action'))
-        self.assertEquals(['/admin'], xpath(body, '//form/input[@type="hidden" and @name="formUrl"]/@value'))
+        self.assertEquals(['/apikey.action/create'], xpath(body, '//form[@name="create"]/@action'))
+        self.assertEquals(['/admin'], xpath(body, '//form[@name="create"]/input[@type="hidden" and @name="formUrl"]/@value'))
 
-        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='newuser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='testuser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
         self.assertTrue('302' in headers, headers)
         self.assertEquals('/admin', parseHeaders(headers)['Location'], headers)
 
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+
+        self.assertEquals("",  xpath(body, '//div[@id="apikeys"]/table/form/tr/td/input[@name="description"]/@value')[0])
+        apikey = xpath(body, '//div[@id="apikeys"]/table/form/tr/td[@class="apikey"]/text()')[0]
+        self.assertNotEqual("", apikey)
+
+        headers, body = postRequest(self.portNumber, '/apikey.action/update', urlencode(dict(formUrl='/admin', apikey=apikey, description="Some description")), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        self.assertTrue('302' in headers, headers)
+        self.assertEquals('/admin', parseHeaders(headers)['Location'], headers)
+        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+        self.assertEquals("Some description",  xpath(body, '//div[@id="apikeys"]/table/form/tr/td/input[@name="description"]/@value')[0])
+        
 
     def testAddSameUserTwice(self):
         headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")), parse='lxml')

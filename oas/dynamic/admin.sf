@@ -9,19 +9,33 @@ def main(session, **kwargs):
     yield page.menu()
     yield '<div id="apikeys">\n'
     yield '<table>\n'
-    yield '<tr><th>Username</th><th>Api key</th></tr>\n'
+    yield '<tr><th>Username</th><th>Api key</th><th>Description</th><th/></tr>\n'
+    nr = 0
     for apikey, data in sorted(call.listApiKeysAndData()):
-        yield '<tr><td>%s</td><td class="apikey">%s</td></tr>\n' % (escapeHtml(data['username']), escapeHtml(apikey))
+        username = data['username']
+        description = data.get('description', '')
+        yield """<form method="POST" action="/apikey.action/update">
+    <input type="hidden" name="apikey" value=%s/>
+    <input type="hidden" name="formUrl" value="/admin"/>
+    <tr>
+        <td>%s</td>
+        <td class="apikey">%s</td>
+        <td><input type="text" name="description" onKeyPress="javascript:document.getElementById('update-form-%s').disabled=false;" value=%s/></td>
+        <td><input id=%s type="submit" value="Update" disabled="true"/></td>
+    </tr>
+    </form>\n""" % (quoteattr(apikey), escapeHtml(username), escapeHtml(apikey), nr, quoteattr(description), quoteattr('update-form-%s' % nr))
+        nr += 1
+
     yield '</table>\n'
     formValues = session.get('ApiKey.formValues', {})
     if 'errorMessage' in formValues:
         yield '<p class="error">%s</p>' % escapeHtml(formValues['errorMessage'])
-    yield '''<form method="POST" action="/apikey.action/create">
+    yield '''<form method="POST" name="create" action="/apikey.action/create">
     <input type="hidden" name="formUrl" value="/admin"/>
     <dl>
         <dt>New username</dt>
         <dd><input type="text" name="username" value=""/></dd>
-        <dd class="submit"><input type="submit" value="login"/></dd>
+        <dd class="submit"><input type="submit" value="Create"/></dd>
     </dl>
 </form>\n'''
     yield '</div>\n'

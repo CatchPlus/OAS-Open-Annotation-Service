@@ -12,18 +12,41 @@ class ApiKey(Observable):
     def __init__(self, databaseFile, name=None):
         Observable.__init__(self, name=name)
         self._apikeys = {}
+        self._userIndex = {}
         self._filename = databaseFile
         if not isfile(self._filename):
             self._makePersistent()
         else:
             self._apikeys = jsonRead(open(self._filename))
+        self._actions = {
+            'create': self.handleCreate, 
+            'update': self.handleUpdate
+        }
 
     def handleRequest(self, path, Method, **kwargs):
-        if Method == 'POST' and path.endswith('/create'):
-            yield self.handleCreate(**kwargs)
+        prefix, action = path.rsplit('/', 1)
+        if Method == 'POST' and action in self._actions: 
+            yield self._actions[action](**kwargs)
             return
         yield redirectHttp % '/'
 
+    def handleUpdate(self, session, Body, **kwargs):
+        bodyArgs = parse_qs(Body, keep_blank_values=True)
+        apikey = bodyArgs['apikey'][0]
+        description = bodyArgs['description'][0]
+        formUrl = bodyArgs['formUrl'][0]
+        session['ApiKey.formValues'] = {}
+        try:
+            if not 'user' in session or session['user'].name != 'admin':
+                raise ValueError('No admin privileges.')
+            else:
+                self._apikeys[apikey]['description'] = description 
+                self._makePersistent()
+        except ValueError, e:
+            session['ApiKey.formValues']['errorMessage'] = str(e)
+
+        yield redirectHttp % formUrl
+    
     def handleCreate(self, session, Body, **kwargs):
         bodyArgs = parse_qs(Body, keep_blank_values=True)
         username = bodyArgs['username'][0]
@@ -49,8 +72,7 @@ class ApiKey(Observable):
         tmpFilename = self._filename + ".tmp"
         jsonWrite(self._apikeys, open(tmpFilename, 'w'))
         rename(tmpFilename, self._filename)
-
-
+    
     @staticmethod
     def generateKey(length=16):
         return ''.join(choice(ascii_letters + digits) for i in xrange(length))

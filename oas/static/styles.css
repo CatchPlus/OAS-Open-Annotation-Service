@@ -136,6 +136,6 @@ pre {
 }
 
 .apikey {
-    font-family: "Courier New";
+    font-family: monospace, "Courier New";
 }
 

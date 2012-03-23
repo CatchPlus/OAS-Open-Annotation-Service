@@ -5,6 +5,7 @@ from StringIO import StringIO
 from uuid import uuid4
 from urllib import unquote_plus
 from time import strftime, localtime
+from xml.sax.saxutils import quoteattr
 
 from weightless.core import compose, be
 from weightless.io import Reactor
@@ -25,7 +26,6 @@ from meresco.owlim import HttpClient
 from meresco.oai import OaiPmh, OaiJazz, OaiAddRecord
 
 from dynamichtml import DynamicHtml
-
 from oas import VERSION_STRING
 from oas import FilterFieldValue
 from oas.seecroaiwatermark import SeecrOaiWatermark
@@ -217,16 +217,17 @@ def dna(reactor, observableHttpServer, config):
                                 (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                                     indexPage='/index', 
                                     additionalGlobals={
+                                        'config': config,
+                                        'formatTimestamp': lambda format: strftime(format, localtime()),
+                                        'join': join,
                                         'listDocs': lambda: sorted([name for name in listdir(publicDocumentationPath) if not name.startswith('.')]),
                                         'okXml': okXml,
+                                        'quoteattr': quoteattr,
                                         'splitext': splitext,
                                         'StringIO': StringIO, 
                                         'unquote_plus': unquote_plus,
                                         'uuid': uuid4,
-                                        'join': join,
                                         'xpath': xpath,
-                                        'config': config,
-                                        'formatTimestamp': lambda format: strftime(format, localtime()),
                                         }),
                                     basicHtmlLoginHelix,
                                     apiKeyHelix,
