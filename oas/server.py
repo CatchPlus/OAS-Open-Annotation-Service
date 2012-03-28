@@ -28,6 +28,7 @@ from meresco.oai import OaiPmh, OaiJazz, OaiAddRecord
 from dynamichtml import DynamicHtml
 from oas import VERSION_STRING
 from oas import FilterFieldValue
+from oas import Authorization
 from oas.seecroaiwatermark import SeecrOaiWatermark
 from oas.identifierfromxpath import IdentifierFromXPath
 from oas import MultipleAnnotationSplit, Normalize, Deanonymize, Publish
@@ -190,97 +191,99 @@ def dna(reactor, observableHttpServer, config):
         (Observable(),
             (observableHttpServer,
                 (BasicHttpHandler(),
-                    (ApacheLogger(stdout),
-                        (PathFilter("/update"),
-                            (SRURecordUpdate(),
-                                (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
-                                    sanitizeAndUploadHelix,
+                    (Authorization(), 
+                        (ApacheLogger(stdout),
+                            (PathFilter("/update"),
+                                (SRURecordUpdate(),
+                                    (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
+                                        sanitizeAndUploadHelix,
+                                    )   
                                 )   
-                            )   
-                        ),
-                        (PathFilter("/reindex"),
-                            (Reindex(partName="rdf", filelistPath=reindexPath),
-                                (FilterMessages(allowed=["listIdentifiers"]),
-                                    (storageComponent,),
-                                ),
-                                uploadHelix
-                            )
-                        ),
-                        (SessionHandler(secretSeed='secret :-)'),
-                            (PathFilter("/login.action"),
-                                basicHtmlLoginHelix,
                             ),
-                            (PathFilter("/apikey.action"),
-                                apiKeyHelix,
-                            ),
-                            (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action", '/apikey.action']),
-                                (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
-                                    indexPage='/index', 
-                                    additionalGlobals={
-                                        'config': config,
-                                        'formatTimestamp': lambda format: strftime(format, localtime()),
-                                        'join': join,
-                                        'listDocs': lambda: sorted([name for name in listdir(publicDocumentationPath) if not name.startswith('.')]),
-                                        'okXml': okXml,
-                                        'quoteattr': quoteattr,
-                                        'splitext': splitext,
-                                        'StringIO': StringIO, 
-                                        'unquote_plus': unquote_plus,
-                                        'uuid': uuid4,
-                                        'xpath': xpath,
-                                        }),
-                                    basicHtmlLoginHelix,
-                                    apiKeyHelix,
-                                    (FilterMessages(allowed=['isAvailable', 'getStream']),
+                            (PathFilter("/reindex"),
+                                (Reindex(partName="rdf", filelistPath=reindexPath),
+                                    (FilterMessages(allowed=["listIdentifiers"]),
                                         (storageComponent,),
                                     ),
-                                    sanitizeAndUploadHelix,
-                                    (FilterMessages(disallowed=['add', 'delete']),
-                                        (tripleStore,),
+                                    uploadHelix
+                                )
+                            ),
+                            (SessionHandler(secretSeed='secret :-)'),
+                                (PathFilter("/login.action"),
+                                    basicHtmlLoginHelix,
+                                ),
+                                (PathFilter("/apikey.action"),
+                                    apiKeyHelix,
+                                ),
+                                (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action", '/apikey.action']),
+                                    (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
+                                        indexPage='/index', 
+                                        additionalGlobals={
+                                            'config': config,
+                                            'formatTimestamp': lambda format: strftime(format, localtime()),
+                                            'join': join,
+                                            'listDocs': lambda: sorted([name for name in listdir(publicDocumentationPath) if not name.startswith('.')]),
+                                            'okXml': okXml,
+                                            'quoteattr': quoteattr,
+                                            'splitext': splitext,
+                                            'StringIO': StringIO, 
+                                            'unquote_plus': unquote_plus,
+                                            'uuid': uuid4,
+                                            'xpath': xpath,
+                                            }),
+                                        basicHtmlLoginHelix,
+                                        apiKeyHelix,
+                                        (FilterMessages(allowed=['isAvailable', 'getStream']),
+                                            (storageComponent,),
+                                        ),
+                                        sanitizeAndUploadHelix,
+                                        (FilterMessages(disallowed=['add', 'delete']),
+                                            (tripleStore,),
+                                        ),
                                     ),
                                 ),
                             ),
-                        ),
-                        (PathFilter('/static'),
-                            (PathRename(lambda path: path[len('/static'):]),
-                                (FileServer(staticHtmlFilePath),)
-                            )
-                        ),
-                        (PathFilter('/public'),
-                            (PathRename(lambda path: path[len('/public'):]),
-                                (FileServer(publicDocumentationPath),)
-                            )
-                        ),
-                        (PathFilter("/sru"),
-                            (SruParser(host=hostName, port=portNumber, 
-                                defaultRecordSchema='rdf', defaultRecordPacking='xml'),
-                                (SruHandler(drilldownSortedByTermCount=True),
-                                    (CQLConversion(RenameCqlIndex(fieldnameLookup), fromKwarg='cqlAbstractSyntaxTree'),
-                                        (CQL2SolrLuceneQuery(unqualifiedTermFields),
-                                            (solrInterface,)
-                                        ),
-                                    ),
-                                    (storageComponent,),
+                            (PathFilter('/static'),
+                                (PathRename(lambda path: path[len('/static'):]),
+                                    (FileServer(staticHtmlFilePath),)
                                 )
-                            )
+                            ),
+                            (PathFilter('/public'),
+                                (PathRename(lambda path: path[len('/public'):]),
+                                    (FileServer(publicDocumentationPath),)
+                                )
+                            ),
+                            (PathFilter("/sru"),
+                                (SruParser(host=hostName, port=portNumber, 
+                                    defaultRecordSchema='rdf', defaultRecordPacking='xml'),
+                                    (SruHandler(drilldownSortedByTermCount=True),
+                                        (CQLConversion(RenameCqlIndex(fieldnameLookup), fromKwarg='cqlAbstractSyntaxTree'),
+                                            (CQL2SolrLuceneQuery(unqualifiedTermFields),
+                                                (solrInterface,)
+                                            ),
+                                        ),
+                                        (storageComponent,),
+                                    )
+                                )
 
-                        ),
-                        (PathFilter('/oai'),
-                            (OaiPmh(
-                                repositoryName=config['oai.repository.name'],
-                                adminEmail=config['oai.admin.email'],
-                                repositoryIdentifier=config['oai.repository.identifier']),
-                                (storageComponent,),
-                                (oaiJazz,),
-                                (SeecrOaiWatermark(),),
-                            )
-                        ),
-                        (PathFilter('/info/version'),
-                            (StringServer(VERSION_STRING, ContentTypePlainText),)
-                        ),  
-                        (PathFilter('/planninggame'),
-                            (PathRename(lambda path: path[len('/planninggame'):]),
-                                (FileServer(planninggameFilePath),)
+                            ),
+                            (PathFilter('/oai'),
+                                (OaiPmh(
+                                    repositoryName=config['oai.repository.name'],
+                                    adminEmail=config['oai.admin.email'],
+                                    repositoryIdentifier=config['oai.repository.identifier']),
+                                    (storageComponent,),
+                                    (oaiJazz,),
+                                    (SeecrOaiWatermark(),),
+                                )
+                            ),
+                            (PathFilter('/info/version'),
+                                (StringServer(VERSION_STRING, ContentTypePlainText),)
+                            ),  
+                            (PathFilter('/planninggame'),
+                                (PathRename(lambda path: path[len('/planninggame'):]),
+                                    (FileServer(planninggameFilePath),)
+                                )
                             )
                         )
                     )
