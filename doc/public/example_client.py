@@ -33,13 +33,11 @@ for path in glob('../deps.d/*'):                    #DO_NOT_DISTRIBUTE
     systemPath.insert(0, path)                      #DO_NOT_DISTRIBUTE
 systemPath.insert(0, '..')                          #DO_NOT_DISTRIBUTE
 
-from sys import stdin, argv
+from sys import stdin, argv 
 from socket import socket
 from lxml.etree import parse, tostring
 
-from oas.namespaces import xpath
-
-def upload(hostname='localhost', portnumber=8000, path='/update', stream=None):
+def upload(hostname='localhost', portnumber=8000, path='/update', stream=None, apiKey=None):
     # Try parsing the input. If the supplied XML is invalid this will fail.
     try:
         lxmlNode = parse(stream if stream else stdin)
@@ -65,6 +63,7 @@ def upload(hostname='localhost', portnumber=8000, path='/update', stream=None):
     s.send("POST %s HTTP/1.0\r\n" % path)
     s.send("Content-Type: text/xml\r\n")
     s.send("Content-Length: %s\r\n" % len(body))
+    s.send("Authorization: %s\r\n" % apiKey)
     s.send("\r\n")
     s.sendall(body)
 
@@ -79,7 +78,13 @@ def upload(hostname='localhost', portnumber=8000, path='/update', stream=None):
     return response
 
 if __name__ == '__main__':
-    portnumber = 8000
-    if len(argv) > 1 and argv[1].isdigit():
-        portnumber = int(argv[1])
-    print upload(portnumber=portnumber)
+    args = argv[1:]
+    if len(args) != 2:
+        print '''Usage: %s <portnumber> <apiKey>
+    Will read recorddata from stdin and post a SRUUpdate request to:
+    http://localhost:<portnumber>/update
+    The <apiKey> will be checked in the server'''
+        exit(1)
+    portnumber = int(args[0])
+    apiKey = args[1]
+    print upload(portnumber=portnumber, apiKey=apiKey)

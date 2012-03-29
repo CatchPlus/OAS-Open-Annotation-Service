@@ -44,7 +44,9 @@ from lxml.etree import XMLSyntaxError, parse
 from seecr.test import SeecrTestCase
 from meresco.components import readConfig
 
-from utils import getRequest, postRequest, postMultipartForm 
+from utils import getRequest, postRequest, postMultipartForm
+from oas.utils import parseHeaders
+from oas.namespaces import xpath
 
 
 mydir = dirname(abspath(__file__))
@@ -256,12 +258,25 @@ class OasIntegrationState(IntegrationState):
     def _startHttpServer(self):
         self._startServer("http", join(mydir, "bin", "httpfileserver.py"), 'http://localhost:%s/server_ready' % self.httpPortNumber, port=self.httpPortNumber, filepath=self.httpDataDir)
 
+    def _setupUsers(self):
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")), parse='lxml')
+        cookie = parseHeaders(headers)['Set-Cookie']
+
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='testUser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+
+        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+
+        self.testUserApiKey = xpath(body, '//div[@id="apiKeys"]/table/form/tr/td[@class="apiKey"]/text()')[0]
+        print self.testUserApiKey
+        assert self.testUserApiKey != None
+
     def _createDatabase(self):
         if fastMode:
             print "Reusing database in", self.integrationTempdir
             return
         recordPacking = 'xml'
         start = time()
+        self._setupUsers()
         print "Creating database in", self.integrationTempdir
         try:
             if self.stateName in ['default']:
@@ -284,7 +299,7 @@ class OasIntegrationState(IntegrationState):
         print 'http://localhost:%s%s' % (aPort, uploadPath), '<-', basename(filename)[:-len('.updateRequest')]
         updateRequest = open(filename).read()
         lxml = parse(StringIO(updateRequest))
-        header, body = upload(hostname='localhost', portnumber=aPort, path=uploadPath, stream=open(filename)).split('\r\n\r\n', 1)
+        header, body = upload(hostname='localhost', portnumber=aPort, path=uploadPath, stream=open(filename), apiKey=self.testUserApiKey).split('\r\n\r\n', 1)
         if '200 Ok' not in header:
             print 'No 200 Ok response, but:\n', header
             exit(123)

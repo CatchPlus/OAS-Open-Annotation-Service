@@ -71,7 +71,7 @@ class ResolveTest(IntegrationTestCase):
 
 </rdf:RDF></srw:recordData></srw:record>
 </ucp:updateRequest>""" % (identifier, resourceUrl)
-        header, body = postRequest(self.portNumber, '/update', sruUpdateBody, parse='lxml')
+        header, body = postRequest(self.portNumber, '/update', sruUpdateBody, parse='lxml', additionalHeaders={'Authorization':self.testUserApiKey})
         self.assertEquals("success", xpath(body, "/srw:updateResponse/ucp:operationStatus/text()")[0])
 
         before = self.countUnresolved()
@@ -116,7 +116,7 @@ class ResolveTest(IntegrationTestCase):
 
 </rdf:RDF></srw:recordData></srw:record>
 </ucp:updateRequest>""" % (identifier, resourceUrl)
-        header, body = postRequest(self.portNumber, '/update', sruUpdateBody, parse='lxml')
+        header, body = postRequest(self.portNumber, '/update', sruUpdateBody, parse='lxml', additionalHeaders={'Authorization':self.testUserApiKey})
         self.assertEquals("success", xpath(body, "/srw:updateResponse/ucp:operationStatus/text()")[0])
 
         before = self.countUnresolved()

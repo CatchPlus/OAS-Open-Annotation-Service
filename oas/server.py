@@ -221,13 +221,16 @@ def dna(reactor, observableHttpServer, config):
                     (Authorization(), 
                         (ApacheLogger(stdout),
                             (PathFilter("/update"),
-                                #(ApiKeyCheck(),
+                                (ApiKeyCheck(),
+                                    (FilterMessages(allowed=['getForApiKey']),
+                                        apiKeyHelix,
+                                    ),
                                     (SRURecordUpdate(),
                                         (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
                                             sanitizeAndUploadHelix,
                                         )   
                                     )   
-                                    #)
+                                )
                             ),
                             (PathFilter("/reindex"),
                                 (Reindex(partName="rdf", filelistPath=reindexPath),
