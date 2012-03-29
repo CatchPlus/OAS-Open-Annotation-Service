@@ -43,17 +43,17 @@ class ApiKeyCheckTest(SeecrTestCase):
         response = list(compose(dna.all.handleRequest()))
         self.assertEquals([unauthorizedHtml], response)
 
-    def testUnknownApikey(self):
-        def getForApikey(apikey):
+    def testUnknownApiKey(self):
+        def getForApiKey(apiKey):
             return None
         observer = CallTrace(
-            methods={'getForApikey': getForApikey}, 
+            methods={'getForApiKey': getForApiKey}, 
             emptyGeneratorMethods=['handleRequest'])
 
         class MockSetVar(Observable):
             def __init__(self):
                 Observable.__init__(self)
-        __callstack_var_authorization__ = {'apikey': "APIKEY"}
+        __callstack_var_authorization__ = {'apiKey': "APIKEY"}
 
         dna = be(
             (MockSetVar(),
@@ -64,4 +64,4 @@ class ApiKeyCheckTest(SeecrTestCase):
         )
         response = list(compose(dna.all.handleRequest()))
         self.assertEquals([unauthorizedHtml], response)
-        self.assertEquals(['getForApikey'], [m.name for m in observer.calledMethods])
+        self.assertEquals(['getForApiKey'], [m.name for m in observer.calledMethods])

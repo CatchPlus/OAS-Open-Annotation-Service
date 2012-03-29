@@ -37,13 +37,13 @@ from os import rename
 class ApiKey(Observable):
     def __init__(self, databaseFile, name=None):
         Observable.__init__(self, name=name)
-        self._apikeys = {}
+        self._apiKeys = {}
         self._userIndex = {}
         self._filename = databaseFile
         if not isfile(self._filename):
             self._makePersistent()
         else:
-            self._apikeys = jsonRead(open(self._filename))
+            self._apiKeys = jsonRead(open(self._filename))
         self._actions = {
             'create': self.handleCreate, 
             'update': self.handleUpdate
@@ -58,7 +58,7 @@ class ApiKey(Observable):
 
     def handleUpdate(self, session, Body, **kwargs):
         bodyArgs = parse_qs(Body, keep_blank_values=True)
-        apikey = bodyArgs['apikey'][0]
+        apiKey = bodyArgs['apiKey'][0]
         description = bodyArgs['description'][0]
         formUrl = bodyArgs['formUrl'][0]
         session['ApiKey.formValues'] = {}
@@ -66,7 +66,7 @@ class ApiKey(Observable):
             if not 'user' in session or session['user'].name != 'admin':
                 raise ValueError('No admin privileges.')
             else:
-                self._apikeys[apikey]['description'] = description 
+                self._apiKeys[apiKey]['description'] = description 
                 self._makePersistent()
         except ValueError, e:
             session['ApiKey.formValues']['errorMessage'] = str(e)
@@ -85,21 +85,21 @@ class ApiKey(Observable):
         except ValueError, e:
             session['ApiKey.formValues']['errorMessage'] = str(e)
         else:
-            newApikey = self.generateKey(16)
-            self._apikeys[newApikey] = {'username': username}
+            newApiKey = self.generateKey(16)
+            self._apiKeys[newApiKey] = {'username': username}
             self._makePersistent()
 
         yield redirectHttp % formUrl
 
     def listApiKeysAndData(self):
-        return self._apikeys.items()
+        return self._apiKeys.items()
 
-    def getForApikey(self, key):
-        return self._apikeys.get(key, None)
+    def getForApiKey(self, key):
+        return self._apiKeys.get(key, None)
 
     def _makePersistent(self):
         tmpFilename = self._filename + ".tmp"
-        jsonWrite(self._apikeys, open(tmpFilename, 'w'))
+        jsonWrite(self._apiKeys, open(tmpFilename, 'w'))
         rename(tmpFilename, self._filename)
     
     @staticmethod

@@ -61,6 +61,7 @@ from oas import MultipleAnnotationSplit, Normalize, Deanonymize, Publish
 from namespaces import namespaces, xpath
 from oas.login import BasicHtmlLoginForm, createPasswordFile
 from oas.apikey import ApiKey
+from oas.apikeycheck import ApiKeyCheck
 
 ALL_FIELD = '__all__'
 unqualifiedTermFields = [(ALL_FIELD, 1.0)]
@@ -220,11 +221,13 @@ def dna(reactor, observableHttpServer, config):
                     (Authorization(), 
                         (ApacheLogger(stdout),
                             (PathFilter("/update"),
-                                (SRURecordUpdate(),
-                                    (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
-                                        sanitizeAndUploadHelix,
+                                #(ApiKeyCheck(),
+                                    (SRURecordUpdate(),
+                                        (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
+                                            sanitizeAndUploadHelix,
+                                        )   
                                     )   
-                                )   
+                                    #)
                             ),
                             (PathFilter("/reindex"),
                                 (Reindex(partName="rdf", filelistPath=reindexPath),

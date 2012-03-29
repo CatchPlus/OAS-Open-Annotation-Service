@@ -69,15 +69,15 @@ class UserTest(IntegrationTestCase):
 
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
 
-        self.assertEquals("",  xpath(body, '//div[@id="apikeys"]/table/form/tr/td/input[@name="description"]/@value')[0])
-        apikey = xpath(body, '//div[@id="apikeys"]/table/form/tr/td[@class="apikey"]/text()')[0]
-        self.assertNotEqual("", apikey)
+        self.assertEquals("",  xpath(body, '//div[@id="apiKeys"]/table/form/tr/td/input[@name="description"]/@value')[0])
+        apiKey = xpath(body, '//div[@id="apiKeys"]/table/form/tr/td[@class="apiKey"]/text()')[0]
+        self.assertNotEqual("", apiKey)
 
-        headers, body = postRequest(self.portNumber, '/apikey.action/update', urlencode(dict(formUrl='/admin', apikey=apikey, description="Some description")), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/update', urlencode(dict(formUrl='/admin', apiKey=apiKey, description="Some description")), parse='lxml', additionalHeaders=dict(cookie=cookie))
         self.assertTrue('302' in headers, headers)
         self.assertEquals('/admin', parseHeaders(headers)['Location'], headers)
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
-        self.assertEquals("Some description",  xpath(body, '//div[@id="apikeys"]/table/form/tr/td/input[@name="description"]/@value')[0])
+        self.assertEquals("Some description",  xpath(body, '//div[@id="apiKeys"]/table/form/tr/td/input[@name="description"]/@value')[0])
         
 
     def testAddSameUserTwice(self):

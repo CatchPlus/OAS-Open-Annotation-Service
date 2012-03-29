@@ -49,4 +49,4 @@ class AuthorizationTest(SeecrTestCase):
         )
         list(compose(dna.all.handleRequest(Headers={'Authorization': 'ThisIsTheApiKey'})))
 
-        self.assertEquals({'apikey': 'ThisIsTheApiKey'}, intercept.authorization)
+        self.assertEquals({'apiKey': 'ThisIsTheApiKey'}, intercept.authorization)

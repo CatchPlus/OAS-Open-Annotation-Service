@@ -41,9 +41,9 @@ class ApiKeyTest(SeecrTestCase):
 
     def setUp(self):
         SeecrTestCase.setUp(self)
-        self.apikey = ApiKey(databaseFile=join(self.tempdir, 'db'))
+        self.apiKey = ApiKey(databaseFile=join(self.tempdir, 'db'))
         self.pwd = createPasswordFile(join(self.tempdir, 'pwd'), salt="13241")
-        self.apikey.addObserver(self.pwd)
+        self.apiKey.addObserver(self.pwd)
 
     def testCreateKey(self):
         session = {
@@ -52,20 +52,20 @@ class ApiKeyTest(SeecrTestCase):
         Body = urlencode(dict(username='user', description="A User", formUrl='/apikeyform'))
         self.assertEquals(['admin'], self.pwd.listUsernames())
 
-        result = ''.join(compose(self.apikey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
+        result = ''.join(compose(self.apiKey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
         headers, body = result.split(CRLF*2)
 
         self.assertTrue(' 302 ' in headers, headers)
         self.assertEquals('/apikeyform', parseHeaders(headers)['Location'])
         self.assertEquals(['admin', 'user'], sorted(self.pwd.listUsernames()))
 
-        aList = self.apikey.listApiKeysAndData()
+        aList = self.apiKey.listApiKeysAndData()
         self.assertEquals(1, len(aList))
-        apikey, userdata = aList[0]
+        apiKey, userdata = aList[0]
         self.assertEquals('user', userdata['username'])
-        self.assertTrue(16, len(apikey))
+        self.assertTrue(16, len(apiKey))
 
-        result = ''.join(compose(self.apikey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
+        result = ''.join(compose(self.apiKey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
         headers, body = result.split(CRLF*2)
 
         self.assertTrue(' 302 ' in headers, headers)
@@ -82,12 +82,12 @@ class ApiKeyTest(SeecrTestCase):
         }
         Body = urlencode(dict(username='user', formUrl='/apikeyform'))
 
-        result = ''.join(compose(self.apikey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
+        result = ''.join(compose(self.apiKey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
         headers, body = result.split(CRLF*2)
 
         self.assertTrue(' 302 ' in headers, headers)
         self.assertEquals('/apikeyform', parseHeaders(headers)['Location'])
-        self.assertEquals([], list(self.apikey.listApiKeysAndData()))
+        self.assertEquals([], list(self.apiKey.listApiKeysAndData()))
         self.assertEquals({'errorMessage': 'No admin privileges.'}, session['ApiKey.formValues'])
 
     def testChangeDescription(self):
@@ -96,29 +96,29 @@ class ApiKeyTest(SeecrTestCase):
         }
         Body = urlencode(dict(username='user', formUrl='/apikeyform'))
 
-        result = ''.join(compose(self.apikey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
+        result = ''.join(compose(self.apiKey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
         headers, body = result.split(CRLF*2)
         self.assertEquals(['admin', 'user'], sorted(self.pwd.listUsernames()))
 
-        aList = self.apikey.listApiKeysAndData()
-        apikey = aList[0][0]
+        aList = self.apiKey.listApiKeysAndData()
+        apiKey = aList[0][0]
 
-        result = ''.join(compose(self.apikey.handleRequest(session=session, Body=urlencode(dict(apikey=apikey, formUrl="/apikeyform", description="This is the description")), path="/action/update", Method="POST")))
-        aList = self.apikey.listApiKeysAndData()
+        result = ''.join(compose(self.apiKey.handleRequest(session=session, Body=urlencode(dict(apiKey=apiKey, formUrl="/apikeyform", description="This is the description")), path="/action/update", Method="POST")))
+        aList = self.apiKey.listApiKeysAndData()
         self.assertEquals(1, len(aList))
-        apikey, data = aList[0]
+        apiKey, data = aList[0]
         self.assertEquals('This is the description', data['description'])
        
-    def testGetForApikey(self):
-        self.assertEquals(None, self.apikey.getForApikey('nonexistent'))
+    def testGetForApiKey(self):
+        self.assertEquals(None, self.apiKey.getForApiKey('nonexistent'))
 
-        result = ''.join(compose(self.apikey.handleRequest(
+        result = ''.join(compose(self.apiKey.handleRequest(
             session={ 'user': User('admin')},
             Body=urlencode(dict(username='user', formUrl='/apikeyform')), 
             path='/action/create', 
             Method='POST')))
-        [(apikey, userdata)] = self.apikey.listApiKeysAndData()
+        [(apiKey, userdata)] = self.apiKey.listApiKeysAndData()
 
-        dataByApikey = self.apikey.getForApikey(apikey)
-        self.assertEquals(userdata, dataByApikey)
+        dataByApiKey = self.apiKey.getForApiKey(apiKey)
+        self.assertEquals(userdata, dataByApiKey)
 

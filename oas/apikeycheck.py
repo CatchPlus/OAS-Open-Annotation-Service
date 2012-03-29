@@ -31,20 +31,19 @@ from meresco.components.http.utils import unauthorizedHtml
 class ApiKeyCheck(Observable):
 
     def handleRequest(self, **kwargs):
-        apikey = None
+        apiKey = None
         try:
-            apikey = self.ctx.authorization['apikey']
+            apiKey = self.ctx.authorization['apiKey']
         except AttributeError:
             pass 
 
-        if apikey == None:
+        if apiKey == None:
             yield unauthorizedHtml
             return
 
-        data = self.call.getForApikey(apikey)
+        data = self.call.getForApiKey(apiKey)
         if data == None:
             yield unauthorizedHtml
             return
-        print ">>>", data
        
         yield self.all.handleRequest(**kwargs)
