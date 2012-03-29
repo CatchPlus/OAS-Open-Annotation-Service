@@ -68,6 +68,9 @@ class ApiKey(Observable):
     def listApiKeysAndData(self):
         return self._apikeys.items()
 
+    def getForApikey(self, key):
+        return self._apikeys.get(key, None)
+
     def _makePersistent(self):
         tmpFilename = self._filename + ".tmp"
         jsonWrite(self._apikeys, open(tmpFilename, 'w'))

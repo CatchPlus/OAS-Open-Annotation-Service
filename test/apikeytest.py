@@ -82,4 +82,17 @@ class ApiKeyTest(SeecrTestCase):
         self.assertEquals(1, len(aList))
         apikey, data = aList[0]
         self.assertEquals('This is the description', data['description'])
-        
+       
+    def testGetForApikey(self):
+        self.assertEquals(None, self.apikey.getForApikey('nonexistent'))
+
+        result = ''.join(compose(self.apikey.handleRequest(
+            session={ 'user': User('admin')},
+            Body=urlencode(dict(username='user', formUrl='/apikeyform')), 
+            path='/action/create', 
+            Method='POST')))
+        [(apikey, userdata)] = self.apikey.listApiKeysAndData()
+
+        dataByApikey = self.apikey.getForApikey(apikey)
+        self.assertEquals(userdata, dataByApikey)
+
