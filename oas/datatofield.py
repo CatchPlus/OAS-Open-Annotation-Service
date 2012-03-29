@@ -36,3 +36,5 @@ class DataToField(Transparent):
     def add(self, **kwargs):
         if self._fromKwarg in kwargs:
             self.do.addField(name=self._fieldname, value=kwargs[self._fromKwarg])
+        return
+        yield

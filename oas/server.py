@@ -38,7 +38,7 @@ from weightless.io import Reactor
 
 from meresco.core import Observable, TransactionScope, Transparent
 
-from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field, Reindex, FilterMessages, TransformFieldValue, CQLConversion, RenameCqlIndex, FilterField, XmlXPath, RewritePartname
+from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field, Reindex, FilterMessages, TransformFieldValue, CQLConversion, RenameCqlIndex, FilterField, XmlXPath, RewritePartname, FilterPartByName
 from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer, ApacheLogger, SessionHandler
 from meresco.components.http.utils import ContentTypePlainText, okXml
 from meresco.components.sru import SruParser, SruHandler, SRURecordUpdate
@@ -62,6 +62,8 @@ from namespaces import namespaces, xpath
 from oas.login import BasicHtmlLoginForm, createPasswordFile
 from oas.apikey import ApiKey
 from oas.apikeycheck import ApiKeyCheck
+from oas.datatofield import DataToField
+from oas.adduserdatafromapikey import AddUserDataFromApiKey
 
 ALL_FIELD = '__all__'
 unqualifiedTermFields = [(ALL_FIELD, 1.0)]
@@ -120,68 +122,87 @@ def dna(reactor, observableHttpServer, config):
             )
         )
 
+    basicHtmlLoginHelix = (BasicHtmlLoginForm(action="/login.action", loginPath="/login"),
+        (passwordFile,),
+    )
+
+    apiKeyHelix = (apiKey,
+        (passwordFile,),
+    )
+
     uploadHelix =  \
         (TransactionScope('record'),    
             (Venturi(
-                    should=[dict(partname='rdf', xpath='/rdf:RDF'),],
+                    should=[
+                        dict(partname='user', xpath='/ignored', asString=True),
+                        dict(partname='rdf', xpath='/rdf:RDF'),
+                    ],
                     namespaceMap=namespaces
                 ),
                 (FilterMessages(allowed=['getStream', 'isAvailable']),
                     (storageComponent,),
                 ),
-                (OaiAddRecord(),
-                    (oaiJazz, )
-                ),
-                (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
-                    (storageComponent,),
-                    (tripleStore,),
-                ),  
-                (XmlXPath(["/rdf:RDF/oac:Annotation/dcterms:creator/foaf:Agent[@rdf:about]"], fromKwarg="lxmlNode", namespaceMap=namespaces),
-                    (IdentifierFromXPath('@rdf:about'),
-                        (RewritePartname('foafAgent'),
-                            (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
-                                (storageComponent, )
-                            )
-                        )
-                    )
-                ),
-                (XPath2Field([
-                    ("/rdf:RDF/oac:Annotation/dc:title/text()", 'dc:title'),
-                    ("/rdf:RDF/oac:Annotation/dcterms:created/text()", 'dcterms:created'),
-                    ], namespaceMap=namespaces),
-                    indexHelix
-                ),
-                (XPath2Field([
-                    ("/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
-                    ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", 'oac:hasBody'),
-                    ("/rdf:RDF/oac:Annotation/oac:hasTarget/@rdf:resource", 'oac:hasTarget'),
-                    ("//foaf:mbox/@rdf:resource", '__all__'),
-
-                    ], namespaceMap=namespaces),
-                    
-                    (FilterField(lambda name: name in untokenized), 
-                        (RenameField(lambda name: 'untokenized.'+name),
-                            indexWithoutFragment,
-                            indexHelix
-                        )
+                (FilterPartByName(included=['rdf']),
+                    (OaiAddRecord(),
+                        (oaiJazz, )
                     ),
-                    # oac:hasBody, dcterms:creators that have an url need to be resolved. 
-                    # This is done Offline, therefore we mark the record.
-                    (FilterField(lambda name: name in ['dcterms:creator', 'oac:hasBody']),
-                        (FilterFieldValue(lambda value: value.startswith('http://')),
-                            (RenameField(lambda name: '__resolved__'),
-                                (TransformFieldValue(lambda value: 'no'),
-                                    indexHelix
+                    (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
+                        (storageComponent,),
+                        (tripleStore,),
+                    ),  
+                    (XmlXPath(["/rdf:RDF/oac:Annotation/dcterms:creator/foaf:Agent[@rdf:about]"], fromKwarg="lxmlNode", namespaceMap=namespaces),
+                        (IdentifierFromXPath('@rdf:about'),
+                            (RewritePartname('foafAgent'),
+                                (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
+                                    (storageComponent, )
                                 )
                             )
                         )
                     ),
-                    allFieldIndexHelix,
-                    indexHelix
+                    (XPath2Field([
+                        ("/rdf:RDF/oac:Annotation/dc:title/text()", 'dc:title'),
+                        ("/rdf:RDF/oac:Annotation/dcterms:created/text()", 'dcterms:created'),
+                        ], namespaceMap=namespaces),
+                        indexHelix
+                    ),
+                    (XPath2Field([
+                        ("/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
+                        ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", 'oac:hasBody'),
+                        ("/rdf:RDF/oac:Annotation/oac:hasTarget/@rdf:resource", 'oac:hasTarget'),
+                        ("//foaf:mbox/@rdf:resource", '__all__'),
+
+                        ], namespaceMap=namespaces),
+                        
+                        (FilterField(lambda name: name in untokenized), 
+                            (RenameField(lambda name: 'untokenized.'+name),
+                                indexWithoutFragment,
+                                indexHelix
+                            )
+                        ),
+                        # oac:hasBody, dcterms:creators that have an url need to be resolved. 
+                        # This is done Offline, therefore we mark the record.
+                        (FilterField(lambda name: name in ['dcterms:creator', 'oac:hasBody']),
+                            (FilterFieldValue(lambda value: value.startswith('http://')),
+                                (RenameField(lambda name: '__resolved__'),
+                                    (TransformFieldValue(lambda value: 'no'),
+                                        indexHelix
+                                    )
+                                )
+                            )
+                        ),
+                        allFieldIndexHelix,
+                        indexHelix
+                    ),
+                    (Xml2Fields(),
+                        allFieldIndexHelix,
+                        indexHelix
+                    )
                 ),
-                (Xml2Fields(),
-                    allFieldIndexHelix,
-                    indexHelix
+                (FilterPartByName(included=['user']),
+                    (DataToField(fromKwarg='data', fieldname='api.user'),
+                        allFieldIndexHelix,
+                        indexHelix,
+                    )
                 )
             )
         )
@@ -195,6 +216,10 @@ def dna(reactor, observableHttpServer, config):
                 (Deanonymize(),
                     (Publish(baseUrl=config['resolveBaseUrl']),
                         (Transparent(name="index"),
+                            (AddUserDataFromApiKey(),
+                                apiKeyHelix,
+                                (storageComponent,)
+                            ),
                             uploadHelix
                         ),
                         (Transparent(name="store"),
@@ -207,12 +232,6 @@ def dna(reactor, observableHttpServer, config):
             )
         )
 
-    basicHtmlLoginHelix = (BasicHtmlLoginForm(action="/login.action", loginPath="/login"),
-        (passwordFile,),
-    )
-    apiKeyHelix = (apiKey,
-        (passwordFile,),
-    )
 
     return \
         (Observable(),

@@ -94,8 +94,8 @@ class ApiKey(Observable):
     def listApiKeysAndData(self):
         return self._apiKeys.items()
 
-    def getForApiKey(self, key):
-        return self._apiKeys.get(key, None)
+    def getForApiKey(self, apiKey):
+        return self._apiKeys.get(apiKey, None)
 
     def _makePersistent(self):
         tmpFilename = self._filename + ".tmp"

@@ -28,7 +28,7 @@
 from meresco.core import Observable
 
 class AddUserDataFromApiKey(Observable):
-    def add(self, partname, data, **kwargs):
+    def add(self, identifier, **kwargs):
         apiKey = self.ctx.authorization['apiKey']
         userdata = self.call.getForApiKey(apiKey=apiKey)
-        yield self.all.add(partname='user', data=userdata['username'], **kwargs)
+        yield self.all.add(identifier=identifier, partname='user', data=userdata['username'])
