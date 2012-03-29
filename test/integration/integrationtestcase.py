@@ -265,10 +265,8 @@ class OasIntegrationState(IntegrationState):
         headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='testUser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
 
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
-
-        self.testUserApiKey = xpath(body, '//div[@id="apiKeys"]/table/form/tr/td[@class="apiKey"]/text()')[0]
-        print self.testUserApiKey
-        assert self.testUserApiKey != None
+        self.apiKeyForTestUser = xpath(body, '//div[@id="apiKeys"]/table/form/tr/td[@class="apiKey"]/text()')[0]
+        assert self.apiKeyForTestUser != None
 
     def _createDatabase(self):
         if fastMode:
@@ -299,7 +297,7 @@ class OasIntegrationState(IntegrationState):
         print 'http://localhost:%s%s' % (aPort, uploadPath), '<-', basename(filename)[:-len('.updateRequest')]
         updateRequest = open(filename).read()
         lxml = parse(StringIO(updateRequest))
-        header, body = upload(hostname='localhost', portnumber=aPort, path=uploadPath, stream=open(filename), apiKey=self.testUserApiKey).split('\r\n\r\n', 1)
+        header, body = upload(hostname='localhost', portnumber=aPort, path=uploadPath, stream=open(filename), apiKey=self.apiKeyForTestUser).split('\r\n\r\n', 1)
         if '200 Ok' not in header:
             print 'No 200 Ok response, but:\n', header
             exit(123)

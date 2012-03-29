@@ -91,3 +91,13 @@ class UserTest(IntegrationTestCase):
         headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='newuser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
         self.assertTrue('302' in headers, headers)
         self.assertEquals('/admin', parseHeaders(headers)['Location'], headers)
+
+
+    def testAddByNewUser(self):
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")), parse='lxml')
+        cookie = parseHeaders(headers)['Set-Cookie']
+
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='another')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+
+        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+        print xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="another"]]/td[@class="apiKey"]/text()')[0]

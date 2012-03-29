@@ -75,6 +75,7 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('mailto:unique@info.org', 1)
         self.assertQuery('oac:hasTarget = "http://example.org/target/for/test"', 1)
         self.assertQuery('RDF.Annotation.creator.Agent.name = "billy butcher"', 2)
+        self.assertQuery('api.user = testuser', 13)
 
     def testOaiIdentify(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')
@@ -104,7 +105,7 @@ class OasTest(IntegrationTestCase):
 </rdf:RDF>""" % locals()
         self.assertQuery('RDF.Annotation.title = "An Annotions submitted through a form"', 0)
 
-        postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)))
+        postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey=self.apiKeyForTestUser)))
         self.assertQuery('RDF.Annotation.title = "An Annotions submitted through a form"', 1)
 
 
@@ -139,7 +140,7 @@ class OasTest(IntegrationTestCase):
 </rdf:RDF></srw:recordData></srw:record>
 </ucp:updateRequest>""" % locals()
 
-        header, body = postRequest(self.portNumber, '/update', sruUpdateBody, parse='lxml', additionalHeaders={'Authorization':self.testUserApiKey})
+        header, body = postRequest(self.portNumber, '/update', sruUpdateBody, parse='lxml', additionalHeaders={'Authorization':self.apiKeyForTestUser})
         self.assertEquals(['info:srw/diagnostic/12/12'], xpath(body, '/srw:updateResponse/srw:diagnostics/diag:diagnostic/diag:uri/text()'))
         
     def testReindex(self):
