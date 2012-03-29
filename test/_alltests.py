@@ -35,9 +35,11 @@ systemPath.insert(0, '..')                          #DO_NOT_DISTRIBUTE
 
 from unittest import main
 
+from adduserdatafromapikeytest import AddUserDataFromApiKeyTest
 from apikeytest import ApiKeyTest
 from apikeychecktest import ApiKeyCheckTest
 from authorizationtest import AuthorizationTest
+from datatofieldtest import DataToFieldTest
 from deanonymizetest import DeanonymizeTest
 from identifierfromxpathtest import IdentifierFromXPathTest
 from multipleannotationsplittest import MultipleAnnotationSplitTest
