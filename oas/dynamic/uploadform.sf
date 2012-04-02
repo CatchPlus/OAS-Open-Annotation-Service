@@ -37,8 +37,13 @@ def main(Body, **kwargs):
     if 'annotation' in params and params['annotation'][0].strip() != '':
         annotation = params['annotation'][0].strip()
 
+    apiKey = ''
+    if 'apiKey' in params and params['apiKey'][0].strip() != '':
+        apiKey = params['apiKey'][0].strip()
+
     if annotation:
         try:
+            __callstack_var_authorization__ = {'apiKey': apiKey }
             lxmlNode = parse(StringIO(annotation))
             yield all.add(identifier='ignored', partname="rdf", lxmlNode=lxmlNode)
         except Exception, e:
@@ -49,6 +54,7 @@ def main(Body, **kwargs):
     yield '<textarea name="annotation" cols="80" rows="24">'
     yield annotation if annotation else ''
     yield '</textarea>'
+    yield '<input type="text" name="apiKey" value=%s/>' % quoteattr(apiKey)
     yield '<input type="submit" value="Upload"/>'
     yield '</form>'
     yield page.footer()

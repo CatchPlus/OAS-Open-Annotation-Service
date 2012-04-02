@@ -263,10 +263,19 @@ class OasIntegrationState(IntegrationState):
         cookie = parseHeaders(headers)['Set-Cookie']
 
         headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='testUser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='anotherTestUser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='postUser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+
 
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
-        self.apiKeyForTestUser = xpath(body, '//div[@id="apiKeys"]/table/form/tr/td[@class="apiKey"]/text()')[0]
+        self.apiKeyForTestUser =  xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="testUser"]]/td[@class="apiKey"]/text()')[0]
         assert self.apiKeyForTestUser != None
+
+        self.apiKeyForAnotherTestUser = xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="anotherTestUser"]]/td[@class="apiKey"]/text()')[0]
+        assert self.apiKeyForAnotherTestUser != None
+        
+        self.apiKeyForPostUser = xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="postUser"]]/td[@class="apiKey"]/text()')[0]
+        assert self.apiKeyForPostUser != None
 
     def _createDatabase(self):
         if fastMode:
@@ -289,15 +298,17 @@ class OasIntegrationState(IntegrationState):
 
     def _uploadUpdateRequests(self, datadir, uploadPath, uploadPorts):
         requests = (join(datadir, r) for r in sorted(listdir(datadir)) if r.endswith('.updateRequest'))
-        for filename in requests:
-            self._uploadUpdateRequest(filename, uploadPath, uploadPorts)
+        for nr, filename in enumerate(requests):
+            self._uploadUpdateRequest(nr, filename, uploadPath, uploadPorts)
 
-    def _uploadUpdateRequest(self, filename, uploadPath, uploadPorts):
+    def _uploadUpdateRequest(self, nr, filename, uploadPath, uploadPorts):
         aPort = choice(uploadPorts)
+        apiKeys = [self.apiKeyForTestUser, self.apiKeyForAnotherTestUser]
+        apiKey = apiKeys[nr % len(apiKeys)]
         print 'http://localhost:%s%s' % (aPort, uploadPath), '<-', basename(filename)[:-len('.updateRequest')]
         updateRequest = open(filename).read()
         lxml = parse(StringIO(updateRequest))
-        header, body = upload(hostname='localhost', portnumber=aPort, path=uploadPath, stream=open(filename), apiKey=self.apiKeyForTestUser).split('\r\n\r\n', 1)
+        header, body = upload(hostname='localhost', portnumber=aPort, path=uploadPath, stream=open(filename), apiKey=apiKey).split('\r\n\r\n', 1)
         if '200 Ok' not in header:
             print 'No 200 Ok response, but:\n', header
             exit(123)

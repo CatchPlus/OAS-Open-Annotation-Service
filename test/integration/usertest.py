@@ -100,4 +100,6 @@ class UserTest(IntegrationTestCase):
         headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='another')), parse='lxml', additionalHeaders=dict(cookie=cookie))
 
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
-        print xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="another"]]/td[@class="apiKey"]/text()')[0]
+        apiKey = xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="another"]]/td[@class="apiKey"]/text()')[0]
+        self.assertTrue(len(apiKey) > 0, apiKey)
+

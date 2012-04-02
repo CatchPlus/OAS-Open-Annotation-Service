@@ -30,6 +30,9 @@ from weightless.core import compose
 
 from oas.datatofield import DataToField
 
+def lico(gen):
+    return list(compose(gen))
+
 class DataToFieldTest(SeecrTestCase):
     def setUp(self):
         SeecrTestCase.setUp(self)
@@ -38,7 +41,7 @@ class DataToFieldTest(SeecrTestCase):
         self.data2field.addObserver(self.observer)
 
     def testAdd(self):
-        self.data2field.add(identifier='identifier', partname='part', data='somedata')
+        lico(self.data2field.add(identifier='identifier', partname='part', data='somedata'))
         self.assertEquals(['addField'], [m.name for m in self.observer.calledMethods])
         self.assertEquals(dict(name='field', value='somedata'), self.observer.calledMethods[0].kwargs)
         

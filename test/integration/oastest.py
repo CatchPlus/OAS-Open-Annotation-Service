@@ -75,7 +75,8 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('mailto:unique@info.org', 1)
         self.assertQuery('oac:hasTarget = "http://example.org/target/for/test"', 1)
         self.assertQuery('RDF.Annotation.creator.Agent.name = "billy butcher"', 2)
-        self.assertQuery('api.user = testuser', 13)
+        self.assertQuery('api.user = testuser', 6)
+        self.assertQuery('api.user = anothertestuser', 7)
 
     def testOaiIdentify(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')
@@ -105,7 +106,7 @@ class OasTest(IntegrationTestCase):
 </rdf:RDF>""" % locals()
         self.assertQuery('RDF.Annotation.title = "An Annotions submitted through a form"', 0)
 
-        postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey=self.apiKeyForTestUser)))
+        postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey=self.apiKeyForPostUser)))
         self.assertQuery('RDF.Annotation.title = "An Annotions submitted through a form"', 1)
 
 
