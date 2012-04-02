@@ -46,13 +46,15 @@ def main(Body, **kwargs):
             __callstack_var_authorization__ = {'apiKey': apiKey }
             lxmlNode = parse(StringIO(annotation))
             yield all.add(identifier='ignored', partname="rdf", lxmlNode=lxmlNode)
+            annotation = ''
+            yield "<p class='message'>success</p>"
         except Exception, e:
             yield "<p class='error'>%s</p>" % str(e)
 
 
     yield '<form method="POST" action="/uploadform">'
     yield '<textarea name="annotation" cols="80" rows="24">'
-    yield annotation if annotation else ''
+    yield escapeHtml(annotation) if annotation else ''
     yield '</textarea>'
     yield '<input type="text" name="apiKey" value=%s/>' % quoteattr(apiKey)
     yield '<input type="submit" value="Upload"/>'

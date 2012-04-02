@@ -55,8 +55,9 @@ class OasTest(IntegrationTestCase):
     %s
 </rdf:RDF>""" % annotationBody
 
-        header,body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody)), parse='lxml')
+        header,body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey=self.apiKeyForPostUser)), parse='lxml')
         self.assertEquals([errorText], xpath(body, '//p[@class="error"]/text()'))
+        self.assertEquals([], xpath(body, '//p[@class="message"]/text()'))
     
     def testGetInfo(self):
         headers, body = getRequest(self.portNumber, "/info/version", parse=False)
@@ -106,9 +107,38 @@ class OasTest(IntegrationTestCase):
 </rdf:RDF>""" % locals()
         self.assertQuery('RDF.Annotation.title = "An Annotions submitted through a form"', 0)
 
-        postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey=self.apiKeyForPostUser)))
+        header, body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey=self.apiKeyForPostUser)), parse='lxml')
         self.assertQuery('RDF.Annotation.title = "An Annotions submitted through a form"', 1)
+        textarea = xpath(body, '//form/textarea[@name="annotation"]/text()')
+        apiKey = xpath(body, '//form/input[@name="apiKey"]/@value')[0]
+        message = xpath(body, '//p[@class="message"]/text()')[0]
+        self.assertEquals(self.apiKeyForPostUser, apiKey)
+        self.assertEquals([], textarea)
+        self.assertTrue('success' in message, message)
 
+
+    def testErrorWhenBadApiKey(self):
+        identifier = "urn:uuid:%s" % uuid4()
+        annotationBody = """<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <rdf:Description rdf:about="%(identifier)s">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <oac:hasBody rdf:resource="ex:HDFI-2"/>
+        <oac:hasTarget rdf:resource="ex:HDFV2"/>
+        <dc:title>An Annotions submitted through a form</dc:title>
+        <dcterms:creator rdf:resource="ex:AnotherUser"/>
+        <dcterms:created>2000-02-01 12:34:56</dcterms:created>
+    </rdf:Description>
+</rdf:RDF>""" % locals()
+
+        header, body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey="WRONGKEY")), parse='lxml')
+        error =  xpath(body, '//p[@class="error"]/text()')[0]
+        self.assertEquals('No valid API Key given', error)
 
     def testErrorWhenNotAnnotation(self):
         self.assertNotAValidAnnotiation('No annotations found.', """<rdf:Description rdf:about="urn:uuid:%s">

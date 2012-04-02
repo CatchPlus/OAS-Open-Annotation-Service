@@ -31,6 +31,20 @@ from meresco.components.http.utils import unauthorizedHtml
 class ApiKeyCheck(Observable):
 
     def handleRequest(self, **kwargs):
+        try:
+            self._check()
+        except ValueError:
+            yield unauthorizedHtml
+            return
+       
+        yield self.all.handleRequest(**kwargs)
+
+    def add(self, **kwargs):
+        self._check()
+        yield self.all.add(**kwargs)
+
+
+    def _check(self):
         apiKey = None
         try:
             apiKey = self.ctx.authorization['apiKey']
@@ -38,12 +52,9 @@ class ApiKeyCheck(Observable):
             pass 
 
         if apiKey == None:
-            yield unauthorizedHtml
-            return
+            raise ValueError('No API Key given')
 
         data = self.call.getForApiKey(apiKey)
         if data == None:
-            yield unauthorizedHtml
-            return
-       
-        yield self.all.handleRequest(**kwargs)
+            raise ValueError('No valid API Key given')
+
