@@ -52,8 +52,6 @@ class Publish(Observable):
         return newIdentifier
 
     def process(self, lxmlNode):
-
-
         for annotation in filterAnnotations(lxmlNode):
             identifier = getAttrib(annotation, 'rdf:about')
             if identifier.lower().startswith('urn:'):

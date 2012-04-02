@@ -46,6 +46,7 @@ from multipleannotationsplittest import MultipleAnnotationSplitTest
 from normalizetest import NormalizeTest
 from publishtest import PublishTest
 from rdfcontainertest import RdfContainerTest
+from reindexidentifiertest import ReindexIdentifierTest
 from resolveservertest import ResolveServerTest
 from utilstest import UtilsTest
 

@@ -46,7 +46,7 @@ class SruClient(object):
         url = "%s?%s" % (
             self._baseurl, 
             urlencode(dict(
-                version="1.1", 
+                version="1.2", 
                 query=query, 
                 operation="searchRetrieve")))
         return parse(StringIO(urlopen(url).read()))
@@ -58,14 +58,23 @@ class ResolveServer(Observable):
 
     def listResolvables(self):
         response = self.call.searchRetrieve(self._query)
+
+        records = xpath(response, "/srw:searchRetrieveResponse/srw:records/srw:record")
         nodes = xpath(response, "/srw:searchRetrieveResponse/srw:records/srw:record/srw:recordData/rdf:RDF")
-        for node in nodes:
+        for record in records:
+            node = xpath(record, "srw:recordData/rdf:RDF")[0]
             items = []
             yield {
-                'record': tostring(node),
+                'identifier': xpath(record, "srw:recordIdentifier/text()")[0],
                 'items': [
-                    {'filter': filterFoafAgents, 'partname': 'foafAgent', 'urls': xpath(node, "oac:Annotation/dcterms:creator/@rdf:resource")},
-                    {'filter': filterOacBodies, 'partname': 'oacBody', 'urls': xpath(node, "oac:Annotation/oac:hasBody/@rdf:resource")},
+                    {   'filter': filterFoafAgents, 
+                        'partname': 'foafAgent', 
+                        'urls': xpath(node, "oac:Annotation/dcterms:creator/@rdf:resource")
+                    },
+                    {   'filter': filterOacBodies, 
+                        'partname': 'oacBody', 
+                        'urls': xpath(node, "oac:Annotation/oac:hasBody/@rdf:resource")
+                    },
                 ]
             }
 
@@ -86,18 +95,18 @@ class ResolveServer(Observable):
                         identifier = getAttrib(node, "rdf:about")
                         newNode = parse(StringIO(tostring(node)))
                         yield self.all.add(identifier=identifier, partname=item['partname'], lxmlNode=newNode)
-                self.call.inject(resolvable['record'])
+                self.call.inject(resolvable['identifier'])
              
 class RecordInject(object):
     def __init__(self, injectUrl):
         self._injectUrl = injectUrl
 
-    def inject(self, xml):
-        print urlopen(self._injectUrl, xml).read()
+    def inject(self, identifier):
+        print urlopen(self._injectUrl + "?%s" % urlencode({'identifier': identifier})).read()
 
 def dna(config):
     baseurl = "http://%(hostName)s:%(portNumber)s/sru" % config
-    injectUrl = "http://%(hostName)s:%(portNumber)s/inject" % config
+    injectUrl = "http://%(hostName)s:%(portNumber)s/recordReindex" % config
     databasePath = config['databasePath']
     storage = StorageComponent(join(databasePath, 'storage'))
 

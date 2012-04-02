@@ -54,7 +54,7 @@ from meresco.oai import OaiPmh, OaiJazz, OaiAddRecord
 from dynamichtml import DynamicHtml
 from oas import VERSION_STRING
 from oas import FilterFieldValue
-from oas import Authorization
+from oas import Authorization, ReindexIdentifier
 from oas.seecroaiwatermark import SeecrOaiWatermark
 from oas.identifierfromxpath import IdentifierFromXPath
 from oas import MultipleAnnotationSplit, Normalize, Deanonymize, Publish
@@ -231,7 +231,26 @@ def dna(reactor, observableHttpServer, config):
                 )
             )
         )
-
+    sanitizeAndUploadHelixUnchecked = \
+        (MultipleAnnotationSplit(),
+            (FilterMessages(allowed=['isAvailable', 'getStream']),
+                (storageComponent,)
+            ),
+            (Normalize(),
+                (Deanonymize(),
+                    (Publish(baseUrl=config['resolveBaseUrl']),
+                        (Transparent(name="index"),
+                            uploadHelix
+                        ),
+                        (Transparent(name="store"),
+                            (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
+                                (storageComponent, ),
+                            )
+                        )
+                    )
+                )
+            )
+        )
 
     return \
         (Observable(),
@@ -259,6 +278,14 @@ def dna(reactor, observableHttpServer, config):
                                     uploadHelix
                                 )
                             ),
+                            (PathFilter("/recordReindex"),
+                                (ReindexIdentifier(),
+                                    (FilterMessages(allowed=['getStream', 'isAvailable']),
+                                        (storageComponent, )
+                                    ),
+                                    sanitizeAndUploadHelixUnchecked,
+                                )
+                            ),
                             (SessionHandler(secretSeed='secret :-)'),
                                 (PathFilter("/login.action"),
                                     basicHtmlLoginHelix,
@@ -266,7 +293,7 @@ def dna(reactor, observableHttpServer, config):
                                 (PathFilter("/apikey.action"),
                                     apiKeyHelix,
                                 ),
-                                (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action", '/apikey.action']),
+                                (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action", '/apikey.action', "/recordReindex"]),
                                     (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                                         indexPage='/index', 
                                         additionalGlobals={
