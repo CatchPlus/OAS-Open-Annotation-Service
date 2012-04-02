@@ -109,8 +109,8 @@ class OasTest(IntegrationTestCase):
 
         header, body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey=self.apiKeyForPostUser)), parse='lxml')
         self.assertQuery('RDF.Annotation.title = "An Annotions submitted through a form"', 1)
-        textarea = xpath(body, '//form/textarea[@name="annotation"]/text()')
-        apiKey = xpath(body, '//form/input[@name="apiKey"]/@value')[0]
+        textarea = xpath(body, '//textarea[@name="annotation"]/text()')
+        apiKey = xpath(body, '//input[@name="apiKey"]/@value')[0]
         message = xpath(body, '//p[@class="message"]/text()')[0]
         self.assertEquals(self.apiKeyForPostUser, apiKey)
         self.assertEquals([], textarea)

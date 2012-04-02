@@ -47,16 +47,18 @@ def main(Body, **kwargs):
             lxmlNode = parse(StringIO(annotation))
             yield all.add(identifier='ignored', partname="rdf", lxmlNode=lxmlNode)
             annotation = ''
-            yield "<p class='message'>success</p>"
+            yield "<p class='message'>Upload successful.</p>"
         except Exception, e:
             yield "<p class='error'>%s</p>" % str(e)
 
 
     yield '<form method="POST" action="/uploadform">'
-    yield '<textarea name="annotation" cols="80" rows="24">'
+    yield '<dl><dt>Annotation</dt>\n'
+    yield '<dd><textarea name="annotation" cols="80" rows="24">'
     yield escapeHtml(annotation) if annotation else ''
-    yield '</textarea>'
-    yield '<input type="text" name="apiKey" value=%s/>' % quoteattr(apiKey)
-    yield '<input type="submit" value="Upload"/>'
+    yield '</textarea></dd>\n'
+    yield '<dt>ApiKey</dt><dd><input type="text" name="apiKey" value=%s/></dd>\n' % quoteattr(apiKey)
+    yield '<dd class="submit"><input type="submit" value="Upload"/></dd>\n'
+    yield '</dl>'
     yield '</form>'
     yield page.footer()
