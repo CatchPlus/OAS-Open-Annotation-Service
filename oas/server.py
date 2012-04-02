@@ -39,7 +39,7 @@ from weightless.io import Reactor
 from meresco.core import Observable, TransactionScope, Transparent
 
 from meresco.components import readConfig, StorageComponent, Amara2Lxml, XmlPrintLxml, Xml2Fields, Venturi, RenameField, XPath2Field, Reindex, FilterMessages, TransformFieldValue, CQLConversion, RenameCqlIndex, FilterField, XmlXPath, RewritePartname, FilterPartByName
-from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer, ApacheLogger, SessionHandler
+from meresco.components.http import ObservableHttpServer, StringServer, BasicHttpHandler, PathFilter, PathRename, FileServer, ApacheLogger, SessionHandler, IpFilter
 from meresco.components.http.utils import ContentTypePlainText, okXml
 from meresco.components.sru import SruParser, SruHandler, SRURecordUpdate
 
@@ -278,12 +278,14 @@ def dna(reactor, observableHttpServer, config):
                                     uploadHelix
                                 )
                             ),
-                            (PathFilter("/recordReindex"),
-                                (ReindexIdentifier(),
-                                    (FilterMessages(allowed=['getStream', 'isAvailable']),
-                                        (storageComponent, )
-                                    ),
-                                    sanitizeAndUploadHelixUnchecked,
+                            (IpFilter(allowedIps=['127.0.0.1']),
+                                (PathFilter("/recordReindex"),
+                                    (ReindexIdentifier(),
+                                        (FilterMessages(allowed=['getStream', 'isAvailable']),
+                                            (storageComponent, )
+                                        ),
+                                        sanitizeAndUploadHelixUnchecked,
+                                    )
                                 )
                             ),
                             (SessionHandler(secretSeed='secret :-)'),
