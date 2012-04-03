@@ -30,6 +30,7 @@ from utils import getRequest, postRequest
 from oas.utils import parseHeaders
 from lxml.etree import tostring
 from urllib import urlencode
+from uuid import uuid4
 from oas.namespaces import xpath, getAttrib
 
 class UserTest(IntegrationTestCase):
@@ -103,3 +104,45 @@ class UserTest(IntegrationTestCase):
         apiKey = xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="another"]]/td[@class="apiKey"]/text()')[0]
         self.assertTrue(len(apiKey) > 0, apiKey)
 
+    def testAddInsertDelete(self):
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")), parse='lxml')
+        cookie = parseHeaders(headers)['Set-Cookie']
+
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='addDelete')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+
+        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+        apiKey = xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="addDelete"]]/td[@class="apiKey"]/text()')[0]
+
+        annotationBody = """<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <rdf:Description rdf:about="urn:uuid:%s">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <dc:title>To be deleted</dc:title>
+    </rdf:Description>
+</rdf:RDF>""" % uuid4()
+        self.assertQuery('RDF.Annotation.title = "To be deleted"', 0)
+
+        header, body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey=apiKey)), parse='lxml')
+        self.assertQuery('RDF.Annotation.title = "To be deleted"', 1)
+
+        headers, body = postRequest(self.portNumber, '/login.action/remove', urlencode(dict(formUrl='/admin', username='addDelete')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        
+        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+        apiKey = xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="addDelete"]]/td[@class="apiKey"]/text()')
+        self.assertEquals([], apiKey)
+        #### Delete user, then query again; number of results should be 0
+
+
+
+    def assertQuery(self, query, count):
+        headers, body = getRequest(self.portNumber, "/sru", arguments=dict(
+            version="1.1", operation="searchRetrieve", query=query), parse='lxml')
+        recordCount = int(xpath(body, '/srw:searchRetrieveResponse/srw:numberOfRecords/text()')[0])
+        if recordCount != count:
+            print tostring(body)
+        self.assertEquals(count, recordCount)

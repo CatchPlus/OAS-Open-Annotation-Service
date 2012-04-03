@@ -36,15 +36,22 @@ class BasicHtmlLoginForm(Observable):
         self._action = action
         self._loginPath = loginPath
         self._home = home
+        self._actions = {
+            'changepassword': self.handleChangePassword,
+            'remove': self.handleRemove,
+        }
+
 
     def handleRequest(self, Method, path, **kwargs):
         if Method == 'GET':
             yield redirectHttp % self._home
             return
-
-        if path.endswith('/changepassword'):
-            yield self.handleChangePassword(path=path, **kwargs)
+        
+        ignored, action = path.rsplit('/', 1)
+        if action in self._actions:
+            yield self._actions[action](path=path, **kwargs)
             return
+
         yield self.handleLogin(path=path, **kwargs)
 
     def handleLogin(self, session=None, Body=None, **kwargs):
@@ -79,7 +86,6 @@ class BasicHtmlLoginForm(Observable):
 </div>""" % locals()
 
     def handleChangePassword(self, session, Body, **kwargs):
-
         bodyArgs = parse_qs(Body, keep_blank_values=True) if Body else {}
         username = bodyArgs.get('username', [None])[0]
         oldPassword = bodyArgs.get('oldPassword', [None])[0]
@@ -122,6 +128,25 @@ class BasicHtmlLoginForm(Observable):
     </form>
 </div>""" % (quoteattr(join(self._action, 'changepassword')), quoteattr(path), quoteattr(session['user'].name))
 
+    def handleRemove(self, session, Body, **kwargs):
+        bodyArgs = parse_qs(Body, keep_blank_values=True) if Body else {}
+        formUrl = bodyArgs.get('formUrl', [self._home])[0]
+        if 'user' in session and session['user'].isAdmin():
+            username = bodyArgs.get('username', [None])[0]
+            if self.call.hasUser(username):
+                self.do.removeUser(username)
+            else:
+                session['BasicHtmlLoginForm.formValues'] = {
+                    'errorMessage': 'User "%s" does not exist.' % username
+                }
+
+        yield redirectHttp % formUrl
+
 class User(object):
     def __init__(self, name):
         self.name = name
+
+    def isAdmin(self):
+        return self.name == "admin"
+
+

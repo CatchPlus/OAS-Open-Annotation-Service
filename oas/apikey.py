@@ -38,7 +38,6 @@ class ApiKey(Observable):
     def __init__(self, databaseFile, name=None):
         Observable.__init__(self, name=name)
         self._apiKeys = {}
-        self._userIndex = {}
         self._filename = databaseFile
         if not isfile(self._filename):
             self._makePersistent()
@@ -63,11 +62,11 @@ class ApiKey(Observable):
         formUrl = bodyArgs['formUrl'][0]
         session['ApiKey.formValues'] = {}
         try:
-            if not 'user' in session or session['user'].name != 'admin':
-                raise ValueError('No admin privileges.')
-            else:
+            if 'user' in session and session['user'].isAdmin():
                 self._apiKeys[apiKey]['description'] = description 
                 self._makePersistent()
+            else:
+                raise ValueError('No admin privileges.')
         except ValueError, e:
             session['ApiKey.formValues']['errorMessage'] = str(e)
 
@@ -79,9 +78,10 @@ class ApiKey(Observable):
         formUrl = bodyArgs['formUrl'][0]
         session['ApiKey.formValues'] = {}
         try:
-            if not 'user' in session or session['user'].name != 'admin':
+            if 'user' in session and session['user'].isAdmin():
+                self.call.addUser(username=username, password=self.generateKey(8))
+            else:       
                 raise ValueError('No admin privileges.')
-            self.call.addUser(username=username, password=self.generateKey(8))
         except ValueError, e:
             session['ApiKey.formValues']['errorMessage'] = str(e)
         else:
@@ -96,6 +96,13 @@ class ApiKey(Observable):
 
     def getForApiKey(self, apiKey):
         return self._apiKeys.get(apiKey, None)
+
+    def removeUser(self, username):
+        for k,v in self._apiKeys.items():
+            if v.get('username', None) == username:
+                del self._apiKeys[k]
+                self._makePersistent()
+                break
 
     def _makePersistent(self):
         tmpFilename = self._filename + ".tmp"

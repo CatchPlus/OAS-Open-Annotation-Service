@@ -122,13 +122,15 @@ def dna(reactor, observableHttpServer, config):
             )
         )
 
-    basicHtmlLoginHelix = (BasicHtmlLoginForm(action="/login.action", loginPath="/login"),
-        (passwordFile,),
-    )
-
     apiKeyHelix = (apiKey,
         (passwordFile,),
     )
+
+    basicHtmlLoginHelix = (BasicHtmlLoginForm(action="/login.action", loginPath="/login"),
+        (passwordFile,),
+        apiKeyHelix,
+    )
+
 
     uploadHelix =  \
         (TransactionScope('record'),    
