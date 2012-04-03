@@ -33,9 +33,23 @@ from os.path import join, isdir
 from os import makedirs
 
 from oas.namespaces import xpath
-from oas.resolve.server import startServer
+from subprocess import Popen
 
 class ResolveTest(IntegrationTestCase):
+
+    def startServer(self):
+        stdoutfile = join(self.integrationTempdir, "stdouterr-resolve.log")
+        stdouterrlog = open(stdoutfile, 'w')
+        args = [join(self.binDir, 'start-oas-resolve-service'), '--configFile', self.configFile]
+        fileno = stdouterrlog.fileno()
+        serverProcess = Popen(
+            executable=args[0],
+            args=args,
+            cwd=self.binDir,
+            stdout=fileno,
+            stderr=fileno
+        )
+        serverProcess.wait()
     
     def assertQuery(self, query, count):
         headers, body = getRequest(self.portNumber, "/sru", arguments=dict(
@@ -90,7 +104,7 @@ class ResolveTest(IntegrationTestCase):
     </rdf:Description>
 </rdf:RDF>""" % resourceUrl)
 
-        startServer(self.configFile)
+        self.startServer()
         self.assertEquals(before-1, self.countUnresolved())
     
     def testResolveBody(self):
@@ -134,5 +148,5 @@ class ResolveTest(IntegrationTestCase):
     </rdf:Description>
 </rdf:RDF>""" % resourceUrl)
         
-        startServer(self.configFile)
+        self.startServer()
         self.assertEquals(before-1, self.countUnresolved())

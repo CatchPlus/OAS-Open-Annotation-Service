@@ -137,6 +137,7 @@ class IntegrationState(object):
         self.pids = {}
         self.integrationTempdir = '/tmp/integrationtest-%s' % stateName 
         self.testdataDir = join(dirname(mydir), 'data/integration')
+        self.binDir = binDir
         self.fastMode = fastMode
         if not fastMode:
             system('rm -rf ' + self.integrationTempdir)
@@ -247,13 +248,13 @@ class OasIntegrationState(IntegrationState):
         IntegrationState.tearDown(self)
 
     def _startOasServer(self):
-        self._startServer('oas', join(binDir, 'start-oas-server'), 'http://localhost:%s/info/version' % self.portNumber, configFile=self.configFile)
+        self._startServer('oas', join(self.binDir, 'start-oas-server'), 'http://localhost:%s/info/version' % self.portNumber, configFile=self.configFile)
 
     def _startSolrServer(self):
-        self._startServer('solr', join(binDir, 'start-oas-solr-server'), 'http://localhost:%s/solr/oas/admin/registry.jsp' % self.solrPortNumber, port=self.solrPortNumber, solrDataDir=self.solrDataDir, configFile=self.configFile)
+        self._startServer('solr', join(self.binDir, 'start-oas-solr-server'), 'http://localhost:%s/solr/oas/admin/registry.jsp' % self.solrPortNumber, port=self.solrPortNumber, solrDataDir=self.solrDataDir, configFile=self.configFile)
 
     def _startOwlimServer(self):
-        self._startServer('owlim', join(binDir, 'start-oas-owlim-server'), 'http://localhost:%s/sparql' % self.owlimPortNumber, port=self.owlimPortNumber, storeLocation=self.owlimDataDir)
+        self._startServer('owlim', join(self.binDir, 'start-oas-owlim-server'), 'http://localhost:%s/sparql' % self.owlimPortNumber, port=self.owlimPortNumber, storeLocation=self.owlimDataDir)
 
     def _startHttpServer(self):
         self._startServer("http", join(mydir, "bin", "httpfileserver.py"), 'http://localhost:%s/server_ready' % self.httpPortNumber, port=self.httpPortNumber, filepath=self.httpDataDir)
