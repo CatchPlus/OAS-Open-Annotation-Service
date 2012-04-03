@@ -1,9 +1,10 @@
 ## begin license ##
 # 
-# "Open Annotation Service" enables exchange, storage and search of 
+# "Open Annotation Service" enables exchange, storage and search of
 # heterogeneous annotations using a uniform format (Open Annotation format) and
 # a uniform web service interface. 
 # 
+# Copyright (C) 2012 Meertens Instituut (KNAW) http://meertens.knaw.nl
 # Copyright (C) 2012 Seecr (Seek You Too B.V.) http://seecr.nl
 # 
 # This file is part of "Open Annotation Service"
@@ -64,6 +65,7 @@ from oas.apikey import ApiKey
 from oas.apikeycheck import ApiKeyCheck
 from oas.datatofield import DataToField
 from oas.adduserdatafromapikey import AddUserDataFromApiKey
+from oas.userdelete import UserDelete
 
 ALL_FIELD = '__all__'
 unqualifiedTermFields = [(ALL_FIELD, 1.0)]
@@ -91,7 +93,7 @@ def dna(reactor, observableHttpServer, config):
     portNumber = int(config['portNumber'])
     databasePath = config['databasePath']
     solrPortNumber = int(config['solrPortNumber'])
-    storageComponent = StorageComponent(join(databasePath, 'storage'))
+    storageComponent = StorageComponent(join(databasePath, 'storage'), partsRemovedOnDelete=['rdf', 'user'])
     publicDocumentationPath = config['publicDocumentationPath']
     passwordFile = createPasswordFile(filename=join(databasePath, 'passwd'), salt='jasdf89pya')
     apiKey = ApiKey(join(databasePath, 'apikeys'))
@@ -129,6 +131,7 @@ def dna(reactor, observableHttpServer, config):
     basicHtmlLoginHelix = (BasicHtmlLoginForm(action="/login.action", loginPath="/login"),
         (passwordFile,),
         apiKeyHelix,
+        (UserDelete(join(databasePath, 'userdelete')),),
     )
 
 
@@ -140,6 +143,10 @@ def dna(reactor, observableHttpServer, config):
                         dict(partname='rdf', xpath='/rdf:RDF'),
                     ],
                     namespaceMap=namespaces
+                ),
+                (FilterMessages(allowed=['delete']),
+                    (solrInterface, ), 
+                    (storageComponent,)
                 ),
                 (FilterMessages(allowed=['getStream', 'isAvailable']),
                     (storageComponent,),
@@ -288,7 +295,16 @@ def dna(reactor, observableHttpServer, config):
                                         ),
                                         sanitizeAndUploadHelixUnchecked,
                                     )
-                                )
+                                ),
+                            ),
+                            (IpFilter(allowedIps=['127.0.0.1']),
+                                (PathFilter("/internal/update"),
+                                    (SRURecordUpdate(),
+                                        (Amara2Lxml(fromKwarg="amaraNode", toKwarg="lxmlNode"),
+                                            uploadHelix
+                                        )
+                                    )
+                                ),
                             ),
                             (SessionHandler(secretSeed='secret :-)'),
                                 (PathFilter("/login.action"),
@@ -297,7 +313,7 @@ def dna(reactor, observableHttpServer, config):
                                 (PathFilter("/apikey.action"),
                                     apiKeyHelix,
                                 ),
-                                (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action", '/apikey.action', "/recordReindex"]),
+                                (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action", '/apikey.action', "/recordReindex", "/internal/update"]),
                                     (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                                         indexPage='/index', 
                                         additionalGlobals={

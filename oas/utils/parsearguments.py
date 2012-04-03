@@ -1,9 +1,10 @@
 ## begin license ##
 # 
-# "Open Annotation Service" enables exchange, storage and search of 
+# "Open Annotation Service" enables exchange, storage and search of
 # heterogeneous annotations using a uniform format (Open Annotation format) and
 # a uniform web service interface. 
 # 
+# Copyright (C) 2012 Meertens Instituut (KNAW) http://meertens.knaw.nl
 # Copyright (C) 2012 Seecr (Seek You Too B.V.) http://seecr.nl
 # 
 # This file is part of "Open Annotation Service"
@@ -49,6 +50,9 @@ applicationProfiles = {
     'resolve': dict(
         options=['configFile'],
         mandatoryKeys=['configFile']),
+    'userdelete': dict(
+        options=['configFile'],
+        mandatoryKeys=['configFile']),
     'solr': dict(
         options=['port', 'solrDataDir', 'configFile'],
         mandatoryKeys=['port', 'configFile', 'solrDataDir']),
@@ -85,6 +89,10 @@ class ParseArguments(object):
     @classmethod
     def parseForResolve(cls, args=None):
         return cls._parseFor('resolve', args)
+
+    @classmethod
+    def parseForUserDelete(cls, args=None):
+        return cls._parseFor('userdelete', args)
 
     @classmethod
     def _parseFor(cls, application, args):

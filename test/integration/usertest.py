@@ -1,9 +1,10 @@
 ## begin license ##
 # 
-# "Open Annotation Service" enables exchange, storage and search of 
+# "Open Annotation Service" enables exchange, storage and search of
 # heterogeneous annotations using a uniform format (Open Annotation format) and
 # a uniform web service interface. 
 # 
+# Copyright (C) 2012 Meertens Instituut (KNAW) http://meertens.knaw.nl
 # Copyright (C) 2012 Seecr (Seek You Too B.V.) http://seecr.nl
 # 
 # This file is part of "Open Annotation Service"
@@ -32,6 +33,7 @@ from lxml.etree import tostring
 from urllib import urlencode
 from uuid import uuid4
 from oas.namespaces import xpath, getAttrib
+from os.path import join
 
 class UserTest(IntegrationTestCase):
     def testLoginPage(self):
@@ -136,6 +138,12 @@ class UserTest(IntegrationTestCase):
         apiKey = xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="addDelete"]]/td[@class="apiKey"]/text()')
         self.assertEquals([], apiKey)
         #### Delete user, then query again; number of results should be 0
+        self.assertEquals(['addDelete.delete'], listdir(join(self.integrationTempdir, 'database', 'userdelete')))
+        self.runUserDeleteService()
+        self.assertQuery('RDF.Annotation.title = "To be deleted"', 0)
+        self.assertEquals(['addDelete.delete'], listdir(join(self.integrationTempdir, 'database', 'userdelete')))
+        self.runUserDeleteService()
+        self.assertEquals([], listdir(join(self.integrationTempdir, 'database', 'userdelete')))
 
 
 

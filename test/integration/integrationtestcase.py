@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 ## begin license ##
 # 
-# "Open Annotation Service" enables exchange, storage and search of 
+# "Open Annotation Service" enables exchange, storage and search of
 # heterogeneous annotations using a uniform format (Open Annotation format) and
 # a uniform web service interface. 
 # 
+# Copyright (C) 2012 Meertens Instituut (KNAW) http://meertens.knaw.nl
 # Copyright (C) 2012 Seecr (Seek You Too B.V.) http://seecr.nl
 # 
 # This file is part of "Open Annotation Service"
@@ -182,7 +183,10 @@ class IntegrationState(object):
         stdoutfile = join(self.integrationTempdir, "stdouterr-%s.log" % serviceName)
         serverProcess = self._process(executable, cwd, redirect, stdoutfile, **kwargs)
         self._stdoutWrite("Running service '%s', for state '%s'.\n" % (serviceName, self.stateName))
-        serverProcess.wait()
+        result = serverProcess.wait()
+        if result:
+            exit('Service "%s" exited with %s, check "%s"' % (serviceName, result, stdoutfile))
+
     
     def _stopServer(self, serviceName):
         kill(self.pids[serviceName], SIGTERM)
@@ -260,6 +264,8 @@ class OasIntegrationState(IntegrationState):
     def runResolveService(self):
         self._runService('resolve', join(self.binDir, 'start-oas-resolve-service'), configFile=self.configFile)
 
+    def runUserDeleteService(self):
+        self._runService('userdelete', join(self.binDir, 'start-oas-userdelete-service'), configFile=self.configFile)
 
     def _startOasServer(self):
         self._startServer('oas', join(self.binDir, 'start-oas-server'), 'http://localhost:%s/info/version' % self.portNumber, configFile=self.configFile)
