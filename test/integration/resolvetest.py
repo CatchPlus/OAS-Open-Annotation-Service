@@ -37,20 +37,6 @@ from subprocess import Popen
 
 class ResolveTest(IntegrationTestCase):
 
-    def startServer(self):
-        stdoutfile = join(self.integrationTempdir, "stdouterr-resolve.log")
-        stdouterrlog = open(stdoutfile, 'w')
-        args = [join(self.binDir, 'start-oas-resolve-service'), '--configFile', self.configFile]
-        fileno = stdouterrlog.fileno()
-        serverProcess = Popen(
-            executable=args[0],
-            args=args,
-            cwd=self.binDir,
-            stdout=fileno,
-            stderr=fileno
-        )
-        serverProcess.wait()
-    
     def assertQuery(self, query, count):
         headers, body = getRequest(self.portNumber, "/sru", arguments=dict(
             version="1.1", operation="searchRetrieve", query=query), parse='lxml')
@@ -104,7 +90,7 @@ class ResolveTest(IntegrationTestCase):
     </rdf:Description>
 </rdf:RDF>""" % resourceUrl)
 
-        self.startServer()
+        self.runResolveService()
         self.assertEquals(before-1, self.countUnresolved())
     
     def testResolveBody(self):
@@ -148,5 +134,5 @@ class ResolveTest(IntegrationTestCase):
     </rdf:Description>
 </rdf:RDF>""" % resourceUrl)
         
-        self.startServer()
+        self.runResolveService()
         self.assertEquals(before-1, self.countUnresolved())

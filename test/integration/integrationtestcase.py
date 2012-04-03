@@ -143,8 +143,7 @@ class IntegrationState(object):
             system('rm -rf ' + self.integrationTempdir)
             system('mkdir --parents '+ self.integrationTempdir)
 
-    def _startServer(self, serviceName, executable, serviceReadyUrl, cwd=binDir, redirect=True, **kwargs):
-        stdoutfile = join(self.integrationTempdir, "stdouterr-%s.log" % serviceName)
+    def _process(self, executable, cwd, redirect, stdoutfile, **kwargs):
         stdouterrlog = open(stdoutfile, 'w')
         args = [executable]
         fileno = stdouterrlog.fileno() if redirect else None
@@ -158,6 +157,11 @@ class IntegrationState(object):
             stdout=fileno,
             stderr=fileno
         )
+        return serverProcess
+
+    def _startServer(self, serviceName, executable, serviceReadyUrl, cwd=binDir, redirect=True, **kwargs):
+        stdoutfile = join(self.integrationTempdir, "stdouterr-%s.log" % serviceName)
+        serverProcess = self._process(executable, cwd, redirect, stdoutfile, **kwargs)
         self.pids[serviceName] = serverProcess.pid
 
         self._stdoutWrite("Starting service '%s', for state '%s' : v" % (serviceName, self.stateName))
@@ -174,6 +178,12 @@ class IntegrationState(object):
                     exit('Service "%s" died, check "%s"' % (serviceName, stdoutfile))
         self._stdoutWrite('oom!\n')
 
+    def _runService(self, serviceName, executable, cwd=binDir, redirect=True, **kwargs):
+        stdoutfile = join(self.integrationTempdir, "stdouterr-%s.log" % serviceName)
+        serverProcess = self._process(executable, cwd, redirect, stdoutfile, **kwargs)
+        self._stdoutWrite("Running service '%s', for state '%s'.\n" % (serviceName, self.stateName))
+        serverProcess.wait()
+    
     def _stopServer(self, serviceName):
         kill(self.pids[serviceName], SIGTERM)
         waitpid(self.pids[serviceName], WNOHANG)
@@ -246,6 +256,10 @@ class OasIntegrationState(IntegrationState):
    
     def tearDown(self):
         IntegrationState.tearDown(self)
+
+    def runResolveService(self):
+        self._runService('resolve', join(self.binDir, 'start-oas-resolve-service'), configFile=self.configFile)
+
 
     def _startOasServer(self):
         self._startServer('oas', join(self.binDir, 'start-oas-server'), 'http://localhost:%s/info/version' % self.portNumber, configFile=self.configFile)
