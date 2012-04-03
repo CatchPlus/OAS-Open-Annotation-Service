@@ -200,7 +200,7 @@ class BasicHtmlLoginFormTest(SeecrTestCase):
         self.assertEquals("HTTP/1.0 302 Redirect\r\nLocation: /show/userlist\r\n\r\n", result)
 
     def testDeleteUserAsAdmin(self):
-        observer = CallTrace(returnValues={'hasUser': True}, emptyGeneratorMethods=['removeUser'])
+        observer = CallTrace(returnValues={'hasUser': True})
         self.form.addObserver(observer)
         result = joco(self.form.handleRequest(
             path='/login/remove', 
