@@ -46,9 +46,7 @@ class UserDelete(object):
 class UserDeleteProcess(object):
     def __init__(self, config):
         self._sruUrl = "http://%(hostName)s:%(portNumber)s/sru" % config
-        self._sruRecordUpdateUrl = "http://%(hostName)s:%(portNumber)s/internal/update" % config
-        self._sruUpdateHostAndPort = (config['hostName'], int(config['portNumber']))
-        print self._sruRecordUpdateUrl
+        self._sruUpdateHostAndPort = ("localhost", int(config['portNumber']))
         self._userDeleteDataPath = join(config['databasePath'], 'userdelete')
 
     def process(self):
