@@ -32,12 +32,21 @@ def main(**kwargs):
     yield page.caption("Open Annotation Service")
     yield page.menu(selected="Search")
 
-    oaiUrl = "http://%(hostName)s:%(portNumber)s/oai" % config
+    oaiUrl = "http://%(hostName)s:%(portNumber)s/oai?verb=Identify" % config
+    sruUrl = "http://%(hostName)s:%(portNumber)s/sru?version=1.1&operation=explain" % config
 
-    yield "<p>Use the search input below to search through all annotations in this Open Annotation Service.</p>"
-    yield "<p>An OAI service can be found at the following base url: <a href=%s _target='blank'>%s</a></p>" % (quoteattr(oaiUrl), escapeHtml(oaiUrl))
+    yield '<p>Annotations are available at:</p><ul>'
+    yield "<li><a href=%s _target='blank'>%s</a></li>" % (quoteattr(sruUrl), 'SRU')
+    yield "<li><a href=%s _target='blank'>%s</a></li>" % (quoteattr(oaiUrl), 'OAI-PMH')
+    yield '</ul>'
+    yield '<p>The form below is a helper for creating SRU queries. Results will be in RDF+XML.</p>'
     yield '<form method="GET" action="/query">'
     yield '<input type="text" name="q"/>'
     yield '<input type="submit" value="Search"/>'
     yield '</form>'
+
+    yield '<p>Special indexed fields are:</p><ul>'
+    for fieldname in ['dc:title', 'dcterms:creator', 'dcterms:created', 'oac:hasBody', 'oac:hasTarget']:
+        yield "<li>%s</li>" % fieldname
+    yield '</ul><p>These fields can be used in queries in the form: <i>fieldname</i>=value</p>'
     yield page.footer()

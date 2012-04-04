@@ -53,8 +53,10 @@ def main(Body, **kwargs):
             yield "<p class='error'>%s</p>" % str(e)
 
 
+    yield '<p>Annotations can be POSTed as RDF+XML via SRU Update, see the <a href="/public/example_client.py">example client</a>.</p>'
+    yield '<p>The form below is a helper for testing purposes.</p>'
     yield '<form method="POST" action="/uploadform">'
-    yield '<dl><dt>Annotation</dt>\n'
+    yield '<dl><dt>Annotation in RDF+XML format. See <a href="/examples" target="_blank">examples</a>.</dt>\n'
     yield '<dd><textarea name="annotation" cols="80" rows="24">'
     yield escapeHtml(annotation) if annotation else ''
     yield '</textarea></dd>\n'

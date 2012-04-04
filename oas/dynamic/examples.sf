@@ -29,6 +29,7 @@ import page
 
 def main(**kwargs):
     timestamp = formatTimestamp("%Y-%m-%d %H:%M:%S")
+    logoUrl = "http://%(hostName)s:%(portNumber)s/static/catch_plus_logo.png" % config
 
     yield page.header(**kwargs)
     yield page.caption("Open Annotation Service")
@@ -48,6 +49,39 @@ def main(**kwargs):
         <dcterms:creator rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_foaf_agent"/>
         <dcterms:created>%s</dcterms:created>
     </rdf:Description>
+</rdf:RDF>""" % (uuid(), uuid(), timestamp))
+
+    yield page.codeBlock(caption="Annotation without rdf:type", code="""<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <oac:Annotation rdf:about="urn:uuid:%s">
+        <oac:hasBody rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_oac_body"/>
+        <oac:hasTarget rdf:resource="urn:uuid:%s"/>
+        <dc:title>Example with rdf:Description replaced by oac:Annotation and no rdf:type.</dc:title>
+        <dcterms:creator rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_foaf_agent"/>
+        <dcterms:created>%s</dcterms:created>
+    </oac:Annotation>
+</rdf:RDF>""" % (uuid(), uuid(), timestamp))
+
+    yield page.codeBlock(caption="Subclass of Annotation with rdf:type", code="""<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <oac:Annotation rdf:about="urn:uuid:%s">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Reply"/>
+        <oac:hasBody rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_oac_body"/>
+        <oac:hasTarget rdf:resource="urn:uuid:%s"/>
+        <dc:title>Example of Reply indicated with rdf:type.</dc:title>
+        <dcterms:creator rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_foaf_agent"/>
+        <dcterms:created>%s</dcterms:created>
+    </oac:Annotation>
 </rdf:RDF>""" % (uuid(), uuid(), timestamp))
 
     yield page.codeBlock(caption="In document oac:Body and foaf:Agent", code="""<rdf:RDF 
@@ -205,14 +239,11 @@ def main(**kwargs):
                 <dc:format>image/svg+xml</dc:format>
             </oac:SvgConstraint>
         </oac:constrainedBy>
-        <oac:constrains>
-            <foaf:Agent>
-                <foaf:name>John Doe</foaf:name>
-            </foaf:Agent>
+        <oac:constrains rdf:resource=%s/>
         </oac:constrains>
     </oac:ConstrainedTarget>
     
-</rdf:RDF>""" % (uuid(), timestamp, uuid(), timestamp))
+</rdf:RDF>""" % (uuid(), timestamp, uuid(), timestamp, quoteattr(logoUrl)))
 
 
     yield page.footer()
