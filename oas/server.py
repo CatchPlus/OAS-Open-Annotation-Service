@@ -55,7 +55,7 @@ from meresco.oai import OaiPmh, OaiJazz, OaiAddRecord
 from dynamichtml import DynamicHtml
 from oas import VERSION_STRING
 from oas import FilterFieldValue
-from oas import Authorization, ReindexIdentifier
+from oas import Authorization, ReindexIdentifier, OaiUserSet
 from oas.seecroaiwatermark import SeecrOaiWatermark
 from oas.identifierfromxpath import IdentifierFromXPath
 from oas import MultipleAnnotationSplit, Normalize, Deanonymize, Publish
@@ -98,7 +98,6 @@ def dna(reactor, observableHttpServer, config):
     passwordFile = createPasswordFile(filename=join(databasePath, 'passwd'), salt='jasdf89pya')
     apiKey = ApiKey(join(databasePath, 'apikeys'))
 
-
     reindexPath = join(databasePath, 'reindex')
 
     solrInterface = SolrInterface(host="localhost", port=solrPortNumber, core="oas")
@@ -134,6 +133,10 @@ def dna(reactor, observableHttpServer, config):
         (UserDelete(join(databasePath, 'userdelete')),),
     )
 
+    readOnlyStorageHelix = \
+        (FilterMessages(allowed=['getStream', 'isAvailable']),
+            (storageComponent,),
+        )
 
     uploadHelix =  \
         (TransactionScope('record'),    
@@ -146,14 +149,19 @@ def dna(reactor, observableHttpServer, config):
                 ),
                 (FilterMessages(allowed=['delete']),
                     (solrInterface, ), 
-                    (storageComponent,)
-                ),
-                (FilterMessages(allowed=['getStream', 'isAvailable']),
                     (storageComponent,),
+                    (oaiJazz, )
                 ),
+                readOnlyStorageHelix,
                 (FilterPartByName(included=['rdf']),
                     (OaiAddRecord(),
-                        (oaiJazz, )
+                        (FilterMessages(allowed=["getAllMetadataFormats"]),
+                            (oaiJazz, )
+                        ),
+                        (OaiUserSet(),
+                            readOnlyStorageHelix,
+                            (oaiJazz, )
+                        )
                     ),
                     (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
                         (storageComponent,),
@@ -218,9 +226,7 @@ def dna(reactor, observableHttpServer, config):
 
     sanitizeAndUploadHelix = \
         (MultipleAnnotationSplit(),
-            (FilterMessages(allowed=['isAvailable', 'getStream']),
-                (storageComponent,)
-            ),
+            readOnlyStorageHelix,
             (Normalize(),
                 (Deanonymize(),
                     (Publish(baseUrl=config['resolveBaseUrl']),
@@ -242,9 +248,7 @@ def dna(reactor, observableHttpServer, config):
         )
     sanitizeAndUploadHelixUnchecked = \
         (MultipleAnnotationSplit(),
-            (FilterMessages(allowed=['isAvailable', 'getStream']),
-                (storageComponent,)
-            ),
+            readOnlyStorageHelix,
             (Normalize(),
                 (Deanonymize(),
                     (Publish(baseUrl=config['resolveBaseUrl']),
@@ -290,9 +294,7 @@ def dna(reactor, observableHttpServer, config):
                             (IpFilter(allowedIps=['127.0.0.1']),
                                 (PathFilter("/recordReindex"),
                                     (ReindexIdentifier(),
-                                        (FilterMessages(allowed=['getStream', 'isAvailable']),
-                                            (storageComponent, )
-                                        ),
+                                        readOnlyStorageHelix,
                                         sanitizeAndUploadHelixUnchecked,
                                     )
                                 ),
@@ -331,9 +333,7 @@ def dna(reactor, observableHttpServer, config):
                                             }),
                                         basicHtmlLoginHelix,
                                         apiKeyHelix,
-                                        (FilterMessages(allowed=['isAvailable', 'getStream']),
-                                            (storageComponent,),
-                                        ),
+                                        readOnlyStorageHelix,
                                         (ApiKeyCheck(),
                                             (FilterMessages(allowed=['getForApiKey']),
                                                 apiKeyHelix,

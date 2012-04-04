@@ -38,6 +38,8 @@ from oas.utils import parseHeaders
 from oas.apikey import ApiKey
 from oas.login import createPasswordFile
 
+from testutil import joco
+
 class ApiKeyTest(SeecrTestCase):
 
     def setUp(self):
@@ -53,7 +55,7 @@ class ApiKeyTest(SeecrTestCase):
         Body = urlencode(dict(username='user', description="A User", formUrl='/apikeyform'))
         self.assertEquals(['admin'], self.pwd.listUsernames())
 
-        result = ''.join(compose(self.apiKey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
+        result = joco(self.apiKey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST'))
         headers, body = result.split(CRLF*2)
 
         self.assertTrue(' 302 ' in headers, headers)
@@ -66,7 +68,7 @@ class ApiKeyTest(SeecrTestCase):
         self.assertEquals('user', userdata['username'])
         self.assertTrue(16, len(apiKey))
 
-        result = ''.join(compose(self.apiKey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
+        result = joco(self.apiKey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST'))
         headers, body = result.split(CRLF*2)
 
         self.assertTrue(' 302 ' in headers, headers)
@@ -83,7 +85,7 @@ class ApiKeyTest(SeecrTestCase):
         }
         Body = urlencode(dict(username='user', formUrl='/apikeyform'))
 
-        result = ''.join(compose(self.apiKey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
+        result = joco(self.apiKey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST'))
         headers, body = result.split(CRLF*2)
 
         self.assertTrue(' 302 ' in headers, headers)
@@ -97,14 +99,22 @@ class ApiKeyTest(SeecrTestCase):
         }
         Body = urlencode(dict(username='user', formUrl='/apikeyform'))
 
-        result = ''.join(compose(self.apiKey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST')))
+        result = joco(self.apiKey.handleRequest(session=session, Body=Body, path='/action/create', Method='POST'))
         headers, body = result.split(CRLF*2)
         self.assertEquals(['admin', 'user'], sorted(self.pwd.listUsernames()))
 
         aList = self.apiKey.listApiKeysAndData()
         apiKey = aList[0][0]
 
-        result = ''.join(compose(self.apiKey.handleRequest(session=session, Body=urlencode(dict(apiKey=apiKey, formUrl="/apikeyform", description="This is the description")), path="/action/update", Method="POST")))
+        result = joco(self.apiKey.handleRequest(
+            session=session, 
+            Body=urlencode(dict(
+                apiKey=apiKey, 
+                formUrl="/apikeyform", 
+                description="This is the description")), 
+            path="/action/update", 
+            Method="POST"))
+
         aList = self.apiKey.listApiKeysAndData()
         self.assertEquals(1, len(aList))
         apiKey, data = aList[0]
@@ -113,11 +123,11 @@ class ApiKeyTest(SeecrTestCase):
     def testGetForApiKey(self):
         self.assertEquals(None, self.apiKey.getForApiKey('nonexistent'))
 
-        result = ''.join(compose(self.apiKey.handleRequest(
+        result = joco(self.apiKey.handleRequest(
             session={ 'user': User('admin')},
             Body=urlencode(dict(username='user', formUrl='/apikeyform')), 
             path='/action/create', 
-            Method='POST')))
+            Method='POST'))
         [(apiKey, userdata)] = self.apiKey.listApiKeysAndData()
 
         dataByApiKey = self.apiKey.getForApiKey(apiKey)

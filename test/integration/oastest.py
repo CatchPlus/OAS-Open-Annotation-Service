@@ -88,6 +88,13 @@ class OasTest(IntegrationTestCase):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf"), parse='lxml')
         self.assertEquals(13, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
 
+    def testOaiListRecordsWithUserAsSet(self):
+        headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf", set='testUser'), parse='lxml')
+        self.assertEquals(6, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+
+        headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf", set='anotherTestUser'), parse='lxml')
+        self.assertEquals(7, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+
     def testPostAnnotation(self):
         identifier = "urn:uuid:%s" % uuid4()
         annotationBody = """<rdf:RDF 

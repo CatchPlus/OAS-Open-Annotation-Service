@@ -25,25 +25,15 @@
 # 
 ## end license ##
 
-from seecr.test import CallTrace, SeecrTestCase
-from weightless.core import compose
+from meresco.core import Observable
 
-from oas.datatofield import DataToField
+class OaiUserSet(Observable):
 
-from testutil import lico
+    def addOaiRecord(self, identifier, sets=None, metadataFormats=None):
+        if self.call.isAvailable(identifier, "user"):
+            username = self.call.getStream(identifier, "user").read()
+            sets = set() if sets is None else sets
+            sets.add((username, username))
 
-class DataToFieldTest(SeecrTestCase):
-    def setUp(self):
-        SeecrTestCase.setUp(self)
-        self.data2field = DataToField(fromKwarg='data', fieldname='field')
-        self.observer = CallTrace('Observer')
-        self.data2field.addObserver(self.observer)
+        self.do.addOaiRecord(identifier=identifier, sets=sets, metadataFormats=metadataFormats)
 
-    def testAdd(self):
-        lico(self.data2field.add(identifier='identifier', partname='part', data='somedata'))
-        self.assertEquals(['addField'], [m.name for m in self.observer.calledMethods])
-        self.assertEquals(dict(name='field', value='somedata'), self.observer.calledMethods[0].kwargs)
-        
-    def testAddWithoutFromKwarg(self):
-        self.data2field.add(identifier='identifier', partname='part', lxmlNode='somedata')
-        self.assertEquals([], [m.name for m in self.observer.calledMethods])

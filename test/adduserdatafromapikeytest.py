@@ -30,6 +30,8 @@ from weightless.core import compose
 
 from oas.adduserdatafromapikey import AddUserDataFromApiKey
 
+from testutil import lico
+
 class AddUserDataFromApiKeyTest(SeecrTestCase):
     def setUp(self):
         SeecrTestCase.setUp(self)
@@ -38,13 +40,13 @@ class AddUserDataFromApiKeyTest(SeecrTestCase):
         self.retrieve.addObserver(self.observer)
 
     def testNoApiKey(self):
-        self.assertRaises(AttributeError, lambda: list(compose(self.retrieve.add(identifier='identifier', partname='rdf', data='RDF'))))
+        self.assertRaises(AttributeError, lambda: lico(self.retrieve.add(identifier='identifier', partname='rdf', data='RDF')))
 
     def testApiKeyRetrieves(self):
         self.observer.returnValues['getForApiKey'] = {'username': 'User Name'}
         self.observer.emptyGeneratorMethods.append('add')
         __callstack_var_authorization__ = {'apiKey': 'MonkeyWrench'}
-        list(compose(self.retrieve.add(identifier='identifier', partname='rdf', data='RDF')))
+        lico(self.retrieve.add(identifier='identifier', partname='rdf', data='RDF'))
         self.assertEquals(['getForApiKey', 'add'], [m.name for m in self.observer.calledMethods])
         self.assertEquals({'apiKey':'MonkeyWrench'}, self.observer.calledMethods[0].kwargs)
         self.assertEquals(dict(identifier='identifier', partname='user', data='User Name'), self.observer.calledMethods[1].kwargs)

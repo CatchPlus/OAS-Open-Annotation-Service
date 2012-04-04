@@ -39,6 +39,8 @@ from oas import MultipleAnnotationSplit
 from oas.namespaces import namespaces
 from meresco.components.xml_generic.validate import ValidateException
 
+from testutil import lico
+
 class MultipleAnnotationSplitTest(SeecrTestCase):
     def setUp(self):
         SeecrTestCase.setUp(self)
@@ -72,7 +74,7 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
         </rdf:RDF>
         """
 
-        list(compose(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(XML)))))
+        lico(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(XML))))
         self.assertEquals(3, len(self.observer.calledMethods))
 
     def testNoIdentifier(self):
@@ -85,7 +87,7 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
             </rdf:Description>
         </rdf:RDF>"""
         try:
-            list(compose(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(inputText)))))
+            lico(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(inputText))))
             self.fail()
         except ValidateException, e:
             self.assertEquals('No annotations found.', str(e))
@@ -93,7 +95,7 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
     def testNoRdf(self):
         inputText = """<oai_dc:dc xmlns:oai_dc="http://example.org"/>"""
         try:
-            list(compose(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(inputText)))))
+            lico(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(inputText))))
             self.fail()
         except ValidateException, e:
             self.assertEquals('No annotations found.', str(e))
@@ -118,7 +120,7 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
                <dc:title>This is the body</dc:title>
             </rdf:Description>
         </rdf:RDF>"""
-        list(compose(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(xml)))))
+        lico(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(xml))))
         resultNode = self.observer.calledMethods[0].kwargs['lxmlNode']
         self.assertEqualsWS("""<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" xmlns:dcterms="http://purl.org/dc/terms/" rdf:about="identifier:1">
@@ -147,7 +149,7 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
                 <dcterms:creator rdf:resource="urn:creator"/>
             </oac:Annotation>
         </rdf:RDF>"""
-        list(compose(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(xml)))))
+        lico(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(xml))))
         resultNode = self.observer.calledMethods[0].kwargs['lxmlNode']
         self.assertEqualsWS("""<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" xmlns:dcterms="http://purl.org/dc/terms/" rdf:about="identifier:1">
@@ -170,7 +172,7 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
                 <dcterms:creator rdf:resource="urn:othercreator"/>
             </oac:Annotation>
         </rdf:RDF>"""
-        list(compose(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(xml)))))
+        lico(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(xml))))
         resultNode = self.observer.calledMethods[0].kwargs['lxmlNode']
         self.assertEqualsWS("""<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" xmlns:dcterms="http://purl.org/dc/terms/" rdf:about="identifier:1">

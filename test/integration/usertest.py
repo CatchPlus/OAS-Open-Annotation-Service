@@ -132,6 +132,11 @@ class UserTest(IntegrationTestCase):
         header, body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey=apiKey)), parse='lxml')
         self.assertQuery('RDF.Annotation.title = "To be deleted"', 1)
 
+        headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf", set='addDelete'), parse='lxml')
+        self.assertEquals(1, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+
+
+
         headers, body = postRequest(self.portNumber, '/login.action/remove', urlencode(dict(formUrl='/admin', username='addDelete')), parse='lxml', additionalHeaders=dict(cookie=cookie))
         
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
@@ -141,6 +146,10 @@ class UserTest(IntegrationTestCase):
         self.assertEquals(['addDelete.delete'], listdir(join(self.integrationTempdir, 'database', 'userdelete')))
         self.runUserDeleteService()
         self.assertQuery('RDF.Annotation.title = "To be deleted"', 0)
+        headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf", set='addDelete'), parse='lxml')
+        self.assertEquals(0, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+        self.assertEquals("deleted", xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:header/@status")[0])
+
         self.assertEquals(['addDelete.delete'], listdir(join(self.integrationTempdir, 'database', 'userdelete')))
         self.runUserDeleteService()
         self.assertEquals([], listdir(join(self.integrationTempdir, 'database', 'userdelete')))

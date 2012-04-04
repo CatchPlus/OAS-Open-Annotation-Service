@@ -33,6 +33,8 @@ from meresco.core import Observable
 from lxml.etree import parse, tostring
 from StringIO import StringIO
 
+from testutil import lico
+
 from oas import Normalize
 from oas.normalize import splitType
 
@@ -50,7 +52,7 @@ class NormalizeTest(SeecrTestCase):
         )
    
     def assertConvert(self, expected, source):
-        list(compose(self.dna.all.process(lxmlNode=parse(StringIO(source)))))
+        lico(self.dna.all.process(lxmlNode=parse(StringIO(source))))
 
         resultNode = self.observer.calledMethods[0].kwargs['lxmlNode']
         self.assertEqualsWS(
@@ -147,9 +149,9 @@ class NormalizeTest(SeecrTestCase):
         self.assertEquals(("http://ns#", "Type"), splitType("http://ns#Type")) 
 
     def testDeletePassedOn(self):
-        list(compose(self.dna.all.delete(
+        lico(self.dna.all.delete(
             identifier='identifier', 
             partname='rdf', 
-            lxmlNode=parse(StringIO("<xml/>")))))
+            lxmlNode=parse(StringIO("<xml/>"))))
 
         self.assertEquals(['delete'], [m.name for m in self.observer.calledMethods])

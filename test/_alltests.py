@@ -37,14 +37,15 @@ systemPath.insert(0, '..')                          #DO_NOT_DISTRIBUTE
 from unittest import main
 
 from adduserdatafromapikeytest import AddUserDataFromApiKeyTest
-from apikeytest import ApiKeyTest
 from apikeychecktest import ApiKeyCheckTest
+from apikeytest import ApiKeyTest
 from authorizationtest import AuthorizationTest
 from datatofieldtest import DataToFieldTest
 from deanonymizetest import DeanonymizeTest
 from identifierfromxpathtest import IdentifierFromXPathTest
 from multipleannotationsplittest import MultipleAnnotationSplitTest
 from normalizetest import NormalizeTest
+from oaiusersettest import OaiUserSetTest
 from publishtest import PublishTest
 from rdfcontainertest import RdfContainerTest
 from reindexidentifiertest import ReindexIdentifierTest

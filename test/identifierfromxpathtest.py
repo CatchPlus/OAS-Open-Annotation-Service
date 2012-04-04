@@ -34,6 +34,8 @@ from meresco.core import Observable
 
 from oas import IdentifierFromXPath
 
+from testutil import lico
+
 class IdentifierFromXPathTest(SeecrTestCase):
 
     def testOne(self):
@@ -46,7 +48,7 @@ class IdentifierFromXPathTest(SeecrTestCase):
             )
         )
 
-        list(compose(dna.all.add(identifier="wrong", partname="xxx", lxmlNode=parse(StringIO("<a b='right'/>")))))
+        lico(dna.all.add(identifier="wrong", partname="xxx", lxmlNode=parse(StringIO("<a b='right'/>"))))
         self.assertEquals("right", observer.calledMethods[0].kwargs['identifier'])
 
 
@@ -61,7 +63,7 @@ class IdentifierFromXPathTest(SeecrTestCase):
         )
 
         try:
-            list(compose(dna.all.add(identifier="wrong", partname="xxx", lxmlNode=parse(StringIO("<a x='right'/>")))))
+            lico(dna.all.add(identifier="wrong", partname="xxx", lxmlNode=parse(StringIO("<a x='right'/>"))))
             self.fail()
         except ValueError, e:
             self.assertEquals("Identifier not found", str(e))

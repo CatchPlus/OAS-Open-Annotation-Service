@@ -28,59 +28,32 @@
 from seecr.test import SeecrTestCase, CallTrace
 
 from weightless.core import be, compose
-from meresco.components.http.utils import unauthorizedHtml
 from meresco.core import Observable
 
-from oas import ApiKeyCheck
-
 from testutil import lico
+from StringIO import StringIO
 
-class ApiKeyCheckTest(SeecrTestCase):
+from oas import OaiUserSet
+
+class OaiUserSetTest(SeecrTestCase):
     def testOne(self):
-        dna = be(
-            (Observable(),
-                (ApiKeyCheck(),)
-            )
-        )
-
-        response = lico(dna.all.handleRequest())
-        self.assertEquals([unauthorizedHtml], response)
-
-    def testUnknownApiKey(self):
-        def getForApiKey(apiKey):
-            return None
         observer = CallTrace(
-            methods={'getForApiKey': getForApiKey}, 
-            emptyGeneratorMethods=['handleRequest'])
-
-        __callstack_var_authorization__ = {'apiKey': "APIKEY"}
-
+            returnValues={
+                'getForApiKey': {'username': 'my_user'},
+                'isAvailable': (True, True),
+                'getStream': StringIO('my_user')
+                })
         dna = be(
             (Observable(),
-                (ApiKeyCheck(),
+                (OaiUserSet(),
                     (observer, )
                 )
             )
         )
-        response = lico(dna.all.handleRequest())
-        self.assertEquals([unauthorizedHtml], response)
-        self.assertEquals(['getForApiKey'], [m.name for m in observer.calledMethods])
 
-    def testUnknownApiKeyForAdd(self):
-        def getForApiKey(apiKey):
-            return None
-        observer = CallTrace(
-            methods={'getForApiKey': getForApiKey}, 
-            emptyGeneratorMethods=['add'])
+        dna.do.addOaiRecord(identifier="identifier", sets=None, metadataFormats=None)
 
-        __callstack_var_authorization__ = {'apiKey': "APIKEY"}
+        self.assertEquals(['isAvailable', 'getStream', 'addOaiRecord'], [m.name for m in observer.calledMethods])
 
-        dna = be(
-            (Observable(),
-                (ApiKeyCheck(),
-                    (observer, )
-                )
-            )
-        )
-        self.assertRaises(ValueError, lambda: lico(dna.all.add(identifier='bla')))
-        self.assertEquals(['getForApiKey'], [m.name for m in observer.calledMethods])
+        addCall = observer.calledMethods[2]
+        self.assertEquals(set([('my_user', 'my_user')]), addCall.kwargs['sets'])

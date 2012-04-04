@@ -35,6 +35,8 @@ from StringIO import StringIO
 
 from oas import Deanonymize
 
+from testutil import lico
+
 class DeanonymizeTest(SeecrTestCase):
 
     def setUp(self):
@@ -56,7 +58,7 @@ class DeanonymizeTest(SeecrTestCase):
     <oac:Annotation rdf:about="urn:id:1"/>
 </rdf:RDF>"""
 
-        list(compose(self.dna.all.process(lxmlNode=parse(StringIO(xml)))))
+        lico(self.dna.all.process(lxmlNode=parse(StringIO(xml))))
         self.assertEquals(1, len(self.observer.calledMethods))
         self.assertEqualsWS(xml, tostring(self.observer.calledMethods[0].kwargs['lxmlNode']))
 
@@ -67,7 +69,7 @@ class DeanonymizeTest(SeecrTestCase):
     <oac:Annotation rdf:resource="urn:id:1"/>
 </rdf:RDF>"""
 
-        list(compose(self.dna.all.process(lxmlNode=parse(StringIO(xml)))))
+        lico(self.dna.all.process(lxmlNode=parse(StringIO(xml))))
         self.assertEquals(1, len(self.observer.calledMethods))
         self.assertEqualsWS(xml, tostring(self.observer.calledMethods[0].kwargs['lxmlNode']))
 
@@ -80,7 +82,7 @@ class DeanonymizeTest(SeecrTestCase):
 
         newIdentifier = 'urn:some:form:of:identifier'
         self.deanonymize._urnGen = lambda: newIdentifier
-        list(compose(self.dna.all.process(lxmlNode=parse(StringIO(xml % "")))))
+        lico(self.dna.all.process(lxmlNode=parse(StringIO(xml % ""))))
         self.assertEquals(1, len(self.observer.calledMethods))
         self.assertEqualsWS(xml % ' rdf:about="%s"' % newIdentifier, tostring(self.observer.calledMethods[0].kwargs['lxmlNode']))
 
@@ -97,7 +99,7 @@ class DeanonymizeTest(SeecrTestCase):
 
         newIdentifier = 'urn:some:form:of:identifier'
         self.deanonymize._urnGen = lambda: newIdentifier
-        list(compose(self.dna.all.process(lxmlNode=parse(StringIO(xml % "")))))
+        lico(self.dna.all.process(lxmlNode=parse(StringIO(xml % ""))))
         self.assertEquals(1, len(self.observer.calledMethods))
         self.assertEqualsWS(xml % ' rdf:about="%s"' % newIdentifier, tostring(self.observer.calledMethods[0].kwargs['lxmlNode']))
 

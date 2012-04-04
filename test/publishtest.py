@@ -35,6 +35,8 @@ from StringIO import StringIO
 
 from oas import Publish
 
+from testutil import lico
+
 class PublishTest(SeecrTestCase):
 
     def setUp(self):
@@ -60,7 +62,7 @@ class PublishTest(SeecrTestCase):
     xmlns:oac="http://www.openannotation.org/ns/">
     <oac:Annotation rdf:about="urn:id:1"/>
 </rdf:RDF>"""
-        list(compose(self.dna.all.process(parse(StringIO(xml)))))
+        lico(self.dna.all.process(parse(StringIO(xml))))
         self.assertEqualsWS("""<rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:oac="http://www.openannotation.org/ns/">
@@ -74,7 +76,7 @@ class PublishTest(SeecrTestCase):
     xmlns:oac="http://www.openannotation.org/ns/">
     <oac:Annotation rdf:about="http://some.where.else/1"/>
 </rdf:RDF>"""
-        list(compose(self.dna.all.process(parse(StringIO(xml)))))
+        lico(self.dna.all.process(parse(StringIO(xml))))
         self.assertEqualsWS(xml, tostring(self.observer.calledMethods[0].kwargs['lxmlNode']))
         self.assertEquals("http://some.where.else/1", self.observer.calledMethods[0].kwargs['identifier'])
 
@@ -88,7 +90,7 @@ class PublishTest(SeecrTestCase):
         </oac:hasBody>
     </oac:Annotation>
 </rdf:RDF>"""
-        list(compose(self.dna.all.process(parse(StringIO(xml)))))
+        lico(self.dna.all.process(parse(StringIO(xml))))
         self.assertEqualsWS("""<rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:oac="http://www.openannotation.org/ns/">
@@ -125,7 +127,7 @@ class PublishTest(SeecrTestCase):
 </rdf:RDF>"""
         self.store.returnValues['isAvailable'] = (False, False)
 
-        list(compose(self.dna.all.process(parse(StringIO(xml)))))
+        lico(self.dna.all.process(parse(StringIO(xml))))
         self.assertEquals('isAvailable', self.store.calledMethods[0].name)
         self.assertEquals('http://some.where/here/urn%3Aid%3A2', self.store.calledMethods[0].args[0])
         self.assertEquals('oacBody', self.store.calledMethods[0].args[1])
@@ -134,7 +136,7 @@ class PublishTest(SeecrTestCase):
 
         self.store.returnValues['isAvailable'] = (True, True)
         self.store.returnValues['getStream'] = StringIO('<xml/>')
-        list(compose(self.dna.all.process(parse(StringIO(xml)))))
+        lico(self.dna.all.process(parse(StringIO(xml))))
 
         self.assertEquals('getStream', self.store.calledMethods[2].name)
         self.assertEquals(('http://some.where/here/urn%3Aid%3A2', 'oacBody'), self.store.calledMethods[2].args)

@@ -37,3 +37,4 @@ from rdfcontainer import RdfContainer
 from authorization import Authorization
 from apikeycheck import ApiKeyCheck
 from reindexidentifier import ReindexIdentifier
+from oaiuserset import OaiUserSet

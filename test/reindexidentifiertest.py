@@ -34,8 +34,7 @@ from meresco.core import Observable
 
 from oas import ReindexIdentifier
 
-def joco(gen):
-    return ''.join(compose(gen))
+from testutil import joco
 
 class ReindexIdentifierTest(SeecrTestCase):
     def setUp(self):

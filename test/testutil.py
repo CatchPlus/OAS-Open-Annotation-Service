@@ -25,25 +25,10 @@
 # 
 ## end license ##
 
-from seecr.test import CallTrace, SeecrTestCase
 from weightless.core import compose
 
-from oas.datatofield import DataToField
+def lico(gen):
+    return list(compose(gen))
 
-from testutil import lico
-
-class DataToFieldTest(SeecrTestCase):
-    def setUp(self):
-        SeecrTestCase.setUp(self)
-        self.data2field = DataToField(fromKwarg='data', fieldname='field')
-        self.observer = CallTrace('Observer')
-        self.data2field.addObserver(self.observer)
-
-    def testAdd(self):
-        lico(self.data2field.add(identifier='identifier', partname='part', data='somedata'))
-        self.assertEquals(['addField'], [m.name for m in self.observer.calledMethods])
-        self.assertEquals(dict(name='field', value='somedata'), self.observer.calledMethods[0].kwargs)
-        
-    def testAddWithoutFromKwarg(self):
-        self.data2field.add(identifier='identifier', partname='part', lxmlNode='somedata')
-        self.assertEquals([], [m.name for m in self.observer.calledMethods])
+def joco(gen):
+    return ''.join(compose(gen))
