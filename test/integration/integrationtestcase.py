@@ -289,13 +289,13 @@ class OasIntegrationState(IntegrationState):
 
 
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
-        self.apiKeyForTestUser =  xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="testUser"]]/td[@class="apiKey"]/text()')[0]
+        self.apiKeyForTestUser =  xpath(body, '//div[@id="apiKeys"]/table/tr[form/td[text()="testUser"]]/form/td[@class="apiKey"]/text()')[0]
         assert self.apiKeyForTestUser != None
 
-        self.apiKeyForAnotherTestUser = xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="anotherTestUser"]]/td[@class="apiKey"]/text()')[0]
+        self.apiKeyForAnotherTestUser = xpath(body, '//div[@id="apiKeys"]/table/tr[form/td[text()="anotherTestUser"]]/form/td[@class="apiKey"]/text()')[0]
         assert self.apiKeyForAnotherTestUser != None
         
-        self.apiKeyForPostUser = xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="postUser"]]/td[@class="apiKey"]/text()')[0]
+        self.apiKeyForPostUser = xpath(body, '//div[@id="apiKeys"]/table/tr[form/td[text()="postUser"]]/form/td[@class="apiKey"]/text()')[0]
         assert self.apiKeyForPostUser != None
 
     def _createDatabase(self):

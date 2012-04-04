@@ -72,15 +72,15 @@ class UserTest(IntegrationTestCase):
 
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
 
-        self.assertEquals("",  xpath(body, '//div[@id="apiKeys"]/table/form/tr/td/input[@name="description"]/@value')[0])
-        apiKey = xpath(body, '//div[@id="apiKeys"]/table/form/tr/td[@class="apiKey"]/text()')[0]
+        self.assertEquals("",  xpath(body, '//div[@id="apiKeys"]/table/tr/form/td/input[@name="description"]/@value')[0])
+        apiKey = xpath(body, '//div[@id="apiKeys"]/table/tr/form/td[@class="apiKey"]/text()')[0]
         self.assertNotEqual("", apiKey)
 
         headers, body = postRequest(self.portNumber, '/apikey.action/update', urlencode(dict(formUrl='/admin', apiKey=apiKey, description="Some description")), parse='lxml', additionalHeaders=dict(cookie=cookie))
         self.assertTrue('302' in headers, headers)
         self.assertEquals('/admin', parseHeaders(headers)['Location'], headers)
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
-        self.assertEquals("Some description",  xpath(body, '//div[@id="apiKeys"]/table/form/tr/td/input[@name="description"]/@value')[0])
+        self.assertEquals("Some description",  xpath(body, '//div[@id="apiKeys"]/table/tr/form/td/input[@name="description"]/@value')[0])
         
 
     def testAddSameUserTwice(self):
@@ -103,7 +103,7 @@ class UserTest(IntegrationTestCase):
         headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='another')), parse='lxml', additionalHeaders=dict(cookie=cookie))
 
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
-        apiKey = xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="another"]]/td[@class="apiKey"]/text()')[0]
+        apiKey = self.apiKeyForUser(body, "another")
         self.assertTrue(len(apiKey) > 0, apiKey)
 
     def testAddInsertDelete(self):
@@ -113,7 +113,7 @@ class UserTest(IntegrationTestCase):
         headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='addDelete')), parse='lxml', additionalHeaders=dict(cookie=cookie))
 
         headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
-        apiKey = xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="addDelete"]]/td[@class="apiKey"]/text()')[0]
+        apiKey = self.apiKeyForUser(body, "addDelete")
 
         annotationBody = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
@@ -154,3 +154,7 @@ class UserTest(IntegrationTestCase):
         if recordCount != count:
             print tostring(body)
         self.assertEquals(count, recordCount)
+
+
+    def apiKeyForUser(self, body, username):
+        return xpath(body, '//div[@id="apiKeys"]/table/tr[form/td[text()="%s"]]/form/td[@class="apiKey"]/text()' % username)[0]
