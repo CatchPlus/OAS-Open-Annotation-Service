@@ -34,7 +34,7 @@ def main(**kwargs):
 
     oaiUrl = "http://%(hostName)s:%(portNumber)s/oai" % config
 
-    yield "<p>Use the search input below to search through all annotation in this Open Annotation Service.</p>"
+    yield "<p>Use the search input below to search through all annotations in this Open Annotation Service.</p>"
     yield "<p>An OAI service can be found at the following base url: <a href=%s _target='blank'>%s</a></p>" % (quoteattr(oaiUrl), escapeHtml(oaiUrl))
     yield '<form method="GET" action="/query">'
     yield '<input type="text" name="q"/>'

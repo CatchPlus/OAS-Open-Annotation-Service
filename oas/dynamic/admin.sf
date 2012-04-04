@@ -49,7 +49,7 @@ def main(session, **kwargs):
                 <form method="POST" action="/login.action/remove">
                     <input type="hidden" name="username" value=%s/>
                     <input type="hidden" name="formUrl" value="/admin"/>
-                    <input type="submit" value="[DEL]"/>
+                    <input type="submit" value="Delete"/>
                 </form>
             </td>""" % quoteattr(username)
             yield """
