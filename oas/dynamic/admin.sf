@@ -36,21 +36,30 @@ def main(session, **kwargs):
     yield page.menu()
     yield '<div id="apiKeys">\n'
     yield '<table>\n'
-    yield '<tr><th>Username</th><th>Api key</th><th>Description</th><th/></tr>\n'
+    yield '<tr><th></th><th>Username</th><th>Api key</th><th>Description</th><th/></tr>\n'
     nr = 0
     for apiKey, data in sorted(call.listApiKeysAndData()):
         username = data['username']
         description = data.get('description', '')
-        yield """<form method="POST" action="/apikey.action/update">
+        yield """    <tr>
+        <td>
+            <form method="POST" action="/login.action/remove">
+                <input type="hidden" name="username" value=%s/>
+                <input type="hidden" name="formUrl" value="/admin"/>
+                <input type="submit" value="[DEL]"/>
+            </form>
+        </td>""" % quoteattr(username)
+        yield """
+            <form method="POST" action="/apikey.action/update">
     <input type="hidden" name="apiKey" value=%s/>
     <input type="hidden" name="formUrl" value="/admin"/>
-    <tr>
+
         <td>%s</td>
         <td class="apiKey">%s</td>
         <td><input type="text" name="description" onKeyPress="javascript:document.getElementById('update-form-%s').disabled=false;" value=%s/></td>
         <td><input id=%s type="submit" value="Update" disabled="true"/></td>
-    </tr>
-    </form>\n""" % (quoteattr(apiKey), escapeHtml(username), escapeHtml(apiKey), nr, quoteattr(description), quoteattr('update-form-%s' % nr))
+        </form>
+    </tr>\n""" % (quoteattr(apiKey), escapeHtml(username), escapeHtml(apiKey), nr, quoteattr(description), quoteattr('update-form-%s' % nr))
         nr += 1
 
     yield '</table>\n'

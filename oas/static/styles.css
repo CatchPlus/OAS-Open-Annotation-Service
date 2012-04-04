@@ -34,6 +34,11 @@ pre {
     padding: 10px;
 }
 
+form {
+    padding: 0px;
+    margin: 0px;
+}
+
 #content {
     width: 750px;
     margin-left: auto;
