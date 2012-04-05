@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="http://cdn.seecr.nl/css/planninggame.css"/>
+        <link rel="shortcut icon" href="http://seecr.nl/favicon.ico" />
+        <script language="javascript" type="text/javascript">
+function toggle(elementId) {
+    var ele = document.getElementById(elementId);
+    ele.style.display = ele.style.display == "block" ? "none" : "block";
+} 
+        </script>
+        <title>OpenAnnotation Service</title>
+   </head>
+    <body>
+        <div id="blocknote">
+            <div id="logo"></div>
+            <div id="content">
+                <h1 class="title">Planformulier 5 - OpenAnnotation Service</h1>                
+                <div class="story">
+                    <h2>0. TODO</h2>
+                    <p>Hennie: Onderscheid tussen annotatie op annotatie en annotatie op ConstraintTarget bespreken met Herbert.<br/>Hennie: Praktijkvoorbeelden verzamelen.<br/>Seecr: story 3-5, 4-3, 4-4 en 4-5 afmaken</p>
+                </div>                
+                <div class="story">
+                    <h2>1. Records met username als set aanbieden met OAI</h2>
+                    <p>Ieder record wordt geindexeerd met de username (key) die gekoppeld is aan de API key waar het record ingeschoten is. Deze username zal als een set worden aangeboden in de OAI-PMH uitgang. Hierdoor wordt het mogelijk om records te groeperen. </p>
+                </div>                
+                <div class="story">
+                    <h2>2. Ondersteuning Annotation Toolbouwer</h2>
+                    <p>Er wordt tijd en ruimte gereserveerd om ondersteuning te bieden aan toolbouwers welke gebruik gaan maken van de OAS service.</p>
+                </div>                
+                <div class="story">
+                    <h2>3. Packagen</h2>
+                    <p>De software wordt gepackaged in een Debian package.</p>
+                </div>                
+                <div class="story">
+                    <h2>4. Review functionaliteit</h2>
+                    <p>Seecr loopt alle functionaliteit nog eens na op consistentie en komt met aanbevelingen voor het vervolg.</p>
+                </div>
+            </div>
+            <div id="stamp"></div>
+            <div id="address" onClick="javascript:window.open('http://seecr.nl'); return false;"></div>
+        </div>
+    </body>
+</html>
