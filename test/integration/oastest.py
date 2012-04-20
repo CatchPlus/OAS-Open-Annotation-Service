@@ -25,9 +25,7 @@
 # 
 ## end license ##
 
-from integrationtestcase import IntegrationTestCase
 from os import listdir
-from utils import getRequest, postRequest
 from oas.utils import parseHeaders
 from lxml.etree import tostring
 from uuid import uuid4
@@ -35,6 +33,9 @@ from urllib import urlencode
 from urlparse import urlsplit
 
 from oas.namespaces import xpath, getAttrib
+
+from seecr.test.integrationtestcase import IntegrationTestCase
+from seecr.test.utils import getRequest, postRequest
 
 class OasTest(IntegrationTestCase):
 
@@ -57,8 +58,8 @@ class OasTest(IntegrationTestCase):
 </rdf:RDF>""" % annotationBody
 
         header,body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey=self.apiKeyForPostUser)), parse='lxml')
-        self.assertEquals([errorText], xpath(body, '//p[@class="error"]/text()'))
-        self.assertEquals([], xpath(body, '//p[@class="message"]/text()'))
+        self.assertEquals([errorText], xpath(body, '//p[@class="upload-error"]/text()'))
+        self.assertEquals([], xpath(body, '//p[@class="upload-success"]/text()'))
     
     def testGetInfo(self):
         headers, body = getRequest(self.portNumber, "/info/version", parse=False)
@@ -119,7 +120,7 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('RDF.Annotation.title = "An Annotions submitted through a form"', 1)
         textarea = xpath(body, '//textarea[@name="annotation"]/text()')
         apiKey = xpath(body, '//input[@name="apiKey"]/@value')[0]
-        message = xpath(body, '//p[@class="message"]/text()')[0]
+        message = xpath(body, '//p[@class="upload-success"]/text()')[0]
         self.assertEquals(self.apiKeyForPostUser, apiKey)
         self.assertEquals([], textarea)
         self.assertTrue('success' in message, message)
@@ -145,7 +146,7 @@ class OasTest(IntegrationTestCase):
 </rdf:RDF>""" % locals()
 
         header, body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey="WRONGKEY")), parse='lxml')
-        error =  xpath(body, '//p[@class="error"]/text()')[0]
+        error =  xpath(body, '//p[@class="upload-error"]/text()')[0]
         self.assertEquals('No valid API Key given', error)
 
     def testErrorWhenNotAnnotation(self):

@@ -25,9 +25,7 @@
 # 
 ## end license ##
 
-from integrationtestcase import IntegrationTestCase
 from os import listdir
-from utils import getRequest, postRequest
 from oas.utils import parseHeaders
 from lxml.etree import tostring
 from urllib import urlencode
@@ -35,9 +33,12 @@ from uuid import uuid4
 from oas.namespaces import xpath, getAttrib
 from os.path import join
 
+from seecr.test.integrationtestcase import IntegrationTestCase
+from seecr.test.utils import getRequest, postRequest
+
 class UserTest(IntegrationTestCase):
     def testLoginPage(self):
-        headers, body = getRequest(self.portNumber, "/login", parse='lxml')
+        headers, body = getRequest(self.portNumber, "/login")
         cookie = parseHeaders(headers)['Set-Cookie']
         self.assertTrue('200' in headers, headers)
         self.assertEquals(1, len(xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/dl/dd/input[@name="username"]')))
@@ -45,74 +46,74 @@ class UserTest(IntegrationTestCase):
         self.assertEquals(1, len(xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/dl/dd/input[@type="submit"]')))
         self.assertEquals(['/login.action'], xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/@action'))
 
-        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="doesnotexist", password="secret")), parse='lxml', additionalHeaders={'Cookie': cookie})
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="doesnotexist", password="secret")), additionalHeaders={'Cookie': cookie})
         self.assertTrue('302' in headers, headers)
         self.assertEquals('/login', parseHeaders(headers)['Location'], headers)
 
-        headers, body = getRequest(self.portNumber, '/login', parse='lxml', additionalHeaders={'Cookie': cookie})
+        headers, body = getRequest(self.portNumber, '/login', additionalHeaders={'Cookie': cookie})
         self.assertEquals(['doesnotexist'], xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/dl/dd/input[@name="username"]/@value'))
         self.assertEquals(['Invalid username or password'], xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/p[@class="error"]/text()'))
 
     def testChangePasswordFormNotAllowed(self):
-        headers, body = getRequest(self.portNumber, "/changepassword", parse='lxml')
+        headers, body = getRequest(self.portNumber, "/changepassword")
         self.assertTrue('302' in headers, headers)
         self.assertEquals('/', parseHeaders(headers)['Location'], headers)
 
     def testApiKeyAddition(self):
-        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")), parse='lxml')
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")))
         cookie = parseHeaders(headers)['Set-Cookie']
 
-        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+        headers, body = getRequest(self.portNumber, '/admin', additionalHeaders={'Cookie': cookie})
         self.assertEquals(['/apikey.action/create'], xpath(body, '//form[@name="create"]/@action'))
         self.assertEquals(['/admin'], xpath(body, '//form[@name="create"]/input[@type="hidden" and @name="formUrl"]/@value'))
 
-        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='testuser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='testuser')), additionalHeaders=dict(cookie=cookie))
         self.assertTrue('302' in headers, headers)
         self.assertEquals('/admin', parseHeaders(headers)['Location'], headers)
 
-        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+        headers, body = getRequest(self.portNumber, '/admin', additionalHeaders={'Cookie': cookie})
 
         self.assertEquals("",  xpath(body, '//div[@id="apiKeys"]/table/tr/form/td/input[@name="description"]/@value')[0])
         apiKey = xpath(body, '//div[@id="apiKeys"]/table/tr/form/td[@class="apiKey"]/text()')[0]
         self.assertNotEqual("", apiKey)
 
-        headers, body = postRequest(self.portNumber, '/apikey.action/update', urlencode(dict(formUrl='/admin', apiKey=apiKey, description="Some description")), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/update', urlencode(dict(formUrl='/admin', apiKey=apiKey, description="Some description")), additionalHeaders=dict(cookie=cookie))
         self.assertTrue('302' in headers, headers)
         self.assertEquals('/admin', parseHeaders(headers)['Location'], headers)
-        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+        headers, body = getRequest(self.portNumber, '/admin', additionalHeaders={'Cookie': cookie})
         self.assertEquals("Some description",  xpath(body, '//div[@id="apiKeys"]/table/tr/form/td/input[@name="description"]/@value')[0])
         
 
     def testAddSameUserTwice(self):
-        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")), parse='lxml')
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")))
         cookie = parseHeaders(headers)['Set-Cookie']
 
-        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='newuser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='newuser')), additionalHeaders=dict(cookie=cookie))
         self.assertTrue('302' in headers, headers)
         self.assertEquals('/admin', parseHeaders(headers)['Location'], headers)
         
-        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='newuser')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='newuser')), additionalHeaders=dict(cookie=cookie))
         self.assertTrue('302' in headers, headers)
         self.assertEquals('/admin', parseHeaders(headers)['Location'], headers)
 
 
     def testAddByNewUser(self):
-        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")), parse='lxml')
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")))
         cookie = parseHeaders(headers)['Set-Cookie']
 
-        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='another')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='another')), additionalHeaders=dict(cookie=cookie))
 
-        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+        headers, body = getRequest(self.portNumber, '/admin', additionalHeaders={'Cookie': cookie})
         apiKey = self.apiKeyForUser(body, "another")
         self.assertTrue(len(apiKey) > 0, apiKey)
 
     def testAddInsertDelete(self):
-        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")), parse='lxml')
+        headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")))
         cookie = parseHeaders(headers)['Set-Cookie']
 
-        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='addDelete')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='addDelete')), additionalHeaders=dict(cookie=cookie))
 
-        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+        headers, body = getRequest(self.portNumber, '/admin', additionalHeaders={'Cookie': cookie})
         apiKey = self.apiKeyForUser(body, "addDelete")
 
         annotationBody = """<rdf:RDF 
@@ -129,24 +130,22 @@ class UserTest(IntegrationTestCase):
 </rdf:RDF>""" % uuid4()
         self.assertQuery('RDF.Annotation.title = "To be deleted"', 0)
 
-        header, body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey=apiKey)), parse='lxml')
+        header, body = postRequest(self.portNumber, '/uploadform', urlencode(dict(annotation=annotationBody, apiKey=apiKey)))
         self.assertQuery('RDF.Annotation.title = "To be deleted"', 1)
 
-        headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf", set='addDelete'), parse='lxml')
+        headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf", set='addDelete'))
         self.assertEquals(1, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
 
-
-
-        headers, body = postRequest(self.portNumber, '/login.action/remove', urlencode(dict(formUrl='/admin', username='addDelete')), parse='lxml', additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/login.action/remove', urlencode(dict(formUrl='/admin', username='addDelete')), additionalHeaders=dict(cookie=cookie))
         
-        headers, body = getRequest(self.portNumber, '/admin', parse='lxml', additionalHeaders={'Cookie': cookie})
+        headers, body = getRequest(self.portNumber, '/admin', additionalHeaders={'Cookie': cookie})
         apiKey = xpath(body, '//div[@id="apiKeys"]/table/form/tr[td[text()="addDelete"]]/td[@class="apiKey"]/text()')
         self.assertEquals([], apiKey)
         #### Delete user, then query again; number of results should be 0
         self.assertEquals(['addDelete.delete'], listdir(join(self.integrationTempdir, 'database', 'userdelete')))
         self.runUserDeleteService()
         self.assertQuery('RDF.Annotation.title = "To be deleted"', 0)
-        headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf", set='addDelete'), parse='lxml')
+        headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf", set='addDelete'))
         self.assertEquals(0, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
         self.assertEquals("deleted", xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:header/@status")[0])
 
@@ -158,7 +157,7 @@ class UserTest(IntegrationTestCase):
 
     def assertQuery(self, query, count):
         headers, body = getRequest(self.portNumber, "/sru", arguments=dict(
-            version="1.1", operation="searchRetrieve", query=query), parse='lxml')
+            version="1.1", operation="searchRetrieve", query=query))
         recordCount = int(xpath(body, '/srw:searchRetrieveResponse/srw:numberOfRecords/text()')[0])
         if recordCount != count:
             print tostring(body)

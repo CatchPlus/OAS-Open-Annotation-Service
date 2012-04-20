@@ -171,3 +171,14 @@ form {
     font-family: monospace, "Courier New";
 }
 
+.upload-error {
+    color: red;
+    border: 2px dotted red;
+    padding: 3px;
+}
+
+.upload-success {
+    color: green;
+    border: 2px dotted green;
+    padding: 3px;
+}

@@ -25,4 +25,4 @@
 # 
 ## end license ##
 
-from integrationtestcase import globalSetUp, globalTearDown
+from oasintegrationstate import OasIntegrationState

@@ -27,7 +27,7 @@
 ## end license ##
 
 def showResults(query):
-    queryResult = yield any.executeQuery(query)
+    queryResult = yield observable.any.executeQuery(query)
     queryResult = list(queryResult)
     if len(queryResult) == 0:
         yield "No results"

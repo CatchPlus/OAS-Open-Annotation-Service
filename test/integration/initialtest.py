@@ -25,13 +25,14 @@
 # 
 ## end license ##
 
-from integrationtestcase import IntegrationTestCase
-from utils import getRequest, postRequest
 from oas.utils import parseHeaders
 from urllib import urlencode
 
 from lxml.etree import tostring
 from oas.namespaces import xpath
+
+from seecr.test.integrationtestcase import IntegrationTestCase
+from seecr.test.utils import getRequest, postRequest
 
 class InitialTest(IntegrationTestCase):
     def testAdmin(self):

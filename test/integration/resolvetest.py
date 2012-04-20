@@ -25,8 +25,6 @@
 # 
 ## end license ##
 
-from integrationtestcase import IntegrationTestCase
-from utils import getRequest, postRequest
 from lxml.etree import tostring
 from uuid import uuid4
 from urllib import urlencode
@@ -35,6 +33,9 @@ from os import makedirs
 
 from oas.namespaces import xpath
 from subprocess import Popen
+
+from seecr.test.utils import getRequest, postRequest
+from seecr.test.integrationtestcase import IntegrationTestCase
 
 class ResolveTest(IntegrationTestCase):
 

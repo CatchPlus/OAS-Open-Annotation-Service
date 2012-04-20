@@ -36,9 +36,8 @@ systemPath.insert(0, '..')                          #DO_NOT_DISTRIBUTE
 
 from sys import argv
 
-from testrunner import TestRunner
-
-from integration import globalSetUp, globalTearDown
+from seecr.test.testrunner import TestRunner
+from integration import OasIntegrationState
 
 flags = ['--fast']
 
@@ -49,28 +48,25 @@ if __name__ == '__main__':
             argv.remove(flag)
 
     runner = TestRunner()
-    runner.addGroup(
-        'default', [
+    OasIntegrationState(
+        'default', 
+        tests=[
             'integration.oastest.OasTest',
             'integration.usertest.UserTest',
         ],
-        groupSetUp = lambda: globalSetUp(fastMode, 'default'),
-        groupTearDown = lambda: globalTearDown()
-    )
-    runner.addGroup(
-        'initial', [
+        fastMode=fastMode).addToTestRunner(runner)
+    OasIntegrationState(
+        'initial', 
+        tests=[
             'integration.initialtest.InitialTest',
         ],
-        groupSetUp = lambda: globalSetUp(fastMode, 'initial'),
-        groupTearDown = lambda: globalTearDown()
-    )
-    runner.addGroup(
-        'resolve', [
+        fastMode=fastMode).addToTestRunner(runner)
+    OasIntegrationState(
+        'resolve', 
+        tests=[
             'integration.resolvetest.ResolveTest',
         ],
-        groupSetUp = lambda: globalSetUp(fastMode, 'resolve'),
-        groupTearDown = lambda: globalTearDown()
-    )
+        fastMode=fastMode).addToTestRunner(runner)
 
     testnames = argv[1:]
     runner.run(testnames)
