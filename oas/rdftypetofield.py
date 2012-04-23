@@ -25,17 +25,17 @@
 # 
 ## end license ##
 
-from __version__ import VERSION, VERSION_STRING
+from meresco.core import Observable
 
-from deanonymize import Deanonymize
-from filterfieldvalue import FilterFieldValue
-from identifierfromxpath import IdentifierFromXPath
-from multipleannotationsplit import MultipleAnnotationSplit
-from normalize import Normalize
-from publish import Publish
-from rdfcontainer import RdfContainer
-from authorization import Authorization
-from apikeycheck import ApiKeyCheck
-from reindexidentifier import ReindexIdentifier
-from oaiuserset import OaiUserSet
-from rdftypetofield import RdfTypeToField
+from namespaces import xpath, namespaces
+
+class RdfTypeToField(Observable):
+
+    def add(self, identifier, partname, lxmlNode):
+        for node in xpath(lxmlNode, '/rdf:RDF/oac:Annotation'):
+            self.do.addField(name="rdf:type", value="%sAnnotation" % namespaces['oac'])
+
+        for node in xpath(lxmlNode, '/rdf:RDF/oac:Annotation/rdf:type/@rdf:resource'):
+            self.do.addField(name="rdf:type", value=node)
+        return
+        yield

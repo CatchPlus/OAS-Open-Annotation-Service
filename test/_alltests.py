@@ -51,6 +51,7 @@ from rdfcontainertest import RdfContainerTest
 from reindexidentifiertest import ReindexIdentifierTest
 from resolveservertest import ResolveServerTest
 from utilstest import UtilsTest
+from rdftypetofieldtest import RdfTypeToFieldTest
 
 from login.passwordfiletest import PasswordFileTest
 from login.basichtmlloginformtest import BasicHtmlLoginFormTest

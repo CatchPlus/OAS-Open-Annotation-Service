@@ -81,6 +81,9 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('api.user = testuser', 6)
         self.assertQuery('api.user = anothertestuser', 7)
 
+    def testQueryOnRdfType(self):
+       self.assertQuery('rdf:type = "http://www.openannotation.org/ns/Annotation"', 14)
+
     def testOaiIdentify(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')
         self.assertEquals("CatchPlus OpenAnnotation", xpath(body, "/oai:OAI-PMH/oai:Identify/oai:repositoryName/text()")[0])

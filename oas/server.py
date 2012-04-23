@@ -53,18 +53,19 @@ from meresco.owlim import HttpClient
 from meresco.oai import OaiPmh, OaiJazz, OaiAddRecord
 
 from dynamichtml import DynamicHtml
-from oas import VERSION_STRING
-from oas import FilterFieldValue
-from oas import Authorization, ReindexIdentifier, OaiUserSet
-from oas.seecroaiwatermark import SeecrOaiWatermark
-from oas.identifierfromxpath import IdentifierFromXPath
-from oas import MultipleAnnotationSplit, Normalize, Deanonymize, Publish
 from namespaces import namespaces, xpath
-from oas.login import BasicHtmlLoginForm, createPasswordFile
-from oas.apikey import ApiKey
-from oas.apikeycheck import ApiKeyCheck
-from oas.datatofield import DataToField
 from oas.adduserdatafromapikey import AddUserDataFromApiKey
+from oas.apikeycheck import ApiKeyCheck
+from oas.apikey import ApiKey
+from oas.datatofield import DataToField
+from oas.identifierfromxpath import IdentifierFromXPath
+from oas import Authorization, ReindexIdentifier, OaiUserSet
+from oas import FilterFieldValue
+from oas import RdfTypeToField
+from oas import MultipleAnnotationSplit, Normalize, Deanonymize, Publish
+from oas import VERSION_STRING
+from oas.login import BasicHtmlLoginForm, createPasswordFile
+from oas.seecroaiwatermark import SeecrOaiWatermark
 from oas.userdelete import UserDelete
 
 ALL_FIELD = '__all__'
@@ -208,6 +209,10 @@ def dna(reactor, observableHttpServer, config):
                                 )
                             )
                         ),
+                        allFieldIndexHelix,
+                        indexHelix
+                    ),
+                    (RdfTypeToField(),
                         allFieldIndexHelix,
                         indexHelix
                     ),
