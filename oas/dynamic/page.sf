@@ -45,6 +45,7 @@ def menu(selected=None):
     items = [
         ('Search', "/index"),
         ('Upload', "/uploadform"),
+        ('SparQL', "/sparql"),
         ('Examples', "/examples"),
         ('Documentation', "/documentation"),
         ('About', "/about"),
