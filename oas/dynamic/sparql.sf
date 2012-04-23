@@ -34,6 +34,7 @@ def main(arguments={}, *args, **kwargs):
     yield page.menu(selected="SparQL")
 
     queryArgument = arguments.get("query", [''])[0]
+    yield "<p>Please input a valid SparQL query in the textbox below. The specification for SparQL queries can be found <a href='http://www.w3.org/TR/rdf-sparql-query/' target='_blank'>here</a>.</p>"
     yield """<form method='get'>
     <textarea name='query' cols='80' rows='10'>"""
     yield queryArgument
