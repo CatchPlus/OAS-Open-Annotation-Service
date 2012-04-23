@@ -150,7 +150,8 @@ def dna(reactor, observableHttpServer, config):
                 (FilterMessages(allowed=['delete']),
                     (solrInterface, ), 
                     (storageComponent,),
-                    (oaiJazz, )
+                    (oaiJazz, ),
+                    (tripleStore, )
                 ),
                 readOnlyStorageHelix,
                 (FilterPartByName(included=['rdf']),
