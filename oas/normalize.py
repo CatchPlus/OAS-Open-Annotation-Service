@@ -26,7 +26,7 @@
 ## end license ##
 
 from meresco.core import Transparent
-from namespaces import xpath, prefixes, namespaces
+from namespaces import xpath, prefixes, namespaces, getAttrib
 
 from lxml.etree import SubElement
 
@@ -38,25 +38,55 @@ def splitType(typeString):
 
     return splitOn("#" if "#" in typeString else "/")
 
+class NamespaceEnum(object):
+    def __init__(self):
+        self._map = {}
+        self._enum = 0
+
+    def get(self, ns):
+        if ns not in self._map:
+            prefix = 'ns%s' % self._enum
+            self._enum += 1
+            self._map[ns] = prefix
+        return self._map[ns]
+
 class Normalize(Transparent):
+
+    def __init__(self):
+        Transparent.__init__(self)
+        self._namespaceEnum = NamespaceEnum()
   
     def process(self, lxmlNode):
+        def prefixForNamespace(ns):
+            if ns in prefixes:
+                return prefixes[ns]
+            return self._namespaceEnum.get(ns)
+
+        def filterOac(nodes):
+            result = []
+            for node in nodes:
+                namespace, name = splitType(getAttrib(node, 'rdf:resource'))
+                if namespace == namespaces['oac']:
+                    result.append(node)
+            return result
+
         descriptions = xpath(lxmlNode, "//rdf:Description[rdf:type]")
         for description in descriptions:
-            rdfType = xpath(description, "rdf:type/@rdf:resource")[0]
+            nodes = xpath(description, "rdf:type")
+            oacNodes = filterOac(nodes)
+            typeNode = nodes[0]
+            if len(oacNodes) > 0:
+                typeNode = oacNodes[0]
 
-            namespace, name = splitType(rdfType)
             parent = description.getparent()
+            namespace, name = splitType(getAttrib(typeNode, 'rdf:resource'))
+            prefix = prefixForNamespace(namespace)
             newNode = SubElement(
                 parent, 
                 "{%(ns)s}%(tag)s" % {'ns': namespace, 'tag': name}, 
                 attrib=description.attrib,
-                nsmap={prefixes[namespace]: namespace})
-            firstChildDeleted = False
-            for child in description.getchildren():
-                if child.tag == "{%(rdf)s}type" % namespaces and not firstChildDeleted:
-                    firstChildDeleted = True
-                    continue
+                nsmap={prefix: namespace})
+            for child in (child for child in description.getchildren() if child != typeNode):
                 newNode.append(child)
             parent.remove(description)
 

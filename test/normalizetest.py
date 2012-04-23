@@ -72,6 +72,22 @@ class NormalizeTest(SeecrTestCase):
     <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="urn:identifier"/>
 </rdf:RDF>"""
         self.assertConvert(EXPECTED_XML, XML)
+    
+    def testRightType(self):
+        XML = """<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description rdf:about="urn:identifier">
+        <rdf:type rdf:resource="http://the.other.namespace/Annotation"/>
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+    </rdf:Description>
+</rdf:RDF>"""
+        EXPECTED_XML = """<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="urn:identifier">
+        <rdf:type rdf:resource="http://the.other.namespace/Annotation"/>
+    </oac:Annotation>
+</rdf:RDF>"""
+        self.assertConvert(EXPECTED_XML, XML)
 
     def testSubElements(self):
         XML = """<rdf:RDF 
