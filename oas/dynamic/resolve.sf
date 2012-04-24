@@ -33,11 +33,19 @@ def main(path, **kwargs):
     if observable.call.isAvailable(identifier, 'rdf') == (True, True):
         yield okXml
         yield observable.call.getStream(identifier, 'rdf').read()
-    elif observable.call.isAvailable(identifier, 'oacBody') == (True, True):
+        return
+
+    xml = None
+    if observable.call.isAvailable(identifier, 'oacBody') == (True, True):
+        xml = observable.call.getStream(identifier, 'oacBody').read()
+    elif observable.call.isAvailable(identifier, 'oacConstrainedTarget') == (True, True):
+        xml = observable.call.getStream(identifier, 'oacConstrainedTarget').read()
+
+    if xml != None:
         yield okXml
         yield '<?xml version="1.0" encoding="utf-8"?>\n'
         yield '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">\n'
-        yield observable.call.getStream(identifier, 'oacBody').read()
+        yield xml
         yield '</rdf:RDF>'
     else:
         yield "HTTP/1.0 404 Not Found\r\n\r\n"

@@ -78,11 +78,11 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('mailto:unique@info.org', 1)
         self.assertQuery('oac:hasTarget = "http://example.org/target/for/test"', 1)
         self.assertQuery('RDF.Annotation.creator.Agent.name = "billy butcher"', 2)
-        self.assertQuery('api.user = testuser', 6)
-        self.assertQuery('api.user = anothertestuser', 7)
+        self.assertQuery('api.user = testuser', 7)
+        self.assertQuery('api.user = anothertestuser', 8)
 
     def testQueryOnRdfType(self):
-       self.assertQuery('rdf:type = "http://www.openannotation.org/ns/Annotation"', 14)
+        self.assertQuery('rdf:type = "http://www.openannotation.org/ns/Annotation"', 16)
 
     def testOaiIdentify(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')
@@ -90,14 +90,14 @@ class OasTest(IntegrationTestCase):
 
     def testOaiListRecords(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf"), parse='lxml')
-        self.assertEquals(13, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+        self.assertEquals(15, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
 
     def testOaiListRecordsWithUserAsSet(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf", set='testUser'), parse='lxml')
-        self.assertEquals(6, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+        self.assertEquals(7, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
 
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='ListRecords', metadataPrefix="rdf", set='anotherTestUser'), parse='lxml')
-        self.assertEquals(7, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
+        self.assertEquals(8, len(xpath(body, "/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata")))
 
     def testPostAnnotation(self):
         identifier = "urn:uuid:%s" % uuid4()
@@ -203,6 +203,13 @@ class OasTest(IntegrationTestCase):
 
         header, body = getRequest(self.portNumber, '/resolve/urn%3Anr%3A0%3Fb', {}, parse='lxml')
         self.assertEquals(["http://localhost:%s/resolve/urn%%3Anr%%3A0%%3Fb" % self.portNumber], xpath(body, '/rdf:RDF/oac:Annotation/@rdf:about'))
+
+    def testResolveConstrainedTargets(self):
+        header, body = getRequest(self.portNumber, '/resolve/urn%3Aid%3Act%3A1', {}, parse='lxml')
+        self.assertEquals(["http://localhost:%s/resolve/urn%%3Aid%%3Act%%3A1" % self.portNumber], xpath(body, '/rdf:RDF/oac:ConstrainedTarget/@rdf:about'))
+
+
+
 
     def testDocumentationPage(self):
         header, body = getRequest(self.portNumber, '/documentation', {}, parse='lxml')

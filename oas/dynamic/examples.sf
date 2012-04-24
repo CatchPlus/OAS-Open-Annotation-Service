@@ -240,7 +240,6 @@ def main(**kwargs):
             </oac:SvgConstraint>
         </oac:constrainedBy>
         <oac:constrains rdf:resource=%s/>
-        </oac:constrains>
     </oac:ConstrainedTarget>
     
 </rdf:RDF>""" % (uuid(), timestamp, uuid(), timestamp, quoteattr(logoUrl)))

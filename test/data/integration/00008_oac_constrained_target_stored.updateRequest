@@ -1,0 +1,49 @@
+<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <rdf:Description rdf:about="urn:uuid:1505e7d8-6462-4536-a3ae-944a08ce540c">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <oac:hasBody>
+            <oac:Body>
+                <dc:description>First Annotation of a constrained target</dc:description>
+            </oac:Body>
+        </oac:hasBody>
+        <oac:hasTarget rdf:resource="urn:id:ct:1"/>
+        <dcterms:creator>
+            <foaf:Agent>
+                <foaf:mbox>info@example.org</foaf:mbox>
+            </foaf:Agent>
+        </dcterms:creator>
+        <dcterms:created>2012-04-23 10:14:54</dcterms:created>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="urn:uuid:b3c77b9c-119b-4a96-b3c2-f2a3563ce9f7">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <oac:hasBody>
+            <oac:Body>
+                <dc:description>Another Annotation of a constrained target</dc:description>
+            </oac:Body>
+        </oac:hasBody>
+        <oac:hasTarget rdf:resource="urn:id:ct:1"/>
+        <dcterms:creator>
+            <foaf:Agent>
+                <foaf:mbox>info@example.org</foaf:mbox>
+            </foaf:Agent>
+        </dcterms:creator>
+        <dcterms:created>2012-04-23 10:14:54</dcterms:created>
+    </rdf:Description>
+
+    <oac:ConstrainedTarget rdf:about="urn:id:ct:1">
+        <oac:constrainedBy>
+            <oac:SvgConstraint>
+                <dc:format>image/svg+xml</dc:format>
+            </oac:SvgConstraint>
+        </oac:constrainedBy>
+        <oac:constrains rdf:resource="http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"/>
+    </oac:ConstrainedTarget>
+    
+</rdf:RDF>

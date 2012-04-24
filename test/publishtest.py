@@ -144,3 +144,57 @@ class PublishTest(SeecrTestCase):
         self.assertEquals('add', self.observer.calledMethods[1].name)
         self.assertEqualsWS(expectedXml, tostring(self.observer.calledMethods[1].kwargs['lxmlNode']))
 
+
+    def testPublishChecksForConstrainedTargetInStorage(self):
+        xml = """<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <oac:Annotation rdf:about="urn:uuid:1505e7d8-6462-4536-a3ae-944a08ce540c">
+        <oac:hasTarget rdf:resource="urn:id:ct:1"/>
+    </oac:Annotation>
+</rdf:RDF>"""
+        constrainedTarget = """<oac:ConstrainedTarget 
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+        xmlns:oac="http://www.openannotation.org/ns/" 
+        rdf:about="urn:id:ct:1">
+    </oac:ConstrainedTarget>"""
+        expectedXml = """<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+    <oac:Annotation rdf:about="http://some.where/here/urn%3Auuid%3A1505e7d8-6462-4536-a3ae-944a08ce540c">
+        <oac:hasTarget>
+            <oac:ConstrainedTarget rdf:about="http://some.where/here/urn%3Aid%3Act%3A1">
+                <dc:identifier>urn:id:ct:1</dc:identifier>
+            </oac:ConstrainedTarget>
+        </oac:hasTarget>
+        <dc:identifier>urn:uuid:1505e7d8-6462-4536-a3ae-944a08ce540c</dc:identifier>
+    </oac:Annotation>
+</rdf:RDF>"""
+
+        self.store.returnValues['isAvailable'] = (False, False)
+
+        lico(self.dna.all.process(parse(StringIO(xml))))
+        self.assertEquals('isAvailable', self.store.calledMethods[0].name)
+        self.assertEquals('http://some.where/here/urn%3Aid%3Act%3A1', self.store.calledMethods[0].args[0])
+        self.assertEquals('oacConstrainedTarget', self.store.calledMethods[0].args[1])
+        self.assertEquals(1, len(self.store.calledMethods))
+
+
+        self.store.returnValues['isAvailable'] = (True, True)
+        self.store.returnValues['getStream'] = StringIO(constrainedTarget)
+        lico(self.dna.all.process(parse(StringIO(xml))))
+
+        self.assertEquals('getStream', self.store.calledMethods[2].name)
+        self.assertEquals(('http://some.where/here/urn%3Aid%3Act%3A1', 'oacConstrainedTarget'), self.store.calledMethods[2].args)
+    
+        self.assertEquals('add', self.observer.calledMethods[1].name)
+        self.assertEqualsWS(expectedXml, tostring(self.observer.calledMethods[1].kwargs['lxmlNode']))
+

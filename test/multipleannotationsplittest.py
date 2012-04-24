@@ -179,3 +179,29 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
         <dcterms:creator rdf:resource="urn:othercreator"/>
     </oac:Annotation>
 </rdf:RDF>""", tostring(resultNode))
+
+    def testInlineConstrainedTargets(self):
+        self.storageObserver.returnValues['isAvailable'] = (False, False)
+        xml = """<rdf:RDF
+            xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+            xmlns:dc="http://purl.org/dc/elements/1.1/"
+            xmlns:oac="http://www.openannotation.org/ns/">
+            <oac:Annotation rdf:about="identifier:1">
+                <oac:hasTarget rdf:resource="urn:id:ct:1"/>
+            </oac:Annotation>
+
+            <oac:ConstrainedTarget rdf:about="urn:id:ct:1">
+                <dc:title>Constrained Target</dc:title>    
+            </oac:ConstrainedTarget>
+        </rdf:RDF>"""
+        lico(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(xml))))
+        resultNode = self.observer.calledMethods[0].kwargs['lxmlNode']
+        self.assertEqualsWS("""<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="identifier:1">
+                <oac:hasTarget><oac:ConstrainedTarget xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:about="urn:id:ct:1">
+                <dc:title>Constrained Target</dc:title>    
+            </oac:ConstrainedTarget>
+        </oac:hasTarget>
+            </oac:Annotation>
+
+            </rdf:RDF>""", tostring(resultNode))

@@ -69,10 +69,25 @@ class Publish(Observable):
                         hasBody.append(body.getroot())
                         del hasBody.attrib[expandNs('rdf:resource')]
 
+            for hasTarget in xpath(annotation, "//oac:hasTarget"):
+                targetResource = getAttrib(hasTarget, 'rdf:resource')
+                if targetResource:
+                    targetResourceIdentifier = self.urlFor(targetResource)
+                    if self.call['store'].isAvailable(targetResourceIdentifier, "oacConstrainedTarget") == (True, True):
+                        body = parse(self.call['store'].getStream(targetResourceIdentifier, 'oacConstrainedTarget'))
+                        hasTarget.append(body.getroot())
+                        del hasTarget.attrib[expandNs('rdf:resource')]
+
             for body in xpath(annotation, '//oac:Body'):
                 bodyIdentifier = getAttrib(body, 'rdf:about')
                 if bodyIdentifier.startswith('urn:'):
                     publishIdentifier = self.urnToUrl(body, bodyIdentifier)
                     yield self.all['store'].add(identifier=publishIdentifier, partname="oacBody", lxmlNode=body)
 
-        yield self.all['index'].add(identifier=identifier, partname="rdf", lxmlNode=lxmlNode)
+            for target in xpath(annotation, '//oac:ConstrainedTarget'):
+                targetIdentifier = getAttrib(target, 'rdf:about')
+                if targetIdentifier.startswith('urn:'):
+                    publishIdentifier = self.urnToUrl(target, targetIdentifier)
+                    yield self.all['store'].add(identifier=publishIdentifier, partname="oacConstrainedTarget", lxmlNode=target)
+
+            yield self.all['index'].add(identifier=identifier, partname="rdf", lxmlNode=lxmlNode)

@@ -43,7 +43,7 @@ class Deanonymize(Observable):
         self._urnGen = urnGen if urnGen else urn
 
     def process(self, lxmlNode):
-        for node in chain(xpath(lxmlNode, '//oac:Annotation'), xpath(lxmlNode, '//oac:Body')):
+        for node in chain(xpath(lxmlNode, '//oac:Annotation'), xpath(lxmlNode, '//oac:Body'), xpath(lxmlNode, "//oac:ConstrainedTarget")):
             if getAttrib(node, 'rdf:about') == None and getAttrib(node, 'rdf:resource') == None:
                 setAttrib(node, 'rdf:about', self._urnGen())
 

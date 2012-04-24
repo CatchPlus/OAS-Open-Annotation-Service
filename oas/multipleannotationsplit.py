@@ -51,7 +51,10 @@ class MultipleAnnotationSplit(Observable):
         return self.all.delete(identifier)
 
     def _inlineURNs(self, root, rdfContainer):
-        for relation in [{'tag': 'dcterms:creator', 'partname': 'foafAgent'}, {'tag': 'oac:hasBody', 'partname': 'oacBody'}]:
+        for relation in [
+            {'tag': 'dcterms:creator', 'partname': 'foafAgent'}, 
+            {'tag': 'oac:hasBody', 'partname': 'oacBody'},
+            {'tag': 'oac:hasTarget', 'partname': 'oacConstrainedTarget'},]:
             nodes = xpath(root, '//%s[@rdf:resource]' % relation['tag'])
             for node in nodes:
                 urn = getAttrib(node, 'rdf:resource')
