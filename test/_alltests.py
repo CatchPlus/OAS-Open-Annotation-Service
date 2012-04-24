@@ -57,6 +57,7 @@ from login.passwordfiletest import PasswordFileTest
 from login.basichtmlloginformtest import BasicHtmlLoginFormTest
 
 from harvester.environmenttest import EnvironmentTest
+from harvester.dashboardtest import DashboardTest
 
 if __name__ == '__main__':
     main()

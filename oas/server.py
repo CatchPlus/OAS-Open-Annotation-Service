@@ -67,6 +67,7 @@ from oas import VERSION_STRING
 from oas.login import BasicHtmlLoginForm, createPasswordFile
 from oas.seecroaiwatermark import SeecrOaiWatermark
 from oas.userdelete import UserDelete
+from oas.harvester import Dashboard, Environment
 
 ALL_FIELD = '__all__'
 unqualifiedTermFields = [(ALL_FIELD, 1.0)]
@@ -100,6 +101,7 @@ def dna(reactor, observableHttpServer, config):
     apiKey = ApiKey(join(databasePath, 'apikeys'))
 
     reindexPath = join(databasePath, 'reindex')
+    harvesterDashboardPath = join(databasePath, 'harvester')
 
     solrInterface = SolrInterface(host="localhost", port=solrPortNumber, core="oas")
 
@@ -133,6 +135,12 @@ def dna(reactor, observableHttpServer, config):
         apiKeyHelix,
         (UserDelete(join(databasePath, 'userdelete')),),
     )
+
+    harvesterEnv = Environment(root=harvesterDashboardPath)
+    harvesterDashboardHelix = \
+        (Dashboard(), 
+            (harvesterEnv, )
+        )
 
     readOnlyStorageHelix = \
         (FilterMessages(allowed=['getStream', 'isAvailable']),
@@ -321,7 +329,10 @@ def dna(reactor, observableHttpServer, config):
                                 (PathFilter("/apikey.action"),
                                     apiKeyHelix,
                                 ),
-                                (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action", '/apikey.action', "/recordReindex", "/internal/update"]),
+                                (PathFilter("/harvester.action"),
+                                    harvesterDashboardHelix,
+                                ),
+                                (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action", '/apikey.action', "/recordReindex", "/internal/update", "/harvester.action"]),
                                     (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                                         indexPage='/index', 
                                         additionalGlobals={
@@ -340,6 +351,7 @@ def dna(reactor, observableHttpServer, config):
                                         basicHtmlLoginHelix,
                                         apiKeyHelix,
                                         readOnlyStorageHelix,
+                                        (harvesterEnv, ),
                                         (ApiKeyCheck(),
                                             (FilterMessages(allowed=['getForApiKey']),
                                                 apiKeyHelix,

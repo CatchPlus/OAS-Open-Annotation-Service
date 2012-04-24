@@ -46,7 +46,7 @@ def main(**kwargs):
     yield '</form>'
 
     yield '<p>Special indexed fields are:</p><ul>'
-    for fieldname in ['dc:title', 'dcterms:creator', 'dcterms:created', 'oac:hasBody', 'oac:hasTarget']:
+    for fieldname in ['dc:title', 'dcterms:creator', 'dcterms:created', 'oac:hasBody', 'oac:hasTarget', 'rdf:type']:
         yield "<li>%s</li>" % fieldname
     yield '</ul><p>These fields can be used in queries in the form: <i>fieldname</i>=value</p>'
     yield page.footer()

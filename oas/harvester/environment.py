@@ -8,40 +8,44 @@ CONFIG_FILENAME = 'config.json'
 class Environment(object):
     def __init__(self, root):
         self._root = root
+        if not isdir(self._root):
+            makedirs(self._root)
 
     def getRepositories(self):
         for name in listdir(self._root):
             yield self.getRepository(name)
 
-    def addRepository(self, repository):
+    def addRepository(self, name, **kwargs):
+        repository = Repository(name=name, **kwargs)
         repository.saveIn(self._root)
+        return repository
 
     def getRepository(self, name):
         return Repository.read(self._root, name)
 
 class Repository(object):
-    def __init__(self, name, baseUrl, metadataPrefix, setSpec, active, apiKey):
-        self._name = name
-        self._baseUrl = baseUrl
-        self._metadataPrefix = metadataPrefix
-        self._setSpec = setSpec
-        self._active = active
-        self._apiKey = apiKey
+    def __init__(self, name, baseUrl=None, metadataPrefix=None, setSpec=None, active=None, apiKey=None):
+        self.name = name
+        self.baseUrl = baseUrl
+        self.metadataPrefix = metadataPrefix
+        self.setSpec = setSpec
+        self.active = active
+        self.apiKey = apiKey
 
     def saveIn(self, directory):
-        directoryName = join(directory, self._name)
+        directoryName = join(directory, self.name)
         if not isdir(directoryName):
             makedirs(directoryName)
 
         configFile = join(directoryName, CONFIG_FILENAME)
         tmpFile = '%s.tmp' % configFile
         jsonSave({
-            'name': self._name,
-            'baseUrl': self._baseUrl,
-            'metadataPrefix': self._metadataPrefix,
-            'setSpec': self._setSpec,
-            'active': self._active,
-            'apiKey': self._apiKey,
+            'name': self.name,
+            'baseUrl': self.baseUrl,
+            'metadataPrefix': self.metadataPrefix,
+            'setSpec': self.setSpec,
+            'active': self.active,
+            'apiKey': self.apiKey,
             },
             open(tmpFile, 'w'))
         rename(tmpFile, configFile)
@@ -59,10 +63,10 @@ class Repository(object):
         )
 
     def __eq__(self, other):
-        return self._name == other._name and \
-            self._baseUrl == other._baseUrl and \
-            self._metadataPrefix == other._metadataPrefix and \
-            self._setSpec == other._setSpec and \
-            self._active == other._active and \
-            self._apiKey == other._apiKey
+        return self.name == other.name and \
+            self.baseUrl == other.baseUrl and \
+            self.metadataPrefix == other.metadataPrefix and \
+            self.setSpec == other.setSpec and \
+            self.active == other.active and \
+            self.apiKey == other.apiKey
 
