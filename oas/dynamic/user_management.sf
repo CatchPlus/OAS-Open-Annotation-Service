@@ -28,7 +28,7 @@
 import page
 
 def main(session, **kwargs):
-    if not 'user' in session or session['user'].name != 'admin':
+    if not page.adminLoggedIn(session): 
         yield http.redirect('/')
         return
     yield page.header(session=session, **kwargs)
@@ -48,14 +48,14 @@ def main(session, **kwargs):
             <td>
                 <form method="POST" action="/login.action/remove">
                     <input type="hidden" name="username" value=%s/>
-                    <input type="hidden" name="formUrl" value="/admin"/>
+                    <input type="hidden" name="formUrl" value="/user_management"/>
                     <input type="submit" value="Delete" onClick='return confirm("Are you sure?");'/>
                 </form>
             </td>""" % quoteattr(username)
             yield """
                 <form method="POST" action="/apikey.action/update">
         <input type="hidden" name="apiKey" value=%s/>
-        <input type="hidden" name="formUrl" value="/admin"/>
+        <input type="hidden" name="formUrl" value="/user_management"/>
 
             <td>%s</td>
             <td class="apiKey">%s</td>
@@ -70,7 +70,7 @@ def main(session, **kwargs):
     if 'errorMessage' in formValues:
         yield '<p class="error">%s</p>' % escapeHtml(formValues['errorMessage'])
     yield '''<form method="POST" name="create" action="/apikey.action/create">
-    <input type="hidden" name="formUrl" value="/admin"/>
+    <input type="hidden" name="formUrl" value="/user_management"/>
     <dl>
         <dt>New username</dt>
         <dd><input type="text" name="username" value=""/></dd>

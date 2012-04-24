@@ -208,9 +208,6 @@ class OasTest(IntegrationTestCase):
         header, body = getRequest(self.portNumber, '/resolve/urn%3Aid%3Act%3A1', {}, parse='lxml')
         self.assertEquals(["http://localhost:%s/resolve/urn%%3Aid%%3Act%%3A1" % self.portNumber], xpath(body, '/rdf:RDF/oac:ConstrainedTarget/@rdf:about'))
 
-
-
-
     def testDocumentationPage(self):
         header, body = getRequest(self.portNumber, '/documentation', {}, parse='lxml')
         nodes = xpath(body, '/html/body/div/div[@id="filelist"]/ul/li/a')

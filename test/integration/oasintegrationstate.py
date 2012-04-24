@@ -137,11 +137,11 @@ class OasIntegrationState(IntegrationState):
         headers, body = postRequest(self.portNumber, '/login.action', urlencode(dict(username="admin", password="admin")), parse=False)
         cookie = parseHeaders(headers)['Set-Cookie']
 
-        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='testUser')), parse=False, additionalHeaders=dict(cookie=cookie))
-        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='anotherTestUser')), parse=False, additionalHeaders=dict(cookie=cookie))
-        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/admin', username='postUser')), parse=False, additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/user_management', username='testUser')), parse=False, additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/user_management', username='anotherTestUser')), parse=False, additionalHeaders=dict(cookie=cookie))
+        headers, body = postRequest(self.portNumber, '/apikey.action/create', urlencode(dict(formUrl='/user_management', username='postUser')), parse=False, additionalHeaders=dict(cookie=cookie))
 
-        headers, body = getRequest(self.portNumber, '/admin', additionalHeaders={'Cookie': cookie})
+        headers, body = getRequest(self.portNumber, '/user_management', additionalHeaders={'Cookie': cookie})
         self.apiKeyForTestUser =  xpath(body, '//div[@id="apiKeys"]/table/tr[form/td[text()="testUser"]]/form/td[@class="apiKey"]/text()')[0]
         assert self.apiKeyForTestUser != None
 

@@ -44,7 +44,7 @@ class InitialTest(IntegrationTestCase):
         self.assertEquals('/', parseHeaders(headers)['Location'])
         
         headers, body = getRequest(self.portNumber, "/index", parse='lxml', additionalHeaders={'Cookie': cookie})
-        self.assertEquals(['Logged in as: admin | ', ' | ', ' | '], xpath(body, '//div[@id="loginbar"]/p/text()'))
+        self.assertEquals(['Logged in as: admin | ', ' | ', ' | ', ' | '], xpath(body, '//div[@id="loginbar"]/p/text()'))
 
         headers, body = getRequest(self.portNumber, "/changepassword", parse='lxml', additionalHeaders={'Cookie': cookie})
         self.assertEquals(['admin'], xpath(body, '/html/body/div[@id="content"]/div[@id="login"]/form/input[@type="hidden" and @name="username"]/@value'), tostring(body))

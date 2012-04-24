@@ -81,3 +81,6 @@ def codeBlock(caption, code):
         <h3>%s</h3>
         <pre>%s</pre>
     </div>""" % (escapeHtml(caption), escapeHtml(code))
+
+def adminLoggedIn(session):
+    return 'user' in session and session['user'].isAdmin()
