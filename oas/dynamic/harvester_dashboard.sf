@@ -37,6 +37,11 @@ def main(arguments, session, **kwargs):
 
     yield '<div id="harvester">'
 
+    if 'Harvester.formValues' in session and 'message' in session['Harvester.formValues']:
+        message = session['Harvester.formValues']['message']
+        yield '<p class="%s">%s</p>' % (message['class'], escapeHtml(message['text']))
+        del session['Harvester.formValues']['message']
+
     if 'repository' in arguments:
         yield renderRepository(arguments['repository'][0])
 
@@ -71,7 +76,7 @@ def renderRepositories(repositories):
         yield '<td>%s</td>' % escapeHtml(repository.setSpec)
 
         userdata = observable.call.getForApiKey(repository.apiKey)
-        yield '<td>%s</td>' % escapeHtml(userdata['username'])
+        yield '<td>%s</td>' % escapeHtml(userdata['username'] if userdata else "")
         yield '<td>%s</td>' % repository.active
         yield '</tr>'
     yield "</table>"

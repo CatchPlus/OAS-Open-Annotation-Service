@@ -19,21 +19,22 @@ class Dashboard(Observable):
 
         prefix, action = path.rsplit('/', 1)
         if 'user' in session and session['user'].isAdmin():
-            yield self._actions[action](**kwargs)
+            session['Harvester.formValues'] = {}
+            yield self._actions[action](session=session, **kwargs)
             return
 
         yield redirectHttp % self._home
         return
 
-    def handleCreate(self, Body, **kwargs):
+    def handleCreate(self, session, Body, **kwargs):
         bodyArgs = parse_qs(Body, keep_blank_values=True)
         repositoryName = bodyArgs['repository'][0]
         repository = self.call.addRepository(name=repositoryName)
         formUrl = bodyArgs['formUrl'][0] % {'repository': repository.name}
-
+        session['Harvester.formValues']['message'] = {'class': 'success', 'text': 'Repository created.'}
         yield redirectHttp % formUrl
 
-    def handleUpdate(self, Body, **kwargs):
+    def handleUpdate(self, session, Body, **kwargs):
         bodyArgs = parse_qs(Body, keep_blank_values=True)
         repository = bodyArgs['repository'][0]
         baseUrl = bodyArgs['baseUrl'][0]
@@ -43,12 +44,14 @@ class Dashboard(Observable):
         formUrl = bodyArgs['formUrl'][0]
         active = 'active' in bodyArgs
         self.call.addRepository(name=repository, baseUrl=baseUrl, metadataPrefix=metadataPrefix, setSpec=setSpec, apiKey=apiKey, active=active)
+        session['Harvester.formValues']['message'] = {'class': 'success', 'text': 'Repository updated.'}
         yield redirectHttp % formUrl
 
-    def handleDelete(self, Body, **kwargs):
+    def handleDelete(self, session, Body, **kwargs):
         bodyArgs = parse_qs(Body, keep_blank_values=True)
         repository = bodyArgs['repository'][0]
         formUrl = bodyArgs['formUrl'][0]
         self.call.deleteRepository(name=repository)
+        session['Harvester.formValues']['message'] = {'class': 'success', 'text': 'Repository deleted.'}
         yield redirectHttp % formUrl
         
