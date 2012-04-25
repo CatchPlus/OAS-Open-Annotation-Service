@@ -74,7 +74,7 @@ class ApiKeyTest(SeecrTestCase):
         self.assertTrue(' 302 ' in headers, headers)
         self.assertEquals('/apikeyform', parseHeaders(headers)['Location'])
         self.assertEquals(['admin', 'user'], sorted(self.pwd.listUsernames()))
-        self.assertEquals({'errorMessage': 'User already exists.'}, session['ApiKey.formValues'])
+        self.assertEquals({'message': {'class': 'error', 'text': 'User already exists.'}}, session['ApiKey.formValues'])
 
         b = ApiKey(databaseFile=join(self.tempdir, 'db'))
         self.assertEquals(aList, list(b.listApiKeysAndData()))
@@ -91,7 +91,7 @@ class ApiKeyTest(SeecrTestCase):
         self.assertTrue(' 302 ' in headers, headers)
         self.assertEquals('/apikeyform', parseHeaders(headers)['Location'])
         self.assertEquals([], list(self.apiKey.listApiKeysAndData()))
-        self.assertEquals({'errorMessage': 'No admin privileges.'}, session['ApiKey.formValues'])
+        self.assertEquals({'message': {'text': 'No admin privileges.', 'class': 'error'}}, session['ApiKey.formValues'])
 
     def testChangeDescription(self):
         session = {

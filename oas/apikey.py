@@ -49,10 +49,11 @@ class ApiKey(Observable):
             'update': self.handleUpdate
         }
 
-    def handleRequest(self, path, Method, **kwargs):
+    def handleRequest(self, path, session, Method, **kwargs):
         prefix, action = path.rsplit('/', 1)
         if Method == 'POST' and action in self._actions: 
-            yield self._actions[action](**kwargs)
+            session['ApiKey.formValues'] = {}
+            yield self._actions[action](session=session, **kwargs)
             return
         yield redirectHttp % '/'
 
@@ -61,15 +62,15 @@ class ApiKey(Observable):
         apiKey = bodyArgs['apiKey'][0]
         description = bodyArgs['description'][0]
         formUrl = bodyArgs['formUrl'][0]
-        session['ApiKey.formValues'] = {}
         try:
             if 'user' in session and session['user'].isAdmin():
                 self._apiKeys[apiKey]['description'] = description 
                 self._makePersistent()
             else:
                 raise ValueError('No admin privileges.')
+            session['ApiKey.formValues']['message'] = {'class': 'success', 'text': 'User updated.'}
         except ValueError, e:
-            session['ApiKey.formValues']['errorMessage'] = str(e)
+            session['ApiKey.formValues']['message'] = {'class': 'error', 'text': str(e)}
 
         yield redirectHttp % formUrl
     
@@ -77,14 +78,14 @@ class ApiKey(Observable):
         bodyArgs = parse_qs(Body, keep_blank_values=True)
         username = bodyArgs['username'][0]
         formUrl = bodyArgs['formUrl'][0]
-        session['ApiKey.formValues'] = {}
         try:
             if 'user' in session and session['user'].isAdmin():
                 self.call.addUser(username=username, password=self.generateKey(8))
             else:       
                 raise ValueError('No admin privileges.')
+            session['ApiKey.formValues']['message'] = {'class': 'success', 'text': 'User created.'}
         except ValueError, e:
-            session['ApiKey.formValues']['errorMessage'] = str(e)
+            session['ApiKey.formValues']['message'] = {'class': 'error', 'text': str(e)}
         else:
             newApiKey = self.generateKey(16)
             self._apiKeys[newApiKey] = {'username': username}

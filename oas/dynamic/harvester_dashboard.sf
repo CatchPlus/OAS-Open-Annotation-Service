@@ -37,8 +37,9 @@ def main(arguments, session, **kwargs):
 
     yield '<div id="harvester">'
 
-    if 'Harvester.formValues' in session and 'message' in session['Harvester.formValues']:
-        message = session['Harvester.formValues']['message']
+    formValues = session.get('Harvester.formValues', {}) if session else {}
+    if 'message' in formValues:
+        message = formValues['message']
         yield '<p class="%s">%s</p>' % (message['class'], escapeHtml(message['text']))
         del session['Harvester.formValues']['message']
 
