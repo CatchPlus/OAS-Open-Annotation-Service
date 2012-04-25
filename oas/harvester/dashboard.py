@@ -9,6 +9,7 @@ class Dashboard(Observable):
         self._actions = {
             'create': self.handleCreate,
             'update': self.handleUpdate,
+            'delete': self.handleDelete,
         }
 
     def handleRequest(self, Method, path, session, **kwargs):
@@ -26,9 +27,10 @@ class Dashboard(Observable):
 
     def handleCreate(self, Body, **kwargs):
         bodyArgs = parse_qs(Body, keep_blank_values=True)
-        repository = bodyArgs['repository'][0]
-        formUrl = bodyArgs['formUrl'][0]
-        self.call.addRepository(name=repository)
+        repositoryName = bodyArgs['repository'][0]
+        repository = self.call.addRepository(name=repositoryName)
+        formUrl = bodyArgs['formUrl'][0] % {'repository': repository.name}
+
         yield redirectHttp % formUrl
 
     def handleUpdate(self, Body, **kwargs):
@@ -42,3 +44,11 @@ class Dashboard(Observable):
         active = 'active' in bodyArgs
         self.call.addRepository(name=repository, baseUrl=baseUrl, metadataPrefix=metadataPrefix, setSpec=setSpec, apiKey=apiKey, active=active)
         yield redirectHttp % formUrl
+
+    def handleDelete(self, Body, **kwargs):
+        bodyArgs = parse_qs(Body, keep_blank_values=True)
+        repository = bodyArgs['repository'][0]
+        formUrl = bodyArgs['formUrl'][0]
+        self.call.deleteRepository(name=repository)
+        yield redirectHttp % formUrl
+        

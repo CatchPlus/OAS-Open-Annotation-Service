@@ -51,16 +51,13 @@ def main(arguments, session, **kwargs):
         <dd><input type="text" name="repository" value=""/></dd>
         <dd class="submit">
             <input type="submit" value="Create"/>
-            <input type="hidden" name="formUrl" value="/harvester_dashboard"/>
+            <input type="hidden" name="formUrl" value="/harvester_dashboard?repository=%(repository)s"/>
         </dd>
     </dl>
 </form>"""
 
     yield "</div>"
     yield page.footer()
-
-def quoteattr2(value):
-    return quoteattr(value) if value else "''"
 
 def renderRepositories(repositories):
     yield "<table>" 
@@ -72,7 +69,7 @@ def renderRepositories(repositories):
         yield '<td>%s</td>' % repository.baseUrl
         yield '<td>%s</td>' % repository.metadataPrefix
         yield '<td>%s</td>' % repository.setSpec
-        yield '<td>%s</td>' % repository.apiKey
+        yield '<td class="apiKey">%s</td>' % repository.apiKey
         yield '<td>%s</td>' % repository.active
         yield '</tr>'
     yield "</table>"
@@ -88,11 +85,18 @@ def renderRepository(repositoryName):
     yield '<tr><td>Base URL</td><td><input type="text" name="baseUrl" value=%s/></td></tr>\n' % quoteattr(repository.baseUrl)
     yield '<tr><td>Metadata Prefix</td><td><input type="text" name="metadataPrefix" value=%s/></td></tr>\n' % quoteattr(repository.metadataPrefix)
     yield '<tr><td>Set Spec</td><td><input type="text" name="setSpec" value=%s/></td></tr>\n' % quoteattr(repository.setSpec)
-    yield '<tr><td>Api Key</td><td><input type="text" name="apiKey" value=%s/></td></tr>\n' % quoteattr(repository.apiKey)
+    yield '<tr><td>Api Key</td><td><input class="apiKey "type="text" name="apiKey" value=%s/></td></tr>\n' % quoteattr(repository.apiKey)
     yield '<tr><td>Active</td><td><input type="checkbox" name="active" %s/></td></tr>\n' % ('CHECKED' if repository.active else '')
-    yield '<tr><td><input type="hidden" name="repository" value=%s/><input type="hidden" name="formUrl" value="/harvester_dashboard"/><input type="submit" value="Save"/></td></tr>\n' % quoteattr(repository.name)
+    yield """<tr><td><input type="hidden" name="repository" value=%s/><input type="hidden" name="formUrl" value="/harvester_dashboard"/><button onclick="javascript:document.location='/harvester_dashboard';">Cancel</button><input type="submit" value="Save"/></td></tr>\n""" % quoteattr(repository.name)
     yield "</table>\n"
     yield "</form>\n"
-    yield '<form action="delete" method="post"><p><input type="submit" value="Delete"/></p></form>'
+    yield """<form action="/harvester.action/delete" method="post">
+    <p>
+        <input type="hidden" name="formUrl" value="/harvester_dashboard"/>
+        <input type="hidden" name="repository" value=%s/>
+
+        <input type="submit" value="Delete" onclick="javascript:return confirm('Are you sure?');"/>
+    </p></form>""" % quoteattr(repository.name)
     yield '</fieldset>'
     yield "</div>"
+

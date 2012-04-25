@@ -2,6 +2,7 @@ from simplejson import dump as jsonSave, load as jsonLoad
 
 from os.path import join, isfile, isdir
 from os import makedirs, rename, listdir
+from shutil import rmtree
 
 CONFIG_FILENAME = 'config.json'
 
@@ -19,6 +20,9 @@ class Environment(object):
         repository = Repository(name=name, **kwargs)
         repository.saveIn(self._root)
         return repository
+
+    def deleteRepository(self, name):
+        self.getRepository(name).delete(self._root)
 
     def getRepository(self, name):
         return Repository.read(self._root, name)
@@ -49,6 +53,9 @@ class Repository(object):
             },
             open(tmpFile, 'w'))
         rename(tmpFile, configFile)
+
+    def delete(self, directory):
+        rmtree(join(directory, self.name))
 
     @staticmethod
     def read(directory, name):

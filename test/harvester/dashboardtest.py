@@ -31,11 +31,11 @@ class DashboardTest(SeecrTestCase):
         session = {
             'user': User('admin'),
         }
-        Body = urlencode(dict(repository='repoId1', formUrl='/harvester_dashboard'))
+        Body = urlencode(dict(repository='repoId1', formUrl='/harvester_dashboard?repository=%(repository)s'))
         result = joco(self.dashboard.handleRequest(path="/create", Client=('127.0.0.1', 1234), Method='POST', session=session, Body=Body))
         header, body = result.split(CRLF*2)
         self.assertTrue('302' in header)
-        self.assertTrue('Location: /harvester_dashboard' in header, header)
+        self.assertTrue('Location: /harvester_dashboard?repository=repoId1' in header, header)
 
         self.assertEquals("repoId1", list(self.env.getRepositories())[0].name)
 
@@ -86,3 +86,25 @@ class DashboardTest(SeecrTestCase):
                 apiKey='an api key',
                 formUrl='/harvester_dashboard'))))
         self.assertEquals(False, list(self.env.getRepositories())[0].active)
+
+    def testDeleteRepository(self):
+        session = dict(user=User('admin'))
+        
+        joco(self.dashboard.handleRequest(
+            path="/create", 
+            Client=('127.0.0.1', 1234), 
+            Method='POST', 
+            session=session, 
+            Body=urlencode(dict(repository='repoId1', formUrl='/harvester_dashboard'))))
+        self.assertEquals(1, len(list(self.env.getRepositories())))
+        result = joco(self.dashboard.handleRequest(
+            path="/delete", 
+            Client=('127.0.0.1', 1234), 
+            Method='POST', 
+            session=session, 
+            Body=urlencode(dict(repository='repoId1', formUrl='/harvester_dashboard'))))
+        self.assertEquals(0, len(list(self.env.getRepositories())))
+        header, body = result.split(CRLF*2)
+
+        self.assertTrue('302' in header)
+        self.assertTrue('Location: /harvester_dashboard' in header, header)

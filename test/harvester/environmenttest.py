@@ -37,5 +37,14 @@ class EnvironmentTest(SeecrTestCase):
         self.assertEquals('', repository.apiKey)
         self.assertEquals(False, repository.active)
 
+    def testDeleteRepository(self):
+        repository = self.env.addRepository(name="test")
+        repositories = list(self.env.getRepositories())
+        self.assertEquals([repository], repositories)
+        self.env.deleteRepository(name="test")
+        repositories = list(self.env.getRepositories())
+        self.assertEquals([], repositories)
+
+
 
 

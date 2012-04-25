@@ -48,9 +48,9 @@ def main(Body, **kwargs):
             lxmlNode = parse(StringIO(annotation))
             yield observable.all.add(identifier='ignored', partname="rdf", lxmlNode=lxmlNode)
             annotation = ''
-            yield "<p class='upload-success'>Upload successful.</p>"
+            yield "<p class='success'>Upload successful.</p>"
         except Exception, e:
-            yield "<p class='upload-error'>%s</p>" % str(e)
+            yield "<p class='error'>%s</p>" % str(e)
 
 
     yield '<p>Annotations can be POSTed as RDF+XML via SRU Update, see the <a href="/public/example_client.py">example client</a>.</p>'
