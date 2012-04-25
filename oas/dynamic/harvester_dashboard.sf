@@ -61,15 +61,17 @@ def main(arguments, session, **kwargs):
 
 def renderRepositories(repositories):
     yield "<table>" 
-    yield "<tr>%s</tr>" % ''.join('<th>%s</th>' % label for label in ['', 'Name', 'Base URL','MetadataPrefix','SetSpec','ApiKey', 'Active'])
+    yield "<tr>%s</tr>" % ''.join('<th>%s</th>' % label for label in ['', 'Name', 'Base URL','MetadataPrefix','SetSpec','User', 'Active'])
     for repository in repositories:
         yield "<tr>"
         yield """<td><button onClick="javascript:document.location='?%s'">Edit</button></td>""" % urlencode(dict(repository=repository.name))
-        yield '<td>%s</td>' % repository.name
-        yield '<td>%s</td>' % repository.baseUrl
-        yield '<td>%s</td>' % repository.metadataPrefix
-        yield '<td>%s</td>' % repository.setSpec
-        yield '<td class="apiKey">%s</td>' % repository.apiKey
+        yield '<td>%s</td>' % escapeHtml(repository.name)
+        yield '<td>%s</td>' % escapeHtml(repository.baseUrl)
+        yield '<td>%s</td>' % escapeHtml(repository.metadataPrefix)
+        yield '<td>%s</td>' % escapeHtml(repository.setSpec)
+
+        userdata = observable.call.getForApiKey(repository.apiKey)
+        yield '<td>%s</td>' % escapeHtml(userdata['username'])
         yield '<td>%s</td>' % repository.active
         yield '</tr>'
     yield "</table>"
@@ -82,10 +84,15 @@ def renderRepository(repositoryName):
     <form action="/harvester.action/update" method="post">
         <table>\n""" % repository.name
 
+    apiKeys = sorted(observable.call.listApiKeysAndData(), key=lambda (apikey, userdata): userdata['username'].lower())
     yield '<tr><td>Base URL</td><td><input type="text" name="baseUrl" value=%s/></td></tr>\n' % quoteattr(repository.baseUrl)
     yield '<tr><td>Metadata Prefix</td><td><input type="text" name="metadataPrefix" value=%s/></td></tr>\n' % quoteattr(repository.metadataPrefix)
     yield '<tr><td>Set Spec</td><td><input type="text" name="setSpec" value=%s/></td></tr>\n' % quoteattr(repository.setSpec)
-    yield '<tr><td>Api Key</td><td><input class="apiKey "type="text" name="apiKey" value=%s/></td></tr>\n' % quoteattr(repository.apiKey)
+    yield '<tr><td>User</td><td><select name="apiKey">'
+    for (apiKey, userdata) in apiKeys:
+        yield "<option value=%s%s>%s</option>" % (quoteattr(apiKey), 'SELECTED' if apiKey == repository.apiKey else '', escapeHtml("%s (%s)" % (userdata['username'], apiKey)))
+    yield "</select></td></tr>"
+
     yield '<tr><td>Active</td><td><input type="checkbox" name="active" %s/></td></tr>\n' % ('CHECKED' if repository.active else '')
     yield """<tr><td><input type="hidden" name="repository" value=%s/><input type="hidden" name="formUrl" value="/harvester_dashboard"/><button onclick="javascript:document.location='/harvester_dashboard';">Cancel</button><input type="submit" value="Save"/></td></tr>\n""" % quoteattr(repository.name)
     yield "</table>\n"
