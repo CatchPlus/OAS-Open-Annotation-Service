@@ -27,7 +27,7 @@
 
 import page
 
-def main(session, **kwargs):
+def main(arguments, session, **kwargs):
     if not page.adminLoggedIn(session):
         yield http.redirect('/')
         return
@@ -37,17 +37,22 @@ def main(session, **kwargs):
 
     yield '<div id="harvester">'
 
+    if 'repository' in arguments:
+        yield renderRepository(arguments['repository'][0])
+
     repositories = list(observable.call.getRepositories())
     if len(repositories) > 0:
         yield renderRepositories(repositories)
 
 
-    yield """<form method="POST" name="create" action="/harvester.action/create">
-    <input type="hidden" name="formUrl" value="/harvester_dashboard"/>
+    yield """<form method="post" action="/harvester.action/create">
     <dl>
         <dt>New repository</dt>
         <dd><input type="text" name="repository" value=""/></dd>
-        <dd class="submit"><input type="submit" value="Create"/></dd>
+        <dd class="submit">
+            <input type="submit" value="Create"/>
+            <input type="hidden" name="formUrl" value="/harvester_dashboard"/>
+        </dd>
     </dl>
 </form>"""
 
@@ -59,14 +64,35 @@ def quoteattr2(value):
 
 def renderRepositories(repositories):
     yield "<table>" 
-    yield "<tr>%s</tr>" % ''.join('<th>%s</th>' % label for label in ['Name', 'Base URL','MetadataPrefix','SetSpec','ApiKey', 'Active'])
+    yield "<tr>%s</tr>" % ''.join('<th>%s</th>' % label for label in ['', 'Name', 'Base URL','MetadataPrefix','SetSpec','ApiKey', 'Active'])
     for repository in repositories:
         yield "<tr>"
+        yield """<td><button onClick="javascript:document.location='?%s'">Edit</button></td>""" % urlencode(dict(repository=repository.name))
         yield '<td>%s</td>' % repository.name
-        yield '<td><input type="text" name="baseUrl" value=%s/></td>' % quoteattr2(repository.baseUrl)
-        yield '<td><input type="text" name="metadataPrefix" value=%s/></td>' % quoteattr2(repository.metadataPrefix)
-        yield '<td><input type="text" name="setSpec" value=%s/></td>' % quoteattr2(repository.setSpec)
-        yield '<td><input type="text" name="apiKey" value=%s/></td>' % quoteattr2(repository.apiKey)
-        yield '<td><input type="checkbox" name="active" value=%s/></td>' % quoteattr2(repository.active)
+        yield '<td>%s</td>' % repository.baseUrl
+        yield '<td>%s</td>' % repository.metadataPrefix
+        yield '<td>%s</td>' % repository.setSpec
+        yield '<td>%s</td>' % repository.apiKey
+        yield '<td>%s</td>' % repository.active
         yield '</tr>'
     yield "</table>"
+
+def renderRepository(repositoryName):
+    repository = observable.call.getRepository(repositoryName)
+    yield """<div id='repository'>
+    <fieldset>
+        <legend>Edit repository: %s</legend>
+    <form action="/harvester.action/update" method="post">
+        <table>\n""" % repository.name
+
+    yield '<tr><td>Base URL</td><td><input type="text" name="baseUrl" value=%s/></td></tr>\n' % quoteattr(repository.baseUrl)
+    yield '<tr><td>Metadata Prefix</td><td><input type="text" name="metadataPrefix" value=%s/></td></tr>\n' % quoteattr(repository.metadataPrefix)
+    yield '<tr><td>Set Spec</td><td><input type="text" name="setSpec" value=%s/></td></tr>\n' % quoteattr(repository.setSpec)
+    yield '<tr><td>Api Key</td><td><input type="text" name="apiKey" value=%s/></td></tr>\n' % quoteattr(repository.apiKey)
+    yield '<tr><td>Active</td><td><input type="checkbox" name="active" %s/></td></tr>\n' % ('CHECKED' if repository.active else '')
+    yield '<tr><td><input type="hidden" name="repository" value=%s/><input type="hidden" name="formUrl" value="/harvester_dashboard"/><input type="submit" value="Save"/></td></tr>\n' % quoteattr(repository.name)
+    yield "</table>\n"
+    yield "</form>\n"
+    yield '<form action="delete" method="post"><p><input type="submit" value="Delete"/></p></form>'
+    yield '</fieldset>'
+    yield "</div>"

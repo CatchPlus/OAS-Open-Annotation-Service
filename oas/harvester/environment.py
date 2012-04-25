@@ -24,7 +24,7 @@ class Environment(object):
         return Repository.read(self._root, name)
 
 class Repository(object):
-    def __init__(self, name, baseUrl=None, metadataPrefix=None, setSpec=None, active=None, apiKey=None):
+    def __init__(self, name, baseUrl='', metadataPrefix='', setSpec='', active=False, apiKey=''):
         self.name = name
         self.baseUrl = baseUrl
         self.metadataPrefix = metadataPrefix

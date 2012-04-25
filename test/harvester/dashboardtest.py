@@ -39,3 +39,50 @@ class DashboardTest(SeecrTestCase):
 
         self.assertEquals("repoId1", list(self.env.getRepositories())[0].name)
 
+    def testEditRepository(self):
+        session = dict(user=User('admin'))
+        
+        joco(self.dashboard.handleRequest(
+            path="/create", 
+            Client=('127.0.0.1', 1234), 
+            Method='POST', 
+            session=session, 
+            Body=urlencode(dict(repository='repoId1', formUrl='/harvester_dashboard'))))
+
+        self.assertEquals("", list(self.env.getRepositories())[0].baseUrl)
+        self.assertEquals("", list(self.env.getRepositories())[0].metadataPrefix)
+        self.assertEquals("", list(self.env.getRepositories())[0].setSpec)
+        self.assertEquals("", list(self.env.getRepositories())[0].apiKey)
+        self.assertEquals(False, list(self.env.getRepositories())[0].active)
+        joco(self.dashboard.handleRequest(
+            path="/something/update", 
+            Client=('127.0.0.1', 1234), 
+            Method='POST', 
+            session=session, 
+            Body=urlencode(dict(
+                repository='repoId1', 
+                baseUrl='http://localhost/oai',
+                metadataPrefix='aprefix',
+                setSpec='aset',
+                apiKey='an api key',
+                active='on',
+                formUrl='/harvester_dashboard'))))
+        self.assertEquals("http://localhost/oai", list(self.env.getRepositories())[0].baseUrl)
+        self.assertEquals("aprefix", list(self.env.getRepositories())[0].metadataPrefix)
+        self.assertEquals("aset", list(self.env.getRepositories())[0].setSpec)
+        self.assertEquals("an api key", list(self.env.getRepositories())[0].apiKey)
+        self.assertEquals(True, list(self.env.getRepositories())[0].active)
+
+        joco(self.dashboard.handleRequest(
+            path="/something/update", 
+            Client=('127.0.0.1', 1234), 
+            Method='POST', 
+            session=session, 
+            Body=urlencode(dict(
+                repository='repoId1', 
+                baseUrl='http://localhost/oai',
+                metadataPrefix='aprefix',
+                setSpec='aset',
+                apiKey='an api key',
+                formUrl='/harvester_dashboard'))))
+        self.assertEquals(False, list(self.env.getRepositories())[0].active)

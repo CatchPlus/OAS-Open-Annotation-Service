@@ -29,4 +29,13 @@ class EnvironmentTest(SeecrTestCase):
         repositories = list(self.env.getRepositories())
         self.assertEquals([repository], repositories)
 
+    def testDefaultValues(self):
+        repository = self.env.addRepository(name="test")
+        self.assertEquals('', repository.baseUrl)
+        self.assertEquals('', repository.metadataPrefix)
+        self.assertEquals('', repository.setSpec)
+        self.assertEquals('', repository.apiKey)
+        self.assertEquals(False, repository.active)
+
+
 

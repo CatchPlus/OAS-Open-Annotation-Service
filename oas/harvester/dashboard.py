@@ -8,6 +8,7 @@ class Dashboard(Observable):
         self._home = home
         self._actions = {
             'create': self.handleCreate,
+            'update': self.handleUpdate,
         }
 
     def handleRequest(self, Method, path, session, **kwargs):
@@ -30,3 +31,14 @@ class Dashboard(Observable):
         self.call.addRepository(name=repository)
         yield redirectHttp % formUrl
 
+    def handleUpdate(self, Body, **kwargs):
+        bodyArgs = parse_qs(Body, keep_blank_values=True)
+        repository = bodyArgs['repository'][0]
+        baseUrl = bodyArgs['baseUrl'][0]
+        metadataPrefix = bodyArgs['metadataPrefix'][0]
+        setSpec = bodyArgs['setSpec'][0]
+        apiKey = bodyArgs['apiKey'][0]
+        formUrl = bodyArgs['formUrl'][0]
+        active = 'active' in bodyArgs
+        self.call.addRepository(name=repository, baseUrl=baseUrl, metadataPrefix=metadataPrefix, setSpec=setSpec, apiKey=apiKey, active=active)
+        yield redirectHttp % formUrl
