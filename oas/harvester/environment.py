@@ -44,31 +44,35 @@ class Environment(object):
             yield self.getRepository(name)
 
     def addRepository(self, name, **kwargs):
-        repository = Repository(name=name, **kwargs)
-        repository.saveIn(self._root)
+        repository = Repository(name=name, directory=self._repositoryDirectory(name), **kwargs)
+        repository.save()
         return repository
 
     def deleteRepository(self, name):
-        self.getRepository(name).delete(self._root)
+        self.getRepository(name).delete()
 
     def getRepository(self, name):
-        return Repository.read(self._root, name)
+        return Repository.read(self._repositoryDirectory(name))
+
+    def _repositoryDirectory(self, name):
+        return join(self._root, name)
 
 class Repository(object):
-    def __init__(self, name, baseUrl='', metadataPrefix='', setSpec='', active=False, apiKey=''):
+    def __init__(self, name, baseUrl='', metadataPrefix='', setSpec='', active=False, apiKey='', directory=''):
         self.name = name
         self.baseUrl = baseUrl
         self.metadataPrefix = metadataPrefix
         self.setSpec = setSpec
         self.active = active
         self.apiKey = apiKey
+        self.directory = directory
+        self.errorLogPath = join(directory, 'errors.log')
 
-    def saveIn(self, directory):
-        directoryName = join(directory, self.name)
-        if not isdir(directoryName):
-            makedirs(directoryName)
+    def save(self):
+        if not isdir(self.directory):
+            makedirs(self.directory)
 
-        configFile = join(directoryName, CONFIG_FILENAME)
+        configFile = join(self.directory, CONFIG_FILENAME)
         tmpFile = '%s.tmp' % configFile
         jsonSave({
             'name': self.name,
@@ -81,19 +85,20 @@ class Repository(object):
             open(tmpFile, 'w'))
         rename(tmpFile, configFile)
 
-    def delete(self, directory):
-        rmtree(join(directory, self.name))
+    def delete(self):
+        rmtree(self.directory)
 
     @staticmethod
-    def read(directory, name):
-        jsonData = jsonLoad(open(join(directory, name, CONFIG_FILENAME)))
+    def read(directory):
+        jsonData = jsonLoad(open(join(directory, CONFIG_FILENAME)))
         return Repository(
             name=jsonData['name'],
             baseUrl=jsonData['baseUrl'],
             metadataPrefix=jsonData['metadataPrefix'],
             setSpec=jsonData['setSpec'],
             active=jsonData['active'],
-            apiKey=jsonData['apiKey']
+            apiKey=jsonData['apiKey'],
+            directory=directory
         )
 
     def __eq__(self, other):

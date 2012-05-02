@@ -47,7 +47,7 @@ class MultipleAnnotationSplit(Observable):
         if not annotationFound:
             raise ValidateException("No annotations found.")
 
-    def delete(self, idenfifier):
+    def delete(self, identifier):
         return self.all.delete(identifier)
 
     def _inlineURNs(self, root, rdfContainer):

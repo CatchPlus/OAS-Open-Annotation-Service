@@ -94,6 +94,7 @@ def dna(reactor, observableHttpServer, config):
     hostName = config['hostName']
     portNumber = int(config['portNumber'])
     databasePath = config['databasePath']
+    sruUpdatePath = config['sru.updatePath']
     solrPortNumber = int(config['solrPortNumber'])
     storageComponent = StorageComponent(join(databasePath, 'storage'), partsRemovedOnDelete=['rdf', 'user'])
     publicDocumentationPath = config['publicDocumentationPath']
@@ -285,7 +286,7 @@ def dna(reactor, observableHttpServer, config):
                 (BasicHttpHandler(),
                     (Authorization(), 
                         (ApacheLogger(stdout),
-                            (PathFilter("/update"),
+                            (PathFilter(sruUpdatePath),
                                 (ApiKeyCheck(),
                                     (FilterMessages(allowed=['getForApiKey']),
                                         apiKeyHelix,
@@ -332,7 +333,7 @@ def dna(reactor, observableHttpServer, config):
                                 (PathFilter("/harvester.action"),
                                     harvesterDashboardHelix,
                                 ),
-                                (PathFilter("/", excluding=["/info", "/sru", "/update", "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action", '/apikey.action', "/recordReindex", "/internal/update", "/harvester.action"]),
+                                (PathFilter("/", excluding=["/info", "/sru", sruUpdatePath, "/static", "/oai", "/planninggame", "/reindex", '/public', "/login.action", '/apikey.action', "/recordReindex", "/internal/update", "/harvester.action"]),
                                     (DynamicHtml([dynamicHtmlFilePath], reactor=reactor, 
                                         indexPage='/index', 
                                         additionalGlobals={

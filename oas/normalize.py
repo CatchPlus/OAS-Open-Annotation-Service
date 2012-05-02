@@ -55,7 +55,10 @@ class Normalize(Transparent):
     def __init__(self):
         Transparent.__init__(self)
         self._namespaceEnum = NamespaceEnum()
-  
+ 
+    def delete(self, identifier):
+        return self.all.delete(identifier)
+
     def process(self, lxmlNode):
         def prefixForNamespace(ns):
             if ns in prefixes:

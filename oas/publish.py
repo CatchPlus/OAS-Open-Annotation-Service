@@ -52,6 +52,9 @@ class Publish(Observable):
         SubElement(lxmlNode, '{%(dc)s}identifier' % namespaces).text = identifier
         return newIdentifier
 
+    def delete(self, identifier):
+        return self.all.delete(identifier)
+
     def process(self, lxmlNode):
         for annotation in filterAnnotations(lxmlNode):
             identifier = getAttrib(annotation, 'rdf:about')
