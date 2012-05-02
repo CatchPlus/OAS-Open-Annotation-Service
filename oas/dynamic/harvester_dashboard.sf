@@ -100,7 +100,7 @@ def renderRepository(repositoryName):
     yield "</select></td></tr>"
 
     yield '<tr><td>Active</td><td><input type="checkbox" name="active" %s/></td></tr>\n' % ('CHECKED' if repository.active else '')
-    yield """<tr><td><input type="hidden" name="repository" value=%s/><input type="hidden" name="formUrl" value="/harvester_dashboard"/><button onclick="javascript:document.location='/harvester_dashboard';">Cancel</button><input type="submit" value="Save"/></td></tr>\n""" % quoteattr(repository.name)
+    yield """<tr><td><input type="hidden" name="repository" value=%s/><input type="hidden" name="formUrl" value="/harvester_dashboard"/><button onclick="javascript:document.location='/harvester_dashboard';return false;">Cancel</button><input type="submit" value="Save"/></td></tr>\n""" % quoteattr(repository.name)
     yield "</table>\n"
     yield "</form>\n"
     yield """<form action="/harvester.action/delete" method="post">
