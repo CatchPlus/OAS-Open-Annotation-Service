@@ -42,7 +42,7 @@ from oas.harvester import Environment
 
 class HarvesterTest(IntegrationTestCase):
 
-    def xtestOne(self):
+    def testOne(self):
         env = Environment(root=self.harvesterDataDir)
         env.addRepository(name="repo-1", 
             baseUrl="http://localhost:%s/oai" % self.httpPortNumber, 
@@ -123,7 +123,7 @@ TESTADDDELETE_DELETE = """<?xml version="1.0" encoding="UTF-8"?>
     <ListRecords>
         <record>
             <header status="deleted">
-                <identifier>oai:oas.dev.seecr.nl:http://oas.dev.seecr.nl:8000/resolve/urn%3Auuid%3Ab5b05c7d-371f-4927-b0b1-ff9d3b4e2468</identifier>
+                <identifier>http://oas.dev.seecr.nl:8000/resolve/urn%3Auuid%3Ab5b05c7d-371f-4927-b0b1-ff9d3b4e2468</identifier>
                 <datestamp>2012-04-24T09:37:39Z</datestamp>
                 <setSpec>fietsventiel</setSpec>
             </header>

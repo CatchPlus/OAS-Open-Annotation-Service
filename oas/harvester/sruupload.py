@@ -1,3 +1,30 @@
+## begin license ##
+# 
+# "Open Annotation Service" enables exchange, storage and search of
+# heterogeneous annotations using a uniform format (Open Annotation format) and
+# a uniform web service interface. 
+# 
+# Copyright (C) 2012 Meertens Instituut (KNAW) http://meertens.knaw.nl
+# Copyright (C) 2012 Seecr (Seek You Too B.V.) http://seecr.nl
+# 
+# This file is part of "Open Annotation Service"
+# 
+# "Open Annotation Service" is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# "Open Annotation Service" is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with "Open Annotation Service"; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+# 
+## end license ##
+
 from lxml.etree import parse, tostring
 
 from meresco.oai import OaiDownloadProcessor
@@ -21,7 +48,6 @@ class SruUpload(object):
         </ucp:updateRequest>""" % xmlEscape(identifier)
         return self._send(body)
 
-
     def upload(self, lxmlNode):
         # construct the body, insert the identifier and supplied XML.
         body = """<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">
@@ -36,9 +62,12 @@ class SruUpload(object):
         </ucp:updateRequest>""" % tostring(lxmlNode)
         return self._send(body)
 
+    def _socket(self):
+        return socket()
+
     def _send(self, body):
          # Connect to the server and send the update request.
-        s = socket()
+        s = self._socket()
         s.connect((self.hostname, self.portnumber))
         s.send("POST %s HTTP/1.0\r\n" % self.path)
         s.send("Content-Type: text/xml\r\n")
