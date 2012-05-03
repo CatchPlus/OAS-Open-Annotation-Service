@@ -86,3 +86,12 @@ def codeBlock(caption, code):
 
 def adminLoggedIn(session):
     return 'user' in session and session['user'].isAdmin()
+
+def displayMessage(session, key):
+    formValues = session.get(key, {}) if session else {}
+    if 'message' in formValues:
+        message = formValues['message']
+        yield '<p class="%s">%s</p>' % (message['class'], escapeHtml(message['text']))
+        del session[key]['message']
+
+

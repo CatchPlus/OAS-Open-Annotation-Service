@@ -27,62 +27,27 @@
 
 import page
 
-def main(arguments, session, **kwargs):
+def main(arguments, session, path, **kwargs):
     if not page.adminLoggedIn(session):
         yield http.redirect('/')
         return
     yield page.header(session=session, **kwargs)
     yield page.caption("Open Annotation Service")
     yield page.menu()
+    yield page.displayMessage(session, 'Harvester.formValues')
 
-    yield '<div id="harvester">'
-
-    formValues = session.get('Harvester.formValues', {}) if session else {}
-    if 'message' in formValues:
-        message = formValues['message']
-        yield '<p class="%s">%s</p>' % (message['class'], escapeHtml(message['text']))
-        del session['Harvester.formValues']['message']
-
-    if 'repository' in arguments:
-        yield renderRepository(arguments['repository'][0])
-
-    repositories = list(observable.call.getRepositories())
-    if len(repositories) > 0:
-        yield renderRepositories(repositories)
-
-
-    yield """<form method="post" action="/harvester.action/create">
-    <dl>
-        <dt>New repository</dt>
-        <dd><input type="text" name="repository" value=""/></dd>
-        <dd class="submit">
-            <input type="submit" value="Create"/>
-            <input type="hidden" name="formUrl" value="/harvester_dashboard?repository=%(repository)s"/>
-        </dd>
-    </dl>
-</form>"""
-
-    yield "</div>"
+    views = {
+        'errorlog': errorlog,
+        'details': details
+    }
+    view = path.rsplit('/', 1)[-1]
+    yield views.get(view, overview)(arguments=arguments, session=session, path=path, **kwargs)
+    
     yield page.footer()
 
-def renderRepositories(repositories):
-    yield "<table>" 
-    yield "<tr>%s</tr>" % ''.join('<th>%s</th>' % label for label in ['', 'Name', 'Base URL','MetadataPrefix','SetSpec','User', 'Active'])
-    for repository in repositories:
-        yield "<tr>"
-        yield """<td><button onClick="javascript:document.location='?%s'">Edit</button></td>""" % urlencode(dict(repository=repository.name))
-        yield '<td>%s</td>' % escapeHtml(repository.name)
-        yield '<td>%s</td>' % escapeHtml(repository.baseUrl)
-        yield '<td>%s</td>' % escapeHtml(repository.metadataPrefix)
-        yield '<td>%s</td>' % escapeHtml(repository.setSpec)
-
-        userdata = observable.call.getForApiKey(repository.apiKey)
-        yield '<td>%s</td>' % escapeHtml(userdata['username'] if userdata else "")
-        yield '<td>%s</td>' % repository.active
-        yield '</tr>'
-    yield "</table>"
-
-def renderRepository(repositoryName):
+def details(session, arguments, **kwargs):
+    
+    repositoryName = arguments['repository'][0]
     repository = observable.call.getRepository(repositoryName)
     yield """<div id='repository'>
     <fieldset>
@@ -112,4 +77,60 @@ def renderRepository(repositoryName):
     </p></form>""" % quoteattr(repository.name)
     yield '</fieldset>'
     yield "</div>"
+
+def errorlog(arguments, **kwargs):
+    repositoryName = arguments['repository'][0]
+    repository = observable.call.getRepository(repositoryName)
+    errorLog = repository.readErrorLog()
+
+    yield """<div id='repository'>
+    <fieldset>
+        <legend>Errorlog repository: %s</legend>""" % repository.name
+    if errorLog != '':
+        yield '<pre>%s</pre>' % '<br/>'.join(escapeHtml(errorLog).split('\n'))
+    else:
+        yield "<p>No errors logged</p>"
+
+    yield """</fieldset>
+    </div>"""
+
+
+def overview(session, **kwargs):
+    yield '<div id="harvester">'
+
+    repositories = list(observable.call.getRepositories())
+    if len(repositories) > 0:
+        yield renderRepositories(repositories)
+
+
+    yield """<form method="post" action="/harvester.action/create">
+    <dl>
+        <dt>New repository</dt>
+        <dd><input type="text" name="repository" value=""/></dd>
+        <dd class="submit">
+            <input type="submit" value="Create"/>
+            <input type="hidden" name="formUrl" value="/harvester_dashboard/details?repository=%(repository)s"/>
+        </dd>
+    </dl>
+</form>"""
+
+    yield "</div>"
+
+def renderRepositories(repositories):
+    yield "<table>" 
+    yield "<tr>%s</tr>" % ''.join('<th>%s</th>' % label for label in ['', 'Name', 'Base URL','MetadataPrefix','SetSpec','User', 'Active', 'Error log'])
+    for repository in repositories:
+        yield "<tr>"
+        yield """<td><button onClick="javascript:document.location='/harvester_dashboard/details?%s'">Edit</button></td>""" % urlencode(dict(repository=repository.name))
+        yield '<td>%s</td>' % escapeHtml(repository.name)
+        yield '<td>%s</td>' % escapeHtml(repository.baseUrl)
+        yield '<td>%s</td>' % escapeHtml(repository.metadataPrefix)
+        yield '<td>%s</td>' % escapeHtml(repository.setSpec)
+
+        userdata = observable.call.getForApiKey(repository.apiKey)
+        yield '<td>%s</td>' % escapeHtml(userdata['username'] if userdata else "")
+        yield '<td>%s</td>' % repository.active
+        yield '<td><a href="/harvester_dashboard/errorlog?%s">View</a></td>' % urlencode(dict(repository=repository.name))
+        yield '</tr>'
+    yield "</table>"
 

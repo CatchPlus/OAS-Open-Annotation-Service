@@ -36,11 +36,8 @@ def main(session, **kwargs):
     yield page.menu()
 
     yield '<div id="apiKeys">\n'
-    formValues = session.get('ApiKey.formValues', {}) if session else {}
-    if 'message' in formValues:
-        message = formValues['message']
-        yield '<p class="%s">%s</p>' % (message['class'], escapeHtml(message['text']))
-        del session['ApiKey.formValues']['message']
+    yield page.displayMessage(session, 'ApiKey.formValues')
+
     userdata = sorted(observable.call.listApiKeysAndData())
     if len(userdata) > 0:
         yield '<table>\n'

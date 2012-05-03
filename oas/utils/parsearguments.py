@@ -50,6 +50,9 @@ applicationProfiles = {
     'resolve': dict(
         options=['configFile'],
         mandatoryKeys=['configFile']),
+    'harvest': dict(
+        options=['configFile'],
+        mandatoryKeys=['configFile']),
     'userdelete': dict(
         options=['configFile'],
         mandatoryKeys=['configFile']),
@@ -90,6 +93,10 @@ class ParseArguments(object):
     def parseForResolve(cls, args=None):
         return cls._parseFor('resolve', args)
 
+    @classmethod
+    def parseForHarvest(cls, args=None):
+        return cls._parseFor('harvest', args)
+    
     @classmethod
     def parseForUserDelete(cls, args=None):
         return cls._parseFor('userdelete', args)

@@ -37,7 +37,7 @@ from subprocess import Popen
 from seecr.test.utils import getRequest, postRequest
 from seecr.test.integrationtestcase import IntegrationTestCase
 
-from oas.harvester.harvester import main
+from oas.harvester.harvester import process
 from oas.harvester import Environment
 
 class HarvesterTest(IntegrationTestCase):
@@ -60,9 +60,20 @@ class HarvesterTest(IntegrationTestCase):
 
         self.assertQuery(0, "repo1")
         self.assertQuery(0, "repo2")
-        main(self.config) 
+        process(self.config) 
         self.assertQuery(1, "repo1")
         self.assertQuery(0, "repo2")
+
+    def testInvalidUrl(self):
+        env = Environment(root=self.harvesterDataDir)
+        repository = env.addRepository(name="repo-1", 
+            baseUrl="http://some.weird.url.that.does.not.work",
+            metadataPrefix="rdf", 
+            setSpec="aset", 
+            active=True, 
+            apiKey=self.apiKeyForTestUser)
+        process(self.config) 
+        self.assertEquals("<urlopen error [Errno -2] Name or service not known>", open(repository.errorLogPath).readlines()[-1])
        
     def testAddDelete(self):
         env = Environment(root=self.harvesterDataDir)
@@ -76,11 +87,11 @@ class HarvesterTest(IntegrationTestCase):
             apiKey=self.apiKeyForTestUser)
 
         self.assertQuery(0, "testAddDelete")
-        main(self.config) 
+        process(self.config) 
         self.assertQuery(1, "testAddDelete")
 
         open(join(self.httpDataDir, 'oai-testAddDelete'), 'w').write(TESTADDDELETE_DELETE)
-        main(self.config) 
+        process(self.config) 
         self.assertQuery(0, "testAddDelete")
 
     def assertQuery(self, count, query):

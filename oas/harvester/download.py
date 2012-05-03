@@ -26,16 +26,19 @@
 ## end license ##
 
 from urllib2 import urlopen
+from urlparse import urlsplit
 from lxml.etree import parse
 
 from meresco.core import Observable
 
 class Download(Observable):
-    def __init__(self, host):
-        Observable.__init__(self)
-        self.host = host
 
-    def process(self):
+    def process(self, repository):
+        scheme, netloc, _, _, _ = urlsplit(repository.baseUrl)
         request = self.call.buildPathAndArguments()
-        lxmlNode = parse(urlopen("%s%s" % (self.host, request)))
-        yield self.all.handle(lxmlNode)
+        try:
+            lxmlNode = parse(urlopen("%s://%s%s" % (scheme, netloc, request)))
+        except Exception, e:
+            repository.logException(e)
+        else:
+            yield self.all.handle(lxmlNode)

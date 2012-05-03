@@ -68,6 +68,12 @@ class Repository(object):
         self.directory = directory
         self.errorLogPath = join(directory, 'errors.log')
 
+    def logException(self, exception):
+        open(self.errorLogPath, 'a').write(str(exception))
+
+    def readErrorLog(self):
+        return open(self.errorLogPath, 'r').read()
+
     def save(self):
         if not isdir(self.directory):
             makedirs(self.directory)

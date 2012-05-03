@@ -33,11 +33,12 @@ from lxml.etree import parse
 
 from meresco.oai import OaiDownloadProcessor
 from meresco.core import Observable
+from meresco.components import readConfig
 from weightless.core import compose, be
 
 from oas.harvester import Download, SruUpload
 
-def main(config):
+def process(config):
     env = Environment(root=join(config['databasePath'], 'harvester'))
     for repository in env.getRepositories():
         if not repository.active:
@@ -46,7 +47,7 @@ def main(config):
         scheme, netloc, path, _, _ = urlsplit(repository.baseUrl)
         dna = be(
             (Observable(),
-                (Download(host='%s://%s' % (scheme, netloc)),
+                (Download(),
                     (OaiDownloadProcessor(
                             path=path, 
                             metadataPrefix=repository.metadataPrefix,
@@ -56,12 +57,14 @@ def main(config):
                             xWait=False),
                         (SruUpload(
                                 hostname=config['hostName'], 
-                                portnumber=config['portNumber'], 
+                                portnumber=int(config['portNumber']), 
                                 path=config['sru.updatePath'], 
                                 apiKey=repository.apiKey),)
                     )
                 )
             )
         )
-        list(compose(dna.all.process()))
+        list(compose(dna.all.process(repository=repository)))
 
+def main(configFile):
+    process(config=readConfig(configFile))
