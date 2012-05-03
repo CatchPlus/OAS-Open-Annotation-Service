@@ -79,7 +79,6 @@ class HarvesterTest(IntegrationTestCase):
         main(self.config) 
         self.assertQuery(0, "testAddDelete")
 
-
     def assertQuery(self, count, query):
         headers, body = getRequest(self.portNumber, "/sru", arguments=dict(
             version="1.1", operation="searchRetrieve", query=query), parse='lxml')

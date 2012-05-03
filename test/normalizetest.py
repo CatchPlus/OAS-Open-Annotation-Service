@@ -165,9 +165,5 @@ class NormalizeTest(SeecrTestCase):
         self.assertEquals(("http://ns#", "Type"), splitType("http://ns#Type")) 
 
     def testDeletePassedOn(self):
-        lico(self.dna.all.delete(
-            identifier='identifier', 
-            partname='rdf', 
-            lxmlNode=parse(StringIO("<xml/>"))))
-
+        lico(self.dna.all.delete(identifier='identifier')) 
         self.assertEquals(['delete'], [m.name for m in self.observer.calledMethods])

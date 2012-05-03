@@ -27,3 +27,5 @@
 
 from environment import Environment, Repository
 from dashboard import Dashboard
+from download import Download
+from sruupload import SruUpload
