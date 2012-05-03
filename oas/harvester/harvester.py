@@ -40,6 +40,9 @@ from oas.harvester import Download, SruUpload
 def main(config):
     env = Environment(root=join(config['databasePath'], 'harvester'))
     for repository in env.getRepositories():
+        if not repository.active:
+            continue
+
         scheme, netloc, path, _, _ = urlsplit(repository.baseUrl)
         dna = be(
             (Observable(),

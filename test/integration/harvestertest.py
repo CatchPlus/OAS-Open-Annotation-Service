@@ -44,21 +44,25 @@ class HarvesterTest(IntegrationTestCase):
 
     def testOne(self):
         env = Environment(root=self.harvesterDataDir)
+        open(join(self.httpDataDir, 'oai-repo1'), 'w').write(REPO1_RECORD)
         env.addRepository(name="repo-1", 
-            baseUrl="http://localhost:%s/oai" % self.httpPortNumber, 
+            baseUrl="http://localhost:%s/oai-repo1" % self.httpPortNumber, 
             metadataPrefix="rdf", 
             setSpec="aset", 
             active=True, 
             apiKey=self.apiKeyForTestUser)
+        open(join(self.httpDataDir, 'oai-repo2'), 'w').write(REPO2_RECORD)
         env.addRepository(name="repo-2", 
-            baseUrl="http://localhost:%s/oai" % self.httpPortNumber, 
+            baseUrl="http://localhost:%s/oai-repo2" % self.httpPortNumber, 
             metadataPrefix="rdf", 
-            active=True, 
+            active=False, 
             apiKey=self.apiKeyForAnotherTestUser)
 
-        self.assertQuery(0, "info@example.org")
+        self.assertQuery(0, "repo1")
+        self.assertQuery(0, "repo2")
         main(self.config) 
-        self.assertQuery(2, "info@example.org")
+        self.assertQuery(1, "repo1")
+        self.assertQuery(0, "repo2")
        
     def testAddDelete(self):
         env = Environment(root=self.harvesterDataDir)
@@ -131,3 +135,52 @@ TESTADDDELETE_DELETE = """<?xml version="1.0" encoding="UTF-8"?>
     </ListRecords>
 </OAI-PMH>"""
 
+REPO1_RECORD = """<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH 
+    xmlns="http://www.openarchives.org/OAI/2.0/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+    <responseDate>2012-05-02T09:09:35Z</responseDate>
+    <request metadataPrefix="rdf" verb="ListRecords">http://oas.dev.seecr.nl:8000/oai</request>
+    <ListRecords>
+        <record>
+            <header>
+                <identifier>urn:repo:1:record</identifier>
+                <datestamp>2012-04-24T09:37:39Z</datestamp>
+                <setSpec>fietsventiel</setSpec>
+            </header>
+            <metadata>
+                <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="http://oas.dev.seecr.nl:8000/resolve/urn%3Auuid%3Ab5b05c7d-371f-4927-b0b1-ff9d3b4e2468">
+                        <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">repo1</dc:title>
+                    </oac:Annotation>
+                </rdf:RDF>
+            </metadata>
+        </record>
+    </ListRecords>
+</OAI-PMH>"""
+
+REPO2_RECORD = """<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH 
+    xmlns="http://www.openarchives.org/OAI/2.0/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+    <responseDate>2012-05-02T09:09:35Z</responseDate>
+    <request metadataPrefix="rdf" verb="ListRecords">http://oas.dev.seecr.nl:8000/oai</request>
+    <ListRecords>
+        <record>
+            <header>
+                <identifier>urn:repo:2:record</identifier>
+                <datestamp>2012-04-24T09:37:39Z</datestamp>
+                <setSpec>fietsventiel</setSpec>
+            </header>
+            <metadata>
+                <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="http://oas.dev.seecr.nl:8000/resolve/urn%3Auuid%3Ab5b05c7d-371f-4927-b0b1-ff9d3b4e2468">
+                        <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">repo2</dc:title>
+                    </oac:Annotation>
+                </rdf:RDF>
+            </metadata>
+        </record>
+    </ListRecords>
+</OAI-PMH>"""
