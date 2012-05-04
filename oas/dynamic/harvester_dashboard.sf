@@ -46,7 +46,6 @@ def main(arguments, session, path, **kwargs):
     yield page.footer()
 
 def details(session, arguments, **kwargs):
-    
     repositoryName = arguments['repository'][0]
     repository = observable.call.getRepository(repositoryName)
     yield """<div id='repository'>
@@ -94,14 +93,12 @@ def errorlog(arguments, **kwargs):
     yield """</fieldset>
     </div>"""
 
-
 def overview(session, **kwargs):
     yield '<div id="harvester">'
 
     repositories = list(observable.call.getRepositories())
     if len(repositories) > 0:
         yield renderRepositories(repositories)
-
 
     yield """<form method="post" action="/harvester.action/create">
     <dl>
@@ -133,4 +130,3 @@ def renderRepositories(repositories):
         yield '<td><a href="/harvester_dashboard/errorlog?%s">View</a></td>' % urlencode(dict(repository=repository.name))
         yield '</tr>'
     yield "</table>"
-

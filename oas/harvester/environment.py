@@ -88,6 +88,8 @@ class Repository(object):
         open(self.errorLogPath, 'a').write(text)
         
     def readErrorLog(self):
+        if not isfile(self.errorLogPath):
+            return ''
         return open(self.errorLogPath, 'r').read()
 
     def save(self):

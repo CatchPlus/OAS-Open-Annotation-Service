@@ -80,6 +80,14 @@ class EnvironmentTest(SeecrTestCase):
         repositoryRevisited = self.env.getRepository(name='test')
         self.assertEquals('xyz', repositoryRevisited.resumptionToken)
 
+    def testErrorLog(self):
+        repository = self.env.addRepository(name='test')
+        self.assertEquals("", repository.readErrorLog())
+
+        repository.logException(Exception("boo"))
+        self.assertEquals("boo", repository.readErrorLog())
+
+
 
 
 
