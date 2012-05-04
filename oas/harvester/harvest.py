@@ -25,9 +25,12 @@
 # 
 ## end license ##
 
+from time import time
 from lxml.etree import parse, ElementTree, tostring
 from urllib2 import urlopen
+
 from meresco.core import Observable
+
 from oas.namespaces import xpath
 
 
@@ -58,6 +61,7 @@ class Harvest(Observable):
             if not repository.resumptionToken:
                 repository.active = False
         finally:
+            repository.lastHarvest = time()
             repository.save()
 
     def _urlopen(self, *args, **kwargs):

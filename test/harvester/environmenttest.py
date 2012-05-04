@@ -76,9 +76,11 @@ class EnvironmentTest(SeecrTestCase):
     def testHarvestStatePersistent(self):
         repository = self.env.addRepository(name='test')
         repository.resumptionToken = 'xyz'
+        repository.lastHarvest = 12345
         repository.save()
         repositoryRevisited = self.env.getRepository(name='test')
         self.assertEquals('xyz', repositoryRevisited.resumptionToken)
+        self.assertEquals(12345, repositoryRevisited.lastHarvest)
 
     def testErrorLog(self):
         repository = self.env.addRepository(name='test')

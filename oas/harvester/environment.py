@@ -70,6 +70,7 @@ class Repository(object):
         self.directory = directory
         self.errorLogPath = join(directory, 'errors.log')
         self.resumptionToken = None
+        self.lastHarvest = None
 
     def listRecordsUrl(self):
         arguments = dict(verb='ListRecords')
@@ -112,7 +113,8 @@ class Repository(object):
         stateFile = join(self.directory, STATE_FILENAME)
         tmpFile = '%s.tmp' % stateFile
         jsonSave({
-            'resumptionToken': self.resumptionToken
+            'resumptionToken': self.resumptionToken,
+            'lastHarvest': self.lastHarvest
         }, open(tmpFile, 'w'))
         rename(tmpFile, stateFile)
 
@@ -137,6 +139,7 @@ class Repository(object):
     def readState(self):
         jsonData = jsonLoad(open(join(self.directory, STATE_FILENAME)))
         self.resumptionToken = jsonData['resumptionToken']
+        self.lastHarvest = jsonData['lastHarvest']
 
 
     def __eq__(self, other):
