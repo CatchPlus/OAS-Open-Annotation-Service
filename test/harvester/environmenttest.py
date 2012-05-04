@@ -49,6 +49,7 @@ class EnvironmentTest(SeecrTestCase):
         repo2 = self.env.getRepository(name='example_repo')
 
         self.assertEquals(repo, repo2)
+        self.assertEquals(repo.active, repo2.active)
 
     def testRepositories(self):
         self.assertEquals([], list(self.env.getRepositories()))
@@ -71,6 +72,13 @@ class EnvironmentTest(SeecrTestCase):
         self.env.deleteRepository(name="test")
         repositories = list(self.env.getRepositories())
         self.assertEquals([], repositories)
+
+    def testHarvestStatePersistent(self):
+        repository = self.env.addRepository(name='test')
+        repository.resumptionToken = 'xyz'
+        repository.save()
+        repositoryRevisited = self.env.getRepository(name='test')
+        self.assertEquals('xyz', repositoryRevisited.resumptionToken)
 
 
 

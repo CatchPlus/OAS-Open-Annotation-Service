@@ -25,20 +25,40 @@
 # 
 ## end license ##
 
+from lxml.etree import parse, ElementTree, tostring
 from urllib2 import urlopen
-from urlparse import urlsplit
-from lxml.etree import parse
-
 from meresco.core import Observable
+from oas.namespaces import xpath
 
-class Download(Observable):
 
+class Harvest(Observable):
     def process(self, repository):
-        scheme, netloc, _, _, _ = urlsplit(repository.baseUrl)
-        request = self.call.buildPathAndArguments()
         try:
-            lxmlNode = parse(urlopen("%s://%s%s" % (scheme, netloc, request)))
+            lxmlNode = parse(self._urlopen(repository.listRecordsUrl()))
         except Exception, e:
             repository.logException(e)
-        else:
-            yield self.all.handle(lxmlNode)
+            return
+        errors = xpath(lxmlNode, "/oai:OAI-PMH/oai:error")
+        if len(errors) > 0:
+            for error in errors:
+                repository.logError("%s: %s" % (error.get("code"), error.text))
+            repository.resumptionToken = None
+            repository.save()
+            return
+        try:
+            verbNode = xpath(lxmlNode, "/oai:OAI-PMH/oai:ListRecords")[0]
+            for item in xpath(verbNode, 'oai:record'):
+                header = xpath(item, 'oai:header')[0]
+                identifier = xpath(header, 'oai:identifier/text()')[0]
+                if header.attrib.get('status', None) == 'deleted':
+                    yield self.all.delete(identifier=identifier)
+                    continue
+                yield self.all.add(identifier=identifier, lxmlNode=ElementTree(item))
+            repository.resumptionToken = ''.join(xpath(verbNode, "oai:resumptionToken/text()"))
+            if not repository.resumptionToken:
+                repository.active = False
+        finally:
+            repository.save()
+
+    def _urlopen(self, *args, **kwargs):
+        return urlopen(*args, **kwargs)

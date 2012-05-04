@@ -79,15 +79,21 @@ class HarvesterTest(IntegrationTestCase):
         env = Environment(root=self.harvesterDataDir)
         open(join(self.httpDataDir, 'oai-testAddDelete'), 'w').write(TESTADDDELETE_ADD)
 
-        env.addRepository(name="repo-1", 
+        repo = env.addRepository(name="repo-addDelete", 
             baseUrl="http://localhost:%s/oai-testAddDelete" % self.httpPortNumber, 
             metadataPrefix="rdf", 
             setSpec="aset", 
             active=True, 
             apiKey=self.apiKeyForTestUser)
+        self.assertTrue(repo.active)
 
         self.assertQuery(0, "testAddDelete")
         process(self.config) 
+
+        repo = env.getRepository(name=repo.name)  # reload for state change
+        self.assertFalse(repo.active)
+        repo.active = True
+        repo.save()
         self.assertQuery(1, "testAddDelete")
 
         open(join(self.httpDataDir, 'oai-testAddDelete'), 'w').write(TESTADDDELETE_DELETE)

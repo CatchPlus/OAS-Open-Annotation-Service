@@ -45,7 +45,7 @@ class SruUploadTest(SeecrTestCase):
         socket.methods['recv'] = recv
         sruUpload._socket = lambda: socket
 
-        lico(sruUpload.add(identifier="IDENTIFIER", lxmlNode=parse(StringIO("""<oai:record xmlns:oai="%(oai)s"><oai:metadata><xml/></oai:metadata></oai:record>""" % namespaces)), datestamp="ignored datestamp"))
+        lico(sruUpload.add(identifier="IDENTIFIER", lxmlNode=parse(StringIO("""<oai:record xmlns:oai="%(oai)s"><oai:metadata><xml/></oai:metadata></oai:record>""" % namespaces))))
         self.assertEquals([
             "connect(('localhost', 8000))", 
             "send('POST /update HTTP/1.0\r\n')", 
@@ -69,18 +69,15 @@ class SruUploadTest(SeecrTestCase):
         socket.methods['recv'] = recv
         sruUpload._socket = lambda: socket
 
-        lico(sruUpload.add(
-            identifier="IDENTIFIER", 
-            lxmlNode=parse(StringIO("""<oai:record xmlns:oai="%(oai)s"><oai:header status="deleted"/></oai:record>""" % namespaces)), 
-            datestamp="ignored datestamp"))
+        lico(sruUpload.delete(identifier="IDENTIFIER"))
         self.assertEquals([
             "connect(('localhost', 8000))", 
             "send('POST /update HTTP/1.0\r\n')", 
             "send('Content-Type: text/xml\r\n')", 
-            "send('Content-Length: 288\r\n')", 
+            "send('Content-Length: 298\r\n')", 
             "send('Authorization: apiKey\r\n')", 
             "send('\r\n')", 
-            'sendall(\'<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">\n            <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>\n            <ucp:action>info:srw/action/1/delete</ucp:action>\n            <ucp:recordIdentifier></ucp:recordIdentifier>\n        </ucp:updateRequest>\')', 
+            'sendall(\'<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">\n            <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>\n            <ucp:action>info:srw/action/1/delete</ucp:action>\n            <ucp:recordIdentifier>IDENTIFIER</ucp:recordIdentifier>\n        </ucp:updateRequest>\')', 
             'recv(1024)', 
             'recv(1024)', 
             'close()'], [str(m) for m in socket.calledMethods])

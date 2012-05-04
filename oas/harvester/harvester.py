@@ -31,39 +31,28 @@ from os.path import join
 from urlparse import urlsplit
 from lxml.etree import parse
 
-from meresco.oai import OaiDownloadProcessor
 from meresco.core import Observable
 from meresco.components import readConfig
 from weightless.core import compose, be
 
-from oas.harvester import Download, SruUpload
+from oas.harvester import Harvest, SruUpload
 
 def process(config):
     env = Environment(root=join(config['databasePath'], 'harvester'))
     for repository in env.getRepositories():
         if not repository.active:
             continue
-
-        scheme, netloc, path, _, _ = urlsplit(repository.baseUrl)
         dna = be(
             (Observable(),
-                (Download(),
-                    (OaiDownloadProcessor(
-                            path=path, 
-                            metadataPrefix=repository.metadataPrefix,
-                            set=repository.setSpec,
-                            workingDirectory=repository.directory,
-                            err=open(repository.errorLogPath, 'a'),
-                            xWait=False),
-                        (SruUpload(
-                                hostname=config['hostName'], 
-                                portnumber=int(config['portNumber']), 
-                                path=config['sru.updatePath'], 
-                                apiKey=repository.apiKey),)
+                (Harvest(),
+                    (SruUpload(
+                        hostname=config['hostName'], 
+                        portnumber=int(config['portNumber']), 
+                        path=config['sru.updatePath'], 
+                        apiKey=repository.apiKey),)
                     )
                 )
             )
-        )
         list(compose(dna.all.process(repository=repository)))
 
 def main(configFile):

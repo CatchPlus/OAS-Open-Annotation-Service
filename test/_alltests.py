@@ -59,6 +59,7 @@ from login.basichtmlloginformtest import BasicHtmlLoginFormTest
 from harvester.environmenttest import EnvironmentTest
 from harvester.dashboardtest import DashboardTest
 from harvester.sruuploadtest import SruUploadTest
+from harvester.harvesttest import HarvestTest
 
 if __name__ == '__main__':
     main()

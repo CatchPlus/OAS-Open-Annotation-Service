@@ -30,8 +30,10 @@ from simplejson import dump as jsonSave, load as jsonLoad
 from os.path import join, isfile, isdir
 from os import makedirs, rename, listdir
 from shutil import rmtree
+from urllib import urlencode
 
 CONFIG_FILENAME = 'config.json'
+STATE_FILENAME = 'state.json'
 
 class Environment(object):
     def __init__(self, root):
@@ -67,10 +69,24 @@ class Repository(object):
         self.apiKey = apiKey
         self.directory = directory
         self.errorLogPath = join(directory, 'errors.log')
+        self.resumptionToken = None
+
+    def listRecordsUrl(self):
+        arguments = dict(verb='ListRecords')
+        if self.resumptionToken:
+            arguments['resumptionToken'] = self.resumptionToken
+        else:
+            arguments['metadataPrefix'] = self.metadataPrefix
+            if self.setSpec:
+                arguments['set'] = self.setSpec
+        return self.baseUrl + '?' + urlencode(arguments)
 
     def logException(self, exception):
-        open(self.errorLogPath, 'a').write(str(exception))
+        self.logError(str(exception))
 
+    def logError(self, text):
+        open(self.errorLogPath, 'a').write(text)
+        
     def readErrorLog(self):
         return open(self.errorLogPath, 'r').read()
 
@@ -91,13 +107,20 @@ class Repository(object):
             open(tmpFile, 'w'))
         rename(tmpFile, configFile)
 
+        stateFile = join(self.directory, STATE_FILENAME)
+        tmpFile = '%s.tmp' % stateFile
+        jsonSave({
+            'resumptionToken': self.resumptionToken
+        }, open(tmpFile, 'w'))
+        rename(tmpFile, stateFile)
+
     def delete(self):
         rmtree(self.directory)
 
     @staticmethod
     def read(directory):
         jsonData = jsonLoad(open(join(directory, CONFIG_FILENAME)))
-        return Repository(
+        repository = Repository(
             name=jsonData['name'],
             baseUrl=jsonData['baseUrl'],
             metadataPrefix=jsonData['metadataPrefix'],
@@ -106,12 +129,18 @@ class Repository(object):
             apiKey=jsonData['apiKey'],
             directory=directory
         )
+        repository.readState()
+        return repository
+        
+    def readState(self):
+        jsonData = jsonLoad(open(join(self.directory, STATE_FILENAME)))
+        self.resumptionToken = jsonData['resumptionToken']
+
 
     def __eq__(self, other):
         return self.name == other.name and \
             self.baseUrl == other.baseUrl and \
             self.metadataPrefix == other.metadataPrefix and \
             self.setSpec == other.setSpec and \
-            self.active == other.active and \
             self.apiKey == other.apiKey
 
