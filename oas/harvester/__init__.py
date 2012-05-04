@@ -27,5 +27,5 @@
 
 from environment import Environment, Repository
 from dashboard import Dashboard
-from sruupload import SruUpload
+from sruupload import SruUpload, SruUploadException
 from harvest import Harvest

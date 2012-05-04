@@ -28,7 +28,7 @@
 from seecr.test import SeecrTestCase, CallTrace
 
 from oas.namespaces import namespaces
-from oas.harvester import SruUpload
+from oas.harvester import SruUpload, SruUploadException
 from lxml.etree import parse
 from StringIO import StringIO
 from testutil import lico
@@ -38,7 +38,7 @@ class SruUploadTest(SeecrTestCase):
         sruUpload = SruUpload(apiKey="apiKey")
         socket = CallTrace()
 
-        answers = ["""HTTP/1.0 200 OK\r\n\r\n""", ""]
+        answers = ["""HTTP/1.0 200 OK\r\n\r\n""", SUCCESS_SRU_UPLOAD_RESPONSE, ""]
         def recv(size):
             return answers.pop(0)
             
@@ -56,13 +56,14 @@ class SruUploadTest(SeecrTestCase):
             'sendall(\'<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">\n            <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>\n            <ucp:action>info:srw/action/1/replace</ucp:action>\n            <ucp:recordIdentifier>IGNORED</ucp:recordIdentifier>\n            <srw:record xmlns:srw="http://www.loc.gov/zing/srw/">\n                <srw:recordPacking>xml</srw:recordPacking>\n                <srw:recordSchema>rdf</srw:recordSchema>\n                <srw:recordData><xml xmlns:oai="http://www.openarchives.org/OAI/2.0/"/></srw:recordData>\n            </srw:record>\n        </ucp:updateRequest>\')', 
             'recv(1024)', 
             'recv(1024)', 
+            'recv(1024)', 
             'close()'], [str(m) for m in socket.calledMethods])
         
     def testDelete(self):
         sruUpload = SruUpload(apiKey="apiKey")
         socket = CallTrace()
 
-        answers = ["""HTTP/1.0 200 OK\r\n\r\n""", ""]
+        answers = ["""HTTP/1.0 200 OK\r\n\r\n""", SUCCESS_SRU_UPLOAD_RESPONSE, ""]
         def recv(size):
             return answers.pop(0)
             
@@ -80,5 +81,33 @@ class SruUploadTest(SeecrTestCase):
             'sendall(\'<ucp:updateRequest xmlns:ucp="info:lc/xmlns/update-v1">\n            <srw:version xmlns:srw="http://www.loc.gov/zing/srw/">1.0</srw:version>\n            <ucp:action>info:srw/action/1/delete</ucp:action>\n            <ucp:recordIdentifier>IDENTIFIER</ucp:recordIdentifier>\n        </ucp:updateRequest>\')', 
             'recv(1024)', 
             'recv(1024)', 
+            'recv(1024)', 
             'close()'], [str(m) for m in socket.calledMethods])
+
+    def testFailedUpload(self):
+        sruUpload = SruUpload(apiKey="apiKey")
+        sruUpload._send = lambda data: "HTTP/1.0 200 Ok\r\n\r\n" + FAILED_SRU_UPLOAD_RESPONSE
+        self.assertRaises(SruUploadException, lambda: lico(sruUpload.add(identifier="IDENTIFIER", lxmlNode=parse(StringIO("""<oai:record xmlns:oai="%(oai)s"><oai:metadata><xml/></oai:metadata></oai:record>""" % namespaces)))))
+
+
+SUCCESS_SRU_UPLOAD_RESPONSE = """<?xml version="1.0" encoding="UTF-8"?>
+<srw:updateResponse xmlns:srw="http://www.loc.gov/zing/srw/" xmlns:ucp="info:lc/xmlns/update-v1">
+    <srw:version>1.0</srw:version>
+    <ucp:operationStatus>success</ucp:operationStatus>
+</srw:updateResponse>"""
+
+FAILED_SRU_UPLOAD_RESPONSE = """<?xml version="1.0" encoding="UTF-8"?>
+<srw:updateResponse xmlns:srw="http://www.loc.gov/zing/srw/" xmlns:ucp="info:lc/xmlns/update-v1">
+    <srw:version>1.0</srw:version>
+    <ucp:operationStatus>fail</ucp:operationStatus>
+<srw:diagnostics>
+    <diag:diagnostic xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/">
+        <diag:uri>diag:uri</diag:uri>
+        <diag:details>diag:details</diag:details>
+        <diag:message>diag:message</diag:message>
+    </diag:diagnostic>
+</srw:diagnostics>
+</srw:updateResponse>"""
+
+
 

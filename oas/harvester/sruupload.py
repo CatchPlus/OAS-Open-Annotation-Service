@@ -26,12 +26,20 @@
 ## end license ##
 
 from lxml.etree import parse, tostring
+from StringIO import StringIO
 
 from meresco.oai import OaiDownloadProcessor
 from oas.namespaces import xpath
 
 from socket import socket
 from xml.sax.saxutils import escape as xmlEscape
+
+
+class SruUploadException(Exception):
+    def __init__(self, uri, details, message):
+        Exception.__init__(self, message)
+        self.uri = uri
+        self.details = details
 
 class SruUpload(object):
     def __init__(self, hostname='localhost', portnumber=8000, path='/update', apiKey=''):
@@ -53,7 +61,8 @@ class SruUpload(object):
                 <srw:recordData>%s</srw:recordData>
             </srw:record>
         </ucp:updateRequest>""" % tostring(record)
-            self._send(body)
+            response = self._send(body)
+            self.checkResponse(response)
         yield
 
     def delete(self, identifier):
@@ -62,8 +71,19 @@ class SruUpload(object):
             <ucp:action>info:srw/action/1/delete</ucp:action>
             <ucp:recordIdentifier>%s</ucp:recordIdentifier>
         </ucp:updateRequest>""" % xmlEscape(identifier)
-        self._send(body)
+        response = self._send(body)
+        self.checkResponse(response)
         yield
+
+    def checkResponse(self, response):
+        header, body = response.split('\r\n\r\n', 1)
+        lxmlNode = parse(StringIO(body))
+        success = not xpath(lxmlNode, "//srw:diagnostics")
+        if not success:
+            raise SruUploadException(
+                    uri=xpath(lxmlNode, "//diag:uri/text()")[0],
+                    details=xpath(lxmlNode, "//diag:details/text()")[0],
+                    message=xpath(lxmlNode, "//diag:message/text()")[0])            
 
     def _socket(self):
         return socket()
