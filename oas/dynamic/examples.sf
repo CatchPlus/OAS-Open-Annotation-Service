@@ -29,12 +29,16 @@ import page
 
 def main(**kwargs):
     timestamp = formatTimestamp("%Y-%m-%d %H:%M:%S")
+    serverUrl = "http://%(hostName)s:%(portNumber)s" % config
     logoUrl = "http://%(hostName)s:%(portNumber)s/static/catch_plus_logo.png" % config
 
     yield page.header(**kwargs)
     yield page.caption("Open Annotation Service")
     yield page.menu(selected="Examples")
-    yield page.codeBlock(caption="External references", code="""<rdf:RDF 
+    yield page.codeBlock(
+        caption="External references", 
+        comments="Both the dcterms:creator and oac:hasBody in this example are rdf:resources which will need to be resolved.",
+        code="""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oac="http://www.openannotation.org/ns/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -43,15 +47,18 @@ def main(**kwargs):
 
     <rdf:Description rdf:about="urn:uuid:%s">
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_oac_body"/>
+        <oac:hasBody rdf:resource="%s/static/dummy_oac_body"/>
         <oac:hasTarget rdf:resource="urn:uuid:%s"/>
         <dc:title>Example with both creator and body as external entities.</dc:title>
-        <dcterms:creator rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_foaf_agent"/>
+        <dcterms:creator rdf:resource="%s/static/dummy_foaf_agent"/>
         <dcterms:created>%s</dcterms:created>
     </rdf:Description>
-</rdf:RDF>""" % (uuid(), uuid(), timestamp))
+</rdf:RDF>""" % (uuid(), serverUrl, uuid(), serverUrl, timestamp))
 
-    yield page.codeBlock(caption="Annotation without rdf:type", code="""<rdf:RDF 
+    yield page.codeBlock(
+        caption="Annotation without rdf:type", 
+        comments="An oac:Annotation tag instead of an rdf:Description and a rdf:type tag.",
+        code="""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oac="http://www.openannotation.org/ns/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -59,15 +66,18 @@ def main(**kwargs):
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <oac:Annotation rdf:about="urn:uuid:%s">
-        <oac:hasBody rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_oac_body"/>
+        <oac:hasBody rdf:resource="%s/static/dummy_oac_body"/>
         <oac:hasTarget rdf:resource="urn:uuid:%s"/>
         <dc:title>Example with rdf:Description replaced by oac:Annotation and no rdf:type.</dc:title>
-        <dcterms:creator rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_foaf_agent"/>
+        <dcterms:creator rdf:resource="%s/static/dummy_foaf_agent"/>
         <dcterms:created>%s</dcterms:created>
     </oac:Annotation>
-</rdf:RDF>""" % (uuid(), uuid(), timestamp))
+</rdf:RDF>""" % (uuid(), serverUrl, uuid(), serverUrl, timestamp))
 
-    yield page.codeBlock(caption="Subclass of Annotation with rdf:type", code="""<rdf:RDF 
+    yield page.codeBlock(
+        caption="Subclass of Annotation with rdf:type", 
+        comments="An oac:Annotation tag with an rdf:type tag specifying a subclass of an oac:Annotation.",
+        code="""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oac="http://www.openannotation.org/ns/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -76,15 +86,18 @@ def main(**kwargs):
 
     <oac:Annotation rdf:about="urn:uuid:%s">
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Reply"/>
-        <oac:hasBody rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_oac_body"/>
+        <oac:hasBody rdf:resource="%s/static/dummy_oac_body"/>
         <oac:hasTarget rdf:resource="urn:uuid:%s"/>
         <dc:title>Example of Reply indicated with rdf:type.</dc:title>
-        <dcterms:creator rdf:resource="http://oas.dev.seecr.nl:8000/static/dummy_foaf_agent"/>
+        <dcterms:creator rdf:resource="%s/static/dummy_foaf_agent"/>
         <dcterms:created>%s</dcterms:created>
     </oac:Annotation>
-</rdf:RDF>""" % (uuid(), uuid(), timestamp))
+</rdf:RDF>""" % (uuid(), serverUrl, uuid(), serverUrl, timestamp))
 
-    yield page.codeBlock(caption="In document oac:Body and foaf:Agent", code="""<rdf:RDF 
+    yield page.codeBlock(
+        caption="In document oac:Body and foaf:Agent", 
+        comments="The oac:hasBody and foaf:Agent are provided within the RDF document, this makes them resolvable and the server will inline them.",
+        code="""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oac="http://www.openannotation.org/ns/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -109,7 +122,10 @@ def main(**kwargs):
     </rdf:Description>
 </rdf:RDF>""" % (uuid(), timestamp))
 
-    yield page.codeBlock(caption="oac:Body refering to a previously used one", code="""<rdf:RDF 
+    yield page.codeBlock(
+        caption="oac:Body refering to a previously used one", 
+        comments="The oac:hasBody was defined in the previous example. Upon upload of this example the server will inline the previously uploaded oac:hasBody.",
+        code="""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oac="http://www.openannotation.org/ns/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -130,7 +146,10 @@ def main(**kwargs):
     </rdf:Description>
 </rdf:RDF>""" % (uuid(), timestamp))
 
-    yield page.codeBlock(caption="Inline anonymous oac:Body and foaf:Agent", code="""<rdf:RDF 
+    yield page.codeBlock(
+        caption="Inline anonymous oac:Body and foaf:Agent", 
+        comments="The inline anonymous oac:hasBody and foaf:Agent will be given a URN (urn:uuid:<uuid>) as rdf:about.",
+        code="""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oac="http://www.openannotation.org/ns/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -156,7 +175,10 @@ def main(**kwargs):
 </rdf:RDF>""" % (uuid(), timestamp))
 
 
-    yield page.codeBlock(caption="Constrained Target", code="""<rdf:RDF 
+    yield page.codeBlock(
+        caption="Constrained Target", 
+        comments="Constrained target.",
+        code="""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oac="http://www.openannotation.org/ns/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -194,7 +216,10 @@ def main(**kwargs):
     </rdf:Description>
 </rdf:RDF>""" % (uuid(), timestamp))
 
-    yield page.codeBlock(caption="Multiple Annotations of Constrained Target", code="""<rdf:RDF 
+    yield page.codeBlock(
+        caption="Multiple Annotations of Constrained Target", 
+        comments="Two annotations about the same constrained target.",
+        code="""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oac="http://www.openannotation.org/ns/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"

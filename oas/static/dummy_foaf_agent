@@ -4,7 +4,7 @@
     xmlns:dc="http://purl.org/dc/elements/1.1/">
     <rdf:Description rdf:about="http://oas.dev.seecr.nl:8000/static/dummy_foaf_agent">
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
-        <foaf:name>Pietje Puk</foaf:name>
-        <dc:title>Gewillig slachtoffer</dc:title>    
+        <foaf:name>John Doe</foaf:name>
+        <dc:title>Commonly used name for fictional example person.</dc:title>    
     </rdf:Description>
 </rdf:RDF>

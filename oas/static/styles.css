@@ -140,6 +140,11 @@ form {
     padding: 0px;
 }
 
+.code p {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 #login {
     background-image: url(/static/dialog-password.png);
     background-repeat: no-repeat;

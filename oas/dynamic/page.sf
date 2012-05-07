@@ -78,11 +78,12 @@ def footer():
 def caption(text):
     yield """<div class="title">%s</div>""" % text
 
-def codeBlock(caption, code):
+def codeBlock(caption, comments="", code=""):
     yield """<div class="code">
         <h3>%s</h3>
+        <p>%s</p>
         <pre>%s</pre>
-    </div>""" % (escapeHtml(caption), escapeHtml(code))
+    </div>""" % (escapeHtml(caption), escapeHtml(comments), escapeHtml(code))
 
 def adminLoggedIn(session):
     return 'user' in session and session['user'].isAdmin()
