@@ -9,10 +9,10 @@ setup(
         'oas.login',
         'oas.resolve',
         'oas.harvester',
-        'oas.utils'
+        'oas.utils',
     ],
     package_data={
-        'avarus': [
+        'oas': [
             'dynamic/*.sf',
             'static/*.css',
             'static/*.png',
