@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.6
 ## begin license ##
 # 
 # "Open Annotation Service" enables exchange, storage and search of
