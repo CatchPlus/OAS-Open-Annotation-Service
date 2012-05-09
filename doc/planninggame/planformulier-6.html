@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="http://cdn.seecr.nl/css/planninggame.css"/>
+        <link rel="shortcut icon" href="http://seecr.nl/favicon.ico" />
+        <script language="javascript" type="text/javascript">
+function toggle(elementId) {
+    var ele = document.getElementById(elementId);
+    ele.style.display = ele.style.display == "block" ? "none" : "block";
+} 
+        </script>
+        <title>OpenAnnotation Service</title>
+   </head>
+    <body>
+        <div id="blocknote">
+            <div id="logo"></div>
+            <div id="content">
+                <h1 class="title">Planformulier 6 - OpenAnnotation Service</h1>                
+                <div class="story">
+                    <h2>0. TODO</h2>
+                    <p>Seecr:<br/>- Error message bij uploading verbeteren<br/>- Volgorde van rdf:type's bij upload verbeteren<br/>- Bevestiging bij verwijderen gebruiker<br/>- Deletes doorgeven aan triplestore<br/>- /sparql in menu<br/><br/>Hennie:<br/>- Voorbeeld queries opstellen/aanleveren</p>
+                </div>                
+                <div class="story">
+                    <h2>1. Harvesting inbouwen</h2>
+                    <p>De OAS service wordt voorzien van de mogelijkheid om base url's te harvesten. Per base url wordt een apiKey gebruikt. Hierdoor kan gemakkelijk ook weer een geharveste repository worden verwijderd.</p>
+                    <button onClick="javascript:toggle('story_1');">Meer</button>
+                    <div class="remarks" id="story_1">
+                        <p>Los proces/service welke de config uitleest, harvest tot er geen resumptiontoken meer is.</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>2. Dashboard: Harvester management</h2>
+                    <p>Het admin panel wordt uitgebreid zodat baseurls en apiKeys geconfigureerd kunnen worden. Ook kan per repository aangegeven worden of deze geharvest moet worden of niet. Ook worden hier foutmeldingen getoond.</p>
+                    <button onClick="javascript:toggle('story_2');">Meer</button>
+                    <div class="remarks" id="story_2">
+                        <p>Het admin menu bevat nu een 'harvester dashboard' entry welke verwijst naar het scherm voor harvester instellingen.</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>3. Constrained Target</h2>
+                    <p>De constrained targets worden net als oac:Hasbody en oac:Annotation gepubliseerd. Hierdoor kunnen meerdere annotaties gaan verwijzen naar dezelfde contrained targets.</p>
+                    <button onClick="javascript:toggle('story_3');">Meer</button>
+                    <div class="remarks" id="story_3">
+                        <p>Voorbeeld: <a target="_blank" href="http://oas.dev.seecr.nl:8000/resolve/urn%3Aid%3Act%3A1">http://oas.dev.seecr.nl:8000/resolve/urn%3Aid%3Act%3A1</a></p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>4. Zoeken op rdf:type</h2>
+                    <p>Er wordt een aparte index aangemaakt op rdf:type. Voor oac:Annotations houd dit in dat er een rdf:type gegenereerd zal moeten worden ter behoeve van indexering.</p>
+                    <button onClick="javascript:toggle('story_4');">Meer</button>
+                    <div class="remarks" id="story_4">
+                        <p><a href="http://oas.dev.seecr.nl:8000/sru?query=rdf%3Atype%3D%22http%3A%2F%2Fwww.openannotation.org%2Fns%2FAnnotation%22&operation=searchRetrieve&version=1.1" target="_blank">rdf:type="http://www.openannotation.org/ns/Annotation"</a></p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>5. Documentatie aanpassen</h2>
+                    <p>Bij de voorbeelden op de portal zullen korte beschijvingen worden toegevoegd die uitleggen waarvoor het voorbeeld is. </p>
+                    <button onClick="javascript:toggle('story_5');">Meer</button>
+                    <div class="remarks" id="story_5">
+                        <p>Zie teksten boven de voorbeelden op de <a href="/examples" target="_blank">voorbeeldenpagina</a>.</p>
+                    </div>
+                </div>                
+                <div class="story">
+                    <h2>6. ORE implementatie voor OAS</h2>
+                    <p>We gaan bekijken wat er zou moeten gebeuren/worden aangepast om ORE te ondersteunen binnen de Open Annotation Service.</p>
+                    <button onClick="javascript:toggle('story_6');">Meer</button>
+                    <div class="remarks" id="story_6">
+                        <p>Explaining text, comments and remarks</p>
+                    </div>
+                </div>
+            </div>
+            <div id="stamp"></div>
+            <div id="address" onClick="javascript:window.open('http://seecr.nl'); return false;"></div>
+        </div>
+    </body>
+</html>
