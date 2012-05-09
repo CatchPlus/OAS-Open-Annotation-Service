@@ -52,7 +52,7 @@ from oas.namespaces import xpath
 mydir = dirname(abspath(__file__))
 projectDir = dirname(dirname(mydir))
 documentationDir = join(projectDir, 'doc')
-defaultSolrDataDir = join(projectDir, 'solr-data')
+defaultSolrDataDir = join(documentationDir, 'solr-data')
 docExampleScriptPath = join(documentationDir, 'public', 'example_client.py')
 myExampleScriptPath = join(mydir, 'example_client.py')
 filecopy(docExampleScriptPath, myExampleScriptPath)
