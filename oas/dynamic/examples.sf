@@ -177,7 +177,7 @@ def main(**kwargs):
 
     yield page.codeBlock(
         caption="Constrained Target", 
-        comments="Constrained target.",
+        comments="The constrained target will be given an URN which will be made resolvable.",
         code="""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oac="http://www.openannotation.org/ns/"
