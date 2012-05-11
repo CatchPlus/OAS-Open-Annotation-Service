@@ -50,10 +50,10 @@ def main(**kwargs):
         'dcterms:created', 
         'dcterms:creator', 
         'dc:title', 
-        'oac:constrains',
         'oac:hasBody', 
         'oac:hasTarget', 
         'rdf:type',
+        'body',
         ]:
         yield "<li>%s</li>" % fieldname
     yield '</ul><p>These fields can be used in queries in the form: <i>fieldname</i>=value</p>'
