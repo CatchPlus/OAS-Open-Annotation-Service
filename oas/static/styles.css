@@ -39,6 +39,10 @@ form {
     margin: 0px;
 }
 
+td {
+    padding-left: 1em;
+}
+
 #content {
     width: 750px;
     margin-left: auto;
@@ -64,6 +68,9 @@ form {
 
 #menu li.selected {
     font-style: italic;
+    background-color: black;
+    color: white;
+    font-weight: bold;
 }
 
 #menu ul {
@@ -187,3 +194,4 @@ form {
     border: 2px dotted green;
     padding: 3px;
 }
+

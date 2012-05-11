@@ -49,22 +49,27 @@ def details(session, arguments, **kwargs):
     repositoryName = arguments['repository'][0]
     repository = observable.call.getRepository(repositoryName)
     yield """<div id='repository'>
+    <h1>Edit repository</h1>
     <fieldset>
-        <legend>Edit repository: %s</legend>
+        <legend>Name: %s</legend>
     <form action="/harvester.action/update" method="post">
         <table>\n""" % repository.name
 
     apiKeys = sorted(observable.call.listApiKeysAndData(), key=lambda (apikey, userdata): userdata['username'].lower())
-    yield '<tr><td>Base URL</td><td><input type="text" name="baseUrl" value=%s/></td></tr>\n' % quoteattr(repository.baseUrl)
-    yield '<tr><td>Metadata Prefix</td><td><input type="text" name="metadataPrefix" value=%s/></td></tr>\n' % quoteattr(repository.metadataPrefix)
+    yield '<tr><td>Base URL</td><td><input type="text" name="baseUrl" value=%s/></td>\n' % quoteattr(repository.baseUrl)
+    yield '<td>For more info: <a target="_blank" href="http://www.openarchives.org/OAI/openarchivesprotocol.html">OAI-PMH specification</a></td></tr>'
+    yield '<tr><td>Metadata Prefix</td><td><input type="text" name="metadataPrefix" value=%s/></td>\n' % quoteattr(repository.metadataPrefix)
+    yield '<td>For other annotation services: rdf.  Records other then Annotation will be ignored.</td></tr>'
     yield '<tr><td>Set Spec</td><td><input type="text" name="setSpec" value=%s/></td></tr>\n' % quoteattr(repository.setSpec)
-    yield '<tr><td>User</td><td><select name="apiKey">'
+    yield '<tr><td>Collection</td><td><select name="apiKey">'
     for (apiKey, userdata) in apiKeys:
         yield "<option value=%s%s>%s</option>" % (quoteattr(apiKey), 'SELECTED' if apiKey == repository.apiKey else '', escapeHtml("%s (%s)" % (userdata['username'], apiKey)))
-    yield "</select></td></tr>"
+    yield "</select></td>"
+    yield "<td>Harvested records will be stored in this collection.</td></tr>"
 
-    yield '<tr><td>Active</td><td><input type="checkbox" name="active" %s/></td></tr>\n' % ('CHECKED' if repository.active else '')
-    yield """<tr><td><input type="hidden" name="repository" value=%s/><input type="hidden" name="formUrl" value="/harvester_dashboard"/><button onclick="javascript:document.location='/harvester_dashboard';return false;">Cancel</button><input type="submit" value="Save"/></td></tr>\n""" % quoteattr(repository.name)
+    yield '<tr><td>Active</td><td><input type="checkbox" name="active" %s/></td>\n' % ('CHECKED' if repository.active else '')
+    yield '<td>Harvest this repository. Once completely harvested, this is automatically turned off.</td></tr>'
+    yield """<tr><td/><td><input type="hidden" name="repository" value=%s/><input type="hidden" name="formUrl" value="/harvester_dashboard"/><button onclick="javascript:document.location='/harvester_dashboard';return false;">Cancel</button><input type="submit" value="Save"/></td></tr>\n""" % quoteattr(repository.name)
     yield "</table>\n"
     yield "</form>\n"
     yield """<form action="/harvester.action/delete" method="post">
@@ -116,14 +121,15 @@ def overview(session, **kwargs):
     yield "</div>"
 
 def renderRepositories(repositories):
-    yield "<table>" 
-    yield "<tr>%s</tr>" % ''.join('<th>%s</th>' % label for label in ['Name','User', 'Active'])
+    yield "<h1>List of repositories</h1>"
+    yield "<table>"
+    yield "<tr>%s</tr>" % ''.join('<th>%s</th>' % label for label in ['Name', 'Collection', 'Being harvested'])
     for repository in repositories:
         yield "<tr>"
         yield '<td><a href="/harvester_dashboard/details?%s">%s</a></td>' % (urlencode(dict(repository=repository.name)), escapeHtml(repository.name))
 
         userdata = observable.call.getForApiKey(repository.apiKey)
         yield '<td>%s</td>' % escapeHtml(userdata['username'] if userdata else "")
-        yield '<td>%s</td>' % repository.active
+        yield '<td>%s</td>' % ("Yes" if repository.active else "No")
         yield '</tr>'
     yield "</table>"

@@ -30,7 +30,7 @@ import page
 def main(**kwargs):
     yield page.header(**kwargs)
     yield page.caption("Open Annotation Service")
-    yield page.menu()
+    yield page.menu('Login')
     yield observable.any.loginForm(**kwargs)
     yield page.footer()
 

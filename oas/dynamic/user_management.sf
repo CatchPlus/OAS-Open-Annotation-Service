@@ -40,20 +40,22 @@ def main(session, **kwargs):
 
     userdata = sorted(observable.call.listApiKeysAndData())
     if len(userdata) > 0:
-        yield '<table>\n'
-        yield '<tr><th></th><th>Username</th><th>Api key</th><th>Description</th><th/></tr>\n'
+        yield '<h1>Collection management</h1><table>\n'
+        yield '<p>Annotations are uploaded with an Api key and added to that collection which can be harvested with OAI-PMH with the collection name as set: <a href="/oai?verb=ListSets">ListSets</a></p>'
+        yield '<tr><th></th><th>Name</th><th>Api key</th><th>Description</th><th/></tr>\n'
         nr = 0
         for apiKey, data in userdata:
             username = data['username']
             description = data.get('description', '')
+            msg = "Delete user \\'%s\\' and all its records?" % username
             yield """    <tr>
             <td>
                 <form method="POST" action="/login.action/remove">
                     <input type="hidden" name="username" value=%s/>
                     <input type="hidden" name="formUrl" value="/user_management"/>
-                    <input type="submit" value="Delete" onClick='return confirm("Are you sure?");'/>
+                    <input type="submit" value="Delete" onClick="return confirm('%s');"/>
                 </form>
-            </td>""" % quoteattr(username)
+            </td>""" % (quoteattr(username), msg)
             yield """
                 <form method="POST" action="/apikey.action/update">
         <input type="hidden" name="apiKey" value=%s/>
@@ -73,7 +75,7 @@ def main(session, **kwargs):
     yield '''<form method="POST" name="create" action="/apikey.action/create">
     <input type="hidden" name="formUrl" value="/user_management"/>
     <dl>
-        <dt>New username</dt>
+        <dt>New collection name</dt>
         <dd><input type="text" name="username" value=""/></dd>
         <dd class="submit"><input type="submit" value="Create"/></dd>
     </dl>
