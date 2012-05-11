@@ -82,6 +82,8 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('api.user = anothertestuser', 8)
         self.assertQuery('oac:constrains = "http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"', 2)
         self.assertQuery('"http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"', 2)
+        self.assertQuery('body = IamUnique42', 1)
+        self.assertQuery('body = Haynaut', 1)
 
     def testQueryOnRdfType(self):
         self.assertQuery('rdf:type = "http://www.openannotation.org/ns/Annotation"', 16)

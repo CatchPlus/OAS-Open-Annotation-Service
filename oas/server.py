@@ -227,6 +227,11 @@ def dna(reactor, observableHttpServer, config):
                         indexHelix
                     ),
                     (Xml2Fields(),
+                        (FilterField(lambda name: name.startswith('RDF.Annotation.hasBody.')),
+                            (RenameField(lambda name: 'body'),
+                                indexHelix
+                            )
+                        ),
                         allFieldIndexHelix,
                         indexHelix
                     )

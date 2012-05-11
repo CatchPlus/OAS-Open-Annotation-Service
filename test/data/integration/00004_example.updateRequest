@@ -7,6 +7,13 @@
     <rdf:Description rdf:about="urn:text:dctermscreator:2">
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
         <oac:hasBody rdf:resource="urn:nr:1"/>
+            <oac:hasBody>
+                <ns0:ContentAsText rdf:about="http://www.shared-canvas.org/impl/demo1/res/Line-f4v-102" xmlns:ns0="http://www.w3.org/2008/content#">
+                    <ns0:chars>frere et madame la contesse de Haynaut</ns0:chars>
+                    <ns0:characterEncoding>UTF-8</ns0:characterEncoding>
+                <rdf:type rdf:resource="http://purl.org/dc/dcmitype/Text"/>
+            </ns0:ContentAsText>
+        </oac:hasBody>
         <oac:hasTarget rdf:resource="http://example.org/target/for/test#1"/>
         <dc:title>test for dcterms:creator</dc:title>
         <dcterms:creator>
