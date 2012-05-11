@@ -35,10 +35,11 @@ def header(session, **kwargs):
     </head>
     <body>"""
     if 'user' in session:
-        yield '<div id="loginbar"><p>Logged in as: %s | <a href="/changepassword">Change password</a> | <a href="/logout">Logout</a>' % session['user'].name
+        yield '<div id="loginbar"><p>Logged in as: %s | <a href="/changepassword">Change password</a>' % session['user'].name
         if session['user'].isAdmin():
-            yield ' | <a href="/user_management">User Management</a>'
+            yield ' | <a href="/user_management">Collection Management</a>'
             yield ' | <a href="/harvester_dashboard">Harvester Dashboard</a>'
+        yield ' | <a href="/logout">Logout</a>'
         yield '</p></div>' 
     yield """
         <div id="content">
@@ -52,6 +53,7 @@ def menu(selected=None):
         ('Examples', "/examples"),
         ('Documentation', "/documentation"),
         ('About', "/about"),
+        ('Login', "/login")
     ]
     yield """
     <div id="menu">
