@@ -80,6 +80,8 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('RDF.Annotation.creator.Agent.name = "billy butcher"', 2)
         self.assertQuery('api.user = testuser', 7)
         self.assertQuery('api.user = anothertestuser', 8)
+        self.assertQuery('oac:constrains = "http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"', 2)
+        self.assertQuery('"http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"', 2)
 
     def testQueryOnRdfType(self):
         self.assertQuery('rdf:type = "http://www.openannotation.org/ns/Annotation"', 16)
