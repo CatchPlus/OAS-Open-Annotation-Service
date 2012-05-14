@@ -1,4 +1,30 @@
 #!/bin/bash
+## begin license ##
+# 
+# "Open Annotation Service" enables exchange, storage and search of
+# heterogeneous annotations using a uniform format (Open Annotation format) and
+# a uniform web service interface. 
+# 
+# Copyright (C) 2012 Meertens Instituut (KNAW) http://meertens.knaw.nl
+# Copyright (C) 2012 Seecr (Seek You Too B.V.) http://seecr.nl
+# 
+# This file is part of "Open Annotation Service"
+# 
+# "Open Annotation Service" is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# "Open Annotation Service" is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with "Open Annotation Service"; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+# 
+## end license ##
 clear
 set -o errexit
 
@@ -23,7 +49,7 @@ messageWithEnter "Configuration of $PROJECT_NAME $PROJECT_VERSION
 "
 
 USERNAME=oas
-useradd --system oas --shell /bin/false
+id ${USERNAME} >/dev/null 2>&1 || useradd --system ${USERNAME} --shell /bin/false
 
 GROUPNAME=$(id -ng ${USERNAME})
 
@@ -41,14 +67,15 @@ SERVER_PORT=${USERINPUT}
 SOLR_PORT=$(( ${SERVER_PORT}+1 ))
 OWLIM_PORT=$(( ${SERVER_PORT}+2 ))
 
-ask_question "Database path" "/oas"
+ask_question "Database path" "/var/lib/oas"
 DATABASE_PATH=${USERINPUT}
 
-ask_question "OAI Admin email-address" ""
+ask_question "OAI Admin email-address:" ""
 OAI_ADMIN_EMAIL=${USERINPUT}
 
 ## Set up database directory with Solr
 test -d ${DATABASE_PATH} || mkdir --parents ${DATABASE_PATH}
+chown ${USERNAME}:${GROUPNAME} ${DATABASE_PATH}
 if [ ! -d ${DATABASE_PATH}/solr-state ]; then
     cp -r /usr/share/doc/oas/solr-data ${DATABASE_PATH}/solr-state
     chown --recursive ${USERNAME}:${GROUPNAME} ${DATABASE_PATH}/solr-state
@@ -99,7 +126,7 @@ export LANG=en_US.UTF-8
 
 exec setuidgid ${USERNAME} start-oas-server --configFile=${CONFIG_FILE} 2>&1
 "
-prepareService $SERVICEDIR ${PROJECT_NAME}-dev
+prepareService $SERVICEDIR ${PROJECT_NAME}
 ############### /Server Service ####################
 
 
