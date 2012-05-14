@@ -243,6 +243,17 @@ To start:
 rm /etc/service/$SERVICE_NAME/down; svc -u /etc/service/$SERVICE_NAME"
 }
 
+function prepareAndStartService {
+    local SERVICEDIR=$1
+    local SERVICE_NAME=$2
+    (
+        cd /etc/service
+        ln -s $SERVICEDIR/$SERVICE_NAME $SERVICE_NAME
+    )
+    rm /etc/service/$SERVICE_NAME/down; svc -u /etc/service/$SERVICE_NAME
+    message "Service $SERVICE_NAME started."
+}
+
 function sectionInFile {
     FILENAME=$1
     CONTENT=$2
