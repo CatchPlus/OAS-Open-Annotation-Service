@@ -50,7 +50,7 @@ OAI_ADMIN_EMAIL=${USERINPUT}
 ## Set up database directory with Solr
 test -d ${DATABASE_PATH} || mkdir --parents ${DATABASE_PATH}
 if [ ! -d ${DATABASE_PATH}/solr-state ]; then
-    cp -r /usr/share/doc/oas/solr-state ${DATABASE_PATH}
+    cp -r /usr/share/doc/oas/solr-data ${DATABASE_PATH}/solr-state
     chown --recursive ${USERNAME}:${GROUPNAME} ${DATABASE_PATH}/solr-state
 fi
 
