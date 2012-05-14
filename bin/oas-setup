@@ -2,7 +2,7 @@
 clear
 set -o errexit
 
-source /usr/local/lib/oas/functions.sh
+source /usr/lib/oas-functions.sh
 
 INSTALL_INFO="$basedir/$(basename $0) on '$(date)'"
 PROJECT_NAME=oas
