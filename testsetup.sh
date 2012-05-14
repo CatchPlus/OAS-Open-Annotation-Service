@@ -35,12 +35,12 @@ rm -rf tmp build
 python2.6 setup.py install --root tmp --install-layout=deb
 cp -r test tmp/test
 cp -r doc tmp/doc
-cp -r solr-data tmp/solr-data
+cp -r doc/solr-data tmp/solr-data
 find tmp -type f -exec sed -e \
     "/DO_NOT_DISTRIBUTE/d;
      s,binDir = '/usr/bin',binDir = '${mydir}/tmp/usr/bin',;
      s,^documentationPath.*$,documentationPath='$mydir/doc',;
-     s,^usrSharePath.*$,usrSharePath='$mydir/tmp/usr/share/avarus',;" -i {} \;
+     s,^usrSharePath.*$,usrSharePath='$mydir/tmp/usr/share/oas',;" -i {} \;
 
 export PYTHONPATH=`pwd`/tmp/usr/lib/python2.6/dist-packages:${PYTHONPATH}
 
