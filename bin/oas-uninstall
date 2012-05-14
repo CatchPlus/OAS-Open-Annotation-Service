@@ -29,6 +29,7 @@ clear
 set -o errexit
 
 source /usr/lib/oas-functions.sh
+isroot
 
 PROJECT_NAME=oas
 
