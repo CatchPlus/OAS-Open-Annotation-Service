@@ -60,10 +60,23 @@ CONFIG_FILE=${CONFIG_DIR}/oas.config
 SERVICEDIR=/opt/${PROJECT_NAME}-services
 
 ########## Minimal userinput
-ask_question "Server name" "$(hostname --fqdn)"
+ask_question "
+The full server name is used for generating URLs for anonymous annotations.
+Hence it is preferable that this name points back to this machine.
+
+We discovered the following name to be pointing to this host. Press Enter
+to used this value.  If you have a proxy with a better name pointing to this
+machine, enter that name.
+
+Server name" "$(hostname --fqdn)"
 HOSTNAME=${USERINPUT}
 
-ask_question "Server port" "8000"
+ask_question "
+The port number is used for generating URLs for anonymous annotations.
+Enter a free port number greater than 1024.  OAS will use this port and
+the next two numbers.
+
+Server port" "8000"
 SERVER_PORT=${USERINPUT}
 SOLR_PORT=$(( ${SERVER_PORT}+1 ))
 OWLIM_PORT=$(( ${SERVER_PORT}+2 ))
@@ -71,7 +84,10 @@ OWLIM_PORT=$(( ${SERVER_PORT}+2 ))
 ask_question "Database path" "/var/lib/oas"
 DATABASE_PATH=${USERINPUT}
 
-ask_question "OAI Admin email-address:" ""
+ask_question "
+This e-mails address is used in the OAI-PMH Identify response.
+
+OAI Admin email-address:" ""
 OAI_ADMIN_EMAIL=${USERINPUT}
 
 ## Set up database directory with Solr
