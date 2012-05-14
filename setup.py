@@ -27,6 +27,7 @@ setup(
         'bin/start-oas-solr-server',
         'bin/start-oas-userdelete-service',
         'bin/oas-setup',
+        'bin/oas-uninstall',
     ],
     version=version,
     url='http://avarus.seecr.nl',
