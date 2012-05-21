@@ -107,7 +107,7 @@ class RecordInject(object):
 
 def dna(config):
     baseurl = "http://%(hostName)s:%(portNumber)s/sru" % config
-    injectUrl = "http://%(hostName)s:%(portNumber)s/recordReindex" % config
+    injectUrl = "http://127.0.0.1:%(portNumber)s/recordReindex" % config
     databasePath = config['databasePath']
     storage = StorageComponent(join(databasePath, 'storage'))
 
