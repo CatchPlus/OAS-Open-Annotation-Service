@@ -19,3 +19,4 @@ meresco-owlim-server (<< 4.1)
 solr (>= 3.6.0)
 solr (<< 3.7)
 daemontools-run
+iptables

@@ -1,0 +1,72 @@
+#!/bin/bash
+## begin license ##
+# 
+# "Open Annotation Service" enables exchange, storage and search of
+# heterogeneous annotations using a uniform format (Open Annotation format) and
+# a uniform web service interface. 
+# 
+# Copyright (C) 2012 Meertens Instituut (KNAW) http://meertens.knaw.nl
+# Copyright (C) 2012 Seecr (Seek You Too B.V.) http://seecr.nl
+# 
+# This file is part of "Open Annotation Service"
+# 
+# "Open Annotation Service" is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# "Open Annotation Service" is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with "Open Annotation Service"; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+# 
+## end license ##
+clear
+set -o errexit
+
+source /usr/lib/oas-functions.sh
+isroot
+
+PROJECT_NAME=oas
+
+cat << 'END_OF_BANNER'
+                    ___  ___  ___  ___ _ _ 
+              /\   / __|/ _ \/ _ \/ __| '_| 
+              \//\ \__ \  __/  __/ (__| |   
+  Crafted by  /\\/ |___/\___|\___|\___|_|   
+              \/         
+                   Software Craftsmanship
+                   http://seecr.nl
+
+END_OF_BANNER
+
+messageWithEnter "Uninstall of $PROJECT_NAME $PROJECT_VERSION
+
+"
+
+CONFIG_DIR=/etc/oas
+SERVICEDIR=/opt/${PROJECT_NAME}-services
+DATABASEPATH=$(cat ${CONFIG_DIR}/oas.config  | grep databasePath | awk '{print $3}')
+
+
+message "Stopping services"
+for service in server solr triplestore delete resolve harvester
+do
+    stopService ${PROJECT_NAME}-${service}
+done
+
+message "Removing firewall script"
+test -f /etc/network/if-up.d/oas-firewall && rm /etc/network/if-up.d/oas-firewall
+
+message "Removing configuration"
+test -d ${CONFIG_DIR} && rm -rf ${CONFIG_DIR}
+
+message "Removing services"
+test -d ${SERVICEDIR} && rm -rf ${SERVICEDIR}
+
+message "Unstall of ${PROJECT_NAME} ${PROJECT_VERSION} complete"
+
