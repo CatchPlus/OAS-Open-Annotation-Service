@@ -27,10 +27,11 @@
 
 from simplejson import dump as jsonSave, load as jsonLoad
 
-from os.path import join, isfile, isdir
+from os.path import join, isfile, isdir, abspath
 from os import makedirs, rename, listdir
 from shutil import rmtree
 from urllib import urlencode
+from glob import glob
 
 CONFIG_FILENAME = 'config.json'
 STATE_FILENAME = 'state.json'
@@ -42,8 +43,9 @@ class Environment(object):
             makedirs(self._root)
 
     def getRepositories(self):
-        for name in listdir(self._root):
-            yield self.getRepository(name)
+        for name in glob(join(self._root, "*")):
+            if Repository.isRepository(name):
+                yield self.getRepository(name)
 
     def addRepository(self, name, **kwargs):
         repository = Repository(name=name, directory=self._repositoryDirectory(name), **kwargs)
@@ -120,6 +122,10 @@ class Repository(object):
 
     def delete(self):
         rmtree(self.directory)
+
+    @staticmethod
+    def isRepository(path):
+        return isdir(path) and isfile(join(path, CONFIG_FILENAME))
 
     @staticmethod
     def read(directory):

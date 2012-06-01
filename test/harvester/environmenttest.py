@@ -57,6 +57,11 @@ class EnvironmentTest(SeecrTestCase):
         repositories = list(self.env.getRepositories())
         self.assertEquals([repository], repositories)
 
+    def testRepositoriesOnlyWhenThereIsAConfig(self):
+        self.assertEquals([], list(self.env.getRepositories()))
+        open(join(self.tempdir, "db", "junk"), 'w').write("")
+        self.assertEquals([], list(self.env.getRepositories()))
+
     def testDefaultValues(self):
         repository = self.env.addRepository(name="test")
         self.assertEquals('', repository.baseUrl)
@@ -88,8 +93,5 @@ class EnvironmentTest(SeecrTestCase):
 
         repository.logException(Exception("boo"))
         self.assertEquals("boo", repository.readErrorLog())
-
-
-
 
 
