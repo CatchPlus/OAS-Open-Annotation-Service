@@ -41,9 +41,7 @@ class ConstraintsTest(IntegrationTestCase):
         query='oac:hasTarget="http://catchplus.nl/annotation/Canvas1"'
         headers, body = getRequest(self.portNumber, "/sru", arguments=dict(
             version="1.2", operation="searchRetrieve", query=query), parse='lxml')
-        print tostring(body)
         self.assertEquals(["4"], xpath(body, '//srw:numberOfRecords/text()'))
-        print tostring(body)
         self.assertEquals([
                 'http://localhost:%s/resolve/urn%%3Aid%%3Aia%%3A1' % self.portNumber, 
                 'http://localhost:%s/resolve/urn%%3Aid%%3Ata%%3A0' % self.portNumber, 
