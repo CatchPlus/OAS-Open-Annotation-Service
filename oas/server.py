@@ -197,6 +197,7 @@ def dna(reactor, observableHttpServer, config):
                         ("/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
                         ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", 'oac:hasBody'),
                         ("/rdf:RDF/oac:Annotation/oac:hasTarget/@rdf:resource", 'oac:hasTarget'),
+                        ("/rdf:RDF/oac:Annotation/oac:hasTarget/*/@rdf:about", 'oac:hasTarget'),
                         ("//oac:constrains/@rdf:resource", 'oac:hasTarget'),
                         ("//foaf:mbox/@rdf:resource", '__all__'),
 

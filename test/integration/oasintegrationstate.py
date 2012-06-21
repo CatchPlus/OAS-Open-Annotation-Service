@@ -63,6 +63,10 @@ class OasIntegrationState(IntegrationState):
     def __init__(self, stateName, tests=None, fastMode=False):
         IntegrationState.__init__(self, stateName, tests=tests, fastMode=fastMode)
         self.testdataDir = join(dirname(mydir), 'data/integration')
+        stateDataDir = join(dirname(mydir), 'data', stateName)
+        if isdir(stateDataDir):
+            self.testdataDir = stateDataDir
+
         self.solrDataDir = join(self.integrationTempdir, "solr")
         self.owlimDataDir = join(self.integrationTempdir, "owlim")
         self.httpDataDir = join(mydir, "httpdata")
@@ -162,10 +166,7 @@ class OasIntegrationState(IntegrationState):
         self._setupUsers()
         print "Creating database in", self.integrationTempdir
         try:
-            if self.stateName in ['default']:
-                self._uploadUpdateRequests(self.testdataDir, '/update', [self.portNumber]) 
-            elif self.stateName == 'initial':
-                pass
+            self._uploadUpdateRequests(self.testdataDir, '/update', [self.portNumber]) 
             print "Finished creating database in %s seconds" % (time() - start)
         except Exception, e:
             print 'Error received while creating database for', self.stateName

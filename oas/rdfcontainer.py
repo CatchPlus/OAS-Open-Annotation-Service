@@ -26,6 +26,7 @@
 ## end license ##
 
 from namespaces import xpath
+from copy import copy
 
 class RdfContainer(object):
     
@@ -34,4 +35,4 @@ class RdfContainer(object):
 
     def resolve(self, uri):
         results = xpath(self._xml, "//*[@rdf:about='%s']" % uri)
-        return results[0] if results else None
+        return copy(results[0]) if results else None

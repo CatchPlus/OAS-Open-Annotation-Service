@@ -28,6 +28,7 @@
 from meresco.core import Observable
 from lxml.etree import tostring, Element, parse
 from StringIO import StringIO
+from copy import copy
 
 from rdfcontainer import RdfContainer
 from oas.utils.annotation import filterAnnotations, validIdentifier
@@ -60,6 +61,8 @@ class MultipleAnnotationSplit(Observable):
                 urn = getAttrib(node, 'rdf:resource')
                 if urn:
                     resolvedNode = rdfContainer.resolve(urn)
+                    if relation['tag'] == 'oac:hasTarget':
+                        print node.attrib, resolvedNode, urn
                     if not resolvedNode is None:
                         node.append(resolvedNode)
                         del node.attrib[expandNs('rdf:resource')]

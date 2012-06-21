@@ -73,6 +73,12 @@ if __name__ == '__main__':
             'integration.harvestertest.HarvesterTest',
         ],
         fastMode=fastMode).addToTestRunner(runner)
+    OasIntegrationState(
+        'constraints', 
+        tests=[
+            'integration.constraintstest.ConstraintsTest',
+        ],
+        fastMode=fastMode).addToTestRunner(runner)
 
     testnames = argv[1:]
     runner.run(testnames)
