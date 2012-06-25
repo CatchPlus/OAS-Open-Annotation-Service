@@ -42,9 +42,11 @@ def main(reactor, portnumber, filepath):
     )
 
 if __name__ == '__main__':
+    print argv
     args = {}
-    for i in range(1, len(argv), 2):
-        args[argv[i][2:]] = argv[i+1]
+    for i in argv[1:]:
+        name, value = i.split('=', 1)
+        args[name[2:]] = value
     portnumber = int(args['port'])
     filepath = args['filepath']
     

@@ -1,0 +1,10 @@
+<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:oac="http://www.openannotation.org/ns/">
+    <rdf:Description rdf:about="urn:creator:test:2">
+        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <dcterms:creator>Seecr uit Veenendaal</dcterms:creator>
+    </rdf:Description>
+</rdf:RDF>

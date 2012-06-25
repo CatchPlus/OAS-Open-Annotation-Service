@@ -25,6 +25,12 @@
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
+    </fieldType>
+    <fieldType name="text_simple" class="solr.TextField" positionIncrementGap="100" multiValued="true">
+      <analyzer>
+        <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
   </fieldType>
   <fieldType name="untokenized_string" class="solr.StrField" sortMissingLast="true" omitNorms="true" multiValued="true"/>
  </types>
@@ -33,6 +39,7 @@
  <fields>
    <field name="__id__" type="string" indexed="true" stored="true" required="true" /> 
    <field name="__all__" type="text_ws" indexed="true" stored="false" required="false"/> 
+   <field name="dcterms:creator" type="text_simple" indexed="true" stored="false" required="false"/>
    <dynamicField name="untokenized.*" type="untokenized_string" indexed="true" stored="false"/>
    <dynamicField name="*"  type="text_ws"  indexed="true"  stored="false"/>
  </fields>

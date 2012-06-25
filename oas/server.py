@@ -77,7 +77,7 @@ staticHtmlFilePath = join(dirname(__file__), "static")
 planninggameFilePath = join(dirname(dirname(__file__)), "doc", "planninggame")
 
 untokenized = [
-    "dcterms:creator",
+        #"dcterms:creator",
     "oac:hasBody",
     "oac:hasTarget"
 ]
@@ -202,7 +202,10 @@ def dna(reactor, observableHttpServer, config):
                         ("//foaf:mbox/@rdf:resource", '__all__'),
 
                         ], namespaceMap=namespaces),
-                        
+                       
+                        (FilterField(lambda name: name == "dcterms:creator"),
+                            indexWithoutFragment
+                        ),
                         (FilterField(lambda name: name in untokenized), 
                             (RenameField(lambda name: 'untokenized.'+name),
                                 indexWithoutFragment,
@@ -228,6 +231,11 @@ def dna(reactor, observableHttpServer, config):
                         indexHelix
                     ),
                     (Xml2Fields(),
+                        (FilterField(lambda name: name.startswith('RDF.Annotation.creator')),
+                            (RenameField(lambda name: 'dcterms:creator'),
+                                indexHelix
+                            )
+                        ),
                         (FilterField(lambda name: name.startswith('RDF.Annotation.hasBody.')),
                             (RenameField(lambda name: 'body'),
                                 indexHelix
