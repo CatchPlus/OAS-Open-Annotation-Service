@@ -110,7 +110,7 @@
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/InlineTextConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
-		<cnt:chars>"<textsegment offset="0" range="30"/>"</cnt:chars>
+		<cnt:chars>textsegment offset="0" range="30"</cnt:chars>
 		<cnt:characterEncoding>UTF-8</cnt:characterEncoding>
     </rdf:Description> 
 
@@ -119,7 +119,7 @@
         <rdf:type rdf:resource="http://catchplus.nl/annotation/SvgConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
         <dc:format>image/svg+xml</dc:format>
-		<cnt:chars>"<rect x="20" y="20" width="400" height="20" />"</cnt:chars>
+		<cnt:chars>rect x="20" y="20" width="400" height="20"</cnt:chars>
 		<cnt:characterEncoding>UTF-8</cnt:characterEncoding>
     </rdf:Description> 
     
@@ -127,7 +127,7 @@
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/InlineTextConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
-		<cnt:chars>"<textsegment offset="31" range="31"/>"</cnt:chars>
+		<cnt:chars>textsegment offset="31" range="31"</cnt:chars>
 		<cnt:characterEncoding>UTF-8</cnt:characterEncoding>
     </rdf:Description> 
 
@@ -136,7 +136,7 @@
         <rdf:type rdf:resource="http://catchplus.nl/annotation/SvgConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
         <dc:format>image/svg+xml</dc:format>
-		<cnt:chars>"<rect x="20" y="50" width="400" height="20" />"</cnt:chars>
+		<cnt:chars>rect x="20" y="50" width="400" height="20"</cnt:chars>
 		<cnt:characterEncoding>UTF-8</cnt:characterEncoding>
     </rdf:Description> 
 
@@ -144,7 +144,7 @@
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/InlineTextConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
-		<cnt:chars>"<textsegment offset="27" range="3"/>"</cnt:chars>
+		<cnt:chars>textsegment offset="27" range="3"</cnt:chars>
 		<cnt:characterEncoding>UTF-8</cnt:characterEncoding>
     </rdf:Description> 
 
@@ -152,7 +152,7 @@
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/InlineTextConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
-		<cnt:chars>"<textsegment offset="31" range="4"/>"</cnt:chars>
+		<cnt:chars>textsegment offset="31" range="4"</cnt:chars>
 		<cnt:characterEncoding>UTF-8</cnt:characterEncoding>
     </rdf:Description>   
 

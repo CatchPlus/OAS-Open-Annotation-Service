@@ -43,7 +43,7 @@ class MultipleAnnotationSplit(Observable):
             annotationFound = True
             newRoot = Element("{%(rdf)s}RDF" % namespaces)
             newRoot.append(annotation)
-            self._inlineURNs(newRoot, rdfContainer)
+            self._inlineURNs(annotation, rdfContainer)
             yield self.all.process(lxmlNode=newRoot)
         if not annotationFound:
             raise ValidateException("No annotations found.")
@@ -55,16 +55,20 @@ class MultipleAnnotationSplit(Observable):
         for relation in [
             {'tag': 'dcterms:creator', 'partname': 'foafAgent'}, 
             {'tag': 'oac:hasBody', 'partname': 'oacBody'},
+            {'tag': 'oac:constrains'},
+            {'tag': 'oac:constrainedBy'},
             {'tag': 'oac:hasTarget', 'partname': 'oacConstrainedTarget'},]:
-            nodes = xpath(root, '//%s[@rdf:resource]' % relation['tag'])
+
+            nodes = xpath(root, '%s[@rdf:resource]' % relation['tag'])
             for node in nodes:
                 urn = getAttrib(node, 'rdf:resource')
                 if urn:
                     resolvedNode = rdfContainer.resolve(urn)
-                    if not resolvedNode is None:
+                    if resolvedNode is not None:
                         node.append(resolvedNode)
+                        self._inlineURNs(resolvedNode, rdfContainer)
                         del node.attrib[expandNs('rdf:resource')]
-                    elif self.call.isAvailable(identifier=urn, partname=relation['partname']) == (True, True):
+                    elif 'partname' in relation and self.call.isAvailable(identifier=urn, partname=relation['partname']) == (True, True):
                         data = self.call.getStream(identifier=urn, partname=relation['partname'])
                         node.append(parse(StringIO(data.read())).getroot())
                         del node.attrib[expandNs('rdf:resource')]

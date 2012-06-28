@@ -77,6 +77,7 @@ if __name__ == '__main__':
         'constraints', 
         tests=[
             'integration.constraintstest.ConstraintsTest',
+            'integration.inlinetest.InlineTest',
         ],
         fastMode=fastMode).addToTestRunner(runner)
 

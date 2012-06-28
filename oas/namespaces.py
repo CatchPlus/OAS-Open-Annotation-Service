@@ -46,6 +46,7 @@ def expandNs(name):
     return '{%s}%s' % (namespaces[ns], value)
 
 namespaces = _namespaces(
+    cnt="http://www.w3.org/2008/content#",
     dbpedia_owl="http://dbpedia.org/ontology/",
     dc="http://purl.org/dc/elements/1.1/",
     dcterms="http://purl.org/dc/terms/",
