@@ -27,11 +27,13 @@
 
 from namespaces import xpath
 from copy import copy
+from lxml.etree import parse, tostring
+from StringIO import StringIO
 
 class RdfContainer(object):
     
     def __init__(self, xml):
-        self._xml = xml
+        self._xml = parse(StringIO(tostring(xml)))
 
     def resolve(self, uri):
         results = xpath(self._xml, "//*[@rdf:about='%s']" % uri)

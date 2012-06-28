@@ -35,6 +35,10 @@ from oas.utils.annotation import filterAnnotations, validIdentifier
 from oas.namespaces import namespaces, xpath, getAttrib, expandNs
 from meresco.components.xml_generic.validate import ValidateException
 
+
+def isAnnotation(node):
+    return ("{%(oac)s}Annotation" % namespaces)  == node.tag or ("%(oac)sAnnotation" % namespaces) in xpath(node, 'rdf:type/@rdf:resource')
+
 class MultipleAnnotationSplit(Observable):
     def add(self, identifier, partname, lxmlNode):
         rdfContainer = RdfContainer(lxmlNode)
@@ -64,7 +68,7 @@ class MultipleAnnotationSplit(Observable):
                 urn = getAttrib(node, 'rdf:resource')
                 if urn:
                     resolvedNode = rdfContainer.resolve(urn)
-                    if resolvedNode is not None:
+                    if resolvedNode is not None and not isAnnotation(resolvedNode):
                         node.append(resolvedNode)
                         self._inlineURNs(resolvedNode, rdfContainer)
                         del node.attrib[expandNs('rdf:resource')]

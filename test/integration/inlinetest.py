@@ -87,3 +87,11 @@ class InlineTest(IntegrationTestCase):
         self.assertEquals(['http://catchplus.nl/annotation/imageScan1.jpg'], xpath(ia_1, 'oac:Annotation/oac:hasBody/@rdf:resource'))
         self.assertEquals(['Canvas for imageScan1.jpg'], xpath(ia_1, 'oac:Annotation/oac:hasTarget/dms:Canvas[@rdf:about="http://catchplus.nl/annotation/Canvas1"]/dc:title/text()'))
         
+    def testRecursionStopsOnAnnotation(self):
+        query = "urn:test:a:0"
+        headers, body = getRequest(self.portNumber, "/sru", arguments=dict(
+            version="1.2", operation="searchRetrieve", query=query), parse='lxml')
+
+        a_0 = xpath(body, "/srw:searchRetrieveResponse/srw:records/srw:record/srw:recordData/rdf:RDF")[0]
+
+        self.assertEquals(["urn:test:a:1", "urn:test:a:2"], xpath(a_0, "oac:Annotation/oac:hasTarget/@rdf:resource"))
