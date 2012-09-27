@@ -65,6 +65,15 @@ class OasTest(IntegrationTestCase):
         headers, body = getRequest(self.portNumber, "/info/version", parse=False)
         self.assertTrue(body.startswith("Open Annotation Service, version: "), body)
 
+    def testSparqlQueryAcceptHttpHeader(self):
+        headers, body = getRequest(self.portNumber, "/sparql", 
+            arguments={'query': 'select ?x ?y ?z where {?x ?y ?z}'}, 
+            additionalHeaders={'Accept': 'application/sparql-results+json'}, 
+            parse=False)
+    
+        splitHeaders = headers.split("\r\n")
+        self.assertTrue("Content-Type: application/sparql-results+json" in splitHeaders, headers)
+
     def testSru(self):
         self.assertQuery('RDF.Annotation.title = "Annotation of the Hubble Deep Field Image"', 1)
         self.assertQuery('RDF.Annotation.title = hubble', 1)

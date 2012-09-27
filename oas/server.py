@@ -365,6 +365,8 @@ def dna(reactor, observableHttpServer, config):
                                             'uuid': uuid4,
                                             'xpath': xpath,
                                             'humanReadableTime': lambda time: strftime("%Y-%m-%d %H:%M:%S", localtime(time)) if not time is None else '',
+                                            'IOError': IOError,
+                                            'bool': bool,
                                             }),
                                         basicHtmlLoginHelix,
                                         apiKeyHelix,

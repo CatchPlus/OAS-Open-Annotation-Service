@@ -28,27 +28,96 @@
 
 import page
 
-def main(arguments={}, *args, **kwargs):
+CONTENT_TYPES = [ 
+    ('HTML', 'html'), 
+    ('XML', 'application/sparql-results+xml'), 
+    ('JSON', 'application/sparql-results+json'),
+]
+
+BROWSER_TYPE = ['text/html',  'application/xhtml+xml', '*/*']
+
+def isProbablyABrowser(Headers):
+    if not 'Accept' in Headers:
+        return False
+    
+    types = set([t.split(';')[0].strip() for t in Headers['Accept'].split(',')])
+    return bool(types.intersection(BROWSER_TYPE))
+
+
+def main(arguments, Method, Headers, **kwargs):
+    queryArgument = arguments.get("query", [''])[0]
+    contentType = arguments.get("contentType", [None])[0]
+
+    if not isProbablyABrowser(Headers):
+        acceptHeader = Headers.get('Accept')
+        if not acceptHeader:
+            yield showAllowedContentTypes()
+            return
+
+        yield proxyToOwlim(queryArgument=queryArgument, queryResultFormat=acceptHeader)
+        return
+
+    if contentType is None:
+        yield renderForm(arguments=arguments, Method=Method, **kwargs)
+        return
+
+    if contentType == "html":
+        yield showHtmlResults(queryArgument)
+        return
+
+    yield proxyToOwlim(queryArgument=queryArgument, queryResultFormat=contentType)
+
+def proxyToOwlim(queryArgument, queryResultFormat):
+    try:
+        results = yield observable.any.executeQuery(query=queryArgument, queryResultFormat=queryResultFormat)
+        yield "HTTP/1.0 200 Ok\r\n"
+        yield "Content-Type: %s\r\n" % queryResultFormat
+        yield "\r\n"
+        while results:
+            block = results[:1024]
+            results = results[1024:]
+            yield block
+    except IOError, e:
+        if " 406 " in str(e):
+            yield showAllowedContentTypes()
+            return
+        yield str(e)
+
+def showAllowedContentTypes():
+    yield "HTTP/1.0 406 Not Allowed\r\n"
+    yield "Content-Type: text/plain\r\n\r\n"
+    yield """Allowed mimetypes are:
+- application/sparql-results+xml
+- application/sparql-results+json
+- application/x-binary-rdf-results-table"""
+
+def renderForm(arguments, **kwargs):
+    queryArgument = arguments.get("query", [''])[0]
     yield page.header(**kwargs)
     yield page.caption("Open Annotation Service")
     yield page.menu(selected="SparQL")
 
-    queryArgument = arguments.get("query", [''])[0]
     yield "<p>Please input a valid SparQL query in the textbox below. The specification for SparQL queries can be found <a href='http://www.w3.org/TR/rdf-sparql-query/' target='_blank'>here</a>.</p>"
     yield """<form method='get'>
     <textarea name='query' cols='80' rows='10'>"""
     yield queryArgument
     yield """</textarea>
     <br />
+    <select name="contentType">
+    """
+    for label, mime in CONTENT_TYPES:
+        yield '<option value="%s">%s</option>\n' % (mime, label)
+    yield """
+    </select>
     <input type='submit' value='Query'>
     </form>"""
 
     if queryArgument != "":
-        yield showResults(queryArgument)
+        yield showHtmlResults(queryArgument)
     
     yield page.footer()
     
-def showResults(query):    
+def showHtmlResults(query):    
     queryResult = yield observable.any.executeQuery(query)
     queryResult = list(queryResult)
     if len(queryResult) == 0:
