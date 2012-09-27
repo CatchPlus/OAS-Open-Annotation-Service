@@ -98,6 +98,7 @@ def renderForm(arguments, **kwargs):
     yield page.menu(selected="SparQL")
 
     yield "<p>Please input a valid SparQL query in the textbox below. The specification for SparQL queries can be found <a href='http://www.w3.org/TR/rdf-sparql-query/' target='_blank'>here</a>.</p>"
+    yield "<p>The MIME types <code>application/sparql-results+xml</code> and <code>application/sparql-results+json</code> are supported by the sparql endpoint. The MIME type can be specified using the <code>contentType</code> parameter to the sparql endpoint or using the HTTP <code>Accept</code> header.</p>"
     yield """<form method='get'>
     <textarea name='query' cols='80' rows='10'>"""
     yield queryArgument

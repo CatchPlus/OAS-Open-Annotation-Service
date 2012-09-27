@@ -29,9 +29,13 @@
     font-family: Arial;
 }
 
-pre {
+pre, code {
     font-family: monospace;
     padding: 10px;
+}
+
+code {
+    padding: 0px;
 }
 
 form {
