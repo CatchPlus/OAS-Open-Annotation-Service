@@ -49,10 +49,10 @@ if __name__ == '__main__':
     from oas.utils import ParseArguments
     options, arguments = ParseArguments.parseForOwlim()
 
-    execvp('start-owlimhttpserver', [
-        'start-owlimhttpserver',
+    execvp('start-owlim', [
+        'start-owlim',
         '--port=%s' % str(options.port),
-        '--directory=%s' % options.storeLocation,
+        '--stateDir=%s' % options.storeLocation,
         '--name=owlim'
         ])
         
