@@ -1,0 +1,1693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+<rdf:Description rdf:about="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076">
+	<rdf:type rdf:resource="http://dms.stanford.edu/ns/Canvas"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Canvas for NL_HaNa_H2_7823_0076</title>
+	<height xmlns="http://www.w3.org/2003/12/exif/ns#">3659</height>
+	<width xmlns="http://www.w3.org/2003/12/exif/ns#">2372</width>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:9dac8658-4648-4cb4-8158-63d6e2cf3e58">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/TextAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Full text of page NL_HaNa_H2_7823_0076</title>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42">
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Body"/>
+	<chars xmlns="http://www.w3.org/2008/content#">Vervolg van bladz 22. 23 1903 Dm &amp; No. Rechtbanken. Maart 24 26 Rappt JD 21 Maart no 58 A, Kabt, ter benoeming tot Substituut Officier van Justitie bij de Arr. Rechtbank te 's Hertogenbosch, Mr L.G.A. Vos de Wael  _-_ Besluit fiat Maart 24 28 Rappt JD 21 Maart no 41 D, ter benoeming tot Rechter plaatsvervanger in de Arr Recht bank te s Gravenhage Jhr Mr W.Th. C. van Doorn. _-_ Besluit fiat Maart 31 76 Rappt JD 27 Maart no 57 D, ter benoeming tot Rechter in de arr rechtbank te 's Hertogenbosch Mr. K.M. Phaff. _-_ Besluit fiat April 6 10 Rappt JD 1 April n 67 A. Kabt, ter benoeming tot Officier van Justitie bij de arr. Rechtbank  te Alkmaar Mr J.J. Carsten. _-_ Besluit fiat April 9 43/45 Rappt JD 7 April n 63D/61E/60D Kabt, ter benoeming tot Rechter in de arr. Rechtbank 1e te Almelo, Mr. P.J.G. van der Maelen en Mr. J.G. Gratama. 2 te Heerenveen, Mr. A. Rietema, 3e te Leeuwarden, Mr. J.A. Hingst _-_ Besluiten fiat April 9 79 Rappt JD 4 April n 171, om aan Mr. J.A.M.M. Pijls op zijn verzoek te verleenen een eervol ontslag uit zijne betrekking van rechter in  de arr. rechtbank te Maastricht. _-_ Besluit fiat ____ Vervolg op bladz 24</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:008173f2-8ecb-48d8-af06-f4c281f150da">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/ImageAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076.jpg"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Image annotation of NL_HaNa_H2_7823_0076</title>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:bc60854f-f2a5-4f57-8b90-718c23a77cf3">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:4ad0d8fc-ef01-4ed2-b770-47e2ca1f53db"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:21f27072-d30d-44fc-9ba6-9b0a27641985"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-001-y1=0-y2=270</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-001-y1=0-y2=270</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Vervolg van bladz 22. 23</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:4ad0d8fc-ef01-4ed2-b770-47e2ca1f53db">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:69070fb8-1ea4-42ef-83b9-bb7e30afa57b"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:69070fb8-1ea4-42ef-83b9-bb7e30afa57b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="0" range="24"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:21f27072-d30d-44fc-9ba6-9b0a27641985">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:7c02ebe6-3f3a-4cd4-ba0a-98dcf9e99a3a"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:7c02ebe6-3f3a-4cd4-ba0a-98dcf9e99a3a">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="0" width="-1" height="270"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:fd4ed529-1b55-4b27-87c9-1044dd0a7be2">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:4263caa7-c020-425d-b338-030fc32cb519"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:754a7c9c-a22c-47dc-8cca-17514b0511c2"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-002-y1=181-y2=539</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-002-y1=181-y2=539</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">1903 Dm &amp; No. Rechtbanken.</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:4263caa7-c020-425d-b338-030fc32cb519">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:30b884cb-edf8-4ae3-9635-1ae531494ab0"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:30b884cb-edf8-4ae3-9635-1ae531494ab0">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="25" range="26"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:754a7c9c-a22c-47dc-8cca-17514b0511c2">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:13305229-2283-47c4-a99d-ede72a64988d"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:13305229-2283-47c4-a99d-ede72a64988d">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="181" width="-1" height="358"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:06b999ff-ff72-42b2-9750-44a649ec19be">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:b505c03d-611e-4910-8437-bae177dad92b"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:db6b205e-e2d4-4f4c-b381-b6205c05cac0"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-002-y1=181-y2=539-zone-HUMAN-x=0128-y=0114-w=0194-h=0179-ybas=0186-nink=6205-segm=COCOS6cocos</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-002-y1=181-y2=539-zone-HUMAN-x=0128-y=0114-w=0194-h=0179-ybas=0186-nink=6205-segm=COCOS6cocos</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">1903</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">ybas=0186-nink=6205-segm=COCOS6cocos</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:b505c03d-611e-4910-8437-bae177dad92b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:4b3cdffe-bfa7-4ec3-b536-d95f97381b0a"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:4b3cdffe-bfa7-4ec3-b536-d95f97381b0a">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="25" range="4"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:db6b205e-e2d4-4f4c-b381-b6205c05cac0">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:defef25c-3181-40e6-af90-c776692b6353"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:defef25c-3181-40e6-af90-c776692b6353">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="128" y="295" width="194" height="179"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:96325ee7-6eb1-4159-aa6d-285aa9619194">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:2a1a4213-682b-43d6-8e50-5f3734df0e8c"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:73a10963-45c6-438a-a5fa-69198aa964ce"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Maart 24 26 Rappt JD 21 Maart no 58 A, Kabt, ter benoeming</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:2a1a4213-682b-43d6-8e50-5f3734df0e8c">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:b1491730-3f1c-42e4-b9b5-dc9726b58bd8"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:b1491730-3f1c-42e4-b9b5-dc9726b58bd8">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="52" range="58"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:73a10963-45c6-438a-a5fa-69198aa964ce">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:926bef61-e3c5-4812-a9df-653e3c0d4e9b"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:926bef61-e3c5-4812-a9df-653e3c0d4e9b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="450" width="-1" height="273"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:3ce186a4-7f63-46fc-8286-80aebe84bb92">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:2fbe1acf-768d-424d-aa1b-9b066f8ec3a0"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:a62c61e3-03cb-4087-b03e-fec6efc3fa16"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=348-y=127-w=101-h=90-unshear=45.0</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=348-y=127-w=101-h=90-unshear=45.0</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">24</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">unshear=45.0</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:2fbe1acf-768d-424d-aa1b-9b066f8ec3a0">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:bf6d164d-9ba1-4166-80e8-6a7eb5e1177c"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:bf6d164d-9ba1-4166-80e8-6a7eb5e1177c">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="52" range="2"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:a62c61e3-03cb-4087-b03e-fec6efc3fa16">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:5ebb6c14-8d07-44bd-ae18-6ae994671e53"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:5ebb6c14-8d07-44bd-ae18-6ae994671e53">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="348" y="577" width="101" height="90"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:bb087e0f-fa4e-46b1-baae-34fd8306e57b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:4f376d50-0b68-4820-a208-e3e449dd53d2"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:2aff96b7-d66d-4797-a409-1adfa66f32f3"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=452-y=75-w=111-h=130-unshear=45.0</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=452-y=75-w=111-h=130-unshear=45.0</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">26</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">unshear=45.0</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:4f376d50-0b68-4820-a208-e3e449dd53d2">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:6cf9be27-4a6e-4a8d-8084-0e400117679a"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:6cf9be27-4a6e-4a8d-8084-0e400117679a">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="55" range="2"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:2aff96b7-d66d-4797-a409-1adfa66f32f3">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:f33f74df-e64c-4e16-bdad-3c9c01028404"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:f33f74df-e64c-4e16-bdad-3c9c01028404">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="452" y="525" width="111" height="130"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:03bfa400-19f6-429d-b00b-47b1bc258e29">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:c3639916-7287-4f45-9ca4-24e808facb59"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:d6d38e3e-e1dd-41e4-8e1a-bbe63d1564dd"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=856-y=71-w=117-h=187-unshear=45.0</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=856-y=71-w=117-h=187-unshear=45.0</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">JD</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">unshear=45.0</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:c3639916-7287-4f45-9ca4-24e808facb59">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:5e2c43ff-7c8d-468e-8009-54a9bc9fde9e"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:5e2c43ff-7c8d-468e-8009-54a9bc9fde9e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="58" range="2"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:d6d38e3e-e1dd-41e4-8e1a-bbe63d1564dd">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:a735d41a-97a5-460b-9120-d8d398353740"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:a735d41a-97a5-460b-9120-d8d398353740">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="856" y="521" width="117" height="187"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:b98d64fe-ff21-47c7-a895-9aa868e831f5">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:1c684647-08c2-480d-bf61-5d57a4665e9b"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:e1f28df4-cc91-4ce8-becc-13addb52fedb"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=1335-y=133-w=90-h=71-unshear=45.0</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=1335-y=133-w=90-h=71-unshear=45.0</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">58</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">unshear=45.0</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:1c684647-08c2-480d-bf61-5d57a4665e9b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:84e11707-5d02-46ee-9754-9cd4405a789b"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:84e11707-5d02-46ee-9754-9cd4405a789b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="61" range="2"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:e1f28df4-cc91-4ce8-becc-13addb52fedb">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:9c933c16-5206-4eb7-928c-5c7a5d39c767"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:9c933c16-5206-4eb7-928c-5c7a5d39c767">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="1335" y="583" width="90" height="71"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:7412a3e4-686a-46c2-9f0b-fd1a32bd1803">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:2b168e46-0eda-4065-aa28-ca5e0409fc7c"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:9d37cd69-d355-4f32-8ebb-11090a4bb950"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=1435-y=76-w=70-h=132-unshear=45.0</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=1435-y=76-w=70-h=132-unshear=45.0</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">A</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">unshear=45.0</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:2b168e46-0eda-4065-aa28-ca5e0409fc7c">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:df965618-011d-4d85-9649-654f48fc151b"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:df965618-011d-4d85-9649-654f48fc151b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="64" range="1"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:9d37cd69-d355-4f32-8ebb-11090a4bb950">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:8693efa4-9ea9-4869-892f-5f9f4501960a"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:8693efa4-9ea9-4869-892f-5f9f4501960a">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="1435" y="526" width="70" height="132"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:22f9a79c-5a9c-47d3-bc7c-28021735bceb">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:a8fe86bd-f1b6-42f9-a5bf-7734273d723b"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:40ecd9e5-1d91-45a3-8d93-ef76450ce6ea"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=1528-y=78-w=165-h=126-unshear=45.0</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=1528-y=78-w=165-h=126-unshear=45.0</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Kabt</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">unshear=45.0</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:a8fe86bd-f1b6-42f9-a5bf-7734273d723b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:136a61a9-fb96-40d4-b977-e7a02ac05c9e"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:136a61a9-fb96-40d4-b977-e7a02ac05c9e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="66" range="4"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:40ecd9e5-1d91-45a3-8d93-ef76450ce6ea">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:ae602a04-0a98-4d1a-ad94-949e684ff73e"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:ae602a04-0a98-4d1a-ad94-949e684ff73e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="1528" y="528" width="165" height="126"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:54445609-a0a9-4fe9-9fee-dc3c31bb3723">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:22899ebf-a480-4f42-919f-26b66460957b"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:b659633a-927d-4850-8886-683ef276510b"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=1711-y=90-w=129-h=116-unshear=45.0</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-003-y1=450-y2=723-zone-HUMAN-x=1711-y=90-w=129-h=116-unshear=45.0</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">ter</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">unshear=45.0</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:22899ebf-a480-4f42-919f-26b66460957b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:3a4acf5c-8e2a-4b81-accf-beb9062656ae"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:3a4acf5c-8e2a-4b81-accf-beb9062656ae">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="71" range="3"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:b659633a-927d-4850-8886-683ef276510b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:e4ca72ff-bb8f-476f-818f-2173ae752965"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:e4ca72ff-bb8f-476f-818f-2173ae752965">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="1711" y="540" width="129" height="116"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:535dc29f-8be7-46f2-85b5-76bc305f0f27">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:a4a00c67-ef24-4d6d-a5d0-2912cf19255e"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:1cf898e8-ffd8-4b09-b1bb-6f07e94f23b3"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-004-y1=634-y2=814</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-004-y1=634-y2=814</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">tot Substituut Officier van Justitie bij de</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:a4a00c67-ef24-4d6d-a5d0-2912cf19255e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:198b1c8c-8ff6-4988-b415-71df3d0a8045"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:198b1c8c-8ff6-4988-b415-71df3d0a8045">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="111" range="43"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:1cf898e8-ffd8-4b09-b1bb-6f07e94f23b3">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:40d491b7-53af-434b-a743-5f9efc08e83c"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:40d491b7-53af-434b-a743-5f9efc08e83c">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="634" width="-1" height="180"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:7936cdc8-b655-470d-be38-794d0c769a27">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:74f9d40b-3263-48f9-afb3-fa740cb0746b"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:26d021fd-d090-4aff-aca8-3e4f2a13c61a"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-004-y1=634-y2=814-zone-HUMAN-x=1191-y=0024-w=0302-h=0139-ybas=0088-nink=7693-segm=COCOS6cocos</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-004-y1=634-y2=814-zone-HUMAN-x=1191-y=0024-w=0302-h=0139-ybas=0088-nink=7693-segm=COCOS6cocos</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">officier</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">ybas=0088-nink=7693-segm=COCOS6cocos</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:74f9d40b-3263-48f9-afb3-fa740cb0746b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:f27bf48c-44dc-4e2a-bed6-921b4b4dac60"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:f27bf48c-44dc-4e2a-bed6-921b4b4dac60">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="111" range="8"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:26d021fd-d090-4aff-aca8-3e4f2a13c61a">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:defe3876-44b2-4665-a437-e3c0b344b1f4"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:defe3876-44b2-4665-a437-e3c0b344b1f4">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="1191" y="658" width="302" height="139"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:10e81428-a3d1-4a3e-aab8-6196482abba9">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:245de5d8-7897-4ca3-9447-5505290ffa49"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:498545c0-aa28-4546-b428-0a939f537f57"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-004-y1=634-y2=814-zone-HUMAN-x=1503-y=0051-w=0158-h=0112-ybas=0088-nink=2168-segm=COCOS6cocos</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-004-y1=634-y2=814-zone-HUMAN-x=1503-y=0051-w=0158-h=0112-ybas=0088-nink=2168-segm=COCOS6cocos</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">van</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">ybas=0088-nink=2168-segm=COCOS6cocos</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:245de5d8-7897-4ca3-9447-5505290ffa49">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:37cf6020-1a2c-4979-970d-4166eb2df471"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:37cf6020-1a2c-4979-970d-4166eb2df471">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="120" range="3"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:498545c0-aa28-4546-b428-0a939f537f57">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:279e3858-fe92-4583-af94-aa88b89596ba"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:279e3858-fe92-4583-af94-aa88b89596ba">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="1503" y="685" width="158" height="112"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:8c387818-80bf-4f0e-88d9-271afe0b7cc6">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:9beaa13f-6e82-4fbc-9f4c-da7efe28e74b"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:75ac0b53-803b-4c09-8f24-3a0aacc094b2"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-004-y1=634-y2=814-zone-HUMAN-x=2033-y=0017-w=0112-h=0146-ybas=0088-nink=3036-segm=COCOS6cocos</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-004-y1=634-y2=814-zone-HUMAN-x=2033-y=0017-w=0112-h=0146-ybas=0088-nink=3036-segm=COCOS6cocos</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">bij</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">ybas=0088-nink=3036-segm=COCOS6cocos</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:9beaa13f-6e82-4fbc-9f4c-da7efe28e74b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:8b81fdb5-9e48-4f41-923e-374f994d2fe7"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:8b81fdb5-9e48-4f41-923e-374f994d2fe7">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="124" range="3"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:75ac0b53-803b-4c09-8f24-3a0aacc094b2">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:cc666f40-50e4-40c3-85fa-636eda9d95b4"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:cc666f40-50e4-40c3-85fa-636eda9d95b4">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="2033" y="651" width="112" height="146"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:579d631a-a220-44ee-8e68-c78e68d08bf4">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:6ca436fc-c046-493d-9f6f-ddcf42f5a9b5"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:45e3c7fd-1fd0-409f-998d-cc968c128495"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-005-y1=725-y2=1046</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-005-y1=725-y2=1046</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Arr. Rechtbank te 's Hertogenbosch, Mr L.G.A. Vos de Wael  _-_ Besluit fiat</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:6ca436fc-c046-493d-9f6f-ddcf42f5a9b5">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:65be488d-f6f6-46be-8ca3-574c55d0850c"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:65be488d-f6f6-46be-8ca3-574c55d0850c">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="155" range="75"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:45e3c7fd-1fd0-409f-998d-cc968c128495">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:50fd9159-c303-4453-8c08-ba99ac31b4f2"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:50fd9159-c303-4453-8c08-ba99ac31b4f2">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="725" width="-1" height="321"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:6469ace1-7f3e-49a0-8100-a894ff2e3651">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:57d03eac-b2f8-41b3-8c83-a2c617d6c7c0"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:89ee64a9-1ce1-4fd1-b1df-b751a744c4d5"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-005-y1=725-y2=1046-zone-HUMAN-x=0551-y=0033-w=0162-h=0095-ybas=0095-nink=4375-segm=COCOS6cocos</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-005-y1=725-y2=1046-zone-HUMAN-x=0551-y=0033-w=0162-h=0095-ybas=0095-nink=4375-segm=COCOS6cocos</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Arr</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">ybas=0095-nink=4375-segm=COCOS6cocos</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:57d03eac-b2f8-41b3-8c83-a2c617d6c7c0">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:dba81a84-6aff-4904-af59-38c63e16d4b8"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:dba81a84-6aff-4904-af59-38c63e16d4b8">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="155" range="3"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:89ee64a9-1ce1-4fd1-b1df-b751a744c4d5">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:9d4d8eb6-6529-40bf-9e87-ff6fb16b0bf5"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:9d4d8eb6-6529-40bf-9e87-ff6fb16b0bf5">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="551" y="758" width="162" height="95"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:769773ff-a265-4aaa-8b6f-8f3b1f26c184">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:29b22703-53b2-4ae7-8264-25f70423dc93"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:26e13f8a-eb4d-4c41-b80f-b7dbd21903a3"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-005-y1=725-y2=1046-zone-HUMAN-x=0758-y=0017-w=0457-h=0190-ybas=0095-nink=11852-segm=COCOS6cocos</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-005-y1=725-y2=1046-zone-HUMAN-x=0758-y=0017-w=0457-h=0190-ybas=0095-nink=11852-segm=COCOS6cocos</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Rechtbank</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">ybas=0095-nink=11852-segm=COCOS6cocos</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:29b22703-53b2-4ae7-8264-25f70423dc93">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:1e2effd6-b392-4345-8975-0740128f3280"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:1e2effd6-b392-4345-8975-0740128f3280">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="159" range="9"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:26e13f8a-eb4d-4c41-b80f-b7dbd21903a3">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:002ff7ff-b017-4498-9ac1-d823edb0b07c"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:002ff7ff-b017-4498-9ac1-d823edb0b07c">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="758" y="742" width="457" height="190"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:61896c68-4f01-4d96-9ad7-270599d2ae3b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:7fdc9954-9158-4cf1-ae1f-e3ac8447fac5"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:24954b71-1f56-4387-b68e-760a9ea5ec1b"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-005-y1=725-y2=1046-zone-HUMAN-x=1356-y=0017-w=0631-h=0188-ybas=0095-nink=11349-segm=COCOS6cocos</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-005-y1=725-y2=1046-zone-HUMAN-x=1356-y=0017-w=0631-h=0188-ybas=0095-nink=11349-segm=COCOS6cocos</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">sHertogenbosch</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">ybas=0095-nink=11349-segm=COCOS6cocos</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:7fdc9954-9158-4cf1-ae1f-e3ac8447fac5">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:1e87d167-e038-461b-9f1f-2d784ab97d16"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:1e87d167-e038-461b-9f1f-2d784ab97d16">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="169" range="14"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:24954b71-1f56-4387-b68e-760a9ea5ec1b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:ecb9f28c-93f8-49c9-bddb-995bd6ea8f28"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:ecb9f28c-93f8-49c9-bddb-995bd6ea8f28">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="1356" y="742" width="631" height="188"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:221f9e45-16d9-4a79-8780-bd78e873ca32">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:b16a0850-895f-4c82-a3a9-c36f9fb6889e"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:4fa907fa-dc0b-4f27-833f-460036b0dd1c"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-006-y1=957-y2=1276</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-006-y1=957-y2=1276</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Maart 24 28 Rappt JD 21 Maart no 41 D, ter benoeming</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:b16a0850-895f-4c82-a3a9-c36f9fb6889e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:c9fc6ed4-b467-487c-ab66-4e3188102146"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:c9fc6ed4-b467-487c-ab66-4e3188102146">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="231" range="52"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:4fa907fa-dc0b-4f27-833f-460036b0dd1c">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:b42a4e51-e5e5-4c9f-8338-18a74c1b1c6c"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:b42a4e51-e5e5-4c9f-8338-18a74c1b1c6c">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="957" width="-1" height="319"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:72981c13-043e-4c96-96ee-e85989971ba3">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:7641448e-2f0f-44e7-b2a6-2803dd7ec8b1"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:9f4b8431-b9b5-419f-a708-fbaeb8290eb8"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-007-y1=1187-y2=1368</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-007-y1=1187-y2=1368</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">tot Rechter plaatsvervanger in de Arr Recht</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:7641448e-2f0f-44e7-b2a6-2803dd7ec8b1">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:229a51a2-baa0-467a-9c59-28d14708fa5b"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:229a51a2-baa0-467a-9c59-28d14708fa5b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="284" range="43"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:9f4b8431-b9b5-419f-a708-fbaeb8290eb8">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:5d1a0fb7-38a2-4ce0-8d9a-b83911b98669"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:5d1a0fb7-38a2-4ce0-8d9a-b83911b98669">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="1187" width="-1" height="181"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:57f4cafb-1a78-43af-9433-c27810cf81a0">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:b853959f-1e42-4b98-93e8-cd19d1d4a36b"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:c405d12d-a740-446c-9376-9d36461ffbcd"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-007-y1=1187-y2=1368-zone-HUMAN-x=0989-y=0034-w=0662-h=0130-ybas=0094-nink=11469-segm=COCOS6cocos</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-007-y1=1187-y2=1368-zone-HUMAN-x=0989-y=0034-w=0662-h=0130-ybas=0094-nink=11469-segm=COCOS6cocos</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">plaatsvervanger</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">ybas=0094-nink=11469-segm=COCOS6cocos</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:b853959f-1e42-4b98-93e8-cd19d1d4a36b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:d65a7f3c-151d-490b-93e4-d9ab254d24f1"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:d65a7f3c-151d-490b-93e4-d9ab254d24f1">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="284" range="15"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:c405d12d-a740-446c-9376-9d36461ffbcd">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:2c2dd9cb-5bd7-4d9d-a3c4-c8366e23789b"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:2c2dd9cb-5bd7-4d9d-a3c4-c8366e23789b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="989" y="1221" width="662" height="130"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:1c147d27-1658-4f11-aee3-1d21f59ab111">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:2c3b4979-8b8a-4ac9-a2fe-1d2c7a8f8a1e"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:a8726ba5-26d7-4f76-8342-deb71d39fc05"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-007-y1=1187-y2=1368-zone-HUMAN-x=1890-y=0026-w=0140-h=0081-ybas=0094-nink=3428-segm=COCOS6cocos</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-007-y1=1187-y2=1368-zone-HUMAN-x=1890-y=0026-w=0140-h=0081-ybas=0094-nink=3428-segm=COCOS6cocos</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Arr</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">ybas=0094-nink=3428-segm=COCOS6cocos</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:2c3b4979-8b8a-4ac9-a2fe-1d2c7a8f8a1e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:142163b2-e491-4b35-b88a-c205c733b617"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:142163b2-e491-4b35-b88a-c205c733b617">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="300" range="3"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:a8726ba5-26d7-4f76-8342-deb71d39fc05">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:10afe323-27ed-4c45-9db1-305fe60a646f"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:10afe323-27ed-4c45-9db1-305fe60a646f">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="1890" y="1213" width="140" height="81"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:c557bf25-5211-406b-bfaa-fbc2c2f4f41e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:bf00f360-8661-49a2-86ce-22b96c361b1d"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:441b087e-ca46-4e33-a770-a2ac7bcfe64a"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-008-y1=1279-y2=1596</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-008-y1=1279-y2=1596</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">bank te s Gravenhage Jhr Mr W.Th. C. van Doorn. _-_ Besluit fiat</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:bf00f360-8661-49a2-86ce-22b96c361b1d">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:05f4bbc9-ff31-4ef6-ab37-7fb24f51739c"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:05f4bbc9-ff31-4ef6-ab37-7fb24f51739c">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="328" range="64"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:441b087e-ca46-4e33-a770-a2ac7bcfe64a">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:4715f91d-9752-4b51-9189-3849c849ffc9"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:4715f91d-9752-4b51-9189-3849c849ffc9">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="1279" width="-1" height="317"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:f04b65ed-c4df-43c6-9ef5-b36fc4a08fe6">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:7333438c-8f88-40c1-b593-0128b7883295"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:ffaf8c8e-4f46-4259-ab2b-713300ebc953"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-008-y1=1279-y2=1596-zone-HUMAN-x=0935-y=0017-w=0433-h=0170-ybas=0091-nink=9270-segm=COCOS6cocos</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-008-y1=1279-y2=1596-zone-HUMAN-x=0935-y=0017-w=0433-h=0170-ybas=0091-nink=9270-segm=COCOS6cocos</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Gravenhage</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">ybas=0091-nink=9270-segm=COCOS6cocos</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:7333438c-8f88-40c1-b593-0128b7883295">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:d9ffd8c4-e04d-4835-bc21-a0f18a6635ab"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:d9ffd8c4-e04d-4835-bc21-a0f18a6635ab">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="328" range="10"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:ffaf8c8e-4f46-4259-ab2b-713300ebc953">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:b77968b0-0d62-41d8-8485-9c9d7c35ea2b"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:b77968b0-0d62-41d8-8485-9c9d7c35ea2b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="935" y="1296" width="433" height="170"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:b3cc3ba7-db12-4d7d-b4e4-3a8af4eb5e3a">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:334b4b64-45c7-4dc1-af9b-1b4c56221582"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:d783336b-1f7a-4055-9abd-4f8b24efa119"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-009-y1=1507-y2=1826</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-009-y1=1507-y2=1826</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Maart 31 76 Rappt JD 27 Maart no 57 D, ter benoeming tot</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:334b4b64-45c7-4dc1-af9b-1b4c56221582">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:e32834b5-99ad-4a21-bc2d-bdaaea0e1ecb"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:e32834b5-99ad-4a21-bc2d-bdaaea0e1ecb">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="393" range="56"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:d783336b-1f7a-4055-9abd-4f8b24efa119">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0cf1ee2a-7d72-4bfb-b61f-572ec4606e72"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:0cf1ee2a-7d72-4bfb-b61f-572ec4606e72">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="1507" width="-1" height="319"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:d60a83a2-e83e-4de1-b747-4f36844a8c00">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:590ba033-5b0b-4e2e-bdff-9374e985fd87"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:ffc4e778-ba06-4de4-add9-5b44b4bf6c08"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-010-y1=1737-y2=2054</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-010-y1=1737-y2=2054</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Rechter in de arr rechtbank te 's Hertogenbosch Mr. K.M. Phaff. _-_ Besluit fiat</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:590ba033-5b0b-4e2e-bdff-9374e985fd87">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:bdc4a20d-2320-473e-bf71-510388995239"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:bdc4a20d-2320-473e-bf71-510388995239">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="450" range="80"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:ffc4e778-ba06-4de4-add9-5b44b4bf6c08">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:9ea0d097-b8f5-4d1a-a18e-a6ee58884cce"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:9ea0d097-b8f5-4d1a-a18e-a6ee58884cce">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="1737" width="-1" height="317"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:fab426cc-6a6d-41c8-93b3-6a9c000abe25">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:b88dfac6-de1b-4cf9-ad52-553096ba4edc"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:7cde804f-0e0e-42fb-a21e-3e4198812ae8"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-011-y1=1965-y2=2282</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-011-y1=1965-y2=2282</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">April 6 10 Rappt JD 1 April n 67 A. Kabt, ter benoeming</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:b88dfac6-de1b-4cf9-ad52-553096ba4edc">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:bad8458c-43aa-413a-ada3-3f82bf53dba6"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:bad8458c-43aa-413a-ada3-3f82bf53dba6">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="531" range="55"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:7cde804f-0e0e-42fb-a21e-3e4198812ae8">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:417176db-076f-4bbc-966b-ce6b0101d1bf"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:417176db-076f-4bbc-966b-ce6b0101d1bf">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="1965" width="-1" height="317"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:edf157ec-d7d6-4169-817e-bdf40692453b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:7fe3f685-09ae-40c6-a82a-d53e91084fff"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:b53cd43b-0892-4419-8d6c-943d45c3420e"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-012-y1=2193-y2=2375</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-012-y1=2193-y2=2375</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">tot Officier van Justitie bij de arr. Rechtbank </chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:7fe3f685-09ae-40c6-a82a-d53e91084fff">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:80db63c3-fe95-436d-a279-50ea56da6fd1"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:80db63c3-fe95-436d-a279-50ea56da6fd1">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="587" range="48"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:b53cd43b-0892-4419-8d6c-943d45c3420e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:660e9536-8911-42a8-972b-bdcf7b18c8e9"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:660e9536-8911-42a8-972b-bdcf7b18c8e9">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="2193" width="-1" height="182"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:e75829f3-859c-428a-a31a-ca7031950695">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:8fe65a3c-1b75-4112-944f-4f1ad970cf23"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:6cfe1fce-dc0b-45a6-b8d8-0f6c45938dd0"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-012-y1=2193-y2=2375-zone-HUMAN-x=1957-y=0-w=415-h=181-ybas=0-ycorp=0</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-012-y1=2193-y2=2375-zone-HUMAN-x=1957-y=0-w=415-h=181-ybas=0-ycorp=0</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Rechtbank</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">ybas=0-ycorp=0</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:8fe65a3c-1b75-4112-944f-4f1ad970cf23">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:39404172-b12e-444b-8592-82ef3ec2dbb5"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:39404172-b12e-444b-8592-82ef3ec2dbb5">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="587" range="9"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:6cfe1fce-dc0b-45a6-b8d8-0f6c45938dd0">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:bdcade82-eb37-4617-aa40-913bf866b555"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:bdcade82-eb37-4617-aa40-913bf866b555">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="1957" y="2193" width="415" height="181"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:57d1bf24-d88e-4c54-b57a-cabb2721c7fc">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:62439eee-650a-4f4f-928b-78165d7e0e89"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:e5c8cf30-f7c6-44de-b892-f08743641c59"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-013-y1=2286-y2=2555</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-013-y1=2286-y2=2555</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">te Alkmaar Mr J.J. Carsten. _-_ Besluit fiat</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:62439eee-650a-4f4f-928b-78165d7e0e89">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:f0225026-29f0-4e98-9bff-765b913fa665"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:f0225026-29f0-4e98-9bff-765b913fa665">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="636" range="44"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:e5c8cf30-f7c6-44de-b892-f08743641c59">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:cecf71fe-96b0-45fe-bf84-60b747f73b62"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:cecf71fe-96b0-45fe-bf84-60b747f73b62">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="2286" width="-1" height="269"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:a5953484-2491-4763-8634-c3df17c0a5ba">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:61946b0f-182c-4057-a2ca-a6b20e5dde0e"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0c87465f-d57d-4923-b283-13458e2c6d8d"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-014-y1=2466-y2=2741</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-014-y1=2466-y2=2741</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">April 9 43/45 Rappt JD 7 April n 63D/61E/60D Kabt, ter benoeming</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:61946b0f-182c-4057-a2ca-a6b20e5dde0e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:f6c3d62b-0f57-495d-bd2c-ec2f04144b17"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:f6c3d62b-0f57-495d-bd2c-ec2f04144b17">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="681" range="64"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:0c87465f-d57d-4923-b283-13458e2c6d8d">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:ccbbe5e0-498d-45e5-a7fa-56ac964b3ab2"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:ccbbe5e0-498d-45e5-a7fa-56ac964b3ab2">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="2466" width="-1" height="275"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:50c7077d-f274-4b06-bae5-602d71d4b69f">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:81325e03-3d7d-4502-8094-6e9b18377b05"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:6c244c6a-9917-4b31-a4ad-e90522122fd8"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-015-y1=2652-y2=2837</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-015-y1=2652-y2=2837</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">tot Rechter in de arr. Rechtbank</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:81325e03-3d7d-4502-8094-6e9b18377b05">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0ca3ecc4-dd26-4c64-a950-709ce72962be"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:0ca3ecc4-dd26-4c64-a950-709ce72962be">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="746" range="32"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:6c244c6a-9917-4b31-a4ad-e90522122fd8">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:be8816be-f8c3-450a-882a-10b2eae02e7e"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:be8816be-f8c3-450a-882a-10b2eae02e7e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="2652" width="-1" height="185"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:90b063ae-e99f-4e4b-bf59-ec826bd1aa3f">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:5f8b64d8-2395-49c8-92bc-5ef2597365de"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:7b1efd2d-de9d-4fc5-946c-e0ffec805559"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-016-y1=2748-y2=2974</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-016-y1=2748-y2=2974</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">1e te Almelo, Mr. P.J.G. van der Maelen en Mr. J.G. Gratama.</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:5f8b64d8-2395-49c8-92bc-5ef2597365de">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:23e60c11-88e2-48a0-834d-80c60f376c1b"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:23e60c11-88e2-48a0-834d-80c60f376c1b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="779" range="60"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:7b1efd2d-de9d-4fc5-946c-e0ffec805559">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:e67c53dc-8a47-4303-a0f1-3bee19bc3ced"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:e67c53dc-8a47-4303-a0f1-3bee19bc3ced">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="2748" width="-1" height="226"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:72592ff5-ee7e-4364-ac82-3e44ae89d392">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:242fced8-dffa-48f1-aaf8-34e768691d1e"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:2013fb8a-7ab6-4cce-a1d0-e9bdf6d05113"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-016-y1=2748-y2=2974-zone-HUMAN-x=0792-y=0025-w=0377-h=0093-ybas=0091-nink=7056-segm=COCOS6cocos</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-016-y1=2748-y2=2974-zone-HUMAN-x=0792-y=0025-w=0377-h=0093-ybas=0091-nink=7056-segm=COCOS6cocos</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Almelo</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">ybas=0091-nink=7056-segm=COCOS6cocos</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:242fced8-dffa-48f1-aaf8-34e768691d1e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:ed1aa5a2-721b-4fa5-8e3d-28cf132e5b97"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:ed1aa5a2-721b-4fa5-8e3d-28cf132e5b97">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="779" range="6"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:2013fb8a-7ab6-4cce-a1d0-e9bdf6d05113">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:a3aa7a22-f6ce-4a17-b645-c70efe456f1f"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:a3aa7a22-f6ce-4a17-b645-c70efe456f1f">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="792" y="2773" width="377" height="93"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:83ce8894-2505-4d9c-bde1-caa68e25e946">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:afc1df08-9cfd-40b4-b600-218afd1393d1"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:ecd56238-f5a0-4fb4-8a92-38132877dd1e"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-017-y1=2885-y2=3111</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-017-y1=2885-y2=3111</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">2 te Heerenveen, Mr. A. Rietema,</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:afc1df08-9cfd-40b4-b600-218afd1393d1">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:320157f8-807c-4ea6-908a-09dbe6cf28b7"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:320157f8-807c-4ea6-908a-09dbe6cf28b7">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="840" range="32"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:ecd56238-f5a0-4fb4-8a92-38132877dd1e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:c26b22d8-0be8-4809-8868-198b22731821"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:c26b22d8-0be8-4809-8868-198b22731821">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="2885" width="-1" height="226"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:667bae76-96c9-4c3c-b412-2425055f640f">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:e31f8d25-4ea5-413b-b359-97c14a63ad54"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:49ffdba2-1d59-4ff6-937d-c770bd8d1c59"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-018-y1=3022-y2=3295</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-018-y1=3022-y2=3295</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">3e te Leeuwarden, Mr. J.A. Hingst _-_ Besluiten fiat</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:e31f8d25-4ea5-413b-b359-97c14a63ad54">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:8854a86a-2507-4eb4-9bca-d120301b218b"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:8854a86a-2507-4eb4-9bca-d120301b218b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="873" range="52"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:49ffdba2-1d59-4ff6-937d-c770bd8d1c59">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:4d761840-53fa-48d8-978a-ca5a2b703fa0"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:4d761840-53fa-48d8-978a-ca5a2b703fa0">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="3022" width="-1" height="273"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:80689d77-1adb-4c50-93b8-de24b6d5c940">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:9b3182c6-48c1-435b-8a29-0b194d65d617"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:473834fb-95db-4ef8-9688-c59c477d1867"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-019-y1=3206-y2=3478</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-019-y1=3206-y2=3478</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">April 9 79 Rappt JD 4 April n 171, om aan Mr. J.A.M.M.</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:9b3182c6-48c1-435b-8a29-0b194d65d617">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:1d7cc7b5-3a34-4540-83b0-906611e322c3"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:1d7cc7b5-3a34-4540-83b0-906611e322c3">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="926" range="54"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:473834fb-95db-4ef8-9688-c59c477d1867">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:346bb922-199e-43e1-92fe-57c9f3795581"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:346bb922-199e-43e1-92fe-57c9f3795581">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="3206" width="-1" height="272"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:3f239667-369c-4b75-8e2a-cd765889505e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:8819e0f5-1814-4bb3-b1c1-df5aaaaa1a84"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:73584b42-5be6-41d7-ac54-e54f4d3ce242"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-020-y1=3389-y2=3567</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-020-y1=3389-y2=3567</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">Pijls op zijn verzoek te verleenen een eervol</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:8819e0f5-1814-4bb3-b1c1-df5aaaaa1a84">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:5639a6f5-271b-43b9-9af5-d35cf6660cb8"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:5639a6f5-271b-43b9-9af5-d35cf6660cb8">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="981" range="45"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:73584b42-5be6-41d7-ac54-e54f4d3ce242">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:5246129f-540a-4c03-82a7-0b8a994c52a6"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:5246129f-540a-4c03-82a7-0b8a994c52a6">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="3389" width="-1" height="178"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:62a4a2e8-a151-4b4e-a5a3-acfffefd719d">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:981cd97c-24db-4dbe-b879-59684ed92609"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:509618ae-61bb-4f4f-a7f3-1216518f96e7"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-021-y1=3478-y2=3659</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-021-y1=3478-y2=3659</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">ontslag uit zijne betrekking van rechter in </chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:981cd97c-24db-4dbe-b879-59684ed92609">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:9c6d64b0-065d-41dd-a07f-474095318210"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:9c6d64b0-065d-41dd-a07f-474095318210">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="1027" range="44"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:509618ae-61bb-4f4f-a7f3-1216518f96e7">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:e9094bc8-fcc2-44d6-be47-da9fd7a4c447"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:e9094bc8-fcc2-44d6-be47-da9fd7a4c447">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="3478" width="-1" height="181"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:c491d872-cb93-4d05-a630-b9300504306f">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:7e389f24-fced-4bb3-bf58-290d9b91635e"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0e031721-d35c-41c4-87d3-39039831d5ee"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-021-y1=3478-y2=3659-zone-HUMAN-x=657-y=0-w=312-h=180-besthyp</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-021-y1=3478-y2=3659-zone-HUMAN-x=657-y=0-w=312-h=180-besthyp</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">ontslag</chars>
+	<trailingTags xmlns="http://www.catchplus.nl/annotation/">besthyp</trailingTags>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:7e389f24-fced-4bb3-bf58-290d9b91635e">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:c5a4d0f5-f4eb-47c3-94c4-30cf0f51a039"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:c5a4d0f5-f4eb-47c3-94c4-30cf0f51a039">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="1027" range="7"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:0e031721-d35c-41c4-87d3-39039831d5ee">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:47abd752-5189-4d96-b1a2-8544fb85a450"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:47abd752-5189-4d96-b1a2-8544fb85a450">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="657" y="3478" width="312" height="180"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:cb14e302-345a-424f-87bd-c3a11ef96d38">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkAnnotation"/>
+	<hasBody xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:47990dc2-2a92-4f6a-b634-a2a44f196389"/>
+	<hasTarget xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:5814e825-a9d8-4712-813b-eaa2fc03f49b"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0076-line-022-y1=3570-y2=4360</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0076-line-022-y1=3570-y2=4360</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">de arr. rechtbank te Maastricht. _-_ Besluit fiat ____ Vervolg op bladz 24</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:47990dc2-2a92-4f6a-b634-a2a44f196389">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:00a4eab7-25ae-430e-957e-2dd031dea34d"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:00a4eab7-25ae-430e-957e-2dd031dea34d">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="1072" range="74"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:5814e825-a9d8-4712-813b-eaa2fc03f49b">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
+	<constrains xmlns="http://www.openannotation.org/ns/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<constrainedBy xmlns="http://www.openannotation.org/ns/" rdf:resource="urn:uuid:4c3f82e7-b295-4914-afc0-f67dbeea7084"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:4c3f82e7-b295-4914-afc0-f67dbeea7084">
+	<rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.catchplus.nl/annotation/">"&lt;rect x="0" y="3570" width="-1" height="790"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+</rdf:RDF>

@@ -266,7 +266,7 @@ def dna(reactor, observableHttpServer, config):
         )
 
     sanitizeAndUploadHelix = \
-        (MultipleAnnotationSplit(),
+        (MultipleAnnotationSplit(baseUrl=config['resolveBaseUrl']),
             readOnlyStorageHelix,
             (Normalize(),
                 (Deanonymize(),
@@ -288,7 +288,7 @@ def dna(reactor, observableHttpServer, config):
             )
         )
     sanitizeAndUploadHelixUnchecked = \
-        (MultipleAnnotationSplit(),
+        (MultipleAnnotationSplit(baseUrl=config['resolveBaseUrl']),
             readOnlyStorageHelix,
             (Normalize(),
                 (Deanonymize(),

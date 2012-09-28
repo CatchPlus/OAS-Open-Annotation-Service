@@ -47,6 +47,12 @@ if __name__ == '__main__':
         if flag in argv:
             argv.remove(flag)
 
+    groupnames = None
+    if '--group' in argv:
+        pos = argv.index('--group')
+        groupnames = [argv[pos+1]]
+        del argv[pos:pos+2]
+
     runner = TestRunner()
     OasIntegrationState(
         'default', 
@@ -80,7 +86,16 @@ if __name__ == '__main__':
             'integration.inlinetest.InlineTest',
         ],
         fastMode=fastMode).addToTestRunner(runner)
+    OasIntegrationState(
+        'constrains_body', 
+        tests=[
+            'integration.constrainsbodytest.ConstrainsBodyTest',
+        ],
+        fastMode=fastMode).addToTestRunner(runner)
 
     testnames = argv[1:]
-    runner.run(testnames)
-    
+    if groupnames is None:
+        runner.run(testnames)
+    else:
+        runner.run(testnames, groupnames=groupnames)
+

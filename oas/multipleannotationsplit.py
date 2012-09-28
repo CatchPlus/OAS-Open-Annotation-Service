@@ -29,6 +29,7 @@ from meresco.core import Observable
 from lxml.etree import tostring, Element, parse
 from StringIO import StringIO
 from copy import copy
+from urllib import unquote
 
 from rdfcontainer import RdfContainer
 from oas.utils.annotation import filterAnnotations, validIdentifier
@@ -40,6 +41,11 @@ def isAnnotation(node):
     return ("{%(oac)s}Annotation" % namespaces)  == node.tag or ("%(oac)sAnnotation" % namespaces) in xpath(node, 'rdf:type/@rdf:resource')
 
 class MultipleAnnotationSplit(Observable):
+
+    def __init__(self, baseUrl, **kwargs):
+        Observable.__init__(self, **kwargs)
+        self._baseUrl = baseUrl
+
     def add(self, identifier, partname, lxmlNode):
         rdfContainer = RdfContainer(lxmlNode)
         annotationFound = False
@@ -72,6 +78,11 @@ class MultipleAnnotationSplit(Observable):
                         node.append(resolvedNode)
                         self._inlineURNs(resolvedNode, rdfContainer)
                         del node.attrib[expandNs('rdf:resource')]
+                    elif urn.startswith(self._baseUrl):
+                        if self.call.isAvailable(identifier=urn, partname="oacBody") == (True, True):
+                            data = self.call.getStream(identifier=urn, partname='oacBody')
+                            node.append(parse(StringIO(data.read())).getroot())
+                            del node.attrib[expandNs('rdf:resource')]
                     elif 'partname' in relation and self.call.isAvailable(identifier=urn, partname=relation['partname']) == (True, True):
                         data = self.call.getStream(identifier=urn, partname=relation['partname'])
                         node.append(parse(StringIO(data.read())).getroot())

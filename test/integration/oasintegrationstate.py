@@ -184,8 +184,12 @@ class OasIntegrationState(IntegrationState):
         apiKey = apiKeys[nr % len(apiKeys)]
         print 'http://localhost:%s%s' % (aPort, uploadPath), '<-', basename(filename)[:-len('.updateRequest')]
         updateRequest = open(filename).read()
+        if '/constrains_body/' in filename:
+            print "Rewriting resolve baseURL!"
+            updateRequest = updateRequest.replace("http://oas.dev.seecr.nl:8000/resolve/", "http://localhost:%s/resolve/" % aPort)
+
         lxml = parse(StringIO(updateRequest))
-        header, body = upload(hostname='localhost', portnumber=aPort, path=uploadPath, stream=open(filename), apiKey=apiKey).split('\r\n\r\n', 1)
+        header, body = upload(hostname='localhost', portnumber=aPort, path=uploadPath, stream=StringIO(updateRequest), apiKey=apiKey).split('\r\n\r\n', 1)
         if '200 Ok' not in header:
             print 'No 200 Ok response, but:\n', header
             exit(123)
