@@ -194,8 +194,14 @@ def dna(reactor, observableHttpServer, config):
                         indexHelix
                     ),
                     (XPath2Field([
+                        ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", '__needs_resolved__'),
+                        ("/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource", '__needs_resolved__'),
+
                         ("/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
                         ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", 'oac:hasBody'),
+                        ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", 'oac:hasBody'),
+                        ("/rdf:RDF/oac:Annotation/oac:hasBody/oac:Body/@rdf:about", 'oac:hasBody'),
+                        ("/rdf:RDF/oac:Annotation/oac:hasBody/oac:Body[@rdf:about]/dc:identifier/text()", 'oac:hasBody'),
                         ("/rdf:RDF/oac:Annotation/oac:hasTarget/@rdf:resource", 'oac:hasTarget'),
                         ("/rdf:RDF/oac:Annotation/oac:hasTarget/*/@rdf:about", 'oac:hasTarget'),
                         ("//oac:ConstrainedTarget/oac:constrains/*/@rdf:about", 'oac:hasTarget'),
@@ -215,7 +221,7 @@ def dna(reactor, observableHttpServer, config):
                         ),
                         # oac:hasBody, dcterms:creators that have an url need to be resolved. 
                         # This is done Offline, therefore we mark the record.
-                        (FilterField(lambda name: name in ['dcterms:creator', 'oac:hasBody']),
+                        (FilterField(lambda name: name == '__needs_resolved__'),
                             (FilterFieldValue(lambda value: value.startswith('http://')),
                                 (RenameField(lambda name: '__resolved__'),
                                     (TransformFieldValue(lambda value: 'no'),

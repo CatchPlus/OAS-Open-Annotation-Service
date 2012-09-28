@@ -94,6 +94,8 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('"http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"', 2)
         self.assertQuery('body = IamUnique42', 1)
         self.assertQuery('body = Haynaut', 1)
+        self.assertQuery('oac:hasBody = "urn:about:body:story:9.4"', 1)
+        self.assertQuery('oac:hasBody = "http://localhost:%s/resolve/urn%%3Aabout%%3Abody%%3Astory%%3A9.4"' % self.portNumber, 1)
         self.assertQuery('Seecr', 2)
         self.assertQuery('"Seecr uit Veenendaal"', 2)
         self.assertQuery('dcterms:creator = "seecr uit veenendaal"', 2)

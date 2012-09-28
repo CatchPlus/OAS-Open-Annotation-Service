@@ -5,7 +5,7 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
         <oac:hasBody>
-            <oac:Body>
+            <oac:Body rdf:about="urn:about:body:story:9.4">
                 <dc:title>IamUnique42</dc:title>
             </oac:Body>
         </oac:hasBody>
