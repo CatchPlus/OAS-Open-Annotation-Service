@@ -250,6 +250,10 @@ def dna(reactor, observableHttpServer, config):
                     (DataToField(fromKwarg='data', fieldname='api.user'),
                         allFieldIndexHelix,
                         indexHelix,
+                        (RenameField(lambda name: 'set'),
+                            allFieldIndexHelix,
+                            indexHelix
+                        )
                     )
                 )
             )

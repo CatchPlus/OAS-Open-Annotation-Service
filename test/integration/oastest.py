@@ -89,6 +89,7 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('RDF.Annotation.creator.Agent.name = "billy butcher"', 2)
         self.assertQuery('api.user = testuser', 9)
         self.assertQuery('api.user = anothertestuser', 9)
+        self.assertQuery('set = anothertestuser', 9)
         self.assertQuery('oac:hasTarget = "http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"', 2)
         self.assertQuery('"http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"', 2)
         self.assertQuery('body = IamUnique42', 1)

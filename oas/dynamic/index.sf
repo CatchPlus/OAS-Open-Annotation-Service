@@ -54,6 +54,7 @@ def main(**kwargs):
         'oac:hasTarget', 
         'rdf:type',
         'body',
+        'set',
         ]:
         yield "<li>%s</li>" % fieldname
     yield '</ul><p>These fields can be used in queries in the form: <i>fieldname</i>=value</p>'
