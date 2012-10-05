@@ -65,7 +65,7 @@ The full server name is used for generating URLs for anonymous annotations.
 Hence it is preferable that this name points back to this machine.
 
 We discovered the following name to be pointing to this host. Press Enter
-to used this value.  If you have a proxy with a better name pointing to this
+to use this value.  If you have a proxy with a better name pointing to this
 machine, enter that name.
 
 Server name" "$(hostname --fqdn)"
@@ -85,9 +85,9 @@ ask_question "Database path" "/var/lib/oas"
 DATABASE_PATH=${USERINPUT}
 
 ask_question "
-This e-mails address is used in the OAI-PMH Identify response.
+This e-mail address is used in the OAI-PMH Identify response.
 
-OAI Admin email-address:" ""
+OAI Admin email address:" ""
 OAI_ADMIN_EMAIL=${USERINPUT}
 
 ## Set up database directory with Solr
@@ -180,7 +180,7 @@ createService $USERNAME $GROUPNAME $SERVICEDIR ${PROJECT_NAME}-delete "
 export LANG=en_US.UTF-8
 
 ulimit -n 100000
-exec setuidgid ${USERNAME} start-oas-userdelete-service --configFile=$CONFIG_FILE 2>&1
+setuidgid ${USERNAME} start-oas-userdelete-service --configFile=$CONFIG_FILE 2>&1
 sleep 300
 "
 prepareAndStartService $SERVICEDIR ${PROJECT_NAME}-delete
@@ -194,7 +194,7 @@ createService $USERNAME $GROUPNAME $SERVICEDIR ${PROJECT_NAME}-resolve "
 export LANG=en_US.UTF-8
 
 ulimit -n 100000
-exec setuidgid ${USERNAME} start-oas-resolve-service --configFile=$CONFIG_FILE 2>&1
+setuidgid ${USERNAME} start-oas-resolve-service --configFile=$CONFIG_FILE 2>&1
 sleep 300
 "
 prepareAndStartService $SERVICEDIR ${PROJECT_NAME}-resolve
