@@ -208,7 +208,7 @@ createService $USERNAME $GROUPNAME $SERVICEDIR ${PROJECT_NAME}-harvester "
 export LANG=en_US.UTF-8
 
 ulimit -n 100000
-exec setuidgid ${USERNAME} start-oas-harvester --configFile=$CONFIG_FILE 2>&1
+setuidgid ${USERNAME} start-oas-harvester --configFile=$CONFIG_FILE 2>&1
 sleep 300
 "
 prepareAndStartService $SERVICEDIR ${PROJECT_NAME}-harvester

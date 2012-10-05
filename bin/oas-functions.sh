@@ -248,10 +248,9 @@ function prepareAndStartService {
     local SERVICE_NAME=$2
     (
         cd /etc/service
+        rm $SERVICEDIR/$SERVICE_NAME/down
         ln -s $SERVICEDIR/$SERVICE_NAME $SERVICE_NAME
-        sleep 1
     )
-    rm /etc/service/$SERVICE_NAME/down; svc -u /etc/service/$SERVICE_NAME
     message "Service $SERVICE_NAME started."
 }
 
