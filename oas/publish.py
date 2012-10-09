@@ -63,7 +63,7 @@ class Publish(Observable):
             if not validIdentifier(identifier):
                 raise ValidateException("Invalid identifier")
 
-            for hasBody in xpath(annotation, '//oac:hasBody'):
+            for hasBody in xpath(annotation, '//oa:hasBody'):
                 bodyResource = getAttrib(hasBody, 'rdf:resource')
                 if bodyResource:
                     bodyResourceIdentifier = self.urlFor(bodyResource)
@@ -72,7 +72,7 @@ class Publish(Observable):
                         hasBody.append(body.getroot())
                         del hasBody.attrib[expandNs('rdf:resource')]
 
-            for hasTarget in xpath(annotation, "//oac:hasTarget"):
+            for hasTarget in xpath(annotation, "//oa:hasTarget"):
                 targetResource = getAttrib(hasTarget, 'rdf:resource')
                 if targetResource:
                     targetResourceIdentifier = self.urlFor(targetResource)
@@ -81,13 +81,13 @@ class Publish(Observable):
                         hasTarget.append(body.getroot())
                         del hasTarget.attrib[expandNs('rdf:resource')]
 
-            for body in xpath(annotation, '//oac:Body'):
+            for body in xpath(annotation, '//oa:Body'):
                 bodyIdentifier = getAttrib(body, 'rdf:about')
                 if bodyIdentifier.startswith('urn:'):
                     publishIdentifier = self.urnToUrl(body, bodyIdentifier)
                     yield self.all['store'].add(identifier=publishIdentifier, partname="oacBody", lxmlNode=body)
 
-            for target in xpath(annotation, '//oac:ConstrainedTarget'):
+            for target in xpath(annotation, '//oa:ConstrainedTarget'):
                 targetIdentifier = getAttrib(target, 'rdf:about')
                 if targetIdentifier.startswith('urn:'):
                     publishIdentifier = self.urnToUrl(target, targetIdentifier)

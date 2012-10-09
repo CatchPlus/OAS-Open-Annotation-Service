@@ -32,10 +32,10 @@ from namespaces import xpath, namespaces
 class RdfTypeToField(Observable):
 
     def add(self, identifier, partname, lxmlNode):
-        for node in xpath(lxmlNode, '/rdf:RDF/oac:Annotation'):
-            self.do.addField(name="rdf:type", value="%sAnnotation" % namespaces['oac'])
+        for node in xpath(lxmlNode, '/rdf:RDF/oa:Annotation'):
+            self.do.addField(name="rdf:type", value="%sAnnotation" % namespaces['oa'])
 
-        for node in xpath(lxmlNode, '/rdf:RDF/oac:Annotation/rdf:type/@rdf:resource'):
+        for node in xpath(lxmlNode, '/rdf:RDF/oa:Annotation/rdf:type/@rdf:resource'):
             self.do.addField(name="rdf:type", value=node)
         return
         yield

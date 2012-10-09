@@ -37,13 +37,13 @@ class UtilsTest(SeecrTestCase):
         self.assertEquals("ex:Anno", identifierFromXml(parse(StringIO("""
         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
             <rdf:Description rdf:about="ex:Anno">
-                <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+                <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
             </rdf:Description>
         </rdf:RDF>"""))))
         self.assertEquals("ex:Anno", identifierFromXml(parse(StringIO("""
         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-            xmlns:oas="http://www.openannotation.org/ns/">
-            <oas:Annotation rdf:about="ex:Anno"/>
+            xmlns:oa="http://www.w3.org/ns/openannotation/core/">
+            <oa:Annotation rdf:about="ex:Anno"/>
         </rdf:RDF>"""))))
 
 

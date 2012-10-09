@@ -69,7 +69,7 @@ class Normalize(Transparent):
             result = []
             for node in nodes:
                 namespace, name = splitType(getAttrib(node, 'rdf:resource'))
-                if namespace == namespaces['oac']:
+                if namespace == namespaces['oa']:
                     result.append(node)
             return result
 

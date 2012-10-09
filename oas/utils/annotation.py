@@ -29,7 +29,7 @@ from oas.namespaces import xpath, namespaces, getAttrib
 from Ft.Xml.Lib import Uri
 
 def filterAnnotations(lxmlNode):
-    for path in ['/rdf:RDF/rdf:Description[rdf:type/@rdf:resource="http://www.openannotation.org/ns/Annotation"]', '/rdf:RDF/oac:Annotation']:
+    for path in ['/rdf:RDF/rdf:Description[rdf:type/@rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"]', '/rdf:RDF/oa:Annotation']:
         for node in xpath(lxmlNode, path):
             yield node
 
@@ -39,12 +39,12 @@ def filterFoafAgents(lxmlNode):
             yield node
 
 def filterOacBodies(lxmlNode):
-    for path in ['rdf:Description[rdf:type/@rdf:resource="%sBody"]' % namespaces['oac'], 'oac:Body']:
+    for path in ['rdf:Description[rdf:type/@rdf:resource="%sBody"]' % namespaces['oac'], 'oa:Body']:
         for node in xpath(lxmlNode, path):
             yield node
 
 def aboutNode(lxmlNode):
-    for path in ['/rdf:RDF/rdf:Description[rdf:type/@rdf:resource="http://www.openannotation.org/ns/Annotation"]', '/rdf:RDF/oac:Annotation']:
+    for path in ['/rdf:RDF/rdf:Description[rdf:type/@rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"]', '/rdf:RDF/oa:Annotation']:
         xpathResult = xpath(lxmlNode, path)
         if xpathResult:
             return xpathResult[0]

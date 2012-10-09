@@ -64,12 +64,12 @@ class NormalizeTest(SeecrTestCase):
         XML = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <rdf:Description rdf:about="urn:identifier">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
     </rdf:Description>
 </rdf:RDF>"""
         EXPECTED_XML = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="urn:identifier"/>
+    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="urn:identifier"/>
 </rdf:RDF>"""
         self.assertConvert(EXPECTED_XML, XML)
     
@@ -78,14 +78,14 @@ class NormalizeTest(SeecrTestCase):
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <rdf:Description rdf:about="urn:identifier">
         <rdf:type rdf:resource="http://the.other.namespace/Annotation"/>
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
     </rdf:Description>
 </rdf:RDF>"""
         EXPECTED_XML = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="urn:identifier">
+    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="urn:identifier">
         <rdf:type rdf:resource="http://the.other.namespace/Annotation"/>
-    </oac:Annotation>
+    </oa:Annotation>
 </rdf:RDF>"""
         self.assertConvert(EXPECTED_XML, XML)
 
@@ -94,16 +94,16 @@ class NormalizeTest(SeecrTestCase):
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:dc="http://purl.org/dc/elements/1.1/">
     <rdf:Description rdf:about="urn:identifier">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
         <dc:title>A title</dc:title>
     </rdf:Description>
 </rdf:RDF>"""
         EXPECTED_XML = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="urn:identifier">
+    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="urn:identifier">
         <dc:title>A title</dc:title>
-    </oac:Annotation>
+    </oa:Annotation>
 </rdf:RDF>"""
         self.assertConvert(EXPECTED_XML, XML)
 
@@ -112,7 +112,7 @@ class NormalizeTest(SeecrTestCase):
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:dcterms="http://purl.org/dc/terms/">
     <rdf:Description rdf:about="urn:identifier">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
         <dcterms:creator>
             <rdf:Description rdf:about="urn:agent">
                 <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
@@ -123,11 +123,11 @@ class NormalizeTest(SeecrTestCase):
         EXPECTED_XML = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:dcterms="http://purl.org/dc/terms/">
-    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="urn:identifier">
+    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="urn:identifier">
         <dcterms:creator>
             <foaf:Agent xmlns:foaf="http://xmlns.com/foaf/0.1/" rdf:about="urn:agent"/>
         </dcterms:creator>
-    </oac:Annotation>
+    </oa:Annotation>
 </rdf:RDF>"""
         self.assertConvert(EXPECTED_XML, XML)
     
@@ -136,16 +136,16 @@ class NormalizeTest(SeecrTestCase):
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:dcterms="http://purl.org/dc/terms/">
     <rdf:Description rdf:about="urn:identifier">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
         <rdf:type rdf:resource="http://www.example.org/lit-annotation-ns#ExplanatoryNote"/>
     </rdf:Description>
 </rdf:RDF>"""
         EXPECTED_XML = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:dcterms="http://purl.org/dc/terms/">
-    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="urn:identifier">
+    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="urn:identifier">
         <rdf:type rdf:resource="http://www.example.org/lit-annotation-ns#ExplanatoryNote"/>
-    </oac:Annotation>
+    </oa:Annotation>
 </rdf:RDF>"""
         self.assertConvert(EXPECTED_XML, XML)
     def testLeaveDescriptionsWithoutTypeAlone(self):

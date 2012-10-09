@@ -59,22 +59,22 @@ class PublishTest(SeecrTestCase):
     def testOne(self):
         xml="""<rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:oac="http://www.openannotation.org/ns/">
-    <oac:Annotation rdf:about="urn:id:1"/>
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
+    <oa:Annotation rdf:about="urn:id:1"/>
 </rdf:RDF>"""
         lico(self.dna.all.process(parse(StringIO(xml))))
         self.assertEqualsWS("""<rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:oac="http://www.openannotation.org/ns/">
-    <oac:Annotation rdf:about="http://some.where/here/urn%3Aid%3A1"><dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">urn:id:1</dc:identifier></oac:Annotation>
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
+    <oa:Annotation rdf:about="http://some.where/here/urn%3Aid%3A1"><dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">urn:id:1</dc:identifier></oa:Annotation>
 </rdf:RDF>""", tostring(self.observer.calledMethods[0].kwargs['lxmlNode']))
         self.assertEquals("http://some.where/here/urn%3Aid%3A1", self.observer.calledMethods[0].kwargs['identifier'])
 
     def testDontPublishIfAlreadyAnURL(self):
         xml="""<rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:oac="http://www.openannotation.org/ns/">
-    <oac:Annotation rdf:about="http://some.where.else/1"/>
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
+    <oa:Annotation rdf:about="http://some.where.else/1"/>
 </rdf:RDF>"""
         lico(self.dna.all.process(parse(StringIO(xml))))
         self.assertEqualsWS(xml, tostring(self.observer.calledMethods[0].kwargs['lxmlNode']))
@@ -83,25 +83,25 @@ class PublishTest(SeecrTestCase):
     def testPublishBodyToo(self):
         xml="""<rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:oac="http://www.openannotation.org/ns/">
-    <oac:Annotation rdf:about="urn:id:1">
-        <oac:hasBody>
-            <oac:Body rdf:about="urn:id:2"/>
-        </oac:hasBody>
-    </oac:Annotation>
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
+    <oa:Annotation rdf:about="urn:id:1">
+        <oa:hasBody>
+            <oa:Body rdf:about="urn:id:2"/>
+        </oa:hasBody>
+    </oa:Annotation>
 </rdf:RDF>"""
         lico(self.dna.all.process(parse(StringIO(xml))))
         self.assertEqualsWS("""<rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:oac="http://www.openannotation.org/ns/">
-    <oac:Annotation rdf:about="http://some.where/here/urn%3Aid%3A1">
-        <oac:hasBody>
-            <oac:Body rdf:about="http://some.where/here/urn%3Aid%3A2">
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
+    <oa:Annotation rdf:about="http://some.where/here/urn%3Aid%3A1">
+        <oa:hasBody>
+            <oa:Body rdf:about="http://some.where/here/urn%3Aid%3A2">
                 <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">urn:id:2</dc:identifier>
-            </oac:Body>
-        </oac:hasBody>
+            </oa:Body>
+        </oa:hasBody>
         <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">urn:id:1</dc:identifier>
-    </oac:Annotation>
+    </oa:Annotation>
 </rdf:RDF>""", tostring(self.observer.calledMethods[0].kwargs['lxmlNode']))
         self.assertEquals("http://some.where/here/urn%3Aid%3A2", self.store.calledMethods[0].kwargs['identifier'])
         self.assertEquals("http://some.where/here/urn%3Aid%3A1", self.observer.calledMethods[0].kwargs['identifier'])
@@ -110,20 +110,20 @@ class PublishTest(SeecrTestCase):
     def testPublishChecksForBodyInStorage(self):
         xml="""<rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:oac="http://www.openannotation.org/ns/">
-    <oac:Annotation rdf:about="urn:id:1">
-        <oac:hasBody rdf:resource="urn:id:2"/>
-    </oac:Annotation>
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
+    <oa:Annotation rdf:about="urn:id:1">
+        <oa:hasBody rdf:resource="urn:id:2"/>
+    </oa:Annotation>
 </rdf:RDF>"""
         expectedXml="""<rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:oac="http://www.openannotation.org/ns/">
-    <oac:Annotation rdf:about="http://some.where/here/urn%3Aid%3A1">
-        <oac:hasBody>
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
+    <oa:Annotation rdf:about="http://some.where/here/urn%3Aid%3A1">
+        <oa:hasBody>
             <xml/> 
-        </oac:hasBody>
+        </oa:hasBody>
         <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">urn:id:1</dc:identifier>
-    </oac:Annotation>
+    </oa:Annotation>
 </rdf:RDF>"""
         self.store.returnValues['isAvailable'] = (False, False)
 
@@ -148,35 +148,35 @@ class PublishTest(SeecrTestCase):
     def testPublishChecksForConstrainedTargetInStorage(self):
         xml = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
-    <oac:Annotation rdf:about="urn:uuid:1505e7d8-6462-4536-a3ae-944a08ce540c">
-        <oac:hasTarget rdf:resource="urn:id:ct:1"/>
-    </oac:Annotation>
+    <oa:Annotation rdf:about="urn:uuid:1505e7d8-6462-4536-a3ae-944a08ce540c">
+        <oa:hasTarget rdf:resource="urn:id:ct:1"/>
+    </oa:Annotation>
 </rdf:RDF>"""
-        constrainedTarget = """<oac:ConstrainedTarget 
+        constrainedTarget = """<oa:ConstrainedTarget 
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-        xmlns:oac="http://www.openannotation.org/ns/" 
+        xmlns:oa="http://www.w3.org/ns/openannotation/core/" 
         rdf:about="urn:id:ct:1">
-    </oac:ConstrainedTarget>"""
+    </oa:ConstrainedTarget>"""
         expectedXml = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
-    <oac:Annotation rdf:about="http://some.where/here/urn%3Auuid%3A1505e7d8-6462-4536-a3ae-944a08ce540c">
-        <oac:hasTarget>
-            <oac:ConstrainedTarget rdf:about="http://some.where/here/urn%3Aid%3Act%3A1">
+    <oa:Annotation rdf:about="http://some.where/here/urn%3Auuid%3A1505e7d8-6462-4536-a3ae-944a08ce540c">
+        <oa:hasTarget>
+            <oa:ConstrainedTarget rdf:about="http://some.where/here/urn%3Aid%3Act%3A1">
                 <dc:identifier>urn:id:ct:1</dc:identifier>
-            </oac:ConstrainedTarget>
-        </oac:hasTarget>
+            </oa:ConstrainedTarget>
+        </oa:hasTarget>
         <dc:identifier>urn:uuid:1505e7d8-6462-4536-a3ae-944a08ce540c</dc:identifier>
-    </oac:Annotation>
+    </oa:Annotation>
 </rdf:RDF>"""
 
         self.store.returnValues['isAvailable'] = (False, False)

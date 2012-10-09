@@ -38,7 +38,7 @@ from meresco.components.xml_generic.validate import ValidateException
 
 
 def isAnnotation(node):
-    return ("{%(oac)s}Annotation" % namespaces)  == node.tag or ("%(oac)sAnnotation" % namespaces) in xpath(node, 'rdf:type/@rdf:resource')
+    return ("{%(oa)s}Annotation" % namespaces)  == node.tag or ("%(oa)sAnnotation" % namespaces) in xpath(node, 'rdf:type/@rdf:resource')
 
 class MultipleAnnotationSplit(Observable):
 
@@ -64,10 +64,10 @@ class MultipleAnnotationSplit(Observable):
     def _inlineURNs(self, root, rdfContainer):
         for relation in [
             {'tag': 'dcterms:creator', 'partname': 'foafAgent'}, 
-            {'tag': 'oac:hasBody', 'partname': 'oacBody'},
-            {'tag': 'oac:constrains'},
-            {'tag': 'oac:constrainedBy'},
-            {'tag': 'oac:hasTarget', 'partname': 'oacConstrainedTarget'},]:
+            {'tag': 'oa:hasBody', 'partname': 'oacBody'},
+            {'tag': 'oa:constrains'},
+            {'tag': 'oa:constrainedBy'},
+            {'tag': 'oa:hasTarget', 'partname': 'oacConstrainedTarget'},]:
 
             nodes = xpath(root, '%s[@rdf:resource]' % relation['tag'])
             for node in nodes:
