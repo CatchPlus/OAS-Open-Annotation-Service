@@ -46,7 +46,7 @@ class Deanonymize(Observable):
         return self.all.delete(identifier)
 
     def process(self, lxmlNode):
-        for node in chain(xpath(lxmlNode, '//oac:Annotation'), xpath(lxmlNode, '//oac:Body'), xpath(lxmlNode, "//oac:ConstrainedTarget")):
+        for node in chain(xpath(lxmlNode, '//oa:Annotation'), xpath(lxmlNode, '//oa:Body'), xpath(lxmlNode, "//oa:ConstrainedTarget")):
             if getAttrib(node, 'rdf:about') == None and getAttrib(node, 'rdf:resource') == None:
                 setAttrib(node, 'rdf:about', self._urnGen())
 

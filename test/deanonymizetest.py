@@ -54,8 +54,8 @@ class DeanonymizeTest(SeecrTestCase):
     def testPassThroughAbout(self):
         xml = """<rdf:RDF 
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-        xmlns:oac="http://www.openannotation.org/ns/"> 
-    <oac:Annotation rdf:about="urn:id:1"/>
+        xmlns:oa="http://www.w3.org/ns/openannotation/core/"> 
+    <oa:Annotation rdf:about="urn:id:1"/>
 </rdf:RDF>"""
 
         lico(self.dna.all.process(lxmlNode=parse(StringIO(xml))))
@@ -65,8 +65,8 @@ class DeanonymizeTest(SeecrTestCase):
     def testPassThroughResource(self):
         xml = """<rdf:RDF 
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-        xmlns:oac="http://www.openannotation.org/ns/"> 
-    <oac:Annotation rdf:resource="urn:id:1"/>
+        xmlns:oa="http://www.w3.org/ns/openannotation/core/"> 
+    <oa:Annotation rdf:resource="urn:id:1"/>
 </rdf:RDF>"""
 
         lico(self.dna.all.process(lxmlNode=parse(StringIO(xml))))
@@ -76,8 +76,8 @@ class DeanonymizeTest(SeecrTestCase):
     def testAddUrn(self):
         xml = """<rdf:RDF 
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-        xmlns:oac="http://www.openannotation.org/ns/"> 
-    <oac:Annotation%s/>
+        xmlns:oa="http://www.w3.org/ns/openannotation/core/"> 
+    <oa:Annotation%s/>
 </rdf:RDF>"""
 
         newIdentifier = 'urn:some:form:of:identifier'
@@ -89,12 +89,12 @@ class DeanonymizeTest(SeecrTestCase):
     def testAddUrnToOacBody(self):
         xml = """<rdf:RDF 
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-        xmlns:oac="http://www.openannotation.org/ns/"> 
-    <oac:Annotation rdf:about="urn:annotation:identifier">
-        <oac:hasBody>
-            <oac:Body%s/>
-        </oac:hasBody>
-    </oac:Annotation>
+        xmlns:oa="http://www.w3.org/ns/openannotation/core/"> 
+    <oa:Annotation rdf:about="urn:annotation:identifier">
+        <oa:hasBody>
+            <oa:Body%s/>
+        </oa:hasBody>
+    </oa:Annotation>
 </rdf:RDF>"""
 
         newIdentifier = 'urn:some:form:of:identifier'
@@ -107,12 +107,12 @@ class DeanonymizeTest(SeecrTestCase):
     def testAddUrnToOacConstrainedTarget(self):
         xml = """<rdf:RDF 
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-        xmlns:oac="http://www.openannotation.org/ns/"> 
-    <oac:Annotation rdf:about="urn:annotation:identifier">
-        <oac:hasTarget>
-            <oac:ConstrainedTarget%s/>
-        </oac:hasTarget>
-    </oac:Annotation>
+        xmlns:oa="http://www.w3.org/ns/openannotation/core/"> 
+    <oa:Annotation rdf:about="urn:annotation:identifier">
+        <oa:hasTarget>
+            <oa:ConstrainedTarget%s/>
+        </oa:hasTarget>
+    </oa:Annotation>
 </rdf:RDF>"""
 
         newIdentifier = 'urn:some:form:of:identifier'
