@@ -36,11 +36,7 @@ class RdfContainerTest(SeecrTestCase):
 
     def testOne(self):
         XML = """<rdf:RDF
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:dcterms="http://purl.org/dc/terms/"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:foaf="http://xmlns.com/foaf/0.1/"
-    xmlns:oac="http://www.openannotation.org/ns/">
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <rdf:Description rdf:about="urn:nr:1"/>
     <rdf:Description rdf:about="urn:nr:2"/>
     <rdf:Description rdf:about="urn:nr:3"/>

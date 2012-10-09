@@ -150,7 +150,6 @@ class PublishTest(SeecrTestCase):
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <oa:Annotation rdf:about="urn:uuid:1505e7d8-6462-4536-a3ae-944a08ce540c">
@@ -166,7 +165,6 @@ class PublishTest(SeecrTestCase):
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <oa:Annotation rdf:about="http://some.where/here/urn%3Auuid%3A1505e7d8-6462-4536-a3ae-944a08ce540c">

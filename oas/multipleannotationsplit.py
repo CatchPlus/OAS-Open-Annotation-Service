@@ -63,7 +63,7 @@ class MultipleAnnotationSplit(Observable):
 
     def _inlineURNs(self, root, rdfContainer):
         for relation in [
-            {'tag': 'dcterms:creator', 'partname': 'foafAgent'}, 
+            {'tag': 'oa:annotatedBy', 'partname': 'foafAgent'}, 
             {'tag': 'oa:hasBody', 'partname': 'oacBody'},
             {'tag': 'oa:constrains'},
             {'tag': 'oa:constrainedBy'},

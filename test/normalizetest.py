@@ -110,39 +110,37 @@ class NormalizeTest(SeecrTestCase):
     def testMultiple(self):
         XML = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:dcterms="http://purl.org/dc/terms/">
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
     <rdf:Description rdf:about="urn:identifier">
         <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
-        <dcterms:creator>
+        <oa:annotatedBy>
             <rdf:Description rdf:about="urn:agent">
                 <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
             </rdf:Description>
-        </dcterms:creator>
+        </oa:annotatedBy>
     </rdf:Description>
 </rdf:RDF>"""
         EXPECTED_XML = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:dcterms="http://purl.org/dc/terms/">
-    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="urn:identifier">
-        <dcterms:creator>
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
+    <oa:Annotation rdf:about="urn:identifier">
+        <oa:annotatedBy>
             <foaf:Agent xmlns:foaf="http://xmlns.com/foaf/0.1/" rdf:about="urn:agent"/>
-        </dcterms:creator>
+        </oa:annotatedBy>
     </oa:Annotation>
 </rdf:RDF>"""
         self.assertConvert(EXPECTED_XML, XML)
     
     def testMultipleRdfTypes(self):
         XML = """<rdf:RDF 
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:dcterms="http://purl.org/dc/terms/">
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <rdf:Description rdf:about="urn:identifier">
         <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
         <rdf:type rdf:resource="http://www.example.org/lit-annotation-ns#ExplanatoryNote"/>
     </rdf:Description>
 </rdf:RDF>"""
         EXPECTED_XML = """<rdf:RDF 
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:dcterms="http://purl.org/dc/terms/">
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="urn:identifier">
         <rdf:type rdf:resource="http://www.example.org/lit-annotation-ns#ExplanatoryNote"/>
     </oa:Annotation>
@@ -151,11 +149,11 @@ class NormalizeTest(SeecrTestCase):
     def testLeaveDescriptionsWithoutTypeAlone(self):
         XML = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:dcterms="http://purl.org/dc/terms/">
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
     <rdf:Description rdf:about="urn:identifier">
-        <dcterms:creator>
+        <oa:annotatedBy>
             <rdf:Description rdf:about="urn:agent"/>
-        </dcterms:creator>
+        </oa:annotatedBy>
     </rdf:Description>
 </rdf:RDF>"""
         self.assertConvert(XML, XML)

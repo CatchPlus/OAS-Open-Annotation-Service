@@ -82,10 +82,9 @@ class ResolveServerTest(SeecrTestCase):
 
 ListResolvablesTest_SRU = parse(StringIO("""
 <srw:searchRetrieveResponse xmlns:srw="http://www.loc.gov/zing/srw/" xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/" xmlns:xcql="http://www.loc.gov/zing/cql/xcql/" xmlns:dc="http://purl.org/dc/elements/1.1/">
-<srw:version>1.2</srw:version><srw:numberOfRecords>1</srw:numberOfRecords><srw:records><srw:record><srw:recordSchema>rdf</srw:recordSchema><srw:recordPacking>xml</srw:recordPacking><srw:recordIdentifier>http://oas.dev.seecr.nl/resolve/urn:uuid:5318cf36-1599-4b26-8be9-7f7f673e1a79</srw:recordIdentifier><srw:recordData><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="http://oas.dev.seecr.nl/resolve/urn:uuid:5318cf36-1599-4b26-8be9-7f7f673e1a79">
+<srw:version>1.2</srw:version><srw:numberOfRecords>1</srw:numberOfRecords><srw:records><srw:record><srw:recordSchema>rdf</srw:recordSchema><srw:recordPacking>xml</srw:recordPacking><srw:recordIdentifier>http://oas.dev.seecr.nl/resolve/urn:uuid:5318cf36-1599-4b26-8be9-7f7f673e1a79</srw:recordIdentifier><srw:recordData><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="http://oas.dev.seecr.nl/resolve/urn:uuid:5318cf36-1599-4b26-8be9-7f7f673e1a79">
         <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">This is an annotation</dc:title>
-        <dcterms:creator xmlns:dcterms="http://purl.org/dc/terms/" rdf:resource="http://localhost:59007/rdf/testResolve"/>
-    </oac:Annotation>
+    </oa:Annotation>
 </rdf:RDF>
 </srw:recordData></srw:record></srw:records><srw:echoedSearchRetrieveRequest><srw:version>1.2</srw:version><srw:query>__resolved__ = no</srw:query><srw:startRecord>1</srw:startRecord><srw:maximumRecords>10</srw:maximumRecords><srw:recordPacking>xml</srw:recordPacking><srw:recordSchema>rdf</srw:recordSchema></srw:echoedSearchRetrieveRequest></srw:searchRetrieveResponse>"""))
 

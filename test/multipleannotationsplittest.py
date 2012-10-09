@@ -105,10 +105,9 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
             xmlns:foaf="http://xmlns.com/foaf/0.1/"
             xmlns:oa="http://www.w3.org/ns/openannotation/core/"
-            xmlns:dc="http://purl.org/dc/elements/1.1/"
-            xmlns:dcterms="http://purl.org/dc/terms/">
+            xmlns:dc="http://purl.org/dc/elements/1.1/">
             <oa:Annotation rdf:about="identifier:1">
-                <dcterms:creator rdf:resource="urn:creator"/>
+                <oa:annotatedBy rdf:resource="urn:creator"/>
                 <oa:hasBody rdf:resource="urn:body"/>
             </oa:Annotation>
             <rdf:Description rdf:about="urn:creator">
@@ -123,13 +122,13 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
         lico(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(xml))))
         resultNode = self.observer.calledMethods[0].kwargs['lxmlNode']
         self.assertEqualsWS("""<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" xmlns:dcterms="http://purl.org/dc/terms/" rdf:about="identifier:1">
-        <dcterms:creator>
+    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="identifier:1">
+        <oa:annotatedBy>
             <rdf:Description xmlns:foaf="http://xmlns.com/foaf/0.1/" rdf:about="urn:creator">
                 <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
                 <foaf:mbox>info@otherexample.org</foaf:mbox>
             </rdf:Description>
-        </dcterms:creator>
+        </oa:annotatedBy>
         <oa:hasBody>
             <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/" rdf:about="urn:body">
                 <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Body"/>
@@ -143,21 +142,20 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
         xml = """<rdf:RDF
             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
             xmlns:foaf="http://xmlns.com/foaf/0.1/"
-            xmlns:oa="http://www.w3.org/ns/openannotation/core/"
-            xmlns:dcterms="http://purl.org/dc/terms/">
+            xmlns:oa="http://www.w3.org/ns/openannotation/core/">
             <oa:Annotation rdf:about="identifier:1">
-                <dcterms:creator rdf:resource="urn:creator"/>
+                <oa:annotatedBy rdf:resource="urn:creator"/>
             </oa:Annotation>
         </rdf:RDF>"""
         lico(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(xml))))
         resultNode = self.observer.calledMethods[0].kwargs['lxmlNode']
         self.assertEqualsWS("""<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" xmlns:dcterms="http://purl.org/dc/terms/" rdf:about="identifier:1">
-        <dcterms:creator>
+    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="identifier:1">
+        <oa:annotatedBy>
             <foaf:Agent xmlns:foaf="http://xmlns.com/foaf/0.1/" rdf:about="urn:creator">
                 <foaf:mbox>info@example.org</foaf:mbox>
             </foaf:Agent>
-        </dcterms:creator>
+        </oa:annotatedBy>
     </oa:Annotation>
 </rdf:RDF>""", tostring(resultNode))
 
@@ -166,17 +164,16 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
         xml = """<rdf:RDF
             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
             xmlns:foaf="http://xmlns.com/foaf/0.1/"
-            xmlns:oa="http://www.w3.org/ns/openannotation/core/"
-            xmlns:dcterms="http://purl.org/dc/terms/">
+            xmlns:oa="http://www.w3.org/ns/openannotation/core/">
             <oa:Annotation rdf:about="identifier:1">
-                <dcterms:creator rdf:resource="urn:othercreator"/>
+                <oa:annotatedBy rdf:resource="urn:othercreator"/>
             </oa:Annotation>
         </rdf:RDF>"""
         lico(self.dna.all.add(identifier="IDENTIFIER", partname="rdf", lxmlNode=parse(StringIO(xml))))
         resultNode = self.observer.calledMethods[0].kwargs['lxmlNode']
         self.assertEqualsWS("""<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" xmlns:dcterms="http://purl.org/dc/terms/" rdf:about="identifier:1">
-        <dcterms:creator rdf:resource="urn:othercreator"/>
+    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="identifier:1">
+        <oa:annotatedBy rdf:resource="urn:othercreator"/>
     </oa:Annotation>
 </rdf:RDF>""", tostring(resultNode))
 
