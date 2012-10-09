@@ -52,7 +52,7 @@ class MultipleAnnotationSplitTest(SeecrTestCase):
 </foaf:Agent>""" % namespaces)
         self.dna = be(
             (Observable(),
-                (MultipleAnnotationSplit(),
+                (MultipleAnnotationSplit(baseUrl="http://localhost"),
                     (FilterMessages(allowed=['getStream', 'isAvailable']),
                             (self.storageObserver,),
                     ),

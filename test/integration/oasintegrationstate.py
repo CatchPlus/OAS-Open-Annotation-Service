@@ -174,6 +174,9 @@ class OasIntegrationState(IntegrationState):
             exit(1)
 
     def _uploadUpdateRequests(self, datadir, uploadPath, uploadPorts):
+        if not isdir(datadir):
+            return
+
         requests = (join(datadir, r) for r in sorted(listdir(datadir)) if r.endswith('.updateRequest'))
         for nr, filename in enumerate(requests):
             self._uploadUpdateRequest(nr, filename, uploadPath, uploadPorts)
