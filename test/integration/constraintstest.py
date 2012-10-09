@@ -38,7 +38,7 @@ from seecr.test.utils import getRequest, postRequest
 
 class ConstraintsTest(IntegrationTestCase):
     def testOne(self):
-        query='oac:hasTarget="http://catchplus.nl/annotation/Canvas1"'
+        query='oa:hasTarget="http://catchplus.nl/annotation/Canvas1"'
         headers, body = getRequest(self.portNumber, "/sru", arguments=dict(
             version="1.2", operation="searchRetrieve", query=query), parse='lxml')
         self.assertEquals(["4"], xpath(body, '//srw:numberOfRecords/text()'))

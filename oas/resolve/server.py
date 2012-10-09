@@ -70,7 +70,7 @@ class ResolveServer(Observable):
                 'items': [
                     {   'filter': filterFoafAgents, 
                         'partname': 'foafAgent', 
-                        'urls': xpath(node, "oa:Annotation/dcterms:creator/@rdf:resource")
+                        'urls': xpath(node, "oa:Annotation/oa:annotatedBy/@rdf:resource")
                     },
                     {   'filter': filterOacBodies, 
                         'partname': 'oacBody', 

@@ -38,41 +38,42 @@ def main(**kwargs):
     yield page.codeBlock(
         caption="External references", 
         comments="Both the dcterms:creator and oac:hasBody in this example are rdf:resources which will need to be resolved.",
-        code="""<rdf:RDF 
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+        code="""<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <rdf:Description rdf:about="urn:uuid:%s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody rdf:resource="%s/static/dummy_oac_body"/>
-        <oac:hasTarget rdf:resource="urn:uuid:%s"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasBody rdf:resource="%s/static/dummy_oac_body"/>
+        <oa:hasTarget rdf:resource="urn:uuid:%s"/>
         <dc:title>Example with both creator and body as external entities.</dc:title>
-        <dcterms:creator rdf:resource="%s/static/dummy_foaf_agent"/>
-        <dcterms:created>%s</dcterms:created>
+        <oa:annotatedBy rdf:resource="%s/static/dummy_foaf_agent"/>
+        <oa:annotatedAt>%s</oa:annotatedAt>
     </rdf:Description>
 </rdf:RDF>""" % (uuid(), serverUrl, uuid(), serverUrl, timestamp))
 
     yield page.codeBlock(
         caption="Annotation without rdf:type", 
         comments="An oac:Annotation tag instead of an rdf:Description and a rdf:type tag.",
-        code="""<rdf:RDF 
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+        code="""<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
-    <oac:Annotation rdf:about="urn:uuid:%s">
-        <oac:hasBody rdf:resource="%s/static/dummy_oac_body"/>
-        <oac:hasTarget rdf:resource="urn:uuid:%s"/>
-        <dc:title>Example with rdf:Description replaced by oac:Annotation and no rdf:type.</dc:title>
-        <dcterms:creator rdf:resource="%s/static/dummy_foaf_agent"/>
-        <dcterms:created>%s</dcterms:created>
-    </oac:Annotation>
+    <rdf:Description rdf:about="urn:uuid:%s">
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasBody rdf:resource="%s/static/dummy_oac_body"/>
+        <oa:hasTarget rdf:resource="urn:uuid:%s"/>
+        <dc:title>Example with both creator and body as external entities.</dc:title>
+        <oa:annotatedBy rdf:resource="%s/static/dummy_foaf_agent"/>
+        <oa:annotatedAt>%s</oa:annotatedAt>
+    </rdf:Description>
 </rdf:RDF>""" % (uuid(), serverUrl, uuid(), serverUrl, timestamp))
+
+## Tot hier gedaan, voorbeeld 1 en 2
 
     yield page.codeBlock(
         caption="Subclass of Annotation with rdf:type", 

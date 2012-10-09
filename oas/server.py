@@ -77,9 +77,8 @@ staticHtmlFilePath = join(dirname(__file__), "static")
 planninggameFilePath = join(dirname(dirname(__file__)), "doc", "planninggame")
 
 untokenized = [
-        #"dcterms:creator",
-    "oac:hasBody",
-    "oac:hasTarget"
+    "oa:hasBody",
+    "oa:hasTarget"
 ]
 
 def fieldnameLookup(name):
@@ -178,7 +177,7 @@ def dna(reactor, observableHttpServer, config):
                         (storageComponent,),
                         (tripleStore,),
                     ),  
-                    (XmlXPath(["/rdf:RDF/oac:Annotation/dcterms:creator/foaf:Agent[@rdf:about]"], fromKwarg="lxmlNode", namespaceMap=namespaces),
+                    (XmlXPath(["/rdf:RDF/oa:Annotation/oa:annotatedBy/foaf:Agent[@rdf:about]"], fromKwarg="lxmlNode", namespaceMap=namespaces),
                         (IdentifierFromXPath('@rdf:about'),
                             (RewritePartname('foafAgent'),
                                 (XmlPrintLxml(fromKwarg='lxmlNode', toKwarg='data'),
@@ -188,29 +187,29 @@ def dna(reactor, observableHttpServer, config):
                         )
                     ),
                     (XPath2Field([
-                        ("/rdf:RDF/oac:Annotation/dc:title/text()", 'dc:title'),
-                        ("/rdf:RDF/oac:Annotation/dcterms:created/text()", 'dcterms:created'),
+                        ("/rdf:RDF/oa:Annotation/dc:title/text()", 'dc:title'),
+                        ("/rdf:RDF/oa:Annotation/oa:annotatedAt/text()", 'oa:annotatedAt'),
                         ], namespaceMap=namespaces),
                         indexHelix
                     ),
                     (XPath2Field([
-                        ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", '__needs_resolved__'),
-                        ("/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource", '__needs_resolved__'),
+                        ("/rdf:RDF/oa:Annotation/oa:hasBody/@rdf:resource", '__needs_resolved__'),
+                        ("/rdf:RDF/oa:Annotation/oa:annotatedBy/@rdf:resource", '__needs_resolved__'),
 
-                        ("/rdf:RDF/oac:Annotation/dcterms:creator/@rdf:resource", 'dcterms:creator'),
-                        ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", 'oac:hasBody'),
-                        ("/rdf:RDF/oac:Annotation/oac:hasBody/@rdf:resource", 'oac:hasBody'),
-                        ("/rdf:RDF/oac:Annotation/oac:hasBody/oac:Body/@rdf:about", 'oac:hasBody'),
-                        ("/rdf:RDF/oac:Annotation/oac:hasBody/oac:Body[@rdf:about]/dc:identifier/text()", 'oac:hasBody'),
-                        ("/rdf:RDF/oac:Annotation/oac:hasTarget/@rdf:resource", 'oac:hasTarget'),
-                        ("/rdf:RDF/oac:Annotation/oac:hasTarget/*/@rdf:about", 'oac:hasTarget'),
-                        ("//oac:ConstrainedTarget/oac:constrains/*/@rdf:about", 'oac:hasTarget'),
-                        ("//oac:ConstrainedTarget/oac:constrains/@rdf:resource", 'oac:hasTarget'),
+                        ("/rdf:RDF/oa:Annotation/oa:annotatedBy/@rdf:resource", 'oa:annotatedBy'),
+                        ("/rdf:RDF/oa:Annotation/oa:hasBody/@rdf:resource", 'oa:hasBody'),
+                        ("/rdf:RDF/oa:Annotation/oa:hasBody/@rdf:resource", 'oa:hasBody'),
+                        ("/rdf:RDF/oa:Annotation/oa:hasBody/oa:Body/@rdf:about", 'oa:hasBody'),
+                        ("/rdf:RDF/oa:Annotation/oa:hasBody/oa:Body[@rdf:about]/dc:identifier/text()", 'oa:hasBody'),
+                        ("/rdf:RDF/oa:Annotation/oa:hasTarget/@rdf:resource", 'oa:hasTarget'),
+                        ("/rdf:RDF/oa:Annotation/oa:hasTarget/*/@rdf:about", 'oa:hasTarget'),
+                        ("//oa:ConstrainedTarget/oa:constrains/*/@rdf:about", 'oa:hasTarget'),
+                        ("//oa:ConstrainedTarget/oa:constrains/@rdf:resource", 'oa:hasTarget'),
                         ("//foaf:mbox/@rdf:resource", '__all__'),
 
                         ], namespaceMap=namespaces),
                        
-                        (FilterField(lambda name: name == "dcterms:creator"),
+                        (FilterField(lambda name: name == "oa:annotatedBy"),
                             indexWithoutFragment
                         ),
                         (FilterField(lambda name: name in untokenized), 
@@ -219,7 +218,7 @@ def dna(reactor, observableHttpServer, config):
                                 indexHelix
                             )
                         ),
-                        # oac:hasBody, dcterms:creators that have an url need to be resolved. 
+                        # oa:hasBody, oa:annotatedBy that have an url need to be resolved. 
                         # This is done Offline, therefore we mark the record.
                         (FilterField(lambda name: name == '__needs_resolved__'),
                             (FilterFieldValue(lambda value: value.startswith('http://')),
@@ -238,8 +237,8 @@ def dna(reactor, observableHttpServer, config):
                         indexHelix
                     ),
                     (Xml2Fields(),
-                        (FilterField(lambda name: name.startswith('RDF.Annotation.creator')),
-                            (RenameField(lambda name: 'dcterms:creator'),
+                        (FilterField(lambda name: name.startswith('RDF.Annotation.annotatedBy')),
+                            (RenameField(lambda name: 'oa:annotatedBy'),
                                 indexHelix
                             )
                         ),

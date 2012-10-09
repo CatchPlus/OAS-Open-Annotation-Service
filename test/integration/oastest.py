@@ -50,7 +50,7 @@ class OasTest(IntegrationTestCase):
     def assertNotAValidAnnotiation(self, errorText, annotationBody):
         annotationBody = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
@@ -79,30 +79,30 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('RDF.Annotation.title = hubble', 1)
         self.assertQuery('Hubble', 1)
         self.assertQuery('dc:title = hubble', 1)
-        self.assertQuery('dcterms:created = "2010-02-02"', 1)
-        self.assertQuery('dcterms:created = 2010', 3)
-        self.assertQuery('dcterms:creator = "ex:User"', 1)
+        self.assertQuery('oa:annotatedAt = "2010-02-02"', 1)
+        self.assertQuery('oa:annotatedAt = 2010', 3)
+        self.assertQuery('oa:annotatedBy = "ex:User"', 1)
         self.assertQuery('ex:HDFV', 1)
         self.assertQuery('ex:HDFI-1', 1)
         self.assertQuery('mailto:unique@info.org', 1)
-        self.assertQuery('oac:hasTarget = "http://example.org/target/for/test"', 1)
-        self.assertQuery('RDF.Annotation.creator.Agent.name = "billy butcher"', 2)
+        self.assertQuery('oa:hasTarget = "http://example.org/target/for/test"', 1)
+        self.assertQuery('RDF.Annotation.annotatedBy.Agent.name = "billy butcher"', 2)
         self.assertQuery('api.user = testuser', 9)
         self.assertQuery('api.user = anothertestuser', 9)
         self.assertQuery('set = anothertestuser', 9)
-        self.assertQuery('oac:hasTarget = "http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"', 2)
+        self.assertQuery('oa:hasTarget = "http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"', 2)
         self.assertQuery('"http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"', 2)
         self.assertQuery('body = IamUnique42', 1)
         self.assertQuery('body = Haynaut', 1)
-        self.assertQuery('oac:hasBody = "urn:about:body:story:9.4"', 1)
-        self.assertQuery('oac:hasBody = "http://localhost:%s/resolve/urn%%3Aabout%%3Abody%%3Astory%%3A9.4"' % self.portNumber, 1)
+        self.assertQuery('oa:hasBody = "urn:about:body:story:9.4"', 1)
+        self.assertQuery('oa:hasBody = "http://localhost:%s/resolve/urn%%3Aabout%%3Abody%%3Astory%%3A9.4"' % self.portNumber, 1)
         self.assertQuery('Seecr', 2)
         self.assertQuery('"Seecr uit Veenendaal"', 2)
-        self.assertQuery('dcterms:creator = "seecr uit veenendaal"', 2)
-        self.assertQuery('dcterms:creator = "urn:this:creator:does:NOT:resolve"', 1)
+        self.assertQuery('oa:annotatedBy = "seecr uit veenendaal"', 2)
+        self.assertQuery('oa:annotatedBy = "urn:this:creator:does:NOT:resolve"', 1)
 
     def testQueryOnRdfType(self):
-        self.assertQuery('rdf:type = "http://www.openannotation.org/ns/Annotation"', 19)
+        self.assertQuery('rdf:type = "http://www.w3.org/ns/openannotation/core/Annotation"', 19)
 
     def testOaiIdentify(self):
         headers,body = getRequest(self.portNumber, "/oai", arguments=dict(verb='Identify'), parse='lxml')
@@ -123,18 +123,18 @@ class OasTest(IntegrationTestCase):
         identifier = "urn:uuid:%s" % uuid4()
         annotationBody = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <rdf:Description rdf:about="%(identifier)s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody rdf:resource="ex:HDFI-2"/>
-        <oac:hasTarget rdf:resource="ex:HDFV2"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasBody rdf:resource="ex:HDFI-2"/>
+        <oa:hasTarget rdf:resource="ex:HDFV2"/>
         <dc:title>An Annotions submitted through a form</dc:title>
-        <dcterms:creator rdf:resource="ex:AnotherUser"/>
-        <dcterms:created>2000-02-01 12:34:56</dcterms:created>
+        <oa:annotatedBy rdf:resource="ex:AnotherUser"/>
+        <oa:annotatedAt>2000-02-01 12:34:56</oa:annotatedAt>
     </rdf:Description>
 </rdf:RDF>""" % locals()
         self.assertQuery('RDF.Annotation.title = "An Annotions submitted through a form"', 0)
@@ -153,18 +153,18 @@ class OasTest(IntegrationTestCase):
         identifier = "urn:uuid:%s" % uuid4()
         annotationBody = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <rdf:Description rdf:about="%(identifier)s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody rdf:resource="ex:HDFI-2"/>
-        <oac:hasTarget rdf:resource="ex:HDFV2"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasBody rdf:resource="ex:HDFI-2"/>
+        <oa:hasTarget rdf:resource="ex:HDFV2"/>
         <dc:title>An Annotions submitted through a form</dc:title>
-        <dcterms:creator rdf:resource="ex:AnotherUser"/>
-        <dcterms:created>2000-02-01 12:34:56</dcterms:created>
+        <oa:annotatedBy rdf:resource="ex:AnotherUser"/>
+        <oa:annotatedAt>2000-02-01 12:34:56</oa:annotatedAt>
     </rdf:Description>
 </rdf:RDF>""" % locals()
 
@@ -177,7 +177,7 @@ class OasTest(IntegrationTestCase):
         <dc:title>This is a wannabe annotation</dc:title>
     </rdf:Description>""" % uuid4())
         self.assertNotAValidAnnotiation('Invalid identifier', """<rdf:Description rdf:about=" ">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
         <dc:title>This is a wrongfully identified annotation</dc:title>
     </rdf:Description>""")
 
@@ -192,7 +192,7 @@ class OasTest(IntegrationTestCase):
         <srw:recordSchema>rdf</srw:recordSchema>
         <srw:recordData><rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
@@ -219,14 +219,14 @@ class OasTest(IntegrationTestCase):
 
     def testUrnResolvable(self):
         header, body = getRequest(self.portNumber, '/resolve/urn%3Aex%3AAnno', {}, parse='lxml')
-        self.assertEquals(["http://localhost:%s/resolve/urn%%3Aex%%3AAnno" % self.portNumber], xpath(body, '/rdf:RDF/oac:Annotation/@rdf:about'))
+        self.assertEquals(["http://localhost:%s/resolve/urn%%3Aex%%3AAnno" % self.portNumber], xpath(body, '/rdf:RDF/oa:Annotation/@rdf:about'))
 
         header, body = getRequest(self.portNumber, '/resolve/urn%3Anr%3A0%3Fb', {}, parse='lxml')
-        self.assertEquals(["http://localhost:%s/resolve/urn%%3Anr%%3A0%%3Fb" % self.portNumber], xpath(body, '/rdf:RDF/oac:Annotation/@rdf:about'))
+        self.assertEquals(["http://localhost:%s/resolve/urn%%3Anr%%3A0%%3Fb" % self.portNumber], xpath(body, '/rdf:RDF/oa:Annotation/@rdf:about'))
 
     def testResolveConstrainedTargets(self):
         header, body = getRequest(self.portNumber, '/resolve/urn%3Aid%3Act%3A1', {}, parse='lxml')
-        self.assertEquals(["http://localhost:%s/resolve/urn%%3Aid%%3Act%%3A1" % self.portNumber], xpath(body, '/rdf:RDF/oac:ConstrainedTarget/@rdf:about'))
+        self.assertEquals(["http://localhost:%s/resolve/urn%%3Aid%%3Act%%3A1" % self.portNumber], xpath(body, '/rdf:RDF/oa:ConstrainedTarget/@rdf:about'))
 
     def testDocumentationPage(self):
         header, body = getRequest(self.portNumber, '/documentation', {}, parse='lxml')
@@ -246,7 +246,7 @@ class OasTest(IntegrationTestCase):
         headers, body = getRequest(self.portNumber, "/sru", arguments=dict(
             version="1.1", operation="searchRetrieve", query="IamUnique42"), parse='lxml')
 
-        oacBody = xpath(body, "/srw:searchRetrieveResponse/srw:records/srw:record/srw:recordData/rdf:RDF/oac:Annotation/oac:hasBody/oac:Body")[0]
+        oacBody = xpath(body, "/srw:searchRetrieveResponse/srw:records/srw:record/srw:recordData/rdf:RDF/oa:Annotation/oa:hasBody/oa:Body")[0]
 
         about = getAttrib(oacBody, "rdf:about")
         _,_,path,_,_ = urlsplit(about)

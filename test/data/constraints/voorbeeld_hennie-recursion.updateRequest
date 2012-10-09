@@ -1,21 +1,20 @@
 <rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    >
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
 
     <rdf:Description rdf:about="urn:test:a:1">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
         <dc:title>Maakt niet uit</dc:title>
     </rdf:Description>
     
     <rdf:Description rdf:about="urn:test:a:0">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasTarget rdf:resource="urn:test:a:1"/>
-        <oac:hasTarget rdf:resource="urn:test:a:2"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasTarget rdf:resource="urn:test:a:1"/>
+        <oa:hasTarget rdf:resource="urn:test:a:2"/>
     </rdf:Description>
     
-    <oac:Annotation rdf:about="urn:test:a:2">
+    <oa:Annotation rdf:about="urn:test:a:2">
         <dc:title>Maakt ook niet uit</dc:title>
-    </oac:Annotation>
+    </oa:Annotation>
 </rdf:RDF>

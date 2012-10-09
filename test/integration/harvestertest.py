@@ -125,9 +125,9 @@ TESTADDDELETE_ADD = """<?xml version="1.0" encoding="UTF-8"?>
             </header>
             <metadata>
                 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="http://oas.dev.seecr.nl:8000/resolve/urn%3Auuid%3Ab5b05c7d-371f-4927-b0b1-ff9d3b4e2468">
+                    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="http://oas.dev.seecr.nl:8000/resolve/urn%3Auuid%3Ab5b05c7d-371f-4927-b0b1-ff9d3b4e2468">
                         <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">testAddDelete</dc:title>
-                    </oac:Annotation>
+                    </oa:Annotation>
                 </rdf:RDF>
             </metadata>
         </record>
@@ -168,9 +168,9 @@ REPO1_RECORD = """<?xml version="1.0" encoding="UTF-8"?>
             </header>
             <metadata>
                 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="http://oas.dev.seecr.nl:8000/resolve/urn%3Auuid%3Ab5b05c7d-371f-4927-b0b1-ff9d3b4e2468">
+                    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="http://oas.dev.seecr.nl:8000/resolve/urn%3Auuid%3Ab5b05c7d-371f-4927-b0b1-ff9d3b4e2468">
                         <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">repo1</dc:title>
-                    </oac:Annotation>
+                    </oa:Annotation>
                 </rdf:RDF>
             </metadata>
         </record>
@@ -193,9 +193,9 @@ REPO2_RECORD = """<?xml version="1.0" encoding="UTF-8"?>
             </header>
             <metadata>
                 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                    <oac:Annotation xmlns:oac="http://www.openannotation.org/ns/" rdf:about="http://oas.dev.seecr.nl:8000/resolve/urn%3Auuid%3Ab5b05c7d-371f-4927-b0b1-ff9d3b4e2468">
+                    <oa:Annotation xmlns:oa="http://www.w3.org/ns/openannotation/core/" rdf:about="http://oas.dev.seecr.nl:8000/resolve/urn%3Auuid%3Ab5b05c7d-371f-4927-b0b1-ff9d3b4e2468">
                         <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">repo2</dc:title>
-                    </oac:Annotation>
+                    </oa:Annotation>
                 </rdf:RDF>
             </metadata>
         </record>

@@ -1,26 +1,25 @@
 <rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/"
-    xmlns:oac="http://www.openannotation.org/ns/">
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
     <rdf:Description rdf:about="urn:text:dctermscreator:2">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody rdf:resource="urn:nr:1"/>
-            <oac:hasBody>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasBody rdf:resource="urn:nr:1"/>
+            <oa:hasBody>
                 <ns0:ContentAsText rdf:about="http://www.shared-canvas.org/impl/demo1/res/Line-f4v-102" xmlns:ns0="http://www.w3.org/2008/content#">
                     <ns0:chars>frere et madame la contesse de Haynaut</ns0:chars>
                     <ns0:characterEncoding>UTF-8</ns0:characterEncoding>
                 <rdf:type rdf:resource="http://purl.org/dc/dcmitype/Text"/>
             </ns0:ContentAsText>
-        </oac:hasBody>
-        <oac:hasTarget rdf:resource="http://example.org/target/for/test#1"/>
-        <dc:title>test for dcterms:creator</dc:title>
-        <dcterms:creator>
+        </oa:hasBody>
+        <oa:hasTarget rdf:resource="http://example.org/target/for/test#1"/>
+        <dc:title>test for oa:annotatedBy</dc:title>
+        <oa:annotatedBy>
             <foaf:Agent>
                 <foaf:name>Mrs. Smith</foaf:name>
                 <foaf:mbox rdf:resource="mailto:example@info.org"/>
             </foaf:Agent>
-        </dcterms:creator>
+        </oa:annotatedBy>
     </rdf:Description>
 </rdf:RDF>

@@ -61,15 +61,13 @@ class ResolveTest(IntegrationTestCase):
         <srw:recordSchema>rdf</srw:recordSchema>
         <srw:recordData><rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
-    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
 
-    <oac:Annotation rdf:about="http://oas.dev.seecr.nl/resolve/%s">
+    <oa:Annotation rdf:about="http://oas.dev.seecr.nl/resolve/%s">
         <dc:title>This is an annotation</dc:title>
-        <dcterms:creator rdf:resource="%s"/>
-    </oac:Annotation>
+        <oa:annotatedBy rdf:resource="%s"/>
+    </oa:Annotation>
 
 </rdf:RDF></srw:recordData></srw:record>
 </ucp:updateRequest>""" % (identifier, resourceUrl)
@@ -107,14 +105,13 @@ class ResolveTest(IntegrationTestCase):
         <srw:recordSchema>rdf</srw:recordSchema>
         <srw:recordData><rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/">
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
 
-    <oac:Annotation rdf:about="http://oas.dev.seecr.nl/resolve/%s">
+    <oa:Annotation rdf:about="http://oas.dev.seecr.nl/resolve/%s">
         <dc:title>This is an annotation</dc:title>
-        <oac:hasBody rdf:resource="%s"/>
-    </oac:Annotation>
+        <oa:hasBody rdf:resource="%s"/>
+    </oa:Annotation>
 
 </rdf:RDF></srw:recordData></srw:record>
 </ucp:updateRequest>""" % (identifier, resourceUrl)
@@ -129,9 +126,9 @@ class ResolveTest(IntegrationTestCase):
         open(join(destDir, "testResolve"), "w").write("""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:dc="http://purl.org/dc/elements/1.1/">
-    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     <rdf:Description rdf:about="%s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Body"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Body"/>
         <dc:description>This is the body</dc:description>
     </rdf:Description>
 </rdf:RDF>""" % resourceUrl)

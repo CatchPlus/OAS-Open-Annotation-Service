@@ -49,5 +49,5 @@ class ConstrainsBodyTest(IntegrationTestCase):
             operation="searchRetrieve", 
             query=query), parse='lxml')
 
-        self.assertEquals(2, len(xpath(body, '//oac:constrains/oac:Body/cnt:chars')))
+        self.assertEquals(2, len(xpath(body, '//oa:constrains/oa:Body/cnt:chars')))
 

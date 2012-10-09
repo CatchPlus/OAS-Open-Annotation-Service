@@ -118,13 +118,13 @@ class UserTest(IntegrationTestCase):
 
         annotationBody = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:oac="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <rdf:Description rdf:about="urn:uuid:%s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
         <dc:title>To be deleted</dc:title>
     </rdf:Description>
 </rdf:RDF>""" % uuid4()

@@ -1,14 +1,13 @@
 <rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:oac="http://www.openannotation.org/ns/">
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
     <rdf:Description rdf:about="urn:ex:Anno">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody rdf:resource="ex:HDFI-1"/>
-        <oac:hasTarget rdf:resource="ex:HDFV"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasBody rdf:resource="ex:HDFI-1"/>
+        <oa:hasTarget rdf:resource="ex:HDFV"/>
         <dc:title>Annotation of the Hubble Deep Field Image</dc:title>
-        <dcterms:creator rdf:resource="ex:User"/>
-        <dcterms:created>2010-02-02 12:34:56</dcterms:created>
+        <oa:annotatedBy rdf:resource="ex:User"/>
+        <oa:annotatedAt>2010-02-02 12:34:56</oa:annotatedAt>
     </rdf:Description>
 </rdf:RDF>

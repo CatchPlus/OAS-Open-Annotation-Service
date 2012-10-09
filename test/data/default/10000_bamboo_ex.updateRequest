@@ -1,10 +1,12 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:oac="http://www.openannotation.org/ns/"
-    xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/" 
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:cnt="http://www.w3.org/2008/content#">
-    <oac:Annotation rdf:about="URN:uuid:197fd3b4-269e-49a4-9f92-9eee4d39f7e8">
-        <oac:hasBody rdf:resource="URN:uuid:465c9059-292c-4363-b8f2-303c076e98ac"/>
-        <oac:hasTarget>
+    <oa:Annotation rdf:about="URN:uuid:197fd3b4-269e-49a4-9f92-9eee4d39f7e8">
+        <oa:hasBody rdf:resource="URN:uuid:465c9059-292c-4363-b8f2-303c076e98ac"/>
+        <oa:hasTarget>
             <rdf:Description rdf:about="http://ramman.grainger.uiuc.edu:8080/fedora/objects/bamboo:K064572.000.morphadorned/methods/bamboo-sDef:book-transcript/getPageByFacs?facsId=14#xpointer(start-point(K064572_000-024360)::end-point(K064572_000-024390))">
                 <dcterms:isPartOf>
                     <rdf:Description rdf:about="http://ramman.grainger.uiuc.edu:8080/fedora/objects/bamboo:K064572.000.morphadorned/methods/bamboo-sDef:book-transcript/getPageByFacs?facsId=14">
@@ -12,16 +14,16 @@
                     </rdf:Description>
                 </dcterms:isPartOf>
             </rdf:Description>
-        </oac:hasTarget>
-       <dcterms:creator>
+        </oa:hasTarget>
+       <oa:annotatedBy>
             <foaf:Agent>
                 <foaf:name>Guest</foaf:name>
             </foaf:Agent>
-        </dcterms:creator>
-        <dcterms:created>2011-12-01 3:20:56</dcterms:created>
-    </oac:Annotation>
-    <oac:Body rdf:about="URN:uuid:465c9059-292c-4363-b8f2-303c076e98ac">
+        </oa:annotatedBy>
+        <oa:annotatedAt>2011-12-01 3:20:56</oa:annotatedAt>
+    </oa:Annotation>
+    <oa:Body rdf:about="URN:uuid:465c9059-292c-4363-b8f2-303c076e98ac">
             <cnt:Content rdf:parseType="Literal">accounted by his Admirers</cnt:Content>
             <cnt:characterEncoding>utf-8</cnt:characterEncoding>
-     </oac:Body>
+     </oa:Body>
 </rdf:RDF>

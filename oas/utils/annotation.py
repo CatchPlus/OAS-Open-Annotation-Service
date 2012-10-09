@@ -39,7 +39,7 @@ def filterFoafAgents(lxmlNode):
             yield node
 
 def filterOacBodies(lxmlNode):
-    for path in ['rdf:Description[rdf:type/@rdf:resource="%sBody"]' % namespaces['oac'], 'oa:Body']:
+    for path in ['rdf:Description[rdf:type/@rdf:resource="%sBody"]' % namespaces['oa'], 'oa:Body']:
         for node in xpath(lxmlNode, path):
             yield node
 

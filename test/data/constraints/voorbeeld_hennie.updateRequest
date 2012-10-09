@@ -1,61 +1,60 @@
 <rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/"
     xmlns:cnt="http://www.w3.org/2008/content#"
     xmlns:exif="http://www.w3.org/2003/12/exif/ns#">
 
     <rdf:Description rdf:about="urn:id:ia:1">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
 		<rdf:type rdf:resource="http://catchplus.nl/annotation/ImageAnnotation"/>
-        <oac:hasBody rdf:resource="http://catchplus.nl/annotation/imageScan1.jpg"/>
-        <oac:hasTarget rdf:resource="http://catchplus.nl/annotation/Canvas1"/>
+        <oa:hasBody rdf:resource="http://catchplus.nl/annotation/imageScan1.jpg"/>
+        <oa:hasTarget rdf:resource="http://catchplus.nl/annotation/Canvas1"/>
         <dc:title>image annotation of Canvas</dc:title>
-        <dcterms:creator>Hennie Brugman</dcterms:creator>
-        <dcterms:created>2012-05-07 14:35:50</dcterms:created>
+        <oa:annotatedBy>Hennie Brugman</oa:annotatedBy>
+        <oa:annotatedAt>2012-05-07 14:35:50</oa:annotatedAt>
     </rdf:Description>
     
     <rdf:Description rdf:about="urn:id:ta:0">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
 		<rdf:type rdf:resource="http://catchplus.nl/annotation/TextAnnotation"/>
-        <oac:hasBody rdf:resource="urn:id:ib:0"/>
-        <oac:hasTarget rdf:resource="http://catchplus.nl/annotation/Canvas1"/>
+        <oa:hasBody rdf:resource="urn:id:ib:0"/>
+        <oa:hasTarget rdf:resource="http://catchplus.nl/annotation/Canvas1"/>
         <dc:title>full text transcription</dc:title>
-        <dcterms:creator>Hennie Brugman</dcterms:creator>
-        <dcterms:created>2012-05-07 14:35:50</dcterms:created>
+        <oa:annotatedBy>Hennie Brugman</oa:annotatedBy>
+        <oa:annotatedAt>2012-05-07 14:35:50</oa:annotatedAt>
     </rdf:Description>
     
     <rdf:Description rdf:about="urn:id:ta:1">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
 		<rdf:type rdf:resource="http://catchplus.nl/annotation/TextAnnotation"/>
-        <oac:hasBody rdf:resource="urn:id:cb:1"/>
-        <oac:hasTarget rdf:resource="urn:id:ct:1"/>
+        <oa:hasBody rdf:resource="urn:id:cb:1"/>
+        <oa:hasTarget rdf:resource="urn:id:ct:1"/>
         <dc:title>first line strip annotation</dc:title>
-        <dcterms:creator>Hennie Brugman</dcterms:creator>
-        <dcterms:created>2012-05-07 14:35:50</dcterms:created>
+        <oa:annotatedBy>Hennie Brugman</oa:annotatedBy>
+        <oa:annotatedAt>2012-05-07 14:35:50</oa:annotatedAt>
     </rdf:Description>
     
      <rdf:Description rdf:about="urn:id:ta:2">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
 		<rdf:type rdf:resource="http://catchplus.nl/annotation/TextAnnotation"/>
-        <oac:hasBody rdf:resource="urn:id:cb:2"/>
-        <oac:hasTarget rdf:resource="urn:id:ct:2"/>
+        <oa:hasBody rdf:resource="urn:id:cb:2"/>
+        <oa:hasTarget rdf:resource="urn:id:ct:2"/>
         <dc:title>second line strip annotation</dc:title>
-        <dcterms:creator>Hennie Brugman</dcterms:creator>
-        <dcterms:created>2012-05-07 14:35:50</dcterms:created>
+        <oa:annotatedBy>Hennie Brugman</oa:annotatedBy>
+        <oa:annotatedAt>2012-05-07 14:35:50</oa:annotatedAt>
     </rdf:Description>   
     
     <rdf:Description rdf:about="urn:id:ea:1">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
 		<rdf:type rdf:resource="http://catchplus.nl/annotation/EntityAnnotation"/>
-        <oac:hasBody rdf:resource="urn:id:ib:1"/>
-        <oac:hasTarget rdf:resource="urn:id:ct:3"/>
-        <oac:hasTarget rdf:resource="urn:id:ct:4"/>
+        <oa:hasBody rdf:resource="urn:id:ib:1"/>
+        <oa:hasTarget rdf:resource="urn:id:ct:3"/>
+        <oa:hasTarget rdf:resource="urn:id:ct:4"/>
         <dc:title>EntityAnnotation of Den and Haag</dc:title>
-        <dcterms:creator>Hennie Brugman</dcterms:creator>
-        <dcterms:created>2012-05-07 14:35:50</dcterms:created>
+        <oa:annotatedBy>Hennie Brugman</oa:annotatedBy>
+        <oa:annotatedAt>2012-05-07 14:35:50</oa:annotatedAt>
     </rdf:Description>
 
     <rdf:Description rdf:about="urn:id:ib:0">
@@ -71,43 +70,43 @@
     </rdf:Description>
 
     <rdf:Description rdf:about="urn:id:cb:1">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
-        <oac:constrains rdf:resource="urn:id:ib:0"/>
-		<oac:constrainedBy rdf:resource="urn:id:c:1"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
+        <oa:constrains rdf:resource="urn:id:ib:0"/>
+		<oa:constrainedBy rdf:resource="urn:id:c:1"/>
     </rdf:Description>
 
     <rdf:Description rdf:about="urn:id:cb:2">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedBody"/>
-        <oac:constrains rdf:resource="urn:id:ib:0"/>
-		<oac:constrainedBy rdf:resource="urn:id:c:3"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
+        <oa:constrains rdf:resource="urn:id:ib:0"/>
+		<oa:constrainedBy rdf:resource="urn:id:c:3"/>
     </rdf:Description>    
 
     <rdf:Description rdf:about="urn:id:ct:1">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
-        <oac:constrains rdf:resource="http://catchplus.nl/annotation/Canvas1"/>
-		<oac:constrainedBy rdf:resource="urn:id:c:2"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
+        <oa:constrains rdf:resource="http://catchplus.nl/annotation/Canvas1"/>
+		<oa:constrainedBy rdf:resource="urn:id:c:2"/>
     </rdf:Description>  
     
     <rdf:Description rdf:about="urn:id:ct:2">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
-        <oac:constrains rdf:resource="http://catchplus.nl/annotation/Canvas1"/>
-		<oac:constrainedBy rdf:resource="urn:id:c:4"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
+        <oa:constrains rdf:resource="http://catchplus.nl/annotation/Canvas1"/>
+		<oa:constrainedBy rdf:resource="urn:id:c:4"/>
     </rdf:Description> 
 
     <rdf:Description rdf:about="urn:id:ct:3">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
-        <oac:constrains rdf:resource="urn:id:ib:0"/>
-		<oac:constrainedBy rdf:resource="urn:id:c:5"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
+        <oa:constrains rdf:resource="urn:id:ib:0"/>
+		<oa:constrainedBy rdf:resource="urn:id:c:5"/>
     </rdf:Description> 
     
     <rdf:Description rdf:about="urn:id:ct:4">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/ConstrainedTarget"/>
-        <oac:constrains rdf:resource="urn:id:ib:0"/>
-		<oac:constrainedBy rdf:resource="urn:id:c:6"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
+        <oa:constrains rdf:resource="urn:id:ib:0"/>
+		<oa:constrainedBy rdf:resource="urn:id:c:6"/>
     </rdf:Description> 
 
     <rdf:Description rdf:about="urn:id:c:1">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/InlineTextConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 		<cnt:chars>textsegment offset="0" range="30"</cnt:chars>
@@ -115,7 +114,7 @@
     </rdf:Description> 
 
     <rdf:Description rdf:about="urn:id:c:2">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/SvgConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
         <dc:format>image/svg+xml</dc:format>
@@ -124,7 +123,7 @@
     </rdf:Description> 
     
     <rdf:Description rdf:about="urn:id:c:3">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/InlineTextConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 		<cnt:chars>textsegment offset="31" range="31"</cnt:chars>
@@ -132,7 +131,7 @@
     </rdf:Description> 
 
     <rdf:Description rdf:about="urn:id:c:4">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/SvgConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
         <dc:format>image/svg+xml</dc:format>
@@ -141,7 +140,7 @@
     </rdf:Description> 
 
     <rdf:Description rdf:about="urn:id:c:5">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/InlineTextConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 		<cnt:chars>textsegment offset="27" range="3"</cnt:chars>
@@ -149,7 +148,7 @@
     </rdf:Description> 
 
     <rdf:Description rdf:about="urn:id:c:6">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Constraint"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/InlineTextConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 		<cnt:chars>textsegment offset="31" range="4"</cnt:chars>

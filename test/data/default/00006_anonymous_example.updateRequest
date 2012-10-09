@@ -1,14 +1,14 @@
 <rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:oac="http://www.openannotation.org/ns/">
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/">
     <rdf:Description>
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody>
-            <oac:Body>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasBody>
+            <oa:Body>
                 <dc:title>Some body</dc:title>
-            </oac:Body>
-        </oac:hasBody>
-        <oac:hasTarget rdf:resource="http://example.org//some/target/for/test"/>
+            </oa:Body>
+        </oa:hasBody>
+        <oa:hasTarget rdf:resource="http://example.org//some/target/for/test"/>
     </rdf:Description>
 </rdf:RDF>
