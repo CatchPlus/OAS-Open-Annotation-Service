@@ -1,0 +1,74 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+<rdf:Description rdf:about="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0177">
+	<rdf:type rdf:resource="http://dms.stanford.edu/ns/Canvas"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Canvas for NL_HaNa_H2_7823_0177</title>
+	<height xmlns="http://www.w3.org/2003/12/exif/ns#">4499</height>
+	<width xmlns="http://www.w3.org/2003/12/exif/ns#">3288</width>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:819e2225-c112-4784-b797-c1f5c524543f">
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+	<hasBody xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:4f6220b3-9d87-4087-be6f-55c45e754195"/>
+	<hasTarget xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0177"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Full text of page NL_HaNa_H2_7823_0177</title>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:4f6220b3-9d87-4087-be6f-55c45e754195">
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<rdf:type rdf:resource="http://purl.org/dc/dcmitype/Text"/>
+	<chars xmlns="http://www.w3.org/2008/content#">124 Dm 1903 Dm &amp; N Jaar en Week Markten Jan 2 16 Rappt BD 29 Decb n 9412, om machtiging tot mededeeling aan GedStaten van Utrecht dat geen goedkeuring kan worden verleend aan een besluit van den raad der gemeen te Amersfoort tot verandering van de Veemarkt. _-_ Fiat missive. Sept 10 15 Rappt BD 4 Sept n 6441, als boven dat bezwaar bestat tegen de goedkeuring van een besluit van de Raad van de gemeente Mijdrecht tot instelling van een jaarmarkt op den laatsten Dinsdag in de maand October _-_  Fiat missive __________</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:4e9e97c7-2dd0-40c3-baba-4077081aa150">
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+	<hasBody xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0177.jpg"/>
+	<hasTarget xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0177"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Image annotation of NL_HaNa_H2_7823_0177</title>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0177.jpg">
+        <rdf:type rdf:resource="http://purl.org/dc/dcmitype/Image"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:4ef22100-8034-40ae-8122-af1f55740f22">
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+	<hasBody xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:d073b69e-6063-4860-aa13-edd198f053f4"/>
+	<hasTarget xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:4a6d22a7-0ebc-4484-80cc-da8d97f2d108"/>
+	<title xmlns="http://purl.org/dc/elements/1.1/">Annotation for navis-NL_HaNa_H2_7823_0177-line-001-y1=55-y2=326</title>
+	<identifier xmlns="http://purl.org/dc/elements/1.1/">navis-NL_HaNa_H2_7823_0177-line-001-y1=55-y2=326</identifier>
+	<chars xmlns="http://www.catchplus.nl/annotation/">124 Dm</chars>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:d073b69e-6063-4860-aa13-edd198f053f4">
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkTranscription"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:4f6220b3-9d87-4087-be6f-55c45e754195"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:7f66a96d-591d-4370-82fc-6cb668b20f63"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:7f66a96d-591d-4370-82fc-6cb668b20f63">
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/extensions/TextOffsetSelector"/>
+	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextOffsetSelector"/>
+	<offset xmlns="http://www.w3.org/ns/openannotation/extensions/">0</offset>
+	<range xmlns="http://www.w3.org/ns/openannotation/extensions/">6</range>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:4a6d22a7-0ebc-4484-80cc-da8d97f2d108">
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0177"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:9da82f8c-5674-46ef-a4b8-093804f41f5a"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="urn:uuid:9da82f8c-5674-46ef-a4b8-093804f41f5a">
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/extensions/SvgSelector"/>
+	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
+	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
+	<chars xmlns="http://www.w3.org/2008/content#">"&lt;rect x="369" y="102" width="-1" height="271"/&gt;"</chars>
+	<characterEncoding xmlns="http://www.w3.org/2008/content#">UTF-8</characterEncoding>
+</rdf:Description>
+
+</rdf:RDF>
