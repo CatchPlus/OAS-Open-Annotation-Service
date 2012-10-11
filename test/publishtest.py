@@ -145,7 +145,7 @@ class PublishTest(SeecrTestCase):
         self.assertEqualsWS(expectedXml, tostring(self.observer.calledMethods[1].kwargs['lxmlNode']))
 
 
-    def testPublishChecksForConstrainedTargetInStorage(self):
+    def testPublishChecksForSpecificResourceInStorage(self):
         xml = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oa="http://www.w3.org/ns/openannotation/core/"
@@ -156,11 +156,11 @@ class PublishTest(SeecrTestCase):
         <oa:hasTarget rdf:resource="urn:id:ct:1"/>
     </oa:Annotation>
 </rdf:RDF>"""
-        constrainedTarget = """<oa:ConstrainedTarget 
+        specificResource = """<oa:SpecificResource 
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
         xmlns:oa="http://www.w3.org/ns/openannotation/core/" 
         rdf:about="urn:id:ct:1">
-    </oa:ConstrainedTarget>"""
+    </oa:SpecificResource>"""
         expectedXml = """<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
     xmlns:oa="http://www.w3.org/ns/openannotation/core/"
@@ -169,9 +169,9 @@ class PublishTest(SeecrTestCase):
 
     <oa:Annotation rdf:about="http://some.where/here/urn%3Auuid%3A1505e7d8-6462-4536-a3ae-944a08ce540c">
         <oa:hasTarget>
-            <oa:ConstrainedTarget rdf:about="http://some.where/here/urn%3Aid%3Act%3A1">
+            <oa:SpecificResource rdf:about="http://some.where/here/urn%3Aid%3Act%3A1">
                 <dc:identifier>urn:id:ct:1</dc:identifier>
-            </oa:ConstrainedTarget>
+            </oa:SpecificResource>
         </oa:hasTarget>
         <dc:identifier>urn:uuid:1505e7d8-6462-4536-a3ae-944a08ce540c</dc:identifier>
     </oa:Annotation>
@@ -187,7 +187,7 @@ class PublishTest(SeecrTestCase):
 
 
         self.store.returnValues['isAvailable'] = (True, True)
-        self.store.returnValues['getStream'] = StringIO(constrainedTarget)
+        self.store.returnValues['getStream'] = StringIO(specificResource)
         lico(self.dna.all.process(parse(StringIO(xml))))
 
         self.assertEquals('getStream', self.store.calledMethods[2].name)

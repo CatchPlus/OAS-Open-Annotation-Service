@@ -43,13 +43,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:4ad0d8fc-ef01-4ed2-b770-47e2ca1f53db">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:69070fb8-1ea4-42ef-83b9-bb7e30afa57b"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:69070fb8-1ea4-42ef-83b9-bb7e30afa57b"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:69070fb8-1ea4-42ef-83b9-bb7e30afa57b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="0" range="24"/&gt;"</chars>
@@ -57,13 +57,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:21f27072-d30d-44fc-9ba6-9b0a27641985">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:7c02ebe6-3f3a-4cd4-ba0a-98dcf9e99a3a"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:7c02ebe6-3f3a-4cd4-ba0a-98dcf9e99a3a"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:7c02ebe6-3f3a-4cd4-ba0a-98dcf9e99a3a">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -82,13 +82,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:4263caa7-c020-425d-b338-030fc32cb519">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:30b884cb-edf8-4ae3-9635-1ae531494ab0"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:30b884cb-edf8-4ae3-9635-1ae531494ab0"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:30b884cb-edf8-4ae3-9635-1ae531494ab0">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="25" range="26"/&gt;"</chars>
@@ -96,13 +96,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:754a7c9c-a22c-47dc-8cca-17514b0511c2">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:13305229-2283-47c4-a99d-ede72a64988d"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:13305229-2283-47c4-a99d-ede72a64988d"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:13305229-2283-47c4-a99d-ede72a64988d">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -122,13 +122,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:b505c03d-611e-4910-8437-bae177dad92b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:4b3cdffe-bfa7-4ec3-b536-d95f97381b0a"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:4b3cdffe-bfa7-4ec3-b536-d95f97381b0a"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:4b3cdffe-bfa7-4ec3-b536-d95f97381b0a">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="25" range="4"/&gt;"</chars>
@@ -136,13 +136,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:db6b205e-e2d4-4f4c-b381-b6205c05cac0">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:defef25c-3181-40e6-af90-c776692b6353"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:defef25c-3181-40e6-af90-c776692b6353"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:defef25c-3181-40e6-af90-c776692b6353">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -161,13 +161,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:2a1a4213-682b-43d6-8e50-5f3734df0e8c">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:b1491730-3f1c-42e4-b9b5-dc9726b58bd8"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:b1491730-3f1c-42e4-b9b5-dc9726b58bd8"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:b1491730-3f1c-42e4-b9b5-dc9726b58bd8">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="52" range="58"/&gt;"</chars>
@@ -175,13 +175,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:73a10963-45c6-438a-a5fa-69198aa964ce">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:926bef61-e3c5-4812-a9df-653e3c0d4e9b"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:926bef61-e3c5-4812-a9df-653e3c0d4e9b"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:926bef61-e3c5-4812-a9df-653e3c0d4e9b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -201,13 +201,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:2fbe1acf-768d-424d-aa1b-9b066f8ec3a0">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:bf6d164d-9ba1-4166-80e8-6a7eb5e1177c"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:bf6d164d-9ba1-4166-80e8-6a7eb5e1177c"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:bf6d164d-9ba1-4166-80e8-6a7eb5e1177c">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="52" range="2"/&gt;"</chars>
@@ -215,13 +215,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:a62c61e3-03cb-4087-b03e-fec6efc3fa16">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:5ebb6c14-8d07-44bd-ae18-6ae994671e53"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:5ebb6c14-8d07-44bd-ae18-6ae994671e53"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:5ebb6c14-8d07-44bd-ae18-6ae994671e53">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -241,13 +241,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:4f376d50-0b68-4820-a208-e3e449dd53d2">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:6cf9be27-4a6e-4a8d-8084-0e400117679a"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:6cf9be27-4a6e-4a8d-8084-0e400117679a"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:6cf9be27-4a6e-4a8d-8084-0e400117679a">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="55" range="2"/&gt;"</chars>
@@ -255,13 +255,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:2aff96b7-d66d-4797-a409-1adfa66f32f3">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:f33f74df-e64c-4e16-bdad-3c9c01028404"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:f33f74df-e64c-4e16-bdad-3c9c01028404"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:f33f74df-e64c-4e16-bdad-3c9c01028404">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -281,13 +281,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:c3639916-7287-4f45-9ca4-24e808facb59">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:5e2c43ff-7c8d-468e-8009-54a9bc9fde9e"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:5e2c43ff-7c8d-468e-8009-54a9bc9fde9e"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:5e2c43ff-7c8d-468e-8009-54a9bc9fde9e">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="58" range="2"/&gt;"</chars>
@@ -295,13 +295,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:d6d38e3e-e1dd-41e4-8e1a-bbe63d1564dd">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:a735d41a-97a5-460b-9120-d8d398353740"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:a735d41a-97a5-460b-9120-d8d398353740"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:a735d41a-97a5-460b-9120-d8d398353740">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -321,13 +321,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:1c684647-08c2-480d-bf61-5d57a4665e9b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:84e11707-5d02-46ee-9754-9cd4405a789b"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:84e11707-5d02-46ee-9754-9cd4405a789b"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:84e11707-5d02-46ee-9754-9cd4405a789b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="61" range="2"/&gt;"</chars>
@@ -335,13 +335,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:e1f28df4-cc91-4ce8-becc-13addb52fedb">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:9c933c16-5206-4eb7-928c-5c7a5d39c767"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:9c933c16-5206-4eb7-928c-5c7a5d39c767"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:9c933c16-5206-4eb7-928c-5c7a5d39c767">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -361,13 +361,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:2b168e46-0eda-4065-aa28-ca5e0409fc7c">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:df965618-011d-4d85-9649-654f48fc151b"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:df965618-011d-4d85-9649-654f48fc151b"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:df965618-011d-4d85-9649-654f48fc151b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="64" range="1"/&gt;"</chars>
@@ -375,13 +375,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:9d37cd69-d355-4f32-8ebb-11090a4bb950">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:8693efa4-9ea9-4869-892f-5f9f4501960a"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:8693efa4-9ea9-4869-892f-5f9f4501960a"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:8693efa4-9ea9-4869-892f-5f9f4501960a">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -401,13 +401,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:a8fe86bd-f1b6-42f9-a5bf-7734273d723b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:136a61a9-fb96-40d4-b977-e7a02ac05c9e"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:136a61a9-fb96-40d4-b977-e7a02ac05c9e"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:136a61a9-fb96-40d4-b977-e7a02ac05c9e">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="66" range="4"/&gt;"</chars>
@@ -415,13 +415,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:40ecd9e5-1d91-45a3-8d93-ef76450ce6ea">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:ae602a04-0a98-4d1a-ad94-949e684ff73e"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:ae602a04-0a98-4d1a-ad94-949e684ff73e"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:ae602a04-0a98-4d1a-ad94-949e684ff73e">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -441,13 +441,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:22899ebf-a480-4f42-919f-26b66460957b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:3a4acf5c-8e2a-4b81-accf-beb9062656ae"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:3a4acf5c-8e2a-4b81-accf-beb9062656ae"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:3a4acf5c-8e2a-4b81-accf-beb9062656ae">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="71" range="3"/&gt;"</chars>
@@ -455,13 +455,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:b659633a-927d-4850-8886-683ef276510b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:e4ca72ff-bb8f-476f-818f-2173ae752965"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:e4ca72ff-bb8f-476f-818f-2173ae752965"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:e4ca72ff-bb8f-476f-818f-2173ae752965">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -480,13 +480,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:a4a00c67-ef24-4d6d-a5d0-2912cf19255e">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:198b1c8c-8ff6-4988-b415-71df3d0a8045"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:198b1c8c-8ff6-4988-b415-71df3d0a8045"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:198b1c8c-8ff6-4988-b415-71df3d0a8045">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="111" range="43"/&gt;"</chars>
@@ -494,13 +494,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:1cf898e8-ffd8-4b09-b1bb-6f07e94f23b3">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:40d491b7-53af-434b-a743-5f9efc08e83c"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:40d491b7-53af-434b-a743-5f9efc08e83c"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:40d491b7-53af-434b-a743-5f9efc08e83c">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -520,13 +520,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:74f9d40b-3263-48f9-afb3-fa740cb0746b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:f27bf48c-44dc-4e2a-bed6-921b4b4dac60"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:f27bf48c-44dc-4e2a-bed6-921b4b4dac60"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:f27bf48c-44dc-4e2a-bed6-921b4b4dac60">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="111" range="8"/&gt;"</chars>
@@ -534,13 +534,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:26d021fd-d090-4aff-aca8-3e4f2a13c61a">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:defe3876-44b2-4665-a437-e3c0b344b1f4"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:defe3876-44b2-4665-a437-e3c0b344b1f4"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:defe3876-44b2-4665-a437-e3c0b344b1f4">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -560,13 +560,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:245de5d8-7897-4ca3-9447-5505290ffa49">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:37cf6020-1a2c-4979-970d-4166eb2df471"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:37cf6020-1a2c-4979-970d-4166eb2df471"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:37cf6020-1a2c-4979-970d-4166eb2df471">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="120" range="3"/&gt;"</chars>
@@ -574,13 +574,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:498545c0-aa28-4546-b428-0a939f537f57">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:279e3858-fe92-4583-af94-aa88b89596ba"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:279e3858-fe92-4583-af94-aa88b89596ba"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:279e3858-fe92-4583-af94-aa88b89596ba">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -600,13 +600,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:9beaa13f-6e82-4fbc-9f4c-da7efe28e74b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:8b81fdb5-9e48-4f41-923e-374f994d2fe7"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:8b81fdb5-9e48-4f41-923e-374f994d2fe7"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:8b81fdb5-9e48-4f41-923e-374f994d2fe7">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="124" range="3"/&gt;"</chars>
@@ -614,13 +614,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:75ac0b53-803b-4c09-8f24-3a0aacc094b2">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:cc666f40-50e4-40c3-85fa-636eda9d95b4"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:cc666f40-50e4-40c3-85fa-636eda9d95b4"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:cc666f40-50e4-40c3-85fa-636eda9d95b4">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -639,13 +639,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:6ca436fc-c046-493d-9f6f-ddcf42f5a9b5">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:65be488d-f6f6-46be-8ca3-574c55d0850c"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:65be488d-f6f6-46be-8ca3-574c55d0850c"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:65be488d-f6f6-46be-8ca3-574c55d0850c">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="155" range="75"/&gt;"</chars>
@@ -653,13 +653,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:45e3c7fd-1fd0-409f-998d-cc968c128495">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:50fd9159-c303-4453-8c08-ba99ac31b4f2"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:50fd9159-c303-4453-8c08-ba99ac31b4f2"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:50fd9159-c303-4453-8c08-ba99ac31b4f2">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -679,13 +679,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:57d03eac-b2f8-41b3-8c83-a2c617d6c7c0">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:dba81a84-6aff-4904-af59-38c63e16d4b8"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:dba81a84-6aff-4904-af59-38c63e16d4b8"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:dba81a84-6aff-4904-af59-38c63e16d4b8">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="155" range="3"/&gt;"</chars>
@@ -693,13 +693,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:89ee64a9-1ce1-4fd1-b1df-b751a744c4d5">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:9d4d8eb6-6529-40bf-9e87-ff6fb16b0bf5"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:9d4d8eb6-6529-40bf-9e87-ff6fb16b0bf5"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:9d4d8eb6-6529-40bf-9e87-ff6fb16b0bf5">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -719,13 +719,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:29b22703-53b2-4ae7-8264-25f70423dc93">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:1e2effd6-b392-4345-8975-0740128f3280"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:1e2effd6-b392-4345-8975-0740128f3280"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:1e2effd6-b392-4345-8975-0740128f3280">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="159" range="9"/&gt;"</chars>
@@ -733,13 +733,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:26e13f8a-eb4d-4c41-b80f-b7dbd21903a3">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:002ff7ff-b017-4498-9ac1-d823edb0b07c"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:002ff7ff-b017-4498-9ac1-d823edb0b07c"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:002ff7ff-b017-4498-9ac1-d823edb0b07c">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -759,13 +759,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:7fdc9954-9158-4cf1-ae1f-e3ac8447fac5">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:1e87d167-e038-461b-9f1f-2d784ab97d16"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:1e87d167-e038-461b-9f1f-2d784ab97d16"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:1e87d167-e038-461b-9f1f-2d784ab97d16">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="169" range="14"/&gt;"</chars>
@@ -773,13 +773,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:24954b71-1f56-4387-b68e-760a9ea5ec1b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:ecb9f28c-93f8-49c9-bddb-995bd6ea8f28"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:ecb9f28c-93f8-49c9-bddb-995bd6ea8f28"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:ecb9f28c-93f8-49c9-bddb-995bd6ea8f28">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -798,13 +798,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:b16a0850-895f-4c82-a3a9-c36f9fb6889e">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:c9fc6ed4-b467-487c-ab66-4e3188102146"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:c9fc6ed4-b467-487c-ab66-4e3188102146"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:c9fc6ed4-b467-487c-ab66-4e3188102146">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="231" range="52"/&gt;"</chars>
@@ -812,13 +812,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:4fa907fa-dc0b-4f27-833f-460036b0dd1c">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:b42a4e51-e5e5-4c9f-8338-18a74c1b1c6c"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:b42a4e51-e5e5-4c9f-8338-18a74c1b1c6c"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:b42a4e51-e5e5-4c9f-8338-18a74c1b1c6c">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -837,13 +837,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:7641448e-2f0f-44e7-b2a6-2803dd7ec8b1">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:229a51a2-baa0-467a-9c59-28d14708fa5b"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:229a51a2-baa0-467a-9c59-28d14708fa5b"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:229a51a2-baa0-467a-9c59-28d14708fa5b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="284" range="43"/&gt;"</chars>
@@ -851,13 +851,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:9f4b8431-b9b5-419f-a708-fbaeb8290eb8">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:5d1a0fb7-38a2-4ce0-8d9a-b83911b98669"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:5d1a0fb7-38a2-4ce0-8d9a-b83911b98669"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:5d1a0fb7-38a2-4ce0-8d9a-b83911b98669">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -877,13 +877,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:b853959f-1e42-4b98-93e8-cd19d1d4a36b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:d65a7f3c-151d-490b-93e4-d9ab254d24f1"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:d65a7f3c-151d-490b-93e4-d9ab254d24f1"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:d65a7f3c-151d-490b-93e4-d9ab254d24f1">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="284" range="15"/&gt;"</chars>
@@ -891,13 +891,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:c405d12d-a740-446c-9376-9d36461ffbcd">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:2c2dd9cb-5bd7-4d9d-a3c4-c8366e23789b"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:2c2dd9cb-5bd7-4d9d-a3c4-c8366e23789b"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:2c2dd9cb-5bd7-4d9d-a3c4-c8366e23789b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -917,13 +917,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:2c3b4979-8b8a-4ac9-a2fe-1d2c7a8f8a1e">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:142163b2-e491-4b35-b88a-c205c733b617"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:142163b2-e491-4b35-b88a-c205c733b617"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:142163b2-e491-4b35-b88a-c205c733b617">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="300" range="3"/&gt;"</chars>
@@ -931,13 +931,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:a8726ba5-26d7-4f76-8342-deb71d39fc05">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:10afe323-27ed-4c45-9db1-305fe60a646f"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:10afe323-27ed-4c45-9db1-305fe60a646f"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:10afe323-27ed-4c45-9db1-305fe60a646f">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -956,13 +956,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:bf00f360-8661-49a2-86ce-22b96c361b1d">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:05f4bbc9-ff31-4ef6-ab37-7fb24f51739c"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:05f4bbc9-ff31-4ef6-ab37-7fb24f51739c"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:05f4bbc9-ff31-4ef6-ab37-7fb24f51739c">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="328" range="64"/&gt;"</chars>
@@ -970,13 +970,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:441b087e-ca46-4e33-a770-a2ac7bcfe64a">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:4715f91d-9752-4b51-9189-3849c849ffc9"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:4715f91d-9752-4b51-9189-3849c849ffc9"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:4715f91d-9752-4b51-9189-3849c849ffc9">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -996,13 +996,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:7333438c-8f88-40c1-b593-0128b7883295">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:d9ffd8c4-e04d-4835-bc21-a0f18a6635ab"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:d9ffd8c4-e04d-4835-bc21-a0f18a6635ab"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:d9ffd8c4-e04d-4835-bc21-a0f18a6635ab">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="328" range="10"/&gt;"</chars>
@@ -1010,13 +1010,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:ffaf8c8e-4f46-4259-ab2b-713300ebc953">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:b77968b0-0d62-41d8-8485-9c9d7c35ea2b"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:b77968b0-0d62-41d8-8485-9c9d7c35ea2b"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:b77968b0-0d62-41d8-8485-9c9d7c35ea2b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1035,13 +1035,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:334b4b64-45c7-4dc1-af9b-1b4c56221582">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:e32834b5-99ad-4a21-bc2d-bdaaea0e1ecb"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:e32834b5-99ad-4a21-bc2d-bdaaea0e1ecb"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:e32834b5-99ad-4a21-bc2d-bdaaea0e1ecb">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="393" range="56"/&gt;"</chars>
@@ -1049,13 +1049,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:d783336b-1f7a-4055-9abd-4f8b24efa119">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0cf1ee2a-7d72-4bfb-b61f-572ec4606e72"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0cf1ee2a-7d72-4bfb-b61f-572ec4606e72"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:0cf1ee2a-7d72-4bfb-b61f-572ec4606e72">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1074,13 +1074,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:590ba033-5b0b-4e2e-bdff-9374e985fd87">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:bdc4a20d-2320-473e-bf71-510388995239"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:bdc4a20d-2320-473e-bf71-510388995239"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:bdc4a20d-2320-473e-bf71-510388995239">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="450" range="80"/&gt;"</chars>
@@ -1088,13 +1088,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:ffc4e778-ba06-4de4-add9-5b44b4bf6c08">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:9ea0d097-b8f5-4d1a-a18e-a6ee58884cce"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:9ea0d097-b8f5-4d1a-a18e-a6ee58884cce"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:9ea0d097-b8f5-4d1a-a18e-a6ee58884cce">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1113,13 +1113,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:b88dfac6-de1b-4cf9-ad52-553096ba4edc">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:bad8458c-43aa-413a-ada3-3f82bf53dba6"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:bad8458c-43aa-413a-ada3-3f82bf53dba6"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:bad8458c-43aa-413a-ada3-3f82bf53dba6">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="531" range="55"/&gt;"</chars>
@@ -1127,13 +1127,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:7cde804f-0e0e-42fb-a21e-3e4198812ae8">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:417176db-076f-4bbc-966b-ce6b0101d1bf"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:417176db-076f-4bbc-966b-ce6b0101d1bf"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:417176db-076f-4bbc-966b-ce6b0101d1bf">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1152,13 +1152,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:7fe3f685-09ae-40c6-a82a-d53e91084fff">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:80db63c3-fe95-436d-a279-50ea56da6fd1"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:80db63c3-fe95-436d-a279-50ea56da6fd1"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:80db63c3-fe95-436d-a279-50ea56da6fd1">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="587" range="48"/&gt;"</chars>
@@ -1166,13 +1166,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:b53cd43b-0892-4419-8d6c-943d45c3420e">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:660e9536-8911-42a8-972b-bdcf7b18c8e9"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:660e9536-8911-42a8-972b-bdcf7b18c8e9"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:660e9536-8911-42a8-972b-bdcf7b18c8e9">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1192,13 +1192,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:8fe65a3c-1b75-4112-944f-4f1ad970cf23">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:39404172-b12e-444b-8592-82ef3ec2dbb5"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:39404172-b12e-444b-8592-82ef3ec2dbb5"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:39404172-b12e-444b-8592-82ef3ec2dbb5">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="587" range="9"/&gt;"</chars>
@@ -1206,13 +1206,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:6cfe1fce-dc0b-45a6-b8d8-0f6c45938dd0">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:bdcade82-eb37-4617-aa40-913bf866b555"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:bdcade82-eb37-4617-aa40-913bf866b555"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:bdcade82-eb37-4617-aa40-913bf866b555">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1231,13 +1231,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:62439eee-650a-4f4f-928b-78165d7e0e89">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:f0225026-29f0-4e98-9bff-765b913fa665"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:f0225026-29f0-4e98-9bff-765b913fa665"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:f0225026-29f0-4e98-9bff-765b913fa665">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="636" range="44"/&gt;"</chars>
@@ -1245,13 +1245,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:e5c8cf30-f7c6-44de-b892-f08743641c59">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:cecf71fe-96b0-45fe-bf84-60b747f73b62"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:cecf71fe-96b0-45fe-bf84-60b747f73b62"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:cecf71fe-96b0-45fe-bf84-60b747f73b62">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1270,13 +1270,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:61946b0f-182c-4057-a2ca-a6b20e5dde0e">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:f6c3d62b-0f57-495d-bd2c-ec2f04144b17"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:f6c3d62b-0f57-495d-bd2c-ec2f04144b17"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:f6c3d62b-0f57-495d-bd2c-ec2f04144b17">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="681" range="64"/&gt;"</chars>
@@ -1284,13 +1284,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:0c87465f-d57d-4923-b283-13458e2c6d8d">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:ccbbe5e0-498d-45e5-a7fa-56ac964b3ab2"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:ccbbe5e0-498d-45e5-a7fa-56ac964b3ab2"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:ccbbe5e0-498d-45e5-a7fa-56ac964b3ab2">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1309,13 +1309,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:81325e03-3d7d-4502-8094-6e9b18377b05">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0ca3ecc4-dd26-4c64-a950-709ce72962be"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0ca3ecc4-dd26-4c64-a950-709ce72962be"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:0ca3ecc4-dd26-4c64-a950-709ce72962be">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="746" range="32"/&gt;"</chars>
@@ -1323,13 +1323,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:6c244c6a-9917-4b31-a4ad-e90522122fd8">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:be8816be-f8c3-450a-882a-10b2eae02e7e"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:be8816be-f8c3-450a-882a-10b2eae02e7e"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:be8816be-f8c3-450a-882a-10b2eae02e7e">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1348,13 +1348,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:5f8b64d8-2395-49c8-92bc-5ef2597365de">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:23e60c11-88e2-48a0-834d-80c60f376c1b"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:23e60c11-88e2-48a0-834d-80c60f376c1b"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:23e60c11-88e2-48a0-834d-80c60f376c1b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="779" range="60"/&gt;"</chars>
@@ -1362,13 +1362,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:7b1efd2d-de9d-4fc5-946c-e0ffec805559">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:e67c53dc-8a47-4303-a0f1-3bee19bc3ced"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:e67c53dc-8a47-4303-a0f1-3bee19bc3ced"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:e67c53dc-8a47-4303-a0f1-3bee19bc3ced">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1388,13 +1388,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:242fced8-dffa-48f1-aaf8-34e768691d1e">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:ed1aa5a2-721b-4fa5-8e3d-28cf132e5b97"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:ed1aa5a2-721b-4fa5-8e3d-28cf132e5b97"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:ed1aa5a2-721b-4fa5-8e3d-28cf132e5b97">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="779" range="6"/&gt;"</chars>
@@ -1402,13 +1402,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:2013fb8a-7ab6-4cce-a1d0-e9bdf6d05113">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:a3aa7a22-f6ce-4a17-b645-c70efe456f1f"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:a3aa7a22-f6ce-4a17-b645-c70efe456f1f"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:a3aa7a22-f6ce-4a17-b645-c70efe456f1f">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1427,13 +1427,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:afc1df08-9cfd-40b4-b600-218afd1393d1">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:320157f8-807c-4ea6-908a-09dbe6cf28b7"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:320157f8-807c-4ea6-908a-09dbe6cf28b7"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:320157f8-807c-4ea6-908a-09dbe6cf28b7">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="840" range="32"/&gt;"</chars>
@@ -1441,13 +1441,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:ecd56238-f5a0-4fb4-8a92-38132877dd1e">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:c26b22d8-0be8-4809-8868-198b22731821"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:c26b22d8-0be8-4809-8868-198b22731821"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:c26b22d8-0be8-4809-8868-198b22731821">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1466,13 +1466,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:e31f8d25-4ea5-413b-b359-97c14a63ad54">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:8854a86a-2507-4eb4-9bca-d120301b218b"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:8854a86a-2507-4eb4-9bca-d120301b218b"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:8854a86a-2507-4eb4-9bca-d120301b218b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="873" range="52"/&gt;"</chars>
@@ -1480,13 +1480,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:49ffdba2-1d59-4ff6-937d-c770bd8d1c59">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:4d761840-53fa-48d8-978a-ca5a2b703fa0"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:4d761840-53fa-48d8-978a-ca5a2b703fa0"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:4d761840-53fa-48d8-978a-ca5a2b703fa0">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1505,13 +1505,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:9b3182c6-48c1-435b-8a29-0b194d65d617">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:1d7cc7b5-3a34-4540-83b0-906611e322c3"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:1d7cc7b5-3a34-4540-83b0-906611e322c3"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:1d7cc7b5-3a34-4540-83b0-906611e322c3">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="926" range="54"/&gt;"</chars>
@@ -1519,13 +1519,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:473834fb-95db-4ef8-9688-c59c477d1867">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:346bb922-199e-43e1-92fe-57c9f3795581"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:346bb922-199e-43e1-92fe-57c9f3795581"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:346bb922-199e-43e1-92fe-57c9f3795581">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1544,13 +1544,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:8819e0f5-1814-4bb3-b1c1-df5aaaaa1a84">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:5639a6f5-271b-43b9-9af5-d35cf6660cb8"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:5639a6f5-271b-43b9-9af5-d35cf6660cb8"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:5639a6f5-271b-43b9-9af5-d35cf6660cb8">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="981" range="45"/&gt;"</chars>
@@ -1558,13 +1558,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:73584b42-5be6-41d7-ac54-e54f4d3ce242">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:5246129f-540a-4c03-82a7-0b8a994c52a6"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:5246129f-540a-4c03-82a7-0b8a994c52a6"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:5246129f-540a-4c03-82a7-0b8a994c52a6">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1583,13 +1583,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:981cd97c-24db-4dbe-b879-59684ed92609">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:9c6d64b0-065d-41dd-a07f-474095318210"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:9c6d64b0-065d-41dd-a07f-474095318210"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:9c6d64b0-065d-41dd-a07f-474095318210">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="1027" range="44"/&gt;"</chars>
@@ -1597,13 +1597,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:509618ae-61bb-4f4f-a7f3-1216518f96e7">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:e9094bc8-fcc2-44d6-be47-da9fd7a4c447"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:e9094bc8-fcc2-44d6-be47-da9fd7a4c447"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:e9094bc8-fcc2-44d6-be47-da9fd7a4c447">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1623,13 +1623,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:7e389f24-fced-4bb3-bf58-290d9b91635e">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:c5a4d0f5-f4eb-47c3-94c4-30cf0f51a039"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:c5a4d0f5-f4eb-47c3-94c4-30cf0f51a039"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:c5a4d0f5-f4eb-47c3-94c4-30cf0f51a039">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="1027" range="7"/&gt;"</chars>
@@ -1637,13 +1637,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:0e031721-d35c-41c4-87d3-39039831d5ee">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:47abd752-5189-4d96-b1a2-8544fb85a450"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:47abd752-5189-4d96-b1a2-8544fb85a450"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:47abd752-5189-4d96-b1a2-8544fb85a450">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>
@@ -1662,13 +1662,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:47990dc2-2a92-4f6a-b634-a2a44f196389">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:00a4eab7-25ae-430e-957e-2dd031dea34d"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:0f654b3d-273b-4b5e-8b0c-9e89dcc0dd42"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:00a4eab7-25ae-430e-957e-2dd031dea34d"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:00a4eab7-25ae-430e-957e-2dd031dea34d">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/InlineTextConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<chars xmlns="http://www.w3.org/2008/content#">"&lt;textsegment offset="1072" range="74"/&gt;"</chars>
@@ -1676,13 +1676,13 @@
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:5814e825-a9d8-4712-813b-eaa2fc03f49b">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-	<constrains xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
-	<constrainedBy xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:4c3f82e7-b295-4914-afc0-f67dbeea7084"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+	<hasSource xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="http://www.catchplus.nl/annotation/NL_HaNa_H2_7823_0076"/>
+	<hasSelector xmlns="http://www.w3.org/ns/openannotation/core/" rdf:resource="urn:uuid:4c3f82e7-b295-4914-afc0-f67dbeea7084"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="urn:uuid:4c3f82e7-b295-4914-afc0-f67dbeea7084">
-	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+	<rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
 	<rdf:type rdf:resource="http://www.catchplus.nl/annotation/SvgConstraint"/>
 	<rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 	<format xmlns="http://purl.org/dc/elements/1.1/">image/svg+xml</format>

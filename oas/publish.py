@@ -87,7 +87,7 @@ class Publish(Observable):
                     publishIdentifier = self.urnToUrl(body, bodyIdentifier)
                     yield self.all['store'].add(identifier=publishIdentifier, partname="oacBody", lxmlNode=body)
 
-            for target in xpath(annotation, '//oa:ConstrainedTarget'):
+            for target in xpath(annotation, '//oa:SpecificResource'):
                 targetIdentifier = getAttrib(target, 'rdf:about')
                 if targetIdentifier.startswith('urn:'):
                     publishIdentifier = self.urnToUrl(target, targetIdentifier)

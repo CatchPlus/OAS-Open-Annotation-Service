@@ -104,13 +104,13 @@ class DeanonymizeTest(SeecrTestCase):
         self.assertEqualsWS(xml % ' rdf:about="%s"' % newIdentifier, tostring(self.observer.calledMethods[0].kwargs['lxmlNode']))
 
 
-    def testAddUrnToOacConstrainedTarget(self):
+    def testAddUrnToOaSpecificResource(self):
         xml = """<rdf:RDF 
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
         xmlns:oa="http://www.w3.org/ns/openannotation/core/"> 
     <oa:Annotation rdf:about="urn:annotation:identifier">
         <oa:hasTarget>
-            <oa:ConstrainedTarget%s/>
+            <oa:SpecificResource%s/>
         </oa:hasTarget>
     </oa:Annotation>
 </rdf:RDF>"""

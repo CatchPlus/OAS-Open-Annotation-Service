@@ -42,10 +42,10 @@ class InlineTest(IntegrationTestCase):
         self.assertEquals(["urn:id:ea:1"], xpath(ea_1, 'oa:Annotation/dc:identifier/text()'))
         self.assertEquals(["location"], xpath(ea_1, 'oa:Annotation/oa:hasBody/cnt:ContentAsText[@rdf:about="urn:id:ib:1"]/cnt:chars/text()'))
 
-        self.assertEquals(['Dit is een beschrijving van Den Haag. En dit is een tweede zin.'], xpath(ea_1, 'oa:Annotation/oa:hasTarget/oa:ConstrainedTarget[dc:identifier/text()="urn:id:ct:3"]/oa:constrains/cnt:ContentAsText[@rdf:about="urn:id:ib:0"]/cnt:chars/text()'))
-        self.assertEquals(['Dit is een beschrijving van Den Haag. En dit is een tweede zin.'], xpath(ea_1, 'oa:Annotation/oa:hasTarget/oa:ConstrainedTarget[dc:identifier/text()="urn:id:ct:4"]/oa:constrains/cnt:ContentAsText[@rdf:about="urn:id:ib:0"]/cnt:chars/text()'))
+        self.assertEquals(['Dit is een beschrijving van Den Haag. En dit is een tweede zin.'], xpath(ea_1, 'oa:Annotation/oa:hasTarget/oa:SpecificResource[dc:identifier/text()="urn:id:ct:3"]/oa:hasSource/cnt:ContentAsText[@rdf:about="urn:id:ib:0"]/cnt:chars/text()'))
+        self.assertEquals(['Dit is een beschrijving van Den Haag. En dit is een tweede zin.'], xpath(ea_1, 'oa:Annotation/oa:hasTarget/oa:SpecificResource[dc:identifier/text()="urn:id:ct:4"]/oa:hasSource/cnt:ContentAsText[@rdf:about="urn:id:ib:0"]/cnt:chars/text()'))
 
-        self.assertEquals(["UTF-8"], xpath(ea_1, 'oa:Annotation/oa:hasTarget/oa:ConstrainedTarget[dc:identifier/text()="urn:id:ct:3"]/oa:constrainedBy/oa:Constraint[@rdf:about="urn:id:c:5"]/cnt:characterEncoding/text()'))
+        self.assertEquals(["UTF-8"], xpath(ea_1, 'oa:Annotation/oa:hasTarget/oa:SpecificResource[dc:identifier/text()="urn:id:ct:3"]/oa:hasSelector/oa:Selector[@rdf:about="urn:id:c:5"]/cnt:characterEncoding/text()'))
 
     def testTextAnnotations_ta0(self):
         query = "urn:id:ta:0"
@@ -63,9 +63,10 @@ class InlineTest(IntegrationTestCase):
             version="1.2", operation="searchRetrieve", query=query), parse='lxml')
 
         ta_1 = xpath(body, "/srw:searchRetrieveResponse/srw:records/srw:record/srw:recordData/rdf:RDF")[0]
+        specificResourceUrl = "http://localhost:%s/resolve/urn%%3Aid%%3Acb%%3A1" % self.portNumber
 
-        self.assertEquals(['Dit is een beschrijving van Den Haag. En dit is een tweede zin.'], xpath(ta_1, 'oa:Annotation/oa:hasBody/oa:ConstrainedBody[@rdf:about="urn:id:cb:1"]/oa:constrains/cnt:ContentAsText[@rdf:about="urn:id:ib:0"]/cnt:chars/text()'))
-        self.assertEquals(['Canvas for imageScan1.jpg'], xpath(ta_1, 'oa:Annotation/oa:hasTarget/oa:ConstrainedTarget[dc:identifier/text()="urn:id:ct:1"]/oa:constrains/dms:Canvas[@rdf:about="http://catchplus.nl/annotation/Canvas1"]/dc:title/text()'))
+        self.assertEquals(['Dit is een beschrijving van Den Haag. En dit is een tweede zin.'], xpath(ta_1, 'oa:Annotation/oa:hasBody/oa:SpecificResource[@rdf:about="%s"]/oa:hasSource/cnt:ContentAsText[@rdf:about="urn:id:ib:0"]/cnt:chars/text()' % specificResourceUrl))
+        self.assertEquals(['Canvas for imageScan1.jpg'], xpath(ta_1, 'oa:Annotation/oa:hasTarget/oa:SpecificResource[dc:identifier/text()="urn:id:ct:1"]/oa:hasSource/dms:Canvas[@rdf:about="http://catchplus.nl/annotation/Canvas1"]/dc:title/text()'))
         
     def testTextAnnotations_ta2(self):
         query = "urn:id:ta:2"
@@ -73,9 +74,10 @@ class InlineTest(IntegrationTestCase):
             version="1.2", operation="searchRetrieve", query=query), parse='lxml')
 
         ta_2 = xpath(body, "/srw:searchRetrieveResponse/srw:records/srw:record/srw:recordData/rdf:RDF")[0]
+        specificResourceUrl = "http://localhost:%s/resolve/urn%%3Aid%%3Acb%%3A2" % self.portNumber
 
-        self.assertEquals(['Dit is een beschrijving van Den Haag. En dit is een tweede zin.'], xpath(ta_2, 'oa:Annotation/oa:hasBody/oa:ConstrainedBody[@rdf:about="urn:id:cb:2"]/oa:constrains/cnt:ContentAsText[@rdf:about="urn:id:ib:0"]/cnt:chars/text()'))
-        self.assertEquals(['Canvas for imageScan1.jpg'], xpath(ta_2, 'oa:Annotation/oa:hasTarget/oa:ConstrainedTarget[dc:identifier/text()="urn:id:ct:2"]/oa:constrains/dms:Canvas[@rdf:about="http://catchplus.nl/annotation/Canvas1"]/dc:title/text()'))
+        self.assertEquals(['Dit is een beschrijving van Den Haag. En dit is een tweede zin.'], xpath(ta_2, 'oa:Annotation/oa:hasBody/oa:SpecificResource[@rdf:about="%s"]/oa:hasSource/cnt:ContentAsText[@rdf:about="urn:id:ib:0"]/cnt:chars/text()' % specificResourceUrl))
+        self.assertEquals(['Canvas for imageScan1.jpg'], xpath(ta_2, 'oa:Annotation/oa:hasTarget/oa:SpecificResource[dc:identifier/text()="urn:id:ct:2"]/oa:hasSource/dms:Canvas[@rdf:about="http://catchplus.nl/annotation/Canvas1"]/dc:title/text()'))
         
     def testImageAnnotations_ia1(self):
         query = "urn:id:ia:1"

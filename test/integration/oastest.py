@@ -226,7 +226,7 @@ class OasTest(IntegrationTestCase):
 
     def testResolveConstrainedTargets(self):
         header, body = getRequest(self.portNumber, '/resolve/urn%3Aid%3Act%3A1', {}, parse='lxml')
-        self.assertEquals(["http://localhost:%s/resolve/urn%%3Aid%%3Act%%3A1" % self.portNumber], xpath(body, '/rdf:RDF/oa:ConstrainedTarget/@rdf:about'))
+        self.assertEquals(["http://localhost:%s/resolve/urn%%3Aid%%3Act%%3A1" % self.portNumber], xpath(body, '/rdf:RDF/oa:SpecificResource/@rdf:about'))
 
     def testDocumentationPage(self):
         header, body = getRequest(self.portNumber, '/documentation', {}, parse='lxml')

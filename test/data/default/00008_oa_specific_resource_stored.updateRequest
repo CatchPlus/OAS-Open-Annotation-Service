@@ -36,13 +36,13 @@
         <oa:annotatedAt>2012-04-23 10:14:54</oa:annotatedAt>
     </rdf:Description>
 
-    <oa:ConstrainedTarget rdf:about="urn:id:ct:1">
-        <oa:constrainedBy>
+    <oa:SpecificResource rdf:about="urn:id:ct:1">
+        <oa:hasSelector>
             <oa:SvgConstraint>
                 <dc:format>image/svg+xml</dc:format>
             </oa:SvgConstraint>
-        </oa:constrainedBy>
-        <oa:constrains rdf:resource="http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"/>
-    </oa:ConstrainedTarget>
+        </oa:hasSelector>
+        <oa:hasSource rdf:resource="http://oas.dev.seecr.nl:8000/static/catch_plus_logo.png"/>
+    </oa:SpecificResource>
     
 </rdf:RDF>

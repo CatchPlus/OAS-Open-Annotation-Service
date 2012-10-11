@@ -70,43 +70,43 @@
     </rdf:Description>
 
     <rdf:Description rdf:about="urn:id:cb:1">
-        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-        <oa:constrains rdf:resource="urn:id:ib:0"/>
-		<oa:constrainedBy rdf:resource="urn:id:c:1"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+        <oa:hasSource rdf:resource="urn:id:ib:0"/>
+		<oa:hasSelector rdf:resource="urn:id:c:1"/>
     </rdf:Description>
 
     <rdf:Description rdf:about="urn:id:cb:2">
-        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedBody"/>
-        <oa:constrains rdf:resource="urn:id:ib:0"/>
-		<oa:constrainedBy rdf:resource="urn:id:c:3"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+        <oa:hasSource rdf:resource="urn:id:ib:0"/>
+		<oa:hasSelector rdf:resource="urn:id:c:3"/>
     </rdf:Description>    
 
     <rdf:Description rdf:about="urn:id:ct:1">
-        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-        <oa:constrains rdf:resource="http://catchplus.nl/annotation/Canvas1"/>
-		<oa:constrainedBy rdf:resource="urn:id:c:2"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+        <oa:hasSource rdf:resource="http://catchplus.nl/annotation/Canvas1"/>
+		<oa:hasSelector rdf:resource="urn:id:c:2"/>
     </rdf:Description>  
     
     <rdf:Description rdf:about="urn:id:ct:2">
-        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-        <oa:constrains rdf:resource="http://catchplus.nl/annotation/Canvas1"/>
-		<oa:constrainedBy rdf:resource="urn:id:c:4"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+        <oa:hasSource rdf:resource="http://catchplus.nl/annotation/Canvas1"/>
+		<oa:hasSelector rdf:resource="urn:id:c:4"/>
     </rdf:Description> 
 
     <rdf:Description rdf:about="urn:id:ct:3">
-        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-        <oa:constrains rdf:resource="urn:id:ib:0"/>
-		<oa:constrainedBy rdf:resource="urn:id:c:5"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+        <oa:hasSource rdf:resource="urn:id:ib:0"/>
+		<oa:hasSelector rdf:resource="urn:id:c:5"/>
     </rdf:Description> 
     
     <rdf:Description rdf:about="urn:id:ct:4">
-        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/ConstrainedTarget"/>
-        <oa:constrains rdf:resource="urn:id:ib:0"/>
-		<oa:constrainedBy rdf:resource="urn:id:c:6"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/SpecificResource"/>
+        <oa:hasSource rdf:resource="urn:id:ib:0"/>
+		<oa:hasSelector rdf:resource="urn:id:c:6"/>
     </rdf:Description> 
 
     <rdf:Description rdf:about="urn:id:c:1">
-        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/InlineTextConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 		<cnt:chars>textsegment offset="0" range="30"</cnt:chars>
@@ -114,7 +114,7 @@
     </rdf:Description> 
 
     <rdf:Description rdf:about="urn:id:c:2">
-        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/SvgConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
         <dc:format>image/svg+xml</dc:format>
@@ -123,7 +123,7 @@
     </rdf:Description> 
     
     <rdf:Description rdf:about="urn:id:c:3">
-        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/InlineTextConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 		<cnt:chars>textsegment offset="31" range="31"</cnt:chars>
@@ -131,7 +131,7 @@
     </rdf:Description> 
 
     <rdf:Description rdf:about="urn:id:c:4">
-        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/SvgConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
         <dc:format>image/svg+xml</dc:format>
@@ -140,7 +140,7 @@
     </rdf:Description> 
 
     <rdf:Description rdf:about="urn:id:c:5">
-        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/InlineTextConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 		<cnt:chars>textsegment offset="27" range="3"</cnt:chars>
@@ -148,7 +148,7 @@
     </rdf:Description> 
 
     <rdf:Description rdf:about="urn:id:c:6">
-        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Constraint"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Selector"/>
         <rdf:type rdf:resource="http://catchplus.nl/annotation/InlineTextConstraint"/>
         <rdf:type rdf:resource="http://www.w3.org/2008/content#ContentAsText"/>
 		<cnt:chars>textsegment offset="31" range="4"</cnt:chars>

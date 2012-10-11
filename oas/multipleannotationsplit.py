@@ -65,8 +65,8 @@ class MultipleAnnotationSplit(Observable):
         for relation in [
             {'tag': 'oa:annotatedBy', 'partname': 'foafAgent'}, 
             {'tag': 'oa:hasBody', 'partname': 'oacBody'},
-            {'tag': 'oa:constrains'},
-            {'tag': 'oa:constrainedBy'},
+            {'tag': 'oa:hasSource'},
+            {'tag': 'oa:hasSelector'},
             {'tag': 'oa:hasTarget', 'partname': 'oacConstrainedTarget'},]:
 
             nodes = xpath(root, '%s[@rdf:resource]' % relation['tag'])
