@@ -47,11 +47,11 @@ def main(**kwargs):
 
     yield '<p>Special indexed fields are:</p><ul>'
     for fieldname in [
-        'dcterms:created', 
-        'dcterms:creator', 
+        'oa:generatedAt', 'oa:annotatedAt', 
+        'oa:generatedBy', 'oa:annotatedBy',
         'dc:title', 
-        'oac:hasBody', 
-        'oac:hasTarget', 
+        'oa:hasBody', 
+        'oa:hasTarget', 
         'rdf:type',
         'body',
         'set',

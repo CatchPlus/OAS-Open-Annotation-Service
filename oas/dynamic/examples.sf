@@ -37,7 +37,7 @@ def main(**kwargs):
     yield page.menu(selected="Examples")
     yield page.codeBlock(
         caption="External references", 
-        comments="Both the dcterms:creator and oac:hasBody in this example are rdf:resources which will need to be resolved.",
+        comments="Both the oa:annotatedBy and oa:hasBody in this example are rdf:resources which will need to be resolved.",
         code="""<rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:oa="http://www.w3.org/ns/openannotation/core/"
@@ -56,7 +56,7 @@ def main(**kwargs):
 
     yield page.codeBlock(
         caption="Annotation without rdf:type", 
-        comments="An oac:Annotation tag instead of an rdf:Description and a rdf:type tag.",
+        comments="An oa:Annotation tag instead of an rdf:Description and a rdf:type tag.",
         code="""<rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:oa="http://www.w3.org/ns/openannotation/core/"
@@ -73,50 +73,49 @@ def main(**kwargs):
     </rdf:Description>
 </rdf:RDF>""" % (uuid(), serverUrl, uuid(), serverUrl, timestamp))
 
-## Tot hier gedaan, voorbeeld 1 en 2
-
     yield page.codeBlock(
         caption="Subclass of Annotation with rdf:type", 
-        comments="An oac:Annotation tag with an rdf:type tag specifying a subclass of an oac:Annotation.",
-        code="""<rdf:RDF 
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+        comments="An oa:Annotation tag with an rdf:type tag specifying a subclass of an oa:Annotation.",
+        code="""<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
-    <oac:Annotation rdf:about="urn:uuid:%s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Reply"/>
-        <oac:hasBody rdf:resource="%s/static/dummy_oac_body"/>
-        <oac:hasTarget rdf:resource="urn:uuid:%s"/>
+    <oa:Annotation rdf:about="%s">
+        <oa:motivatedBy rdf:resource="http://www.w3.org/ns/openannotation/extensions/Reply"/>
+        <oa:hasBody rdf:resource="%s/static/dummy_oac_body"/>
+        <oa:hasTarget rdf:resource="urn:uuid:%s"/>
         <dc:title>Example of Reply indicated with rdf:type.</dc:title>
-        <dcterms:creator rdf:resource="%s/static/dummy_foaf_agent"/>
-        <dcterms:created>%s</dcterms:created>
-    </oac:Annotation>
+        <oa:annotatedBy rdf:resource="%s/static/dummy_foaf_agent"/>
+        <oa:annotatedAt>%s</oa:annotatedAt>
+    </oa:Annotation>
 </rdf:RDF>""" % (uuid(), serverUrl, uuid(), serverUrl, timestamp))
 
     yield page.codeBlock(
-        caption="In document oac:Body and foaf:Agent", 
-        comments="The oac:hasBody and foaf:Agent are provided within the RDF document, this makes them resolvable and the server will inline them.",
-        code="""<rdf:RDF 
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+        caption="In document oa:Body and foaf:Agent", 
+        comments="The oa:hasBody and foaf:Agent are provided within the RDF document, this makes them resolvable and the server will inline them.",
+   
+
+        code="""<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <rdf:Description rdf:about="urn:uuid:%s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody rdf:resource="urn:number:1"/>
-        <oac:hasTarget rdf:resource="http://example.org/target/1"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation">
+        <oa:hasBody rdf:resource="urn:number:1"/>
+        <oa:hasTarget rdf:resource="http://example.org/target/1"/>
         <dc:title>Example with creator and body in the same rdf</dc:title>
-        <dcterms:creator rdf:resource="urn:number:2"/>
-        <dcterms:created>%s</dcterms:created>
+        <oa:annotatedBy rdf:resource="urn:number:2"/>
+        <oa:annotatedAt>%s</oa:annotatedAt>
     </rdf:Description>
+
     <rdf:Description rdf:about="urn:number:1">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Body"/>
         <dc:description>This is the body of an annotation</dc:description>
     </rdf:Description>
+
     <rdf:Description rdf:about="urn:number:2">
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
         <foaf:mbox>info@example.org</foaf:mbox>
@@ -124,54 +123,53 @@ def main(**kwargs):
 </rdf:RDF>""" % (uuid(), timestamp))
 
     yield page.codeBlock(
-        caption="oac:Body refering to a previously used one", 
-        comments="The oac:hasBody was defined in the previous example. Upon upload of this example the server will inline the previously uploaded oac:hasBody.",
-        code="""<rdf:RDF 
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+        caption="oa:Body refering to a previously used one", 
+        comments="The oa:hasBody was defined in the previous example. Upon upload of this example the server will inline the previously uploaded oa:hasBody.",
+
+        code="""<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <rdf:Description rdf:about="urn:uuid:%s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody rdf:resource="urn:number:1"/>
-        <oac:hasTarget rdf:resource="urn:number:2"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasBody rdf:resource="urn:number:1"/>
+        <oa:hasTarget rdf:resource="urn:number:2"/>
         <dc:title>Example with creator and body in the same rdf</dc:title>
-        <dcterms:creator>
+        <oa:annotatedBy>
             <foaf:Agent>
                 <foaf:mbox>info@example.org</foaf:mbox>
             </foaf:Agent>
-        </dcterms:creator>
-        <dcterms:created>%s</dcterms:created>
+        </oa:annotatedBy>
+        <oa:annotatedAt>%s</oa:annotatedAt>
     </rdf:Description>
 </rdf:RDF>""" % (uuid(), timestamp))
 
     yield page.codeBlock(
-        caption="Inline anonymous oac:Body and foaf:Agent", 
-        comments="The inline anonymous oac:hasBody and foaf:Agent will be given a URN (urn:uuid:<uuid>) as rdf:about.",
+        caption="Inline anonymous foaf:Agent", 
+        comments="The inline anonymous foaf:Agent will be given a URN (urn:uuid:<uuid>) as rdf:about.",
         code="""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <rdf:Description rdf:about="urn:uuid:%s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody>
-            <oac:Body>
-                <dc:description>Inline anonymous</dc:description>
-            </oac:Body>
-        </oac:hasBody>
-        <oac:hasTarget rdf:resource="urn:number:2"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasBody>
+            <ContentAsText xmlns="http://www.w3.org/2008/content#">
+                <chars>Inline anonymous</chars>
+            </ContentAsText>
+        </oa:hasBody>
+        <oa:hasTarget rdf:resource="urn:number:2"/>
         <dc:title>Example with creator and body in the same rdf</dc:title>
-        <dcterms:creator>
+        <oa:annotatedBy>
             <foaf:Agent>
                 <foaf:mbox>info@example.org</foaf:mbox>
             </foaf:Agent>
-        </dcterms:creator>
-        <dcterms:created>%s</dcterms:created>
+        </oa:annotatedBy>
+        <oa:annotatedBy>%s</oa:annotatedBy>
     </rdf:Description>
 </rdf:RDF>""" % (uuid(), timestamp))
 
@@ -181,39 +179,38 @@ def main(**kwargs):
         comments="The constrained target will be given an URN which will be made resolvable.",
         code="""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <rdf:Description rdf:about="urn:uuid:%s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody>
-            <oac:Body>
-                <dc:description>Inline anonymous</dc:description>
-            </oac:Body>
-        </oac:hasBody>
-        <oac:hasTarget>
-            <oac:ConstrainedTarget>
-                <oac:constrainedBy>
-                    <oac:SvgConstraint>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasBody>
+            <ContentAsText xmlns="http://www.w3.org/2008/content#">
+                <chars>Constrained target</chars>
+            </ContentAsText>
+        </oa:hasBody>
+        <oa:hasTarget>
+            <oa:SpecificResource>
+                <oa:hasSelector>
+                    <oa:SvgConstraint>
                         <dc:format>image/svg+xml</dc:format>
-                    </oac:SvgConstraint>
-                </oac:constrainedBy>
-                <oac:constrains>
+                    </oa:SvgConstraint>
+                </oa:hasSelector>
+                <oa:constrains>
                     <foaf:Agent>
                         <foaf:name>John Doe</foaf:name>
                     </foaf:Agent>
-                </oac:constrains>
-            </oac:ConstrainedTarget>
-        </oac:hasTarget>
+                </oa:hasSelector>
+            </oa:SpecificResource>
+        </oa:hasTarget>
         <dc:title>Example with creator and body in the same rdf</dc:title>
-        <dcterms:creator>
+        <oa:annotatedBy>
             <foaf:Agent>
                 <foaf:mbox>info@example.org</foaf:mbox>
             </foaf:Agent>
-        </dcterms:creator>
-        <dcterms:created>%s</dcterms:created>
+        </oa:annotatedBy>
+        <oa:annotatedBy>%s</oa:annotatedBy>
     </rdf:Description>
 </rdf:RDF>""" % (uuid(), timestamp))
 
@@ -222,51 +219,50 @@ def main(**kwargs):
         comments="Two annotations about the same constrained target.",
         code="""<rdf:RDF 
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-    xmlns:oac="http://www.openannotation.org/ns/"
+    xmlns:oa="http://www.w3.org/ns/openannotation/core/"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:foaf="http://xmlns.com/foaf/0.1/">
 
     <rdf:Description rdf:about="urn:uuid:%s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody>
-            <oac:Body>
-                <dc:description>First Annotation of a constrained target</dc:description>
-            </oac:Body>
-        </oac:hasBody>
-        <oac:hasTarget rdf:resource="urn:id:ct:1"/>
-        <dcterms:creator>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasBody>
+            <ContentAsText xmlns="http://www.w3.org/2008/content#">
+                <chars>Another Annotation of a constrained target</chars>
+            </ContentAsText>
+        </oa:hasBody>
+        <oa:hasTarget rdf:resource="urn:id:ct:1"/>
+        <oa:annotatedBy>
             <foaf:Agent>
                 <foaf:mbox>info@example.org</foaf:mbox>
             </foaf:Agent>
-        </dcterms:creator>
-        <dcterms:created>%s</dcterms:created>
+        </oa:annotatedBy>
+        <oa:annotatedBy>%s</oa:annotatedBy>
     </rdf:Description>
 
     <rdf:Description rdf:about="urn:uuid:%s">
-        <rdf:type rdf:resource="http://www.openannotation.org/ns/Annotation"/>
-        <oac:hasBody>
-            <oac:Body>
-                <dc:description>Another Annotation of a constrained target</dc:description>
-            </oac:Body>
-        </oac:hasBody>
-        <oac:hasTarget rdf:resource="urn:id:ct:1"/>
-        <dcterms:creator>
+        <rdf:type rdf:resource="http://www.w3.org/ns/openannotation/core/Annotation"/>
+        <oa:hasBody>
+            <ContentAsText xmlns="http://www.w3.org/2008/content#">
+                <chars>Another Annotation of a constrained target</chars>
+            </ContentAsText>
+        </oa:hasBody>
+        <oa:hasTarget rdf:resource="urn:id:ct:1"/>
+        <oa:annotatedBy>
             <foaf:Agent>
                 <foaf:mbox>info@example.org</foaf:mbox>
             </foaf:Agent>
-        </dcterms:creator>
-        <dcterms:created>%s</dcterms:created>
+        </oa:annotatedBy>
+        <oa:annotatedBy>%s</oa:annotatedBy>
     </rdf:Description>
 
-    <oac:ConstrainedTarget rdf:about="urn:id:ct:1">
-        <oac:constrainedBy>
-            <oac:SvgConstraint>
+    <oa:SpecificResource rdf:about="urn:id:ct:1">
+        <oa:hasSelector>
+            <oa:SvgConstraint>
                 <dc:format>image/svg+xml</dc:format>
-            </oac:SvgConstraint>
-        </oac:constrainedBy>
-        <oac:constrains rdf:resource=%s/>
-    </oac:ConstrainedTarget>
+            </oa:SvgConstraint>
+        </oa:hasSelector>
+        <oa:hasSource rdf:resource=%s/>
+    </oa:SpecificResource>
     
 </rdf:RDF>""" % (uuid(), timestamp, uuid(), timestamp, quoteattr(logoUrl)))
 
