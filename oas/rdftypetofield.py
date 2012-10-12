@@ -37,5 +37,8 @@ class RdfTypeToField(Observable):
 
         for node in xpath(lxmlNode, '/rdf:RDF/oa:Annotation/rdf:type/@rdf:resource'):
             self.do.addField(name="rdf:type", value=node)
+        
+        for node in xpath(lxmlNode, '//oa:hasBody/*/rdf:type/@rdf:resource'):
+            self.do.addField(name="rdf:type", value=node)
         return
         yield

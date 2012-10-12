@@ -70,3 +70,21 @@ class RdfTypeToFieldTest(SeecrTestCase):
         self.assertEquals(dict(name="rdf:type", value="%(oa)sAnnotation" % namespaces), self.observer.calledMethods[0].kwargs)
         self.assertEquals(dict(name="rdf:type", value="http://this.is.my/type"), self.observer.calledMethods[1].kwargs)
         self.assertEquals(dict(name="rdf:type", value="http://this.is.my/type/to"), self.observer.calledMethods[2].kwargs)
+
+
+    def testHasBodyInRdfType(self):
+        lico(self.dna.all.add(identifier="identifier", partname="partname", lxmlNode=parse(StringIO("""<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:oa="%(oa)s">
+            <oa:Annotation rdf:about="urn:uuid:10482225-56e3-4a5c-801b-690379aff7ac">
+                <oa:hasBody>
+                    <oa:SpecificResource rdf:about="urn:nr:1">
+                        <rdf:type rdf:resource="http://www.catchplus.nl/annotation/MonkTranscription"/>
+                    </oa:SpecificResource>
+                </oa:hasBody>
+            </oa:Annotation>
+        </rdf:RDF>""" % namespaces))))
+        self.assertEquals(2*['addField'], [m.name for m in self.observer.calledMethods])
+        self.assertEquals(dict(name="rdf:type", value="%(oa)sAnnotation" % namespaces), self.observer.calledMethods[0].kwargs)
+        self.assertEquals(dict(name="rdf:type", value='http://www.catchplus.nl/annotation/MonkTranscription'), self.observer.calledMethods[1].kwargs)
+        
+
+
