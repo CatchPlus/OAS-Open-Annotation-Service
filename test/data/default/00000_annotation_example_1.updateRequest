@@ -7,6 +7,8 @@
         <oa:hasBody rdf:resource="ex:HDFI-1"/>
         <oa:hasTarget rdf:resource="ex:HDFV"/>
         <dc:title>Annotation of the Hubble Deep Field Image</dc:title>
+        <oa:generatedBy rdf:resource="ex:BotUser"/>
+        <oa:generatedAt>2011-02-02 12:34:56</oa:generatedAt>
         <oa:annotatedBy rdf:resource="ex:User"/>
         <oa:annotatedAt>2010-02-02 12:34:56</oa:annotatedAt>
     </rdf:Description>

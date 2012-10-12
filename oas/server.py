@@ -189,6 +189,7 @@ def dna(reactor, observableHttpServer, config):
                     (XPath2Field([
                         ("/rdf:RDF/oa:Annotation/dc:title/text()", 'dc:title'),
                         ("/rdf:RDF/oa:Annotation/oa:annotatedAt/text()", 'oa:annotatedAt'),
+                        ("/rdf:RDF/oa:Annotation/oa:generatedAt/text()", 'oa:generatedAt'),
                         ], namespaceMap=namespaces),
                         indexHelix
                     ),
@@ -196,6 +197,7 @@ def dna(reactor, observableHttpServer, config):
                         ("/rdf:RDF/oa:Annotation/oa:annotatedBy/@rdf:resource", '__needs_resolved__'),
 
                         ("/rdf:RDF/oa:Annotation/oa:annotatedBy/@rdf:resource", 'oa:annotatedBy'),
+                        ("/rdf:RDF/oa:Annotation/oa:generatedBy/@rdf:resource", 'oa:generatedBy'),
                         ("/rdf:RDF/oa:Annotation/oa:hasBody/@rdf:resource", 'oa:hasBody'),
                         ("/rdf:RDF/oa:Annotation/oa:hasBody/@rdf:resource", 'oa:hasBody'),
                         ("/rdf:RDF/oa:Annotation/oa:hasBody/oa:Body/@rdf:about", 'oa:hasBody'),
@@ -214,7 +216,7 @@ def dna(reactor, observableHttpServer, config):
 
                         ], namespaceMap=namespaces),
                        
-                        (FilterField(lambda name: name == "oa:annotatedBy"),
+                        (FilterField(lambda name: name in ["oa:annotatedBy", 'oa:generatedBy']),
                             indexWithoutFragment
                         ),
                         (FilterField(lambda name: name in untokenized), 
