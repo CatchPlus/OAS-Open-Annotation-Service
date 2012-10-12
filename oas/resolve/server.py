@@ -72,10 +72,6 @@ class ResolveServer(Observable):
                         'partname': 'foafAgent', 
                         'urls': xpath(node, "oa:Annotation/oa:annotatedBy/@rdf:resource")
                     },
-                    {   'filter': filterOacBodies, 
-                        'partname': 'oacBody', 
-                        'urls': xpath(node, "oa:Annotation/oa:hasBody/@rdf:resource")
-                    },
                 ]
             }
 

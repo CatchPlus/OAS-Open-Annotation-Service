@@ -193,7 +193,6 @@ def dna(reactor, observableHttpServer, config):
                         indexHelix
                     ),
                     (XPath2Field([
-                        ("/rdf:RDF/oa:Annotation/oa:hasBody/@rdf:resource", '__needs_resolved__'),
                         ("/rdf:RDF/oa:Annotation/oa:annotatedBy/@rdf:resource", '__needs_resolved__'),
 
                         ("/rdf:RDF/oa:Annotation/oa:annotatedBy/@rdf:resource", 'oa:annotatedBy'),
