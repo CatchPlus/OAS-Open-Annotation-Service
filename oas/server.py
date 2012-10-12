@@ -203,8 +203,14 @@ def dna(reactor, observableHttpServer, config):
                         ("/rdf:RDF/oa:Annotation/oa:hasBody/oa:Body[@rdf:about]/dc:identifier/text()", 'oa:hasBody'),
                         ("/rdf:RDF/oa:Annotation/oa:hasTarget/@rdf:resource", 'oa:hasTarget'),
                         ("/rdf:RDF/oa:Annotation/oa:hasTarget/*/@rdf:about", 'oa:hasTarget'),
-                        ("//oa:SpecificResource/oa:hasSource/*/@rdf:about", 'oa:hasTarget'),
-                        ("//oa:SpecificResource/oa:hasSource/@rdf:resource", 'oa:hasTarget'),
+                        ("//oa:hasBody/oa:SpecificResource/@rdf:about", 'oa:hasBody'),
+                        ("//oa:hasBody/oa:SpecificResource/oa:hasSource/*/@rdf:about", 'oa:hasBody'),
+                        ("//oa:hasBody/oa:SpecificResource/oa:hasSource/@rdf:resource", 'oa:hasBody'),
+
+
+                        ("//oa:hasTarget/oa:SpecificResource/@rdf:about", 'oa:hasTarget'),
+                        ("//oa:hasTarget/oa:SpecificResource/oa:hasSource/*/@rdf:about", 'oa:hasTarget'),
+                        ("//oa:hasTarget/oa:SpecificResource/oa:hasSource/@rdf:resource", 'oa:hasTarget'),
                         ("//foaf:mbox/@rdf:resource", '__all__'),
 
                         ], namespaceMap=namespaces),

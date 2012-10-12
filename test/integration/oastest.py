@@ -101,6 +101,11 @@ class OasTest(IntegrationTestCase):
         self.assertQuery('oa:annotatedBy = "seecr uit veenendaal"', 2)
         self.assertQuery('oa:annotatedBy = "urn:this:creator:does:NOT:resolve"', 1)
 
+        self.assertQuery('oa:hasBody = "http://localhost:%s/resolve/urn%%3Auuid%%3Ad073b69e-6063-4860-aa13-edd198f053f4"' % self.portNumber, 1)
+        self.assertQuery('oa:hasTarget = "http://localhost:%s/resolve/urn%%3Auuid%%3Ad073b69e-6063-4860-aa13-edd198f053f4"' % self.portNumber, 0)
+        self.assertQuery('oa:hasBody = "http://localhost:%s/resolve/urn%%3Auuid%%3A4a6d22a7-0ebc-4484-80cc-da8d97f2d108"' % self.portNumber, 0)
+        self.assertQuery('oa:hasTarget = "http://localhost:%s/resolve/urn%%3Auuid%%3A4a6d22a7-0ebc-4484-80cc-da8d97f2d108"' % self.portNumber, 1)
+
     def testQueryOnRdfType(self):
         self.assertQuery('rdf:type = "http://www.w3.org/ns/openannotation/core/Annotation"', 22)
 
